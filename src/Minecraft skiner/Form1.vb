@@ -17,6 +17,8 @@ Public Class Form1
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateImage() 'Load preview
+        Renderer2D1.Skin = Skin
+        Renderer2D1.Refresh()
     End Sub
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
@@ -73,5 +75,9 @@ Public Class Form1
         g.DrawImage(tmpSkin, New Rectangle(0, 0, 64, 32), New Rectangle(0, 0, 64, 32), GraphicsUnit.Pixel) 'Crop the image
         SaveFileDialog.ShowDialog() 'Open the save dialog
         Skin = tmpSkin 'Rest the skin value to 1.8 old skin
+    End Sub
+
+    Private Sub Renderer2D1_SizeChanged(sender As Object, e As EventArgs) Handles Renderer2D1.SizeChanged
+        Renderer2D1.Refresh()
     End Sub
 End Class

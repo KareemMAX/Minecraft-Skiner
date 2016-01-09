@@ -22,37 +22,28 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.MainSkin = New System.Windows.Forms.PictureBox()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveAsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaveAs17SkinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Steverdb = New System.Windows.Forms.RadioButton()
         Me.Alexrdb = New System.Windows.Forms.RadioButton()
+        Me.Steverdb = New System.Windows.Forms.RadioButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.SaveAs17SkinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.MainSkin = New System.Windows.Forms.PictureBox()
+        Me.Renderer2D1 = New Minecraft_skiner.Renderer2D()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'MainSkin
-        '
-        Me.MainSkin.Image = Global.Minecraft_skiner.My.Resources.Resources.steve
-        Me.MainSkin.Location = New System.Drawing.Point(12, 27)
-        Me.MainSkin.Name = "MainSkin"
-        Me.MainSkin.Size = New System.Drawing.Size(128, 128)
-        Me.MainSkin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.MainSkin.TabIndex = 0
-        Me.MainSkin.TabStop = False
         '
         'MenuStrip
         '
@@ -73,26 +64,32 @@ Partial Class Form1
         'NewToolStripMenuItem
         '
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
         Me.NewToolStripMenuItem.Text = "&New"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
         Me.SaveToolStripMenuItem.Text = "&Save"
         '
         'SaveAsToolStripMenuItem
         '
         Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
-        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(114, 22)
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
         Me.SaveAsToolStripMenuItem.Text = "Save &As"
+        '
+        'SaveAs17SkinToolStripMenuItem
+        '
+        Me.SaveAs17SkinToolStripMenuItem.Name = "SaveAs17SkinToolStripMenuItem"
+        Me.SaveAs17SkinToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.SaveAs17SkinToolStripMenuItem.Text = "Save As 1.&7 skin"
         '
         'OpenFileDialog
         '
@@ -118,6 +115,17 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Model"
         '
+        'Alexrdb
+        '
+        Me.Alexrdb.AutoSize = True
+        Me.Alexrdb.Location = New System.Drawing.Point(6, 42)
+        Me.Alexrdb.Name = "Alexrdb"
+        Me.Alexrdb.Size = New System.Drawing.Size(46, 17)
+        Me.Alexrdb.TabIndex = 1
+        Me.Alexrdb.TabStop = True
+        Me.Alexrdb.Text = "Alex"
+        Me.Alexrdb.UseVisualStyleBackColor = True
+        '
         'Steverdb
         '
         Me.Steverdb.AutoSize = True
@@ -130,17 +138,6 @@ Partial Class Form1
         Me.Steverdb.Text = "Steve"
         Me.Steverdb.UseVisualStyleBackColor = True
         '
-        'Alexrdb
-        '
-        Me.Alexrdb.AutoSize = True
-        Me.Alexrdb.Location = New System.Drawing.Point(6, 42)
-        Me.Alexrdb.Name = "Alexrdb"
-        Me.Alexrdb.Size = New System.Drawing.Size(46, 17)
-        Me.Alexrdb.TabIndex = 1
-        Me.Alexrdb.TabStop = True
-        Me.Alexrdb.Text = "Alex"
-        Me.Alexrdb.UseVisualStyleBackColor = True
-        '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.CheckBox2)
@@ -151,18 +148,6 @@ Partial Class Form1
         Me.GroupBox2.TabIndex = 3
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Layers"
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Checked = True
-        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 19)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(50, 17)
-        Me.CheckBox1.TabIndex = 0
-        Me.CheckBox1.Text = "Body"
-        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'CheckBox2
         '
@@ -176,39 +161,80 @@ Partial Class Form1
         Me.CheckBox2.Text = "2nd layer"
         Me.CheckBox2.UseVisualStyleBackColor = True
         '
-        'SaveAs17SkinToolStripMenuItem
+        'CheckBox1
         '
-        Me.SaveAs17SkinToolStripMenuItem.Name = "SaveAs17SkinToolStripMenuItem"
-        Me.SaveAs17SkinToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
-        Me.SaveAs17SkinToolStripMenuItem.Text = "Save As 1.&7 skin"
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Checked = True
+        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.CheckBox1.Location = New System.Drawing.Point(6, 19)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(50, 17)
+        Me.CheckBox1.TabIndex = 0
+        Me.CheckBox1.Text = "Body"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'MainSkin
+        '
+        Me.MainSkin.Image = Global.Minecraft_skiner.My.Resources.Resources.steve
+        Me.MainSkin.Location = New System.Drawing.Point(12, 27)
+        Me.MainSkin.Name = "MainSkin"
+        Me.MainSkin.Size = New System.Drawing.Size(128, 128)
+        Me.MainSkin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.MainSkin.TabIndex = 6
+        Me.MainSkin.TabStop = False
+        '
+        'Renderer2D1
+        '
+        Me.Renderer2D1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Renderer2D1.BackColor = System.Drawing.Color.White
+        Me.Renderer2D1.Location = New System.Drawing.Point(173, 27)
+        Me.Renderer2D1.Name = "Renderer2D1"
+        Me.Renderer2D1.Show2ndBody = True
+        Me.Renderer2D1.Show2ndHead = True
+        Me.Renderer2D1.Show2ndLeftArm = True
+        Me.Renderer2D1.Show2ndLeftLeg = True
+        Me.Renderer2D1.Show2ndRightArm = True
+        Me.Renderer2D1.Show2ndRightLeg = True
+        Me.Renderer2D1.ShowBody = True
+        Me.Renderer2D1.ShowHead = True
+        Me.Renderer2D1.ShowLeftArm = True
+        Me.Renderer2D1.ShowLeftLeg = True
+        Me.Renderer2D1.ShowRightArm = True
+        Me.Renderer2D1.ShowRightLeg = True
+        Me.Renderer2D1.Size = New System.Drawing.Size(416, 314)
+        Me.Renderer2D1.Skin = Global.Minecraft_skiner.My.Resources.Resources.steve
+        Me.Renderer2D1.TabIndex = 4
+        Me.Renderer2D1.ViewPortAngle = Minecraft_skiner.Renderer2D.Angles.Normal
+        Me.Renderer2D1.ViewPortSide = Minecraft_skiner.Renderer2D.Sides.Front
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(767, 353)
+        Me.Controls.Add(Me.MainSkin)
+        Me.Controls.Add(Me.Renderer2D1)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
-        Me.Controls.Add(Me.MainSkin)
         Me.Controls.Add(Me.MenuStrip)
         Me.MainMenuStrip = Me.MenuStrip
-        Me.MinimumSize = New System.Drawing.Size(0, 279)
+        Me.MinimumSize = New System.Drawing.Size(16, 279)
         Me.Name = "Form1"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Minecraft Skiner"
-        CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents MainSkin As PictureBox
     Friend WithEvents MenuStrip As MenuStrip
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenToolStripMenuItem As ToolStripMenuItem
@@ -224,4 +250,6 @@ Partial Class Form1
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents Renderer2D1 As Renderer2D
+    Friend WithEvents MainSkin As PictureBox
 End Class
