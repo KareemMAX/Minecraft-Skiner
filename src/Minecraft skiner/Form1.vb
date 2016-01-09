@@ -62,6 +62,7 @@ Public Class Form1
         File = SaveFileDialog.FileName
         SaveFileDialog.FileName = "Untitled"
         Text = "Minecraft Skiner - " + IO.Path.GetFileName(File)
+
     End Sub
 
     Private Sub SaveAs17SkinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAs17SkinToolStripMenuItem.Click
