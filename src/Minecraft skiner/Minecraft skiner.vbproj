@@ -111,6 +111,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Renderer2D.Designer.vb">
+      <DependentUpon>Renderer2D.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Renderer2D.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -121,6 +127,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Renderer2D.resx">
+      <DependentUpon>Renderer2D.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
