@@ -23,6 +23,8 @@ Public Class Form1
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         OpenFileDialog.ShowDialog()
+        Renderer2D1.Skin = Skin
+        Renderer2D1.Refresh()
     End Sub
 
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
@@ -30,6 +32,8 @@ Public Class Form1
         Skin = My.Resources.steve 'Reset the skin value
         UpdateImage() 'Load the preview
         Text = "Minecraft Skiner" 'Reset the form text
+        Renderer2D1.Skin = Skin
+        Renderer2D1.Refresh()
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
