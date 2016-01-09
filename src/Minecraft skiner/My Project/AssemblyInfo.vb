@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("Minecraft skiner")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyTitle("Minecraft skiner")>
+<Assembly: AssemblyDescription("Tool to make a great minecraft skins")>
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Minecraft skiner")> 
-<Assembly: AssemblyCopyright("Copyright ©  2015")> 
+<Assembly: AssemblyProduct("Minecraft skiner")>
+<Assembly: AssemblyCopyright("Copyright ©  2016 Kareem morsy")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
