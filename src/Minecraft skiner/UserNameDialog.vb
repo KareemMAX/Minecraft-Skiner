@@ -20,29 +20,33 @@ Public Class UserNameDialog
             Form1.ConvertSkin()
         End If
 
-        '--------------Get the UUID-----------------
-        Dim UUIDrequest As HttpWebRequest = HttpWebRequest.Create(New Uri("https://api.mojang.com/users/profiles/minecraft/" + txtUsername.Text))
-        UUIDrequest.Method = WebRequestMethods.Http.Get
-        Dim UUIDresponse As HttpWebResponse = UUIDrequest.GetResponse()
-        Dim UUIDreader As New IO.StreamReader(UUIDresponse.GetResponseStream())
-        Dim UUIDResponseString As String = UUIDreader.ReadToEnd
-        UUIDresponse.Close()
-        Dim UUIDJson As MojangUUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of MojangUUID)(UUIDResponseString)
+        Try
+            '--------------Get the UUID-----------------
+            Dim UUIDrequest As HttpWebRequest = HttpWebRequest.Create(New Uri("https://api.mojang.com/users/profiles/minecraft/" + txtUsername.Text))
+            UUIDrequest.Method = WebRequestMethods.Http.Get
+            Dim UUIDresponse As HttpWebResponse = UUIDrequest.GetResponse()
+            Dim UUIDreader As New IO.StreamReader(UUIDresponse.GetResponseStream())
+            Dim UUIDResponseString As String = UUIDreader.ReadToEnd
+            UUIDresponse.Close()
+            Dim UUIDJson As MojangUUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of MojangUUID)(UUIDResponseString)
 
-        '--------------Get Skin type----------------
-        Dim Namerequest As HttpWebRequest = HttpWebRequest.Create(New Uri("https://mcapi.ca/name/uuid/" + UUIDJson.UUID))
-        Namerequest.Method = WebRequestMethods.Http.Get
-        Dim Nameresponse As HttpWebResponse = Namerequest.GetResponse()
-        Dim Namereader As New IO.StreamReader(Nameresponse.GetResponseStream())
-        Dim NameResponseString As String = UUIDreader.ReadToEnd
-        Nameresponse.Close()
-        Dim NameJson As Name = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Name)(NameResponseString)
-        If NameJson.PropertiesDecoded.Textures.Skin.MetaDate = "slim" Then
-            Form1.Alexrdb.Checked = True
-        End If
-
+            '--------------Get Skin type----------------
+            Dim Namerequest As HttpWebRequest = HttpWebRequest.Create(New Uri("https://mcapi.ca/name/uuid/" + UUIDJson.UUID))
+            Namerequest.Method = WebRequestMethods.Http.Get
+            Dim Nameresponse As HttpWebResponse = Namerequest.GetResponse()
+            Dim Namereader As New IO.StreamReader(Nameresponse.GetResponseStream())
+            Dim NameResponseString As String = UUIDreader.ReadToEnd
+            Nameresponse.Close()
+            Dim NameJson As Name = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Name)(NameResponseString)
+            If NameJson.PropertiesDecoded.Textures.Skin.MetaDate = "slim" Then
+                Form1.Alexrdb.Checked = True
+            End If
+            txtUsername.Text = UUIDJson.Name
+        Catch
+            MsgBox("Can't get the skin info, Change the model to Alex if the skin was 3-pixel", MsgBoxStyle.Exclamation, "Error")
+        End Try
         Form1.UpdateImage() 'Load the preview
-        Form1.Text = "Minecraft Skiner - " + UUIDJson.Name 'Update text value
+        Form1.Text = "Minecraft Skiner - " + txtUsername.Text 'Update text value
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
