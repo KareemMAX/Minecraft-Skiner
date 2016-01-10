@@ -136,7 +136,6 @@ Public Class Form1
         'Rotating
         GL.Rotate(90, 0, 2, 0)
 
-        'Draw pyramid, Y is up, Z is twards you, X is left and right
         'Vertex goes (X,Y,Z)
         GL.Begin(BeginMode.Quads)
         'Face 1
