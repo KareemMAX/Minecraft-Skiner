@@ -103,6 +103,16 @@
     ''' <returns>Show the second left leg layer or not</returns>
     Property Show2ndLeftLeg As Boolean = True
 
+    Enum Models
+        Steve
+        Alex
+    End Enum
+    ''' <summary>
+    ''' The rendered model
+    ''' </summary>
+    ''' <returns>The rendered model</returns>
+    Property Model As Models
+
     Private Sub Renderer2D_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         Dim g As Graphics = e.Graphics 'Create graphics
         g.Clear(Color.White)
@@ -121,10 +131,15 @@
                 BodyG.DrawImage(Skin, New Rectangle(4, 8, 8, 12), New Rectangle(20, 20, 8, 12), GraphicsUnit.Pixel) 'Drawing the Body
                 Dim RABM As New Bitmap(16, 32) 'tmp bitmap
                 Dim RAG As Graphics = Graphics.FromImage(RABM) 'tmp garphics
-                RAG.DrawImage(Skin, New Rectangle(0, 8, 4, 12), New Rectangle(44, 20, 4, 12), GraphicsUnit.Pixel) 'Drawing the right arm
                 Dim LABM As New Bitmap(16, 32) 'tmp bitmap
                 Dim LAG As Graphics = Graphics.FromImage(LABM) 'tmp garphics
-                LAG.DrawImage(Skin, New Rectangle(12, 8, 4, 12), New Rectangle(36, 52, 4, 12), GraphicsUnit.Pixel) 'Drawing the left arm
+                If Model = Models.Steve Then
+                    RAG.DrawImage(Skin, New Rectangle(0, 8, 4, 12), New Rectangle(44, 20, 4, 12), GraphicsUnit.Pixel) 'Drawing the right arm
+                    LAG.DrawImage(Skin, New Rectangle(12, 8, 4, 12), New Rectangle(36, 52, 4, 12), GraphicsUnit.Pixel) 'Drawing the left arm
+                Else
+                    RAG.DrawImage(Skin, New Rectangle(1, 8, 3, 12), New Rectangle(44, 20, 3, 12), GraphicsUnit.Pixel) 'Drawing the right arm
+                    LAG.DrawImage(Skin, New Rectangle(12, 8, 3, 12), New Rectangle(36, 52, 3, 12), GraphicsUnit.Pixel) 'Drawing the left arm
+                End If
                 Dim RLBM As New Bitmap(16, 32) 'tmp bitmap
                 Dim RLG As Graphics = Graphics.FromImage(RLBM) 'tmp garphics
                 RLG.DrawImage(Skin, New Rectangle(4, 20, 4, 12), New Rectangle(4, 20, 4, 12), GraphicsUnit.Pixel) 'Drawing the right leg

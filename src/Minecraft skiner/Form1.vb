@@ -94,4 +94,22 @@ Public Class Form1
         g.DrawImage(tmpSkin, New Rectangle(16, 48, 16, 16), New Rectangle(0, 16, 16, 16), GraphicsUnit.Pixel) 'Adding the left leg
         g.DrawImage(tmpSkin, New Rectangle(32, 48, 16, 16), New Rectangle(40, 16, 16, 16), GraphicsUnit.Pixel) 'Adding the left arm
     End Sub
+
+    Private Sub Steverdb_CheckedChanged(sender As Object, e As EventArgs) Handles Steverdb.CheckedChanged
+        If Steverdb.Checked Then
+            Renderer2D.Model = Renderer2D.Models.Steve
+        Else
+            Renderer2D.Model = Renderer2D.Models.Alex
+        End If
+        UpdateImage()
+    End Sub
+
+    Private Sub Alexrdb_CheckedChanged(sender As Object, e As EventArgs) Handles Alexrdb.CheckedChanged
+        If Steverdb.Checked Then
+            Renderer2D.Model = Renderer2D.Models.Steve
+        Else
+            Renderer2D.Model = Renderer2D.Models.Alex
+        End If
+        UpdateImage()
+    End Sub
 End Class
