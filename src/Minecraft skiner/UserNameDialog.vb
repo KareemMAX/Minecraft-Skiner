@@ -16,12 +16,7 @@ Public Class UserNameDialog
             Exit Sub
         End Try
         If Form1.Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
-            Dim tmpSkin As Bitmap = Form1.Skin
-            Form1.Skin = New Bitmap(64, 64)
-            Dim g As Graphics = Graphics.FromImage(Form1.Skin)
-            g.DrawImage(tmpSkin, New Rectangle(0, 0, 64, 32),
-                       New Rectangle(0, 0, 64, 32),
-                       GraphicsUnit.Pixel)
+            Form1.ConvertSkin()
         End If
         Form1.UpdateImage() 'Load the preview
         Text = "Minecraft Skiner - " + txtUsername.Text 'Update text value

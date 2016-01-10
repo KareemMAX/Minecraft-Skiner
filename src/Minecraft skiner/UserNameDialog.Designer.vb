@@ -78,7 +78,7 @@ Partial Class UserNameDialog
         Me.txtUsername.Location = New System.Drawing.Point(13, 30)
         Me.txtUsername.Name = "txtUsername"
         Me.txtUsername.Size = New System.Drawing.Size(259, 20)
-        Me.txtUsername.TabIndex = 2
+        Me.txtUsername.TabIndex = 0
         '
         'UserNameDialog
         '
