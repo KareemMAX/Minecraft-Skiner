@@ -1,4 +1,5 @@
-﻿Imports System.Windows.Forms
+﻿Imports System.Net
+Imports System.Windows.Forms
 
 Public Class UserNameDialog
 
@@ -18,8 +19,30 @@ Public Class UserNameDialog
         If Form1.Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
             Form1.ConvertSkin()
         End If
+
+        '--------------Get the UUID-----------------
+        Dim UUIDrequest As HttpWebRequest = HttpWebRequest.Create(New Uri("https://mcapi.ca/uuid/player/" + txtUsername.Text))
+        UUIDrequest.Method = WebRequestMethods.Http.Get
+        Dim UUIDresponse As HttpWebResponse = UUIDrequest.GetResponse()
+        Dim UUIDreader As New IO.StreamReader(UUIDresponse.GetResponseStream())
+        Dim UUIDResponseString As String = UUIDreader.ReadToEnd
+        UUIDresponse.Close()
+        Dim UUIDJson As UUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of UUID)(UUIDResponseString)
+
+        '--------------Get Skin type----------------
+        Dim Namerequest As HttpWebRequest = HttpWebRequest.Create(New Uri("https://mcapi.ca/name/uuid/" + UUIDJson.UUID))
+        Namerequest.Method = WebRequestMethods.Http.Get
+        Dim Nameresponse As HttpWebResponse = Namerequest.GetResponse()
+        Dim Namereader As New IO.StreamReader(Nameresponse.GetResponseStream())
+        Dim NameResponseString As String = UUIDreader.ReadToEnd
+        Nameresponse.Close()
+        Dim NameJson As Name = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Name)(NameResponseString)
+        If NameJson.PropertiesDecoded.Textures.Skin.MetaDate = "slim" Then
+            Form1.Alexrdb.Checked = True
+        End If
+
         Form1.UpdateImage() 'Load the preview
-        Text = "Minecraft Skiner - " + txtUsername.Text 'Update text value
+        Form1.Text = "Minecraft Skiner - " + txtUsername.Text 'Update text value
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub

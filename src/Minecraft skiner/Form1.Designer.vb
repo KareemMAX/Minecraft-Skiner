@@ -197,6 +197,7 @@ Partial Class Form1
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Renderer2D.BackColor = System.Drawing.Color.White
         Me.Renderer2D.Location = New System.Drawing.Point(173, 27)
+        Me.Renderer2D.Model = Minecraft_skiner.Renderer2D.Models.Steve
         Me.Renderer2D.Name = "Renderer2D"
         Me.Renderer2D.Show2ndBody = True
         Me.Renderer2D.Show2ndHead = True
