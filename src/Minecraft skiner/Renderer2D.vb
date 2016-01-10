@@ -277,7 +277,49 @@
                 If ShowLeftLeg Then
                     g.Graphics.DrawImage(LLBM, 0, 0)
                 End If
-
+                g.Graphics.ScaleTransform(1.05F, 1.05F)
+                g.Graphics.TranslateTransform(-0.3, -0.5)
+                Dim Head2BM As New Bitmap(16, 32) 'tmp bitmap
+                Dim Head2G As Graphics = Graphics.FromImage(Head2BM) 'tmp garphics
+                Head2G.DrawImage(Skin, New Rectangle(4, 0, 8, 8), New Rectangle(40, 8, 8, 8), GraphicsUnit.Pixel) 'Drawing the head
+                Dim Body2BM As New Bitmap(16, 32) 'tmp bitmap
+                Dim Body2G As Graphics = Graphics.FromImage(Body2BM) 'tmp garphics
+                Body2G.DrawImage(Skin, New Rectangle(4, 8, 8, 12), New Rectangle(20, 36, 8, 12), GraphicsUnit.Pixel) 'Drawing the Body
+                Dim RA2BM As New Bitmap(16, 32) 'tmp bitmap
+                Dim RA2G As Graphics = Graphics.FromImage(RA2BM) 'tmp garphics
+                Dim LA2BM As New Bitmap(16, 32) 'tmp bitmap
+                Dim LA2G As Graphics = Graphics.FromImage(LA2BM) 'tmp garphics
+                If Model = Models.Steve Then
+                    RA2G.DrawImage(Skin, New Rectangle(0, 8, 4, 12), New Rectangle(44, 36, 4, 12), GraphicsUnit.Pixel) 'Drawing the right arm
+                    LA2G.DrawImage(Skin, New Rectangle(12, 8, 4, 12), New Rectangle(52, 52, 4, 12), GraphicsUnit.Pixel) 'Drawing the left arm
+                Else
+                    RA2G.DrawImage(Skin, New Rectangle(1, 8, 3, 12), New Rectangle(44, 36, 3, 12), GraphicsUnit.Pixel) 'Drawing the right arm
+                    LA2G.DrawImage(Skin, New Rectangle(12, 8, 3, 12), New Rectangle(52, 52, 3, 12), GraphicsUnit.Pixel) 'Drawing the left arm
+                End If
+                Dim RL2BM As New Bitmap(16, 32) 'tmp bitmap
+                Dim RL2G As Graphics = Graphics.FromImage(RL2BM) 'tmp garphics
+                RL2G.DrawImage(Skin, New Rectangle(4, 20, 4, 12), New Rectangle(4, 36, 4, 12), GraphicsUnit.Pixel) 'Drawing the right leg
+                Dim LL2BM As New Bitmap(16, 32) 'tmp bitmap
+                Dim LL2G As Graphics = Graphics.FromImage(LL2BM) 'tmp garphics
+                LL2G.DrawImage(Skin, New Rectangle(8, 20, 4, 12), New Rectangle(4, 52, 4, 12), GraphicsUnit.Pixel) 'Drawing the left leg
+                If Show2ndHead Then
+                    g.Graphics.DrawImage(Head2BM, 0, 0)
+                End If
+                If Show2ndBody Then
+                    g.Graphics.DrawImage(Body2BM, 0, 0)
+                End If
+                If Show2ndRightArm Then
+                    g.Graphics.DrawImage(RA2BM, 0, 0)
+                End If
+                If Show2ndLeftArm Then
+                    g.Graphics.DrawImage(LA2BM, 0, 0)
+                End If
+                If Show2ndRightLeg Then
+                    g.Graphics.DrawImage(RL2BM, 0, 0)
+                End If
+                If Show2ndLeftLeg Then
+                    g.Graphics.DrawImage(LL2BM, 0, 0)
+                End If
             Case Sides.Back
 
             Case Sides.Left
