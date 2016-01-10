@@ -21,13 +21,13 @@ Public Class UserNameDialog
         End If
 
         '--------------Get the UUID-----------------
-        Dim UUIDrequest As HttpWebRequest = HttpWebRequest.Create(New Uri("https://mcapi.ca/uuid/player/" + txtUsername.Text))
+        Dim UUIDrequest As HttpWebRequest = HttpWebRequest.Create(New Uri("https://api.mojang.com/users/profiles/minecraft/" + txtUsername.Text))
         UUIDrequest.Method = WebRequestMethods.Http.Get
         Dim UUIDresponse As HttpWebResponse = UUIDrequest.GetResponse()
         Dim UUIDreader As New IO.StreamReader(UUIDresponse.GetResponseStream())
         Dim UUIDResponseString As String = UUIDreader.ReadToEnd
         UUIDresponse.Close()
-        Dim UUIDJson As UUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of UUID)(UUIDResponseString)
+        Dim UUIDJson As MojangUUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of MojangUUID)(UUIDResponseString)
 
         '--------------Get Skin type----------------
         Dim Namerequest As HttpWebRequest = HttpWebRequest.Create(New Uri("https://mcapi.ca/name/uuid/" + UUIDJson.UUID))
@@ -42,7 +42,7 @@ Public Class UserNameDialog
         End If
 
         Form1.UpdateImage() 'Load the preview
-        Form1.Text = "Minecraft Skiner - " + txtUsername.Text 'Update text value
+        Form1.Text = "Minecraft Skiner - " + UUIDJson.Name 'Update text value
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.Close()
     End Sub
