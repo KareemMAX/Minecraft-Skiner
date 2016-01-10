@@ -36,9 +36,10 @@ Partial Class Form1
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Alexrdb = New System.Windows.Forms.RadioButton()
         Me.Steverdb = New System.Windows.Forms.RadioButton()
-        Me.MainSkin = New System.Windows.Forms.PictureBox()
         Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
         Me.Renderer2D = New Minecraft_skiner.Renderer2D()
+        Me.MainSkin = New System.Windows.Forms.PictureBox()
+        Me.GlControl = New OpenTK.GLControl(New OpenTK.Graphics.GraphicsMode(New OpenTK.Graphics.ColorFormat(32), 24, 0, 4))
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,16 +144,6 @@ Partial Class Form1
         Me.Steverdb.Text = "Steve"
         Me.Steverdb.UseVisualStyleBackColor = True
         '
-        'MainSkin
-        '
-        Me.MainSkin.Image = CType(resources.GetObject("MainSkin.Image"), System.Drawing.Image)
-        Me.MainSkin.Location = New System.Drawing.Point(12, 27)
-        Me.MainSkin.Name = "MainSkin"
-        Me.MainSkin.Size = New System.Drawing.Size(128, 128)
-        Me.MainSkin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.MainSkin.TabIndex = 6
-        Me.MainSkin.TabStop = False
-        '
         'LayerSelector1
         '
         Me.LayerSelector1.Location = New System.Drawing.Point(12, 237)
@@ -200,11 +191,34 @@ Partial Class Form1
         Me.Renderer2D.ViewPortAngle = Minecraft_skiner.Renderer2D.Angles.Normal
         Me.Renderer2D.ViewPortSide = Minecraft_skiner.Renderer2D.Sides.Front
         '
+        'MainSkin
+        '
+        Me.MainSkin.Image = CType(resources.GetObject("MainSkin.Image"), System.Drawing.Image)
+        Me.MainSkin.Location = New System.Drawing.Point(12, 27)
+        Me.MainSkin.Name = "MainSkin"
+        Me.MainSkin.Size = New System.Drawing.Size(128, 128)
+        Me.MainSkin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.MainSkin.TabIndex = 6
+        Me.MainSkin.TabStop = False
+        '
+        'GlControl
+        '
+        Me.GlControl.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.GlControl.BackColor = System.Drawing.Color.White
+        Me.GlControl.Location = New System.Drawing.Point(173, 27)
+        Me.GlControl.Name = "GlControl"
+        Me.GlControl.Size = New System.Drawing.Size(416, 314)
+        Me.GlControl.TabIndex = 8
+        Me.GlControl.VSync = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(767, 353)
+        Me.Controls.Add(Me.GlControl)
         Me.Controls.Add(Me.LayerSelector1)
         Me.Controls.Add(Me.MainSkin)
         Me.Controls.Add(Me.Renderer2D)
@@ -240,4 +254,5 @@ Partial Class Form1
     Friend WithEvents MainSkin As PictureBox
     Friend WithEvents OpenFromplayerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LayerSelector1 As LayerSelector
+    Friend WithEvents GlControl As OpenTK.GLControl
 End Class

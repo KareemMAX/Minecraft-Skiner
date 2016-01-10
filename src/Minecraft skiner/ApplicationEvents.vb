@@ -16,6 +16,10 @@
 
             If desiredAssembly.Name = "Newtonsoft.Json" Then
                 Return Reflection.Assembly.Load(My.Resources.Newtonsoft_Json)
+            ElseIf desiredAssembly.Name = "OpenTK" Then
+                Return Reflection.Assembly.Load(My.Resources.OpenTK)
+            ElseIf desiredAssembly.Name = "OpenTK.GLControl" Then
+                Return Reflection.Assembly.Load(My.Resources.OpenTK_GLControl)
             Else
                 Return Nothing
             End If

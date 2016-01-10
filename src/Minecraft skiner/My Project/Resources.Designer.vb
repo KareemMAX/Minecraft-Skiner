@@ -71,6 +71,26 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized resource of type System.Byte[].
+        '''</summary>
+        Friend ReadOnly Property OpenTK() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("OpenTK", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Byte[].
+        '''</summary>
+        Friend ReadOnly Property OpenTK_GLControl() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("OpenTK_GLControl", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property steve() As System.Drawing.Bitmap
