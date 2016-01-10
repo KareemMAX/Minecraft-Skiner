@@ -248,7 +248,7 @@
         Renderer.ShowLeftArm = ShowLeftArm
         Renderer.ShowLeftLeg = ShowLeftLeg
         Renderer.ShowRightArm = ShowRightArm
-        Renderer.ShowRightLeg = Show2ndRightLeg
+        Renderer.ShowRightLeg = ShowRightLeg
         Renderer.Refresh()
     End Sub
 End Class
