@@ -26,6 +26,7 @@ Partial Class Form1
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenFromplayerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveAsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveAs17SkinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -38,7 +39,7 @@ Partial Class Form1
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.MainSkin = New System.Windows.Forms.PictureBox()
-        Me.Renderer2D1 = New Minecraft_skiner.Renderer2D()
+        Me.Renderer2D = New Minecraft_skiner.Renderer2D()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -56,7 +57,7 @@ Partial Class Form1
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenToolStripMenuItem, Me.SaveToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.SaveAs17SkinToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenToolStripMenuItem, Me.OpenFromplayerToolStripMenuItem, Me.SaveToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.SaveAs17SkinToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
@@ -64,31 +65,37 @@ Partial Class Form1
         'NewToolStripMenuItem
         '
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.NewToolStripMenuItem.Text = "&New"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
+        '
+        'OpenFromplayerToolStripMenuItem
+        '
+        Me.OpenFromplayerToolStripMenuItem.Name = "OpenFromplayerToolStripMenuItem"
+        Me.OpenFromplayerToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.OpenFromplayerToolStripMenuItem.Text = "Open from &player"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.SaveToolStripMenuItem.Text = "&Save"
         '
         'SaveAsToolStripMenuItem
         '
         Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
-        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.SaveAsToolStripMenuItem.Text = "Save &As"
         '
         'SaveAs17SkinToolStripMenuItem
         '
         Me.SaveAs17SkinToolStripMenuItem.Name = "SaveAs17SkinToolStripMenuItem"
-        Me.SaveAs17SkinToolStripMenuItem.Size = New System.Drawing.Size(156, 22)
+        Me.SaveAs17SkinToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
         Me.SaveAs17SkinToolStripMenuItem.Text = "Save As 1.&7 skin"
         '
         'OpenFileDialog
@@ -183,31 +190,31 @@ Partial Class Form1
         Me.MainSkin.TabIndex = 6
         Me.MainSkin.TabStop = False
         '
-        'Renderer2D1
+        'Renderer2D
         '
-        Me.Renderer2D1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.Renderer2D.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Renderer2D1.BackColor = System.Drawing.Color.White
-        Me.Renderer2D1.Location = New System.Drawing.Point(173, 27)
-        Me.Renderer2D1.Name = "Renderer2D1"
-        Me.Renderer2D1.Show2ndBody = True
-        Me.Renderer2D1.Show2ndHead = True
-        Me.Renderer2D1.Show2ndLeftArm = True
-        Me.Renderer2D1.Show2ndLeftLeg = True
-        Me.Renderer2D1.Show2ndRightArm = True
-        Me.Renderer2D1.Show2ndRightLeg = True
-        Me.Renderer2D1.ShowBody = True
-        Me.Renderer2D1.ShowHead = True
-        Me.Renderer2D1.ShowLeftArm = True
-        Me.Renderer2D1.ShowLeftLeg = True
-        Me.Renderer2D1.ShowRightArm = True
-        Me.Renderer2D1.ShowRightLeg = True
-        Me.Renderer2D1.Size = New System.Drawing.Size(416, 314)
-        Me.Renderer2D1.Skin = Global.Minecraft_skiner.My.Resources.Resources.steve
-        Me.Renderer2D1.TabIndex = 4
-        Me.Renderer2D1.ViewPortAngle = Minecraft_skiner.Renderer2D.Angles.Normal
-        Me.Renderer2D1.ViewPortSide = Minecraft_skiner.Renderer2D.Sides.Front
+        Me.Renderer2D.BackColor = System.Drawing.Color.White
+        Me.Renderer2D.Location = New System.Drawing.Point(173, 27)
+        Me.Renderer2D.Name = "Renderer2D"
+        Me.Renderer2D.Show2ndBody = True
+        Me.Renderer2D.Show2ndHead = True
+        Me.Renderer2D.Show2ndLeftArm = True
+        Me.Renderer2D.Show2ndLeftLeg = True
+        Me.Renderer2D.Show2ndRightArm = True
+        Me.Renderer2D.Show2ndRightLeg = True
+        Me.Renderer2D.ShowBody = True
+        Me.Renderer2D.ShowHead = True
+        Me.Renderer2D.ShowLeftArm = True
+        Me.Renderer2D.ShowLeftLeg = True
+        Me.Renderer2D.ShowRightArm = True
+        Me.Renderer2D.ShowRightLeg = True
+        Me.Renderer2D.Size = New System.Drawing.Size(416, 314)
+        Me.Renderer2D.Skin = Global.Minecraft_skiner.My.Resources.Resources.steve
+        Me.Renderer2D.TabIndex = 4
+        Me.Renderer2D.ViewPortAngle = Minecraft_skiner.Renderer2D.Angles.Normal
+        Me.Renderer2D.ViewPortSide = Minecraft_skiner.Renderer2D.Sides.Front
         '
         'Form1
         '
@@ -215,7 +222,7 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(767, 353)
         Me.Controls.Add(Me.MainSkin)
-        Me.Controls.Add(Me.Renderer2D1)
+        Me.Controls.Add(Me.Renderer2D)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip)
@@ -250,6 +257,7 @@ Partial Class Form1
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents CheckBox2 As CheckBox
     Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents Renderer2D1 As Renderer2D
+    Friend WithEvents Renderer2D As Renderer2D
     Friend WithEvents MainSkin As PictureBox
+    Friend WithEvents OpenFromplayerToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -117,6 +117,12 @@
     <Compile Include="Renderer2D.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UserNameDialog.Designer.vb">
+      <DependentUpon>UserNameDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserNameDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
@@ -130,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Renderer2D.resx">
       <DependentUpon>Renderer2D.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserNameDialog.resx">
+      <DependentUpon>UserNameDialog.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

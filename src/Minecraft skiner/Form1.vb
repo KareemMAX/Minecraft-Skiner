@@ -1,8 +1,8 @@
 ﻿
 Public Class Form1
-    Dim Skin As Bitmap = My.Resources.steve
-    Dim File As String
-    Private Sub UpdateImage()
+    Friend Skin As Bitmap = My.Resources.steve
+    Friend File As String
+    Friend Sub UpdateImage()
         Dim Image As New Bitmap(MainSkin.Width, MainSkin.Height) 'Create the skin preview bitmao
         If Not (Skin.Width = 64 AndAlso Skin.Height = 64) Then : Throw New ExSkinRes() : Exit Sub : End If 'Check the skin resolution
         '****************Writing pixels to the preview****************
@@ -13,18 +13,20 @@ Public Class Form1
         Next
         '*************************************************************
         MainSkin.Image = Image 'Apply preview
+        Renderer2D.Skin = Skin
+        Renderer2D.Refresh() 'Render
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateImage() 'Load preview
-        Renderer2D1.Skin = Skin
-        Renderer2D1.Refresh()
+        Renderer2D.Skin = Skin
+        Renderer2D.Refresh()
     End Sub
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         OpenFileDialog.ShowDialog()
-        Renderer2D1.Skin = Skin
-        Renderer2D1.Refresh()
+        Renderer2D.Skin = Skin
+        Renderer2D.Refresh()
     End Sub
 
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
@@ -32,8 +34,8 @@ Public Class Form1
         Skin = My.Resources.steve 'Reset the skin value
         UpdateImage() 'Load the preview
         Text = "Minecraft Skiner" 'Reset the form text
-        Renderer2D1.Skin = Skin
-        Renderer2D1.Refresh()
+        Renderer2D.Skin = Skin
+        Renderer2D.Refresh()
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
@@ -81,7 +83,12 @@ Public Class Form1
         Skin = tmpSkin 'Rest the skin value to 1.8 old skin
     End Sub
 
-    Private Sub Renderer2D1_SizeChanged(sender As Object, e As EventArgs) Handles Renderer2D1.SizeChanged
-        Renderer2D1.Refresh()
+    Private Sub Renderer2D1_SizeChanged(sender As Object, e As EventArgs) Handles Renderer2D.SizeChanged
+        Renderer2D.Refresh()
+    End Sub
+
+    Private Sub OpenFromplayerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenFromplayerToolStripMenuItem.Click
+        Dim Dialog As New UserNameDialog
+        Dialog.ShowDialog()
     End Sub
 End Class
