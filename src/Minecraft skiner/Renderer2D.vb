@@ -223,11 +223,16 @@
     Property Model As Models
 
     Private Sub Renderer2D_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
-        Dim g As Graphics = e.Graphics 'Create graphics
+        Dim currentContext As BufferedGraphicsContext
+        Dim g As BufferedGraphics 'Create graphics
+        currentContext = BufferedGraphicsManager.Current
+        g = currentContext.Allocate(Me.CreateGraphics,
+   Me.DisplayRectangle)
+        g.Graphics.Clear(BackColor)
         Dim Middle As New Point(Width / 2, Height / 2) 'Know the middle point
-        e.Graphics.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
-        g.TranslateTransform(Middle.X - (8 * 9), Middle.Y - (16 * 9))
-        g.ScaleTransform(9, 9)
+        g.Graphics.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
+        g.Graphics.TranslateTransform(Middle.X - (8 * 9), Middle.Y - (16 * 9))
+        g.Graphics.ScaleTransform(9, 9)
 
         Select Case ViewPortSide
             Case Sides.Front
@@ -255,22 +260,22 @@
                 Dim LLG As Graphics = Graphics.FromImage(LLBM) 'tmp garphics
                 LLG.DrawImage(Skin, New Rectangle(8, 20, 4, 12), New Rectangle(20, 52, 4, 12), GraphicsUnit.Pixel) 'Drawing the left leg
                 If ShowHead Then
-                    g.DrawImage(HeadBM, 0, 0)
+                    g.Graphics.DrawImage(HeadBM, 0, 0)
                 End If
                 If ShowBody Then
-                    g.DrawImage(BodyBM, 0, 0)
+                    g.Graphics.DrawImage(BodyBM, 0, 0)
                 End If
                 If ShowRightArm Then
-                    g.DrawImage(RABM, 0, 0)
+                    g.Graphics.DrawImage(RABM, 0, 0)
                 End If
                 If ShowLeftArm Then
-                    g.DrawImage(LABM, 0, 0)
+                    g.Graphics.DrawImage(LABM, 0, 0)
                 End If
                 If ShowRightLeg Then
-                    g.DrawImage(RLBM, 0, 0)
+                    g.Graphics.DrawImage(RLBM, 0, 0)
                 End If
                 If ShowLeftLeg Then
-                    g.DrawImage(LLBM, 0, 0)
+                    g.Graphics.DrawImage(LLBM, 0, 0)
                 End If
 
             Case Sides.Back
@@ -284,5 +289,6 @@
             Case Sides.Bottom
 
         End Select
+        g.Render(e.Graphics)
     End Sub
 End Class

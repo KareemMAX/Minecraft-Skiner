@@ -1,172 +1,64 @@
 ﻿Public Class LayerSelector
-    Dim _showhead As Boolean = True
     ''' <summary>
     ''' Show the head or not
     ''' </summary>
     ''' <returns>Show the head or not</returns>
-    Property ShowHead As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _showhead = value
-        End Set
-        Get
-            Return _showhead
-        End Get
-    End Property
-    Dim _show2ndhead As Boolean = True
+    Property ShowHead As Boolean = True
     ''' <summary>
     ''' Show the second head layer or not
     ''' </summary>
     ''' <returns>Show the second head layer or not</returns>
-    Property Show2ndHead As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _show2ndhead = value
-        End Set
-        Get
-            Return _show2ndhead
-        End Get
-    End Property
-    Dim _showbody As Boolean = True
+    Property Show2ndHead As Boolean = True
     ''' <summary>
     ''' Show the body or not
     ''' </summary>
     ''' <returns>Show the body or not</returns>
-    Property ShowBody As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _showbody = value
-        End Set
-        Get
-            Return _showbody
-        End Get
-    End Property
-    Dim _show2ndbody As Boolean = True
+    Property ShowBody As Boolean = True
     ''' <summary>
     ''' Show the second body layer or not
     ''' </summary>
     ''' <returns>Show the second body layer or not</returns>
-    Property Show2ndBody As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _show2ndbody = value
-        End Set
-        Get
-            Return _show2ndbody
-        End Get
-    End Property
-    Dim _showra As Boolean = True
+    Property Show2ndBody As Boolean = True
     ''' <summary>
     ''' Show the right arm or not
     ''' </summary>
     ''' <returns>Show the right arm or not</returns>
-    Property ShowRightArm As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _showra = value
-        End Set
-        Get
-            Return _showra
-        End Get
-    End Property
-    Dim _show2ndra As Boolean = True
+    Property ShowRightArm As Boolean = True
     ''' <summary>
     ''' Show the second right arm layer or not
     ''' </summary>
     ''' <returns>Show the second right arm layer or not</returns>
-    Property Show2ndRightArm As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _show2ndra = value
-        End Set
-        Get
-            Return _show2ndra
-        End Get
-    End Property
-    Dim _showla As Boolean = True
+    Property Show2ndRightArm As Boolean = True
     ''' <summary>
     ''' Show the left arm or not
     ''' </summary>
     ''' <returns>Show the leftht arm or not</returns>
-    Property ShowLeftArm As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _showla = value
-        End Set
-        Get
-            Return _showla
-        End Get
-    End Property
-    Dim _show2ndla As Boolean = True
+    Property ShowLeftArm As Boolean = True
     ''' <summary>
     ''' Show the second left arm layer or not
     ''' </summary>
     ''' <returns>Show the second left arm layer or not</returns>
-    Property Show2ndLeftArm As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _show2ndla = value
-        End Set
-        Get
-            Return _show2ndla
-        End Get
-    End Property
-    Dim _showrl As Boolean = True
+    Property Show2ndLeftArm As Boolean = True
     ''' <summary>
     ''' Show the right leg or not
     ''' </summary>
     ''' <returns>Show the right leg or not</returns>
-    Property ShowRightLeg As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _showrl = value
-        End Set
-        Get
-            Return _showrl
-        End Get
-    End Property
-    Dim _show2ndrl As Boolean = True
+    Property ShowRightLeg As Boolean = True
     ''' <summary>
     ''' Show the second right leg layer or not
     ''' </summary>
     ''' <returns>Show the second right leg layer or not</returns>
-    Property Show2ndRightLeg As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _show2ndrl = value
-        End Set
-        Get
-            Return _show2ndrl
-        End Get
-    End Property
-    Dim _showll As Boolean = True
+    Property Show2ndRightLeg As Boolean = True
     ''' <summary>
     ''' Show the left leg or not
     ''' </summary>
     ''' <returns>Show the leftht leg or not</returns>
-    Property ShowLeftLeg As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _showll = value
-        End Set
-        Get
-            Return _showll
-        End Get
-    End Property
-    Dim _show2ndll As Boolean = True
+    Property ShowLeftLeg As Boolean = True
     ''' <summary>
     ''' Show the second left leg layer or not
     ''' </summary>
     ''' <returns>Show the second left leg layer or not</returns>
-    Property Show2ndLeftLeg As Boolean
-        Set(value As Boolean)
-            UpdateSelectors()
-            _show2ndll = value
-        End Set
-        Get
-            Return _show2ndll
-        End Get
-    End Property
+    Property Show2ndLeftLeg As Boolean = True
     ''' <summary>
     ''' Lock the selector to renderer
     ''' </summary>
@@ -174,43 +66,49 @@
     Property Renderer As Renderer2D = New Renderer2D
 
     Private Sub LayerSelector_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
-        e.Graphics.Clear(BackColor)
+        Dim currentContext As BufferedGraphicsContext
+        Dim g As BufferedGraphics 'Create graphics
+        currentContext = BufferedGraphicsManager.Current
+        g = currentContext.Allocate(Me.CreateGraphics,
+   Me.DisplayRectangle)
+        g.Graphics.Clear(BackColor)
         If ShowBody Then
-            e.Graphics.DrawImage(My.Resources.steve1, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve1, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If Show2ndBody Then
-            e.Graphics.DrawImage(My.Resources.steve2, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve2, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If ShowHead Then
-            e.Graphics.DrawImage(My.Resources.steve3, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve3, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If Show2ndHead Then
-            e.Graphics.DrawImage(My.Resources.steve4, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve4, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If ShowRightArm Then
-            e.Graphics.DrawImage(My.Resources.steve5, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve5, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If Show2ndRightArm Then
-            e.Graphics.DrawImage(My.Resources.steve6, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve6, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If ShowLeftArm Then
-            e.Graphics.DrawImage(My.Resources.steve7, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve7, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If Show2ndLeftArm Then
-            e.Graphics.DrawImage(My.Resources.steve8, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve8, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If ShowRightLeg Then
-            e.Graphics.DrawImage(My.Resources.steve9, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve9, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If Show2ndRightLeg Then
-            e.Graphics.DrawImage(My.Resources.steve10, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve10, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If ShowLeftLeg Then
-            e.Graphics.DrawImage(My.Resources.steve11, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve11, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
         If Show2ndLeftLeg Then
-            e.Graphics.DrawImage(My.Resources.steve12, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+            g.Graphics.DrawImage(My.Resources.steve12, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
+        g.Render(e.Graphics)
     End Sub
 
     Private Sub LayerSelector_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
@@ -308,13 +206,13 @@
     Private Sub SwitchBody()
         If ShowBody AndAlso Show2ndBody Then
             Show2ndBody = False
-        ElseIf Showbody AndAlso Not Show2ndbody Then
+        ElseIf ShowBody AndAlso Not Show2ndBody Then
             Show2ndBody = True
             ShowBody = False
-        ElseIf Not Showbody AndAlso Show2ndbody Then
+        ElseIf Not ShowBody AndAlso Show2ndBody Then
             Show2ndBody = False
             ShowBody = False
-        ElseIf Not Showbody AndAlso Not Show2ndbody Then
+        ElseIf Not ShowBody AndAlso Not Show2ndBody Then
             Show2ndBody = True
             ShowBody = True
         End If
