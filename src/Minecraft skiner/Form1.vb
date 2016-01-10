@@ -55,12 +55,7 @@ Public Class Form1
         OpenFileDialog.FileName = "" 'Rest the FileName value
         Skin = New Bitmap(File) 'Update Skin value
         If Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
-            Dim tmpSkin As Bitmap = Skin
-            Skin = New Bitmap(64, 64)
-            Dim g As Graphics = Graphics.FromImage(Skin)
-            g.DrawImage(tmpSkin, New Rectangle(0, 0, 64, 32),
-                       New Rectangle(0, 0, 64, 32),
-                       GraphicsUnit.Pixel)
+            ConvertSkin()
         End If
         UpdateImage() 'Load the preview
         Text = "Minecraft Skiner - " + IO.Path.GetFileName(File) 'Update text value
@@ -90,5 +85,13 @@ Public Class Form1
     Private Sub OpenFromplayerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenFromplayerToolStripMenuItem.Click
         Dim Dialog As New UserNameDialog
         Dialog.ShowDialog()
+    End Sub
+    Sub ConvertSkin()
+        Dim tmpSkin As Bitmap = Skin
+        Skin = New Bitmap(64, 64)
+        Dim g As Graphics = Graphics.FromImage(Skin)
+        g.DrawImage(tmpSkin, New Rectangle(0, 0, 64, 32), New Rectangle(0, 0, 64, 32), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(16, 48, 16, 16), New Rectangle(0, 16, 16, 16), GraphicsUnit.Pixel) 'Adding the left leg
+        g.DrawImage(tmpSkin, New Rectangle(32, 48, 16, 16), New Rectangle(40, 16, 16, 16), GraphicsUnit.Pixel) 'Adding the left arm
     End Sub
 End Class
