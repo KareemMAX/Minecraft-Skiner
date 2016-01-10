@@ -42,66 +42,175 @@
     ''' <returns>The view port angle</returns>
     Property ViewPortAngle As Angles
 
+    Dim _showhead As Boolean = True
     ''' <summary>
     ''' Show the head or not
     ''' </summary>
     ''' <returns>Show the head or not</returns>
-    Property ShowHead As Boolean = True
+    Property ShowHead As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _showhead = value
+        End Set
+        Get
+            Return _showhead
+        End Get
+    End Property
+    Dim _show2ndhead As Boolean = True
     ''' <summary>
     ''' Show the second head layer or not
     ''' </summary>
     ''' <returns>Show the second head layer or not</returns>
-    Property Show2ndHead As Boolean = True
+    Property Show2ndHead As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _show2ndhead = value
+        End Set
+        Get
+            Return _show2ndhead
+        End Get
+    End Property
+    Dim _showbody As Boolean = True
     ''' <summary>
     ''' Show the body or not
     ''' </summary>
     ''' <returns>Show the body or not</returns>
-    Property ShowBody As Boolean = True
+    Property ShowBody As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _showbody = value
+        End Set
+        Get
+            Return _showbody
+        End Get
+    End Property
+    Dim _show2ndbody As Boolean = True
     ''' <summary>
     ''' Show the second body layer or not
     ''' </summary>
     ''' <returns>Show the second body layer or not</returns>
-    Property Show2ndBody As Boolean = True
+    Property Show2ndBody As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _show2ndbody = value
+        End Set
+        Get
+            Return _show2ndbody
+        End Get
+    End Property
+    Dim _showra As Boolean = True
     ''' <summary>
     ''' Show the right arm or not
     ''' </summary>
     ''' <returns>Show the right arm or not</returns>
-    Property ShowRightArm As Boolean = True
+    Property ShowRightArm As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _showra = value
+        End Set
+        Get
+            Return _showra
+        End Get
+    End Property
+    Dim _show2ndra As Boolean = True
     ''' <summary>
     ''' Show the second right arm layer or not
     ''' </summary>
     ''' <returns>Show the second right arm layer or not</returns>
-    Property Show2ndRightArm As Boolean = True
+    Property Show2ndRightArm As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _show2ndra = value
+        End Set
+        Get
+            Return _show2ndra
+        End Get
+    End Property
+    Dim _showla As Boolean = True
     ''' <summary>
     ''' Show the left arm or not
     ''' </summary>
     ''' <returns>Show the leftht arm or not</returns>
-    Property ShowLeftArm As Boolean = True
+    Property ShowLeftArm As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _showla = value
+        End Set
+        Get
+            Return _showla
+        End Get
+    End Property
+    Dim _show2ndla As Boolean = True
     ''' <summary>
     ''' Show the second left arm layer or not
     ''' </summary>
     ''' <returns>Show the second left arm layer or not</returns>
-    Property Show2ndLeftArm As Boolean = True
+    Property Show2ndLeftArm As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _show2ndla = value
+        End Set
+        Get
+            Return _show2ndla
+        End Get
+    End Property
+    Dim _showrl As Boolean = True
     ''' <summary>
     ''' Show the right leg or not
     ''' </summary>
     ''' <returns>Show the right leg or not</returns>
-    Property ShowRightLeg As Boolean = True
+    Property ShowRightLeg As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _showrl = value
+        End Set
+        Get
+            Return _showrl
+        End Get
+    End Property
+    Dim _show2ndrl As Boolean = True
     ''' <summary>
     ''' Show the second right leg layer or not
     ''' </summary>
     ''' <returns>Show the second right leg layer or not</returns>
-    Property Show2ndRightLeg As Boolean = True
+    Property Show2ndRightLeg As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _show2ndrl = value
+        End Set
+        Get
+            Return _show2ndrl
+        End Get
+    End Property
+    Dim _showll As Boolean = True
     ''' <summary>
     ''' Show the left leg or not
     ''' </summary>
     ''' <returns>Show the leftht leg or not</returns>
-    Property ShowLeftLeg As Boolean = True
+    Property ShowLeftLeg As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _showll = value
+        End Set
+        Get
+            Return _showll
+        End Get
+    End Property
+    Dim _show2ndll As Boolean = True
     ''' <summary>
     ''' Show the second left leg layer or not
     ''' </summary>
     ''' <returns>Show the second left leg layer or not</returns>
-    Property Show2ndLeftLeg As Boolean = True
+    Property Show2ndLeftLeg As Boolean
+        Set(value As Boolean)
+            Refresh()
+            _show2ndll = value
+        End Set
+        Get
+            Return _show2ndll
+        End Get
+    End Property
+
 
     Enum Models
         Steve
@@ -143,10 +252,8 @@
                 Dim RLG As Graphics = Graphics.FromImage(RLBM) 'tmp garphics
                 RLG.DrawImage(Skin, New Rectangle(4, 20, 4, 12), New Rectangle(4, 20, 4, 12), GraphicsUnit.Pixel) 'Drawing the right leg
                 Dim LLBM As New Bitmap(16, 32) 'tmp bitmap
-                Dim LLG As Graphics = Graphics.FromImage(LABM) 'tmp garphics
-                LAG.DrawImage(Skin, New Rectangle(8, 20, 4, 12), New Rectangle(20, 52, 4, 12), GraphicsUnit.Pixel) 'Drawing the left leg
-                Dim FinalBM As New Bitmap(16, 32)
-                Dim FinalG As Graphics = Graphics.FromImage(FinalBM)
+                Dim LLG As Graphics = Graphics.FromImage(LLBM) 'tmp garphics
+                LLG.DrawImage(Skin, New Rectangle(8, 20, 4, 12), New Rectangle(20, 52, 4, 12), GraphicsUnit.Pixel) 'Drawing the left leg
                 If ShowHead Then
                     g.DrawImage(HeadBM, 0, 0)
                 End If

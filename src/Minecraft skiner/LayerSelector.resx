@@ -117,47 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Newtonsoft_Json" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Newtonsoft.Json.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="steve" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0005_Layer-0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve10" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0008_Layer-11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve11" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0007_Layer-1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve12" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0006_Layer-10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0004_Layer-7.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0011_Layer-5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0010_Layer-6.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0001_Layer-4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve6" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0000_Layer-8-copy.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve7" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0003_Layer-3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0002_Layer-8.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="steve9" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\steve_0009_Layer-2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>

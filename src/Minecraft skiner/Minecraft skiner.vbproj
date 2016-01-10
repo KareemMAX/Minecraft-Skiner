@@ -110,6 +110,12 @@
     <Compile Include="Json classes\Skin.vb" />
     <Compile Include="Json classes\Textures.vb" />
     <Compile Include="Json classes\UUID.vb" />
+    <Compile Include="LayerSelector.Designer.vb">
+      <DependentUpon>LayerSelector.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LayerSelector.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -141,6 +147,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LayerSelector.resx">
+      <DependentUpon>LayerSelector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -185,6 +194,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0004_Layer-7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0005_Layer-0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0006_Layer-10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0007_Layer-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0008_Layer-11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0009_Layer-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0010_Layer-6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0011_Layer-5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0000_Layer-8-copy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0001_Layer-4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0002_Layer-8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\steve_0003_Layer-3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

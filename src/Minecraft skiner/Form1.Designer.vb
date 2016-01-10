@@ -3,7 +3,7 @@ Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -35,14 +36,11 @@ Partial Class Form1
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Alexrdb = New System.Windows.Forms.RadioButton()
         Me.Steverdb = New System.Windows.Forms.RadioButton()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.MainSkin = New System.Windows.Forms.PictureBox()
+        Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
         Me.Renderer2D = New Minecraft_skiner.Renderer2D()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -145,50 +143,35 @@ Partial Class Form1
         Me.Steverdb.Text = "Steve"
         Me.Steverdb.UseVisualStyleBackColor = True
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.CheckBox2)
-        Me.GroupBox2.Controls.Add(Me.CheckBox1)
-        Me.GroupBox2.Location = New System.Drawing.Point(12, 237)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(128, 69)
-        Me.GroupBox2.TabIndex = 3
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Layers"
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Checked = True
-        Me.CheckBox2.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox2.Location = New System.Drawing.Point(6, 42)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(71, 17)
-        Me.CheckBox2.TabIndex = 1
-        Me.CheckBox2.Text = "2nd layer"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Checked = True
-        Me.CheckBox1.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.CheckBox1.Location = New System.Drawing.Point(6, 19)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(50, 17)
-        Me.CheckBox1.TabIndex = 0
-        Me.CheckBox1.Text = "Body"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
         'MainSkin
         '
-        Me.MainSkin.Image = Global.Minecraft_skiner.My.Resources.Resources.steve
+        Me.MainSkin.Image = CType(resources.GetObject("MainSkin.Image"), System.Drawing.Image)
         Me.MainSkin.Location = New System.Drawing.Point(12, 27)
         Me.MainSkin.Name = "MainSkin"
         Me.MainSkin.Size = New System.Drawing.Size(128, 128)
         Me.MainSkin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.MainSkin.TabIndex = 6
         Me.MainSkin.TabStop = False
+        '
+        'LayerSelector1
+        '
+        Me.LayerSelector1.Location = New System.Drawing.Point(12, 237)
+        Me.LayerSelector1.Name = "LayerSelector1"
+        Me.LayerSelector1.Renderer = Me.Renderer2D
+        Me.LayerSelector1.Show2ndBody = True
+        Me.LayerSelector1.Show2ndHead = True
+        Me.LayerSelector1.Show2ndLeftArm = True
+        Me.LayerSelector1.Show2ndLeftLeg = True
+        Me.LayerSelector1.Show2ndRightArm = True
+        Me.LayerSelector1.Show2ndRightLeg = True
+        Me.LayerSelector1.ShowBody = True
+        Me.LayerSelector1.ShowHead = True
+        Me.LayerSelector1.ShowLeftArm = True
+        Me.LayerSelector1.ShowLeftLeg = True
+        Me.LayerSelector1.ShowRightArm = True
+        Me.LayerSelector1.ShowRightLeg = True
+        Me.LayerSelector1.Size = New System.Drawing.Size(120, 120)
+        Me.LayerSelector1.TabIndex = 7
         '
         'Renderer2D
         '
@@ -212,7 +195,7 @@ Partial Class Form1
         Me.Renderer2D.ShowRightArm = True
         Me.Renderer2D.ShowRightLeg = True
         Me.Renderer2D.Size = New System.Drawing.Size(416, 314)
-        Me.Renderer2D.Skin = Global.Minecraft_skiner.My.Resources.Resources.steve
+        Me.Renderer2D.Skin = CType(resources.GetObject("Renderer2D.Skin"), System.Drawing.Bitmap)
         Me.Renderer2D.TabIndex = 4
         Me.Renderer2D.ViewPortAngle = Minecraft_skiner.Renderer2D.Angles.Normal
         Me.Renderer2D.ViewPortSide = Minecraft_skiner.Renderer2D.Sides.Front
@@ -222,9 +205,9 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(767, 353)
+        Me.Controls.Add(Me.LayerSelector1)
         Me.Controls.Add(Me.MainSkin)
         Me.Controls.Add(Me.Renderer2D)
-        Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip)
         Me.MainMenuStrip = Me.MenuStrip
@@ -236,8 +219,6 @@ Partial Class Form1
         Me.MenuStrip.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -255,10 +236,8 @@ Partial Class Form1
     Friend WithEvents Alexrdb As RadioButton
     Friend WithEvents Steverdb As RadioButton
     Friend WithEvents SaveAs17SkinToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents Renderer2D As Renderer2D
     Friend WithEvents MainSkin As PictureBox
     Friend WithEvents OpenFromplayerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LayerSelector1 As LayerSelector
 End Class
