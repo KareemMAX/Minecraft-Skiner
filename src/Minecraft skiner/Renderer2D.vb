@@ -115,7 +115,6 @@
 
     Private Sub Renderer2D_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         Dim g As Graphics = e.Graphics 'Create graphics
-        g.Clear(Color.White)
         Dim Middle As New Point(Width / 2, Height / 2) 'Know the middle point
         e.Graphics.InterpolationMode = Drawing2D.InterpolationMode.NearestNeighbor
         g.TranslateTransform(Middle.X - (8 * 9), Middle.Y - (16 * 9))
