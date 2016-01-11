@@ -1,6 +1,7 @@
 ﻿Public Class Form1
     Friend Skin As Bitmap = My.Resources.steve
     Friend File As String
+
     Friend Sub UpdateImage()
         Dim Image As New Bitmap(MainSkin.Width, MainSkin.Height) 'Create the skin preview bitmao
         If Not (Skin.Width = 64 AndAlso Skin.Height = 64) Then : Throw New ExSkinRes() : Exit Sub : End If 'Check the skin resolution
@@ -48,6 +49,7 @@
     End Sub
 
     Private Sub SaveAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAsToolStripMenuItem.Click
+        Dim Dialog As New UserNameDialog
         SaveFileDialog.ShowDialog()
     End Sub
 

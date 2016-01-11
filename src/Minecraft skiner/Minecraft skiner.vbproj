@@ -101,6 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="DownloadingSkin.Designer.vb">
+      <DependentUpon>DownloadingSkin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DownloadingSkin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ExSkinRes.vb" />
     <Compile Include="Form1.vb">
       <SubType>Form</SubType>
@@ -159,6 +165,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DownloadingSkin.resx">
+      <DependentUpon>DownloadingSkin.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
     </EmbeddedResource>
