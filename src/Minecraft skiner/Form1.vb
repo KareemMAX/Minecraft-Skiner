@@ -1,7 +1,4 @@
-﻿Imports TK = OpenTK
-Imports GLGarphics = OpenTK.Graphics
-Imports OpenTK.Graphics.OpenGL
-Public Class Form1
+﻿Public Class Form1
     Friend Skin As Bitmap = My.Resources.steve
     Friend File As String
     Friend Sub UpdateImage()
@@ -17,6 +14,8 @@ Public Class Form1
         MainSkin.Image = Image 'Apply preview
         Renderer2D.Skin = Skin
         Renderer2D.Refresh() 'Render
+        Renderer3D.Skin = Skin
+        Renderer3D.Refresh() 'Render
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -100,58 +99,24 @@ Public Class Form1
     Private Sub Steverdb_CheckedChanged(sender As Object, e As EventArgs) Handles Steverdb.CheckedChanged
         If Steverdb.Checked Then
             Renderer2D.Model = Renderer2D.Models.Steve
+            Renderer3D.Model = Renderer3D.Models.Steve
         Else
             Renderer2D.Model = Renderer2D.Models.Alex
+            Renderer3D.Model = Renderer3D.Models.Alex
         End If
-        UpdateImage()
+        Renderer2D.Refresh()
+        Renderer3D.Refresh()
     End Sub
 
     Private Sub Alexrdb_CheckedChanged(sender As Object, e As EventArgs) Handles Alexrdb.CheckedChanged
         If Steverdb.Checked Then
             Renderer2D.Model = Renderer2D.Models.Steve
+            Renderer3D.Model = Renderer3D.Models.Steve
         Else
             Renderer2D.Model = Renderer2D.Models.Alex
+            Renderer3D.Model = Renderer3D.Models.Alex
         End If
-        UpdateImage()
-    End Sub
-
-    Private Sub GlControl_Paint(sender As Object, e As PaintEventArgs) Handles GlControl.Paint
-        'First Clear Buffers
-        GL.Clear(ClearBufferMask.ColorBufferBit)
-        GL.Clear(ClearBufferMask.DepthBufferBit)
-
-        'Basic Setup for viewing
-        Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(1.04, 4 / 3, 1, 10000) 'Setup Perspective
-        Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(20, 10, 0, 0, 0, 0, 0, 1, 0) 'Setup camera
-        GL.MatrixMode(MatrixMode.Projection) 'Load Perspective
-        GL.LoadIdentity()
-        GL.LoadMatrix(perspective)
-        GL.MatrixMode(MatrixMode.Modelview) 'Load Camera
-        GL.LoadIdentity()
-        GL.LoadMatrix(lookat)
-        GL.Viewport(0, 0, GlControl.Width, GlControl.Height) 'Size of window
-        GL.Enable(EnableCap.DepthTest) 'Enable correct Z Drawings
-        GL.DepthFunc(DepthFunction.Less) 'Enable correct Z Drawings
-
-        'Rotating
-        GL.Rotate(90, 0, 2, 0)
-
-        'Vertex goes (X,Y,Z)
-        GL.Begin(BeginMode.Quads)
-        'Face 1
-        GL.Color3(Color.Red)
-        GL.Vertex3(-4, 8, 0)
-        GL.Color3(Color.White)
-        GL.Vertex3(4, 8, 0)
-        GL.Color3(Color.Blue)
-        GL.Vertex3(4, -4, 0)
-        GL.Color3(Color.BurlyWood)
-        GL.Vertex3(-4, -4, 0)
-
-        'Finish the begin mode with "end"
-        GL.End()
-
-        'Finally...
-        GlControl.SwapBuffers() 'Takes from the 'GL' and puts into control
+        Renderer2D.Refresh()
+        Renderer3D.Refresh()
     End Sub
 End Class

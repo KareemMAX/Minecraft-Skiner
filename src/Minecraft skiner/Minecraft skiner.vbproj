@@ -145,6 +145,12 @@
     <Compile Include="Renderer2D.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Renderer3D.Designer.vb">
+      <DependentUpon>Renderer3D.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Renderer3D.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="UserNameDialog.Designer.vb">
       <DependentUpon>UserNameDialog.vb</DependentUpon>
     </Compile>
@@ -167,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Renderer2D.resx">
       <DependentUpon>Renderer2D.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Renderer3D.resx">
+      <DependentUpon>Renderer3D.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserNameDialog.resx">
       <DependentUpon>UserNameDialog.vb</DependentUpon>

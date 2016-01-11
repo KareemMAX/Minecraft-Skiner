@@ -63,7 +63,12 @@
     ''' Lock the selector to renderer
     ''' </summary>
     ''' <returns>Locked renderer</returns>
-    Property Renderer As Renderer2D = New Renderer2D
+    Property _2DRenderer As Renderer2D = New Renderer2D
+    ''' <summary>
+    ''' Lock the selector to renderer
+    ''' </summary>
+    ''' <returns>Locked renderer</returns>
+    Property _3DRenderer As Renderer3D = New Renderer3D
 
     Private Sub LayerSelector_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         Dim currentContext As BufferedGraphicsContext
@@ -237,18 +242,31 @@
         Refresh()
     End Sub
     Sub UpdateSelectors()
-        Renderer.Show2ndBody = Show2ndBody
-        Renderer.Show2ndHead = Show2ndHead
-        Renderer.Show2ndLeftArm = Show2ndLeftArm
-        Renderer.Show2ndLeftLeg = Show2ndLeftLeg
-        Renderer.Show2ndRightArm = Show2ndRightArm
-        Renderer.Show2ndRightLeg = Show2ndRightLeg
-        Renderer.ShowBody = ShowBody
-        Renderer.ShowHead = ShowHead
-        Renderer.ShowLeftArm = ShowLeftArm
-        Renderer.ShowLeftLeg = ShowLeftLeg
-        Renderer.ShowRightArm = ShowRightArm
-        Renderer.ShowRightLeg = ShowRightLeg
-        Renderer.Refresh()
+        _2DRenderer.Show2ndBody = Show2ndBody
+        _2DRenderer.Show2ndHead = Show2ndHead
+        _2DRenderer.Show2ndLeftArm = Show2ndLeftArm
+        _2DRenderer.Show2ndLeftLeg = Show2ndLeftLeg
+        _2DRenderer.Show2ndRightArm = Show2ndRightArm
+        _2DRenderer.Show2ndRightLeg = Show2ndRightLeg
+        _2DRenderer.ShowBody = ShowBody
+        _2DRenderer.ShowHead = ShowHead
+        _2DRenderer.ShowLeftArm = ShowLeftArm
+        _2DRenderer.ShowLeftLeg = ShowLeftLeg
+        _2DRenderer.ShowRightArm = ShowRightArm
+        _2DRenderer.ShowRightLeg = ShowRightLeg
+        _2DRenderer.Refresh()
+        _3DRenderer.Show2ndBody = Show2ndBody
+        _3DRenderer.Show2ndHead = Show2ndHead
+        _3DRenderer.Show2ndLeftArm = Show2ndLeftArm
+        _3DRenderer.Show2ndLeftLeg = Show2ndLeftLeg
+        _3DRenderer.Show2ndRightArm = Show2ndRightArm
+        _3DRenderer.Show2ndRightLeg = Show2ndRightLeg
+        _3DRenderer.ShowBody = ShowBody
+        _3DRenderer.ShowHead = ShowHead
+        _3DRenderer.ShowLeftArm = ShowLeftArm
+        _3DRenderer.ShowLeftLeg = ShowLeftLeg
+        _3DRenderer.ShowRightArm = ShowRightArm
+        _3DRenderer.ShowRightLeg = ShowRightLeg
+        _3DRenderer.Refresh()
     End Sub
 End Class

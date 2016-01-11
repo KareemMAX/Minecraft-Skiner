@@ -34,7 +34,7 @@
         Normal = 0
         Clockwist = 1
         UpSideDown = 2
-        AntiClockwist =3
+        AntiClockwist = 3
     End Enum
     ''' <summary>
     ''' The view port angle
