@@ -156,6 +156,9 @@ Partial Class Form1
         '
         'Renderer3D
         '
+        Me.Renderer3D.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Renderer3D.Location = New System.Drawing.Point(173, 27)
         Me.Renderer3D.Model = Minecraft_skiner.Renderer3D.Models.Steve
         Me.Renderer3D.Name = "Renderer3D"
