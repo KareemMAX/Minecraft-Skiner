@@ -37,6 +37,7 @@ Partial Class Form1
         Me.Alexrdb = New System.Windows.Forms.RadioButton()
         Me.Steverdb = New System.Windows.Forms.RadioButton()
         Me.MainSkin = New System.Windows.Forms.PictureBox()
+        Me.RenderSelector = New System.Windows.Forms.ComboBox()
         Me.Renderer3D = New Minecraft_skiner.Renderer3D()
         Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
         Me.Renderer2D = New Minecraft_skiner.Renderer2D()
@@ -154,6 +155,19 @@ Partial Class Form1
         Me.MainSkin.TabIndex = 6
         Me.MainSkin.TabStop = False
         '
+        'RenderSelector
+        '
+        Me.RenderSelector.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.RenderSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.RenderSelector.FormattingEnabled = True
+        Me.RenderSelector.ItemHeight = 13
+        Me.RenderSelector.Items.AddRange(New Object() {"3D Render", "2D Render"})
+        Me.RenderSelector.Location = New System.Drawing.Point(595, 27)
+        Me.RenderSelector.Name = "RenderSelector"
+        Me.RenderSelector.Size = New System.Drawing.Size(160, 21)
+        Me.RenderSelector.TabIndex = 9
+        Me.RenderSelector.SelectedIndex = 0
+        '
         'Renderer3D
         '
         Me.Renderer3D.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -231,6 +245,7 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(767, 353)
+        Me.Controls.Add(Me.RenderSelector)
         Me.Controls.Add(Me.Renderer3D)
         Me.Controls.Add(Me.LayerSelector1)
         Me.Controls.Add(Me.MainSkin)
@@ -268,4 +283,5 @@ Partial Class Form1
     Friend WithEvents OpenFromplayerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LayerSelector1 As LayerSelector
     Friend WithEvents Renderer3D As Renderer3D
+    Friend WithEvents RenderSelector As ComboBox
 End Class

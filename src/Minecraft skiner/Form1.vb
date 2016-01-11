@@ -119,4 +119,12 @@
         Renderer2D.Refresh()
         Renderer3D.Refresh()
     End Sub
+
+    Private Sub RenderSelector_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RenderSelector.SelectedIndexChanged
+        If RenderSelector.SelectedIndex = 0 Then
+            Renderer3D.Show()
+        Else
+            Renderer3D.Hide()
+        End If
+    End Sub
 End Class
