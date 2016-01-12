@@ -2,9 +2,9 @@
 Imports System.Net
 
 Public Class DownloadingSkin
-    Dim tmpfile As String = Form1.File
-    Dim tmptxt As String = Form1.Text
-    Dim tmpskin As Bitmap = Form1.Skin
+    Dim tmpfile As String = MainForm.File
+    Dim tmptxt As String = MainForm.Text
+    Dim tmpskin As Bitmap = MainForm.Skin
     Dim file As String
     Dim txt As String
     Dim skin As Bitmap
@@ -29,8 +29,8 @@ Public Class DownloadingSkin
             file = tmpfile
             Exit Sub
         End Try
-        If Form1.Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
-            Form1.ConvertSkin()
+        If MainForm.Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
+            MainForm.ConvertSkin()
         End If
 
         Try
@@ -63,9 +63,9 @@ Public Class DownloadingSkin
     End Sub
     Sub Abort()
         BackgroundWorker.Dispose()
-        Form1.File = tmpfile
-        Form1.Text = tmptxt
-        Form1.Skin = tmpskin
+        MainForm.File = tmpfile
+        MainForm.Text = tmptxt
+        MainForm.Skin = tmpskin
     End Sub
 
     Private Sub DownloadingSkin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -73,11 +73,11 @@ Public Class DownloadingSkin
     End Sub
 
     Private Sub BackgroundWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker.RunWorkerCompleted
-        Form1.Skin = skin
-        Form1.Text = txt
-        Form1.File = file
-        Form1.Alexrdb.Checked = isalex
-        Form1.UpdateImage() 'Load the preview
+        MainForm.Skin = skin
+        MainForm.Text = txt
+        MainForm.File = file
+        MainForm.Alexrdb.Checked = isalex
+        MainForm.UpdateImage() 'Load the preview
         Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub

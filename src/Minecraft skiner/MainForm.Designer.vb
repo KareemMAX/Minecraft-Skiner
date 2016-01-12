@@ -240,7 +240,7 @@ Partial Class MainForm
         Me.Renderer2D.ViewPortAngle = Minecraft_skiner.Renderer2D.Angles.Normal
         Me.Renderer2D.ViewPortSide = Minecraft_skiner.Renderer2D.Sides.Front
         '
-        'Form1
+        'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -254,7 +254,7 @@ Partial Class MainForm
         Me.Controls.Add(Me.MenuStrip)
         Me.MainMenuStrip = Me.MenuStrip
         Me.MinimumSize = New System.Drawing.Size(16, 279)
-        Me.Name = "Form1"
+        Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Minecraft Skiner"
         Me.MenuStrip.ResumeLayout(False)

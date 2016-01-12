@@ -19,7 +19,7 @@
         Renderer3D.Refresh() 'Render
     End Sub
 
-    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateImage() 'Load preview
         Renderer2D.Skin = Skin
         Renderer2D.Refresh()
