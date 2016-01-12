@@ -108,11 +108,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExSkinRes.vb" />
-    <Compile Include="Form1.vb">
+    <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="MainForm.Designer.vb">
+      <DependentUpon>MainForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Json classes\Cape.vb" />
@@ -168,8 +168,8 @@
     <EmbeddedResource Include="DownloadingSkin.resx">
       <DependentUpon>DownloadingSkin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LayerSelector.resx">
       <DependentUpon>LayerSelector.vb</DependentUpon>
