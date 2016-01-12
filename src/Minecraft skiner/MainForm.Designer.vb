@@ -253,7 +253,7 @@ Partial Class MainForm
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip)
         Me.MainMenuStrip = Me.MenuStrip
-        Me.MinimumSize = New System.Drawing.Size(16, 279)
+        Me.MinimumSize = New System.Drawing.Size(16, 389)
         Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Minecraft Skiner"
