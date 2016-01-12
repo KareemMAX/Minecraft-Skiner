@@ -176,6 +176,7 @@ Partial Class MainForm
         Me.Renderer3D.Location = New System.Drawing.Point(173, 27)
         Me.Renderer3D.Model = Minecraft_skiner.Renderer3D.Models.Steve
         Me.Renderer3D.Name = "Renderer3D"
+        Me.Renderer2D.BackColor = Color.White
         Me.Renderer3D.Show2ndBody = True
         Me.Renderer3D.Show2ndHead = True
         Me.Renderer3D.Show2ndLeftArm = True
