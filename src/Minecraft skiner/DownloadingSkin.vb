@@ -32,12 +32,13 @@ Public Class DownloadingSkin
         If MainForm.Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
             MainForm.ConvertSkin()
         End If
-
+        Dim RealName As String = UserInput.Text
         Try
             Dim wc As New WebClient
             '--------------Get the UUID-----------------
             Dim UUIDJson As MojangUUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of MojangUUID)(
                 wc.DownloadString("https://api.mojang.com/users/profiles/minecraft/" + UserInput.Text))
+            RealName = UUIDJson.Name
             '--------------Get Skin type----------------
             Dim tmpstr As String = wc.DownloadString("https://mcapi.ca/name/uuid/" + UUIDJson.UUID)
             tmpstr = Replace(tmpstr, "[", "")
@@ -52,7 +53,7 @@ Public Class DownloadingSkin
             MsgBox("Can't get the skin info, Some times the mojang blocks the skin informations, Just try again after 10 minutes" & vbCrLf &
                    "Change the model to Alex if the skin was 3-pixel", MsgBoxStyle.Exclamation, "Error")
         End Try
-        txt = "Minecraft Skiner - " + UserInput.Text 'Update text value
+        txt = "Minecraft Skiner - " + RealName  'Update text value
     End Sub
 
     Private Sub DownloadingSkin_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
