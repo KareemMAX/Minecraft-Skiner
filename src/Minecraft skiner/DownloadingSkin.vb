@@ -76,6 +76,7 @@ Public Class DownloadingSkin
         MainForm.Text = txt
         MainForm.File = file
         MainForm.Alexrdb.Checked = isalex
+        If MainForm.Skin.Height = 32 Then MainForm.ConvertSkin()
         MainForm.UpdateImage() 'Load the preview
         Me.DialogResult = DialogResult.OK
         Me.Close()

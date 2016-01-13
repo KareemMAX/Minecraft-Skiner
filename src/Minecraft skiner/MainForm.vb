@@ -4,7 +4,10 @@
 
     Friend Sub UpdateImage()
         Dim Image As New Bitmap(MainSkin.Width, MainSkin.Height) 'Create the skin preview bitmao
-        If Not (Skin.Width = 64 AndAlso Skin.Height = 64) Then : Throw New ExSkinRes() : Exit Sub : End If 'Check the skin resolution
+        If Not (Skin.Width = 64 AndAlso Skin.Height = 64) Then 'Check the skin resolution
+            MsgBox("Not vlid skin", MsgBoxStyle.Critical, "Error")
+            Exit Sub
+        End If
         '****************Writing pixels to the preview****************
         For Y As Byte = 0 To MainSkin.Height - 1
             For X As Byte = 0 To MainSkin.Width - 1
