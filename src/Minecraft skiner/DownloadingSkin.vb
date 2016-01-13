@@ -41,11 +41,9 @@ Public Class DownloadingSkin
             RealName = UUIDJson.Name
             '--------------Get Skin type----------------
             Dim tmpstr As String = wc.DownloadString("https://mcapi.ca/name/uuid/" + UUIDJson.UUID)
-            tmpstr = Replace(tmpstr, "[", "")
-            tmpstr = Replace(tmpstr, "]", "")
             Dim NameJson As Name = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Name)(tmpstr)
             Dim decoded As PropertiesDecoded = Newtonsoft.Json.JsonConvert.DeserializeObject(Of PropertiesDecoded)(
-                System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(NameJson.Properties.Value)))
+                System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(NameJson.Properties(0).Value)))
             If decoded.Textures.Skin.MetaDate.model = "slim" Then
                 isalex = True
             End If
