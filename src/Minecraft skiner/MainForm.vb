@@ -5,7 +5,7 @@
     Friend Sub UpdateImage()
         Dim Image As New Bitmap(MainSkin.Width, MainSkin.Height) 'Create the skin preview bitmao
         If Not (Skin.Width = 64 AndAlso Skin.Height = 64) Then 'Check the skin resolution
-            MsgBox("Not vlid skin", MsgBoxStyle.Critical, "Error")
+            MsgBox("Not valid skin", MsgBoxStyle.Critical, "Error")
             Exit Sub
         End If
         '****************Writing pixels to the preview****************
@@ -57,11 +57,20 @@
     End Sub
 
     Private Sub OpenFileDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog.FileOk
+        Dim tmpFile As String = File
+        Dim tmpSkin As Bitmap = Skin
         File = OpenFileDialog.FileName 'Update the File value
         OpenFileDialog.FileName = "" 'Rest the FileName value
         Skin = New Bitmap(File) 'Update Skin value
-        If Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
+        If Skin.Height = 32 AndAlso Skin.Width = 64 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
             ConvertSkin()
+        ElseIf Skin.Height = 64 AndAlso Skin.Width = 64 Then 'If the skin was valid then exit If
+        Else
+            MsgBox("Not valid skin", MsgBoxStyle.Critical, "Error")
+            Skin = tmpSkin
+            File = tmpFile
+            e.Cancel = True 'Prevent the dialog from close
+            Exit Sub
         End If
         UpdateImage() 'Load the preview
         Text = "Minecraft Skiner - " + IO.Path.GetFileName(File) 'Update text value
