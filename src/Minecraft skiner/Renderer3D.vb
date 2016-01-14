@@ -223,6 +223,8 @@ Public Class Renderer3D
         GL.Enable(EnableCap.DepthTest) 'Enable correct Z Drawings
         GL.Enable(EnableCap.Texture2D) 'Enable textures
         GL.DepthFunc(DepthFunction.Less) 'Enable correct Z Drawings
+        GL.Enable(EnableCap.Blend) 'Enable transparent
+        GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha)
 
         'Load the textures
         Dim texID As Integer = GL.GenTexture()
@@ -715,21 +717,15 @@ Public Class Renderer3D
             GL.Vertex3(0, -16, -2)
         End If
 
-        GL.End()
-
-        GL.Disable(EnableCap.DepthTest) 'Enable transparent
-
-        GL.Begin(BeginMode.Quads)
-
         If Show2ndBody Then
             'Face 1
-
+            GL.TexCoord2(TexVal * 20, TexVal * 36)
             GL.Vertex3(-4.24, 8.36, 2.12)
-
+            GL.TexCoord2(TexVal * 28, TexVal * 36)
             GL.Vertex3(4.24, 8.36, 2.12)
-
+            GL.TexCoord2(TexVal * 28, TexVal * 48)
             GL.Vertex3(4.24, -4.36, 2.12)
-
+            GL.TexCoord2(TexVal * 20, TexVal * 48)
             GL.Vertex3(-4.24, -4.36, 2.12)
             'Face 2
 
