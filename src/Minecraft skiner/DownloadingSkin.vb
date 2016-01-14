@@ -5,9 +5,9 @@ Public Class DownloadingSkin
     Dim tmpfile As String = MainForm.File
     Dim tmptxt As String = MainForm.Text
     Dim tmpskin As Bitmap = MainForm.Skin
-    Dim file As String
-    Dim txt As String
-    Dim skin As Bitmap
+    Dim file As String = MainForm.File
+    Dim txt As String = MainForm.Text
+    Dim skin As Bitmap = MainForm.Skin
     Dim isalex As Boolean
 
     Property UserInput As New TextBox
