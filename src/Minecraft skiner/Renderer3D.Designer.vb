@@ -22,7 +22,9 @@ Partial Class Renderer3D
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GlControl = New OpenTK.GLControl()
+        Me.Timer = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'GlControl
@@ -37,6 +39,11 @@ Partial Class Renderer3D
         Me.GlControl.TabIndex = 0
         Me.GlControl.VSync = True
         '
+        'Timer
+        '
+        Me.Timer.Enabled = True
+        Me.Timer.Interval = 50
+        '
         'Renderer3D
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -48,4 +55,5 @@ Partial Class Renderer3D
     End Sub
 
     Friend WithEvents GlControl As OpenTK.GLControl
+    Friend WithEvents Timer As Timer
 End Class
