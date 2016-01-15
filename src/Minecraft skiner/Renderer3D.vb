@@ -213,6 +213,18 @@ Public Class Renderer3D
     ''' <returns>Y rotation</returns>
     Property RotationY As Integer = 90
 
+    Dim _Zoom As Double = 1
+    Property Zoom As Double
+        Set(value As Double)
+            If value < 0.5 OrElse value > 16 Then Exit Property
+
+            _Zoom = value
+        End Set
+        Get
+            Return _Zoom
+        End Get
+    End Property
+
     ''' <summary>
     ''' Stop the paint faction
     ''' </summary>
@@ -227,8 +239,8 @@ Public Class Renderer3D
         GL.Clear(ClearBufferMask.DepthBufferBit)
 
         'Basic Setup for viewing
-        Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(1.04, Width / Height, 1, 10000) 'Setup Perspective
-        Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(35, 0, 0, 0, 0, 0, 0, 1, 0) 'Setup camera
+        Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
+        Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(36, 0, 0, 0, 0, 0, 0, 1, 0) 'Setup camera
         GL.MatrixMode(MatrixMode.Projection) 'Load Perspective
         GL.LoadIdentity()
         GL.LoadMatrix(perspective)
@@ -1220,7 +1232,7 @@ Public Class Renderer3D
     Private MouseLoc As Point
 
     Private Sub GlControl_MouseDown(sender As Object, e As MouseEventArgs) Handles GlControl.MouseDown
-        If Not IsMouseDown Then
+        If Not IsMouseDown AndAlso e.Button = MouseButtons.Left Then
             OldLoc = Cursor.Position
             If Not IsMouseHidden Then
                 Cursor.Hide()
@@ -1248,5 +1260,10 @@ Public Class Renderer3D
             Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
             MouseLoc = Cursor.Position
         End If
+    End Sub
+
+    Private Sub Renderer3D_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
+        Zoom += e.Delta * 0.005
+        Refresh()
     End Sub
 End Class
