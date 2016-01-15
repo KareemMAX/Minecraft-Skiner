@@ -23,15 +23,12 @@
     End Sub
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Renderer3D.InDesignMode = False
         UpdateImage() 'Load preview
-        Renderer2D.Skin = Skin
-        Renderer2D.Refresh()
     End Sub
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         OpenFileDialog.ShowDialog()
-        Renderer2D.Skin = Skin
-        Renderer2D.Refresh()
     End Sub
 
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
@@ -93,7 +90,7 @@
         Skin = tmpSkin 'Rest the skin value to 1.8 old skin
     End Sub
 
-    Private Sub Renderer2D1_SizeChanged(sender As Object, e As EventArgs) Handles Renderer2D.SizeChanged
+    Private Sub Renderer2D_SizeChanged(sender As Object, e As EventArgs) Handles Renderer2D.SizeChanged
         Renderer2D.Refresh()
     End Sub
 

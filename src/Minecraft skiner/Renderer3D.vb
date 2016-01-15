@@ -201,17 +201,33 @@ Public Class Renderer3D
     ''' <returns>The rendered model</returns>
     Property Model As Models
 
+    ''' <summary>
+    ''' X rotation
+    ''' </summary>
+    ''' <returns>X rotattion</returns>
     Property RotationX As Integer
+
+    ''' <summary>
+    ''' Y rotation
+    ''' </summary>
+    ''' <returns>Y rotation</returns>
     Property RotationY As Integer = 90
 
+    ''' <summary>
+    ''' Stop the paint faction
+    ''' </summary>
+    ''' <returns>Is stopped or not</returns>
+    Property InDesignMode As Boolean = True
+
     Private Sub GlControl_Paint(sender As Object, e As PaintEventArgs) Handles GlControl.Paint
+        If InDesignMode Then Exit Sub
         GL.ClearColor(BackColor)
         'First Clear Buffers
         GL.Clear(ClearBufferMask.ColorBufferBit)
         GL.Clear(ClearBufferMask.DepthBufferBit)
 
         'Basic Setup for viewing
-        Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(1.04, 4 / 3, 1, 10000) 'Setup Perspective
+        Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(1.04, Width / Height, 1, 10000) 'Setup Perspective
         Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(35, 0, 0, 0, 0, 0, 0, 1, 0) 'Setup camera
         GL.MatrixMode(MatrixMode.Projection) 'Load Perspective
         GL.LoadIdentity()
@@ -223,8 +239,7 @@ Public Class Renderer3D
         GL.Enable(EnableCap.DepthTest) 'Enable correct Z Drawings
         GL.Enable(EnableCap.Texture2D) 'Enable textures
         GL.DepthFunc(DepthFunction.Less) 'Enable correct Z Drawings
-        GL.Enable(EnableCap.Blend) 'Enable transparent
-        GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha)
+        GL.Disable(EnableCap.Blend) 'Disable transparent
 
         'Load the textures
         Dim texID As Integer = GL.GenTexture()
@@ -709,13 +724,20 @@ Public Class Renderer3D
             'Face 6
             GL.TexCoord2(TexVal * 24, TexVal * 52)
             GL.Vertex3(0, -16, 2)
-            GL.TexCoord2(TexVal * 27, TexVal * 52)
+            GL.TexCoord2(TexVal * 28, TexVal * 52)
             GL.Vertex3(4, -16, 2)
-            GL.TexCoord2(TexVal * 27, TexVal * 48)
+            GL.TexCoord2(TexVal * 28, TexVal * 48)
             GL.Vertex3(4, -16, -2)
             GL.TexCoord2(TexVal * 24, TexVal * 48)
             GL.Vertex3(0, -16, -2)
         End If
+
+        GL.End()
+
+        GL.Enable(EnableCap.Blend) 'Enable transparent
+        GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha)
+
+        GL.Begin(BeginMode.Quads)
 
         If Show2ndBody Then
             'Face 1
@@ -728,225 +750,225 @@ Public Class Renderer3D
             GL.TexCoord2(TexVal * 20, TexVal * 48)
             GL.Vertex3(-4.24, -4.36, 2.12)
             'Face 2
-
+            GL.TexCoord2(TexVal * 40, TexVal * 36)
             GL.Vertex3(-4.24, 8.36, -2.12)
-
+            GL.TexCoord2(TexVal * 32, TexVal * 36)
             GL.Vertex3(4.24, 8.36, -2.12)
-
+            GL.TexCoord2(TexVal * 32, TexVal * 48)
             GL.Vertex3(4.24, -4.36, -2.12)
-
+            GL.TexCoord2(TexVal * 40, TexVal * 48)
             GL.Vertex3(-4.24, -4.36, -2.12)
             'Face 3
-
+            GL.TexCoord2(TexVal * 16, TexVal * 36)
             GL.Vertex3(-4.24, 8.36, 2.12)
-
+            GL.TexCoord2(TexVal * 20, TexVal * 36)
             GL.Vertex3(-4.24, 8.36, -2.12)
-
+            GL.TexCoord2(TexVal * 20, TexVal * 48)
             GL.Vertex3(-4.24, -4.36, -2.12)
-
+            GL.TexCoord2(TexVal * 16, TexVal * 48)
             GL.Vertex3(-4.24, -4.36, 2.12)
             'Face 4
-
+            GL.TexCoord2(TexVal * 32, TexVal * 36)
             GL.Vertex3(4.24, 8.36, 2.12)
-
+            GL.TexCoord2(TexVal * 28, TexVal * 36)
             GL.Vertex3(4.24, 8.36, -2.12)
-
+            GL.TexCoord2(TexVal * 28, TexVal * 48)
             GL.Vertex3(4.24, -4.36, -2.12)
-
+            GL.TexCoord2(TexVal * 32, TexVal * 48)
             GL.Vertex3(4.24, -4.36, 2.12)
             'Face 5
-
+            GL.TexCoord2(TexVal * 20, TexVal * 36)
             GL.Vertex3(-4.24, 8.36, 2.12)
-
+            GL.TexCoord2(TexVal * 28, TexVal * 36)
             GL.Vertex3(4.24, 8.36, 2.12)
-
+            GL.TexCoord2(TexVal * 28, TexVal * 32)
             GL.Vertex3(4.24, 8.36, -2.12)
-
+            GL.TexCoord2(TexVal * 20, TexVal * 32)
             GL.Vertex3(-4.24, 8.36, -2.12)
             'Face 6
-
+            GL.TexCoord2(TexVal * 28, TexVal * 36)
             GL.Vertex3(-4.24, -4.36, 2.12)
-
+            GL.TexCoord2(TexVal * 36, TexVal * 36)
             GL.Vertex3(4.24, -4.36, 2.12)
-
+            GL.TexCoord2(TexVal * 36, TexVal * 32)
             GL.Vertex3(4.24, -4.36, -2.12)
-
+            GL.TexCoord2(TexVal * 28, TexVal * 32)
             GL.Vertex3(-4.24, -4.36, -2.12)
         End If
 
         If Show2ndHead Then
             'Head
             'Face 1
-
+            GL.TexCoord2(TexVal * 40, TexVal * 8)
             GL.Vertex3(-4.24, 16.24, 4.24)
-
+            GL.TexCoord2(TexVal * 48, TexVal * 8)
             GL.Vertex3(4.24, 16.24, 4.24)
-
+            GL.TexCoord2(TexVal * 48, TexVal * 16)
             GL.Vertex3(4.24, 7.76, 4.24)
-
+            GL.TexCoord2(TexVal * 40, TexVal * 16)
             GL.Vertex3(-4.24, 7.76, 4.24)
             'Face 2
-
+            GL.TexCoord2(TexVal * 64, TexVal * 8)
             GL.Vertex3(-4.24, 16.24, -4.24)
-
+            GL.TexCoord2(TexVal * 56, TexVal * 8)
             GL.Vertex3(4.24, 16.24, -4.24)
-
+            GL.TexCoord2(TexVal * 56, TexVal * 16)
             GL.Vertex3(4.24, 7.76, -4.24)
-
+            GL.TexCoord2(TexVal * 64, TexVal * 16)
             GL.Vertex3(-4.24, 7.76, -4.24)
             'Face 3
-
+            GL.TexCoord2(TexVal * 32, TexVal * 8)
             GL.Vertex3(-4.24, 16.24, 4.24)
-
+            GL.TexCoord2(TexVal * 40, TexVal * 8)
             GL.Vertex3(-4.24, 16.24, -4.24)
-
+            GL.TexCoord2(TexVal * 40, TexVal * 16)
             GL.Vertex3(-4.24, 7.76, -4.24)
-
+            GL.TexCoord2(TexVal * 32, TexVal * 16)
             GL.Vertex3(-4.24, 7.76, 4.24)
             'Face 4
-
+            GL.TexCoord2(TexVal * 56, TexVal * 8)
             GL.Vertex3(4.24, 16.24, 4.24)
-
+            GL.TexCoord2(TexVal * 48, TexVal * 8)
             GL.Vertex3(4.24, 16.24, -4.24)
-
+            GL.TexCoord2(TexVal * 48, TexVal * 16)
             GL.Vertex3(4.24, 7.76, -4.24)
-
+            GL.TexCoord2(TexVal * 56, TexVal * 16)
             GL.Vertex3(4.24, 7.76, 4.24)
             'Face 5
-
+            GL.TexCoord2(TexVal * 40, TexVal * 8)
             GL.Vertex3(-4.24, 16.24, 4.24)
-
+            GL.TexCoord2(TexVal * 48, TexVal * 8)
             GL.Vertex3(4.24, 16.24, 4.24)
-
+            GL.TexCoord2(TexVal * 48, 0)
             GL.Vertex3(4.24, 16.24, -4.24)
-
+            GL.TexCoord2(TexVal * 40, 0)
             GL.Vertex3(-4.24, 16.24, -4.24)
             'Face 6
-
+            GL.TexCoord2(TexVal * 48, TexVal * 8)
             GL.Vertex3(-4.24, 7.76, 4.24)
-
+            GL.TexCoord2(TexVal * 56, TexVal * 8)
             GL.Vertex3(4.24, 7.76, 4.24)
-
+            GL.TexCoord2(TexVal * 56, 0)
             GL.Vertex3(4.24, 7.76, -4.24)
-
+            GL.TexCoord2(TexVal * 48, 0)
             GL.Vertex3(-4.24, 7.76, -4.24)
         End If
 
         If Model = Models.Steve Then
 
             If Show2ndLeftArm Then
-                'LefttArm
+                'LeftArm
                 'Face 1
-
+                GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.88, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 56, TexVal * 52)
                 GL.Vertex3(8.12, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 56, TexVal * 64)
                 GL.Vertex3(8.12, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 64)
                 GL.Vertex3(3.88, -4.36, 2.12)
                 'Face 2
-
+                GL.TexCoord2(TexVal * 64, TexVal * 52)
                 GL.Vertex3(3.88, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 60, TexVal * 52)
                 GL.Vertex3(8.12, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 60, TexVal * 64)
                 GL.Vertex3(8.12, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 64, TexVal * 64)
                 GL.Vertex3(3.88, -4.36, -2.12)
                 'Face 3
-
+                GL.TexCoord2(TexVal * 48, TexVal * 52)
                 GL.Vertex3(3.88, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.88, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 64)
                 GL.Vertex3(3.88, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 48, TexVal * 64)
                 GL.Vertex3(3.88, -4.36, 2.12)
                 'Face 4
-
+                GL.TexCoord2(TexVal * 60, TexVal * 52)
                 GL.Vertex3(8.12, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 56, TexVal * 52)
                 GL.Vertex3(8.12, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 56, TexVal * 64)
                 GL.Vertex3(8.12, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 60, TexVal * 64)
                 GL.Vertex3(8.12, -4.36, 2.12)
                 'Face 5
-
+                GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.88, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 56, TexVal * 52)
                 GL.Vertex3(8.12, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 56, TexVal * 48)
                 GL.Vertex3(8.12, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 48)
                 GL.Vertex3(3.88, 8.36, -2.12)
                 'Face 6
-
+                GL.TexCoord2(TexVal * 56, TexVal * 52)
                 GL.Vertex3(3.88, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 60, TexVal * 52)
                 GL.Vertex3(8.12, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 60, TexVal * 48)
                 GL.Vertex3(8.12, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 56, TexVal * 48)
                 GL.Vertex3(3.88, -4.36, -2.12)
             End If
 
             If Show2ndRightArm Then
                 'RightArm
                 'Face 1
-
+                GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-8.12, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 48, TexVal * 36)
                 GL.Vertex3(-3.88, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 48, TexVal * 48)
                 GL.Vertex3(-3.88, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 44, TexVal * 48)
                 GL.Vertex3(-8.12, -4.36, 2.12)
                 'Face 2
-
+                GL.TexCoord2(TexVal * 56, TexVal * 36)
                 GL.Vertex3(-8.12, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 36)
                 GL.Vertex3(-3.88, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 48)
                 GL.Vertex3(-3.88, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 56, TexVal * 48)
                 GL.Vertex3(-8.12, -4.36, -2.12)
                 'Face 3
-
+                GL.TexCoord2(TexVal * 40, TexVal * 36)
                 GL.Vertex3(-8.12, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-8.12, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 44, TexVal * 48)
                 GL.Vertex3(-8.12, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 40, TexVal * 48)
                 GL.Vertex3(-8.12, -4.36, 2.12)
                 'Face 4
-
+                GL.TexCoord2(TexVal * 52, TexVal * 36)
                 GL.Vertex3(-3.88, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 48, TexVal * 36)
                 GL.Vertex3(-3.88, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 48, TexVal * 48)
                 GL.Vertex3(-3.88, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 48)
                 GL.Vertex3(-3.88, -4.36, 2.12)
                 'Face 5
-
+                GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-8.12, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 48, TexVal * 36)
                 GL.Vertex3(-3.88, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 48, TexVal * 32)
                 GL.Vertex3(-3.88, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 44, TexVal * 32)
                 GL.Vertex3(-8.12, 8.36, -2.12)
                 'Face 6
-
+                GL.TexCoord2(TexVal * 48, TexVal * 36)
                 GL.Vertex3(-8.12, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 36)
                 GL.Vertex3(-3.88, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 32)
                 GL.Vertex3(-3.88, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 48, TexVal * 32)
                 GL.Vertex3(-8.12, -4.36, -2.12)
             End If
 
@@ -955,116 +977,116 @@ Public Class Renderer3D
             If Show2ndLeftArm Then
                 'LefttArm
                 'Face 1
-
+                GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.91, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 55, TexVal * 52)
                 GL.Vertex3(7.09, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 55, TexVal * 64)
                 GL.Vertex3(7.09, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 64)
                 GL.Vertex3(3.91, -4.36, 2.12)
                 'Face 2
-
+                GL.TexCoord2(TexVal * 62, TexVal * 52)
                 GL.Vertex3(3.91, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 59, TexVal * 52)
                 GL.Vertex3(7.09, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 59, TexVal * 64)
                 GL.Vertex3(7.09, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 62, TexVal * 64)
                 GL.Vertex3(3.91, -4.36, -2.12)
                 'Face 3
-
+                GL.TexCoord2(TexVal * 48, TexVal * 52)
                 GL.Vertex3(3.91, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.91, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 64)
                 GL.Vertex3(3.91, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 48, TexVal * 64)
                 GL.Vertex3(3.91, -4.36, 2.12)
                 'Face 4
-
+                GL.TexCoord2(TexVal * 59, TexVal * 52)
                 GL.Vertex3(7.09, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 55, TexVal * 52)
                 GL.Vertex3(7.09, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 55, TexVal * 64)
                 GL.Vertex3(7.09, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 59, TexVal * 64)
                 GL.Vertex3(7.09, -4.36, 2.12)
                 'Face 5
-
+                GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.91, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 55, TexVal * 52)
                 GL.Vertex3(7.09, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 55, TexVal * 48)
                 GL.Vertex3(7.09, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 52, TexVal * 48)
                 GL.Vertex3(3.91, 8.36, -2.12)
                 'Face 6
-
+                GL.TexCoord2(TexVal * 55, TexVal * 52)
                 GL.Vertex3(3.91, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 58, TexVal * 52)
                 GL.Vertex3(7.09, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 58, TexVal * 48)
                 GL.Vertex3(7.09, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 55, TexVal * 48)
                 GL.Vertex3(3.91, -4.36, -2.12)
             End If
 
             If Show2ndRightArm Then
                 'RightArm
                 'Face 1
-
+                GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-7.09, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 47, TexVal * 36)
                 GL.Vertex3(-3.91, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 47, TexVal * 48)
                 GL.Vertex3(-3.91, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 44, TexVal * 48)
                 GL.Vertex3(-7.09, -4.36, 2.12)
                 'Face 2
-
+                GL.TexCoord2(TexVal * 54, TexVal * 36)
                 GL.Vertex3(-7.09, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 51, TexVal * 36)
                 GL.Vertex3(-3.91, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 51, TexVal * 48)
                 GL.Vertex3(-3.91, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 54, TexVal * 48)
                 GL.Vertex3(-7.09, -4.36, -2.12)
                 'Face 3
-
+                GL.TexCoord2(TexVal * 40, TexVal * 36)
                 GL.Vertex3(-7.09, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-7.09, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 44, TexVal * 48)
                 GL.Vertex3(-7.09, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 40, TexVal * 48)
                 GL.Vertex3(-7.09, -4.36, 2.12)
                 'Face 4
-
+                GL.TexCoord2(TexVal * 51, TexVal * 36)
                 GL.Vertex3(-3.91, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 47, TexVal * 36)
                 GL.Vertex3(-3.91, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 47, TexVal * 48)
                 GL.Vertex3(-3.91, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 51, TexVal * 48)
                 GL.Vertex3(-3.91, -4.36, 2.12)
                 'Face 5
-
+                GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-7.09, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 47, TexVal * 36)
                 GL.Vertex3(-3.91, 8.36, 2.12)
-
+                GL.TexCoord2(TexVal * 47, TexVal * 32)
                 GL.Vertex3(-3.91, 8.36, -2.12)
-
+                GL.TexCoord2(TexVal * 44, TexVal * 32)
                 GL.Vertex3(-7.09, 8.36, -2.12)
                 'Face 6
-
+                GL.TexCoord2(TexVal * 47, TexVal * 36)
                 GL.Vertex3(-7.09, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 50, TexVal * 36)
                 GL.Vertex3(-3.91, -4.36, 2.12)
-
+                GL.TexCoord2(TexVal * 50, TexVal * 32)
                 GL.Vertex3(-3.91, -4.36, -2.12)
-
+                GL.TexCoord2(TexVal * 47, TexVal * 32)
                 GL.Vertex3(-7.09, -4.36, -2.12)
             End If
 
@@ -1073,116 +1095,116 @@ Public Class Renderer3D
         If Show2ndRightLeg Then
             'RightLeg
             'Face 1
-
+            GL.TexCoord2(TexVal * 4, TexVal * 36)
             GL.Vertex3(-4.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 36)
             GL.Vertex3(0.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 48)
             GL.Vertex3(0.12, -16.36, 2.12)
-
+            GL.TexCoord2(TexVal * 4, TexVal * 48)
             GL.Vertex3(-4.12, -16.36, 2.12)
             'Face 2
-
+            GL.TexCoord2(TexVal * 16, TexVal * 36)
             GL.Vertex3(-4.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 36)
             GL.Vertex3(0.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 48)
             GL.Vertex3(0.12, -16.36, -2.12)
-
+            GL.TexCoord2(TexVal * 16, TexVal * 48)
             GL.Vertex3(-4.12, -16.36, -2.12)
             'Face 3
-
+            GL.TexCoord2(TexVal * 0, TexVal * 36)
             GL.Vertex3(-4.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 4, TexVal * 36)
             GL.Vertex3(-4.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 4, TexVal * 48)
             GL.Vertex3(-4.12, -16.36, -2.12)
-
+            GL.TexCoord2(TexVal * 0, TexVal * 48)
             GL.Vertex3(-4.12, -16.36, 2.12)
             'Face 4
-
+            GL.TexCoord2(TexVal * 12, TexVal * 36)
             GL.Vertex3(0.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 36)
             GL.Vertex3(0.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 48)
             GL.Vertex3(0.12, -16.36, -2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 48)
             GL.Vertex3(0.12, -16.36, 2.12)
             'Face 5
-
+            GL.TexCoord2(TexVal * 4, TexVal * 36)
             GL.Vertex3(-4.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 36)
             GL.Vertex3(0.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 32)
             GL.Vertex3(0.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 4, TexVal * 32)
             GL.Vertex3(-4.12, -3.64, -2.12)
             'Face 6
-
+            GL.TexCoord2(TexVal * 8, TexVal * 36)
             GL.Vertex3(-4.12, -16.36, 2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 36)
             GL.Vertex3(0.12, -16.36, 2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 32)
             GL.Vertex3(0.12, -16.36, -2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 32)
             GL.Vertex3(-4.12, -16.36, -2.12)
         End If
 
         If Show2ndLeftLeg Then
             'LeftLeg
             'Face 1
-
+            GL.TexCoord2(TexVal * 4, TexVal * 52)
             GL.Vertex3(-0.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 52)
             GL.Vertex3(4.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 64)
             GL.Vertex3(4.12, -16.36, 2.12)
-
+            GL.TexCoord2(TexVal * 4, TexVal * 64)
             GL.Vertex3(-0.12, -16.36, 2.12)
             'Face 2
-
+            GL.TexCoord2(TexVal * 16, TexVal * 52)
             GL.Vertex3(-0.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 52)
             GL.Vertex3(4.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 64)
             GL.Vertex3(4.12, -16.36, -2.12)
-
+            GL.TexCoord2(TexVal * 16, TexVal * 64)
             GL.Vertex3(-0.12, -16.36, -2.12)
             'Face 3
-
+            GL.TexCoord2(TexVal * 0, TexVal * 52)
             GL.Vertex3(-0.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 4, TexVal * 52)
             GL.Vertex3(-0.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 4, TexVal * 64)
             GL.Vertex3(-0.12, -16.36, -2.12)
-
+            GL.TexCoord2(TexVal * 0, TexVal * 64)
             GL.Vertex3(-0.12, -16.36, 2.12)
             'Face 4
-
+            GL.TexCoord2(TexVal * 12, TexVal * 52)
             GL.Vertex3(4.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 52)
             GL.Vertex3(4.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 64)
             GL.Vertex3(4.12, -16.36, -2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 64)
             GL.Vertex3(4.12, -16.36, 2.12)
             'Face 5
-
+            GL.TexCoord2(TexVal * 4, TexVal * 52)
             GL.Vertex3(-0.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 52)
             GL.Vertex3(4.12, -3.64, 2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 48)
             GL.Vertex3(4.12, -3.64, -2.12)
-
+            GL.TexCoord2(TexVal * 4, TexVal * 48)
             GL.Vertex3(-0.12, -3.64, -2.12)
             'Face 6
-
+            GL.TexCoord2(TexVal * 8, TexVal * 52)
             GL.Vertex3(-0.12, -16.36, 2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 52)
             GL.Vertex3(4.12, -16.36, 2.12)
-
+            GL.TexCoord2(TexVal * 12, TexVal * 48)
             GL.Vertex3(4.12, -16.36, -2.12)
-
+            GL.TexCoord2(TexVal * 8, TexVal * 48)
             GL.Vertex3(-0.12, -16.36, -2.12)
         End If
         'Finish the begin mode with "end"
