@@ -216,12 +216,49 @@ Public Class Renderer3D
     Dim _Zoom As Double = 1
     Property Zoom As Double
         Set(value As Double)
-            If value < 0.5 OrElse value > 16 Then Exit Property
+            If value < 1 Then
+                value = 1
+            ElseIf value > 10 Then
+                value = 10
+            End If
 
             _Zoom = value
         End Set
         Get
             Return _Zoom
+        End Get
+    End Property
+
+    Dim _LookX As Double = 0
+    Property LookX As Double
+        Set(value As Double)
+            If value < -8 Then
+                value = -8
+            ElseIf value > 8 Then
+                value = 8
+            End If
+
+            _LookX = value
+        End Set
+        Get
+            Return _LookX
+        End Get
+    End Property
+
+
+    Dim _LookY As Double = 0
+    Property LookY As Double
+        Set(value As Double)
+            If value < -16 Then
+                value = -16
+            ElseIf value > 16 Then
+                value = 16
+            End If
+
+            _LookY = value
+        End Set
+        Get
+            Return _LookY
         End Get
     End Property
 
@@ -240,7 +277,7 @@ Public Class Renderer3D
 
         'Basic Setup for viewing
         Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
-        Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(36, 0, 0, 0, 0, 0, 0, 1, 0) 'Setup camera
+        Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(36, LookY, LookX, 0, LookY, LookX, 1, 1, 0) 'Setup camera
         GL.MatrixMode(MatrixMode.Projection) 'Load Perspective
         GL.LoadIdentity()
         GL.LoadMatrix(perspective)
@@ -1227,6 +1264,7 @@ Public Class Renderer3D
     End Sub
 
     Private IsMouseDown As Boolean
+    Private IsRightMouseDown As Boolean
     Private IsMouseHidden As Boolean
     Private OldLoc As Point
     Private MouseLoc As Point
@@ -1240,6 +1278,14 @@ Public Class Renderer3D
             End If
             MouseLoc = Cursor.Position
             IsMouseDown = True
+        ElseIf Not IsRightMouseDown AndAlso e.Button = MouseButtons.Right Then
+            OldLoc = Cursor.Position
+            If Not IsMouseHidden Then
+                Cursor.Hide()
+                IsMouseHidden = True
+            End If
+            MouseLoc = Cursor.Position
+            IsRightMouseDown = True
         End If
     End Sub
 
@@ -1249,6 +1295,7 @@ Public Class Renderer3D
             IsMouseHidden = False
             Cursor.Position = OldLoc
             IsMouseDown = False
+            IsRightMouseDown = False
         End If
     End Sub
 
@@ -1256,6 +1303,12 @@ Public Class Renderer3D
         If IsMouseDown Then
             RotationY += (Cursor.Position.X - MouseLoc.X) * 0.5
             RotationX -= (Cursor.Position.Y - MouseLoc.Y) * 0.5
+            Me.Refresh()
+            Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
+            MouseLoc = Cursor.Position
+        ElseIf IsRightMouseDown Then
+            LookX += (Cursor.Position.X - MouseLoc.X) * 0.5
+            LookY += (Cursor.Position.Y - MouseLoc.Y) * 0.5
             Me.Refresh()
             Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
             MouseLoc = Cursor.Position
