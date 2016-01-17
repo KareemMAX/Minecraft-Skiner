@@ -63,11 +63,6 @@
     ''' Lock the selector to renderer
     ''' </summary>
     ''' <returns>Locked renderer</returns>
-    Property _2DRenderer As Renderer2D = New Renderer2D
-    ''' <summary>
-    ''' Lock the selector to renderer
-    ''' </summary>
-    ''' <returns>Locked renderer</returns>
     Property _3DRenderer As Renderer3D = New Renderer3D
 
     Private Sub LayerSelector_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
@@ -242,19 +237,6 @@
         Refresh()
     End Sub
     Sub UpdateSelectors()
-        _2DRenderer.Show2ndBody = Show2ndBody
-        _2DRenderer.Show2ndHead = Show2ndHead
-        _2DRenderer.Show2ndLeftArm = Show2ndLeftArm
-        _2DRenderer.Show2ndLeftLeg = Show2ndLeftLeg
-        _2DRenderer.Show2ndRightArm = Show2ndRightArm
-        _2DRenderer.Show2ndRightLeg = Show2ndRightLeg
-        _2DRenderer.ShowBody = ShowBody
-        _2DRenderer.ShowHead = ShowHead
-        _2DRenderer.ShowLeftArm = ShowLeftArm
-        _2DRenderer.ShowLeftLeg = ShowLeftLeg
-        _2DRenderer.ShowRightArm = ShowRightArm
-        _2DRenderer.ShowRightLeg = ShowRightLeg
-        _2DRenderer.Refresh()
         _3DRenderer.Show2ndBody = Show2ndBody
         _3DRenderer.Show2ndHead = Show2ndHead
         _3DRenderer.Show2ndLeftArm = Show2ndLeftArm

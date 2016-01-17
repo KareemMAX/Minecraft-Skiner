@@ -16,8 +16,6 @@
         Next
         '*************************************************************
         MainSkin.Image = Image 'Apply preview
-        Renderer2D.Skin = Skin
-        Renderer2D.Refresh() 'Render
         Renderer3D.Skin = Skin
         Renderer3D.Refresh() 'Render
     End Sub
@@ -36,8 +34,8 @@
         Skin = My.Resources.steve 'Reset the skin value
         UpdateImage() 'Load the preview
         Text = "Minecraft Skiner" 'Reset the form text
-        Renderer2D.Skin = Skin
-        Renderer2D.Refresh()
+        Renderer3D.Skin = Skin
+        Renderer3D.Refresh()
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
@@ -90,10 +88,6 @@
         Skin = tmpSkin 'Rest the skin value to 1.8 old skin
     End Sub
 
-    Private Sub Renderer2D_SizeChanged(sender As Object, e As EventArgs) Handles Renderer2D.SizeChanged
-        Renderer2D.Refresh()
-    End Sub
-
     Private Sub OpenFromplayerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenFromplayerToolStripMenuItem.Click
         Dim Dialog As New UserNameDialog
         Dialog.ShowDialog()
@@ -109,33 +103,19 @@
 
     Private Sub Steverdb_CheckedChanged(sender As Object, e As EventArgs) Handles Steverdb.CheckedChanged
         If Steverdb.Checked Then
-            Renderer2D.Model = Renderer2D.Models.Steve
             Renderer3D.Model = Renderer3D.Models.Steve
         Else
-            Renderer2D.Model = Renderer2D.Models.Alex
             Renderer3D.Model = Renderer3D.Models.Alex
         End If
-        Renderer2D.Refresh()
         Renderer3D.Refresh()
     End Sub
 
     Private Sub Alexrdb_CheckedChanged(sender As Object, e As EventArgs) Handles Alexrdb.CheckedChanged
         If Steverdb.Checked Then
-            Renderer2D.Model = Renderer2D.Models.Steve
             Renderer3D.Model = Renderer3D.Models.Steve
         Else
-            Renderer2D.Model = Renderer2D.Models.Alex
             Renderer3D.Model = Renderer3D.Models.Alex
         End If
-        Renderer2D.Refresh()
         Renderer3D.Refresh()
-    End Sub
-
-    Private Sub RenderSelector_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RenderSelector.SelectedIndexChanged
-        If RenderSelector.SelectedIndex = 0 Then
-            Renderer3D.Show()
-        Else
-            Renderer3D.Hide()
-        End If
     End Sub
 End Class

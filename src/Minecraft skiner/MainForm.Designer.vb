@@ -37,10 +37,8 @@ Partial Class MainForm
         Me.Alexrdb = New System.Windows.Forms.RadioButton()
         Me.Steverdb = New System.Windows.Forms.RadioButton()
         Me.MainSkin = New System.Windows.Forms.PictureBox()
-        Me.RenderSelector = New System.Windows.Forms.ComboBox()
         Me.Renderer3D = New Minecraft_skiner.Renderer3D()
         Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
-        Me.Renderer2D = New Minecraft_skiner.Renderer2D()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,28 +153,20 @@ Partial Class MainForm
         Me.MainSkin.TabIndex = 6
         Me.MainSkin.TabStop = False
         '
-        'RenderSelector
-        '
-        Me.RenderSelector.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RenderSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.RenderSelector.FormattingEnabled = True
-        Me.RenderSelector.ItemHeight = 13
-        Me.RenderSelector.Items.AddRange(New Object() {"3D Render", "2D Render"})
-        Me.RenderSelector.Location = New System.Drawing.Point(595, 27)
-        Me.RenderSelector.Name = "RenderSelector"
-        Me.RenderSelector.Size = New System.Drawing.Size(160, 21)
-        Me.RenderSelector.TabIndex = 9
-        Me.RenderSelector.SelectedIndex = 0
-        '
         'Renderer3D
         '
         Me.Renderer3D.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Renderer3D.BackColor = System.Drawing.Color.White
+        Me.Renderer3D.InDesignMode = True
         Me.Renderer3D.Location = New System.Drawing.Point(173, 27)
+        Me.Renderer3D.LookX = 0R
+        Me.Renderer3D.LookY = 0R
         Me.Renderer3D.Model = Minecraft_skiner.Renderer3D.Models.Steve
         Me.Renderer3D.Name = "Renderer3D"
-        Me.Renderer2D.BackColor = Color.White
+        Me.Renderer3D.RotationX = 0
+        Me.Renderer3D.RotationY = 90
         Me.Renderer3D.Show2ndBody = True
         Me.Renderer3D.Show2ndHead = True
         Me.Renderer3D.Show2ndLeftArm = True
@@ -192,10 +182,10 @@ Partial Class MainForm
         Me.Renderer3D.Size = New System.Drawing.Size(416, 314)
         Me.Renderer3D.Skin = Global.Minecraft_skiner.My.Resources.Resources.steve
         Me.Renderer3D.TabIndex = 8
+        Me.Renderer3D.Zoom = 1.0R
         '
         'LayerSelector1
         '
-        Me.LayerSelector1._2DRenderer = Me.Renderer2D
         Me.LayerSelector1._3DRenderer = Me.Renderer3D
         Me.LayerSelector1.Location = New System.Drawing.Point(12, 237)
         Me.LayerSelector1.Name = "LayerSelector1"
@@ -214,43 +204,14 @@ Partial Class MainForm
         Me.LayerSelector1.Size = New System.Drawing.Size(120, 120)
         Me.LayerSelector1.TabIndex = 7
         '
-        'Renderer2D
-        '
-        Me.Renderer2D.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Renderer2D.BackColor = System.Drawing.Color.White
-        Me.Renderer2D.Location = New System.Drawing.Point(173, 27)
-        Me.Renderer2D.Model = Minecraft_skiner.Renderer2D.Models.Steve
-        Me.Renderer2D.Name = "Renderer2D"
-        Me.Renderer2D.Show2ndBody = True
-        Me.Renderer2D.Show2ndHead = True
-        Me.Renderer2D.Show2ndLeftArm = True
-        Me.Renderer2D.Show2ndLeftLeg = True
-        Me.Renderer2D.Show2ndRightArm = True
-        Me.Renderer2D.Show2ndRightLeg = True
-        Me.Renderer2D.ShowBody = True
-        Me.Renderer2D.ShowHead = True
-        Me.Renderer2D.ShowLeftArm = True
-        Me.Renderer2D.ShowLeftLeg = True
-        Me.Renderer2D.ShowRightArm = True
-        Me.Renderer2D.ShowRightLeg = True
-        Me.Renderer2D.Size = New System.Drawing.Size(416, 314)
-        Me.Renderer2D.Skin = CType(resources.GetObject("Renderer2D.Skin"), System.Drawing.Bitmap)
-        Me.Renderer2D.TabIndex = 4
-        Me.Renderer2D.ViewPortAngle = Minecraft_skiner.Renderer2D.Angles.Normal
-        Me.Renderer2D.ViewPortSide = Minecraft_skiner.Renderer2D.Sides.Front
-        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(767, 353)
-        Me.Controls.Add(Me.RenderSelector)
         Me.Controls.Add(Me.Renderer3D)
         Me.Controls.Add(Me.LayerSelector1)
         Me.Controls.Add(Me.MainSkin)
-        Me.Controls.Add(Me.Renderer2D)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip)
         Me.MainMenuStrip = Me.MenuStrip
@@ -279,10 +240,8 @@ Partial Class MainForm
     Friend WithEvents Alexrdb As RadioButton
     Friend WithEvents Steverdb As RadioButton
     Friend WithEvents SaveAs17SkinToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Renderer2D As Renderer2D
     Friend WithEvents MainSkin As PictureBox
     Friend WithEvents OpenFromplayerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LayerSelector1 As LayerSelector
     Friend WithEvents Renderer3D As Renderer3D
-    Friend WithEvents RenderSelector As ComboBox
 End Class
