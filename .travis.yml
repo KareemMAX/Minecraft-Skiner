@@ -1,2 +1,2 @@
 language: csharp
-solution: src\Minecraft skiner.sln
+solution: "src\Minecraft skiner.sln"
