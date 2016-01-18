@@ -1,2 +1,2 @@
-language: vb.net
+language: visualbasic
 solution: src\Minecraft skiner.sln
