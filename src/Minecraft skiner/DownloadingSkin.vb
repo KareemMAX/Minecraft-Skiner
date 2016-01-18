@@ -10,7 +10,7 @@ Public Class DownloadingSkin
     Dim skin As Bitmap = MainForm.Skin
     Dim isalex As Boolean
 
-    Property UserInput As New TextBox
+    Property UserInput As New Windows.Forms.TextBox
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
         Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
