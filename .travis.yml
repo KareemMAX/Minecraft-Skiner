@@ -1,2 +1,2 @@
-language: visualbasic
+language: csharp
 solution: src\Minecraft skiner.sln
