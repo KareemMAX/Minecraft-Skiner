@@ -5,7 +5,7 @@ Public Class UserNameDialog
     Dim WithEvents dlg As New DownloadingSkin
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         dlg = New DownloadingSkin
-        dlg.UserInput = txtUsername
+        dlg.UserInput = txtUsername.Text
         dlg.ShowDialog()
     End Sub
 

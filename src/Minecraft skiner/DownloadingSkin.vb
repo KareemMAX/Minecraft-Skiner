@@ -10,7 +10,7 @@ Public Class DownloadingSkin
     Dim skin As Bitmap = MainForm.Skin
     Dim isalex As Boolean
 
-    Property UserInput As New Windows.Forms.TextBox
+    Property UserInput As String
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
         Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
@@ -20,7 +20,7 @@ Public Class DownloadingSkin
     Private Sub BackgroundWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker.DoWork
         file = "" 'Update the File value
         Try
-            Dim request As Net.WebRequest = Net.WebRequest.Create("https://mcapi.ca/skin/file/" + UserInput.Text)
+            Dim request As Net.WebRequest = Net.WebRequest.Create("https://mcapi.ca/skin/file/" + UserInput)
             Dim response As System.Net.WebResponse = request.GetResponse()
             Dim responseStream As IO.Stream = response.GetResponseStream()
             skin = New Bitmap(responseStream) 'Update Skin value
@@ -32,12 +32,12 @@ Public Class DownloadingSkin
         If MainForm.Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
             MainForm.ConvertSkin()
         End If
-        Dim RealName As String = UserInput.Text
+        Dim RealName As String = UserInput
         Try
             Dim wc As New WebClient
             '--------------Get the UUID-----------------
             Dim UUIDJson As MojangUUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of MojangUUID)(
-                wc.DownloadString("https://api.mojang.com/users/profiles/minecraft/" + UserInput.Text))
+                wc.DownloadString("https://api.mojang.com/users/profiles/minecraft/" + UserInput))
             RealName = UUIDJson.Name
             '--------------Get Skin type----------------
             Dim tmpstr As String = wc.DownloadString("https://mcapi.ca/name/uuid/" + UUIDJson.UUID)
