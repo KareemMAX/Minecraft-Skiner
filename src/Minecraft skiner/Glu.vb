@@ -5,9 +5,8 @@ Imports OpenTK.Graphics.OpenGL
 'And translated by http://www.carlosag.net/tools/codetranslator/
 'So maybe it have some missing code
 
-Namespace Imgui
 
-    Public Class Glu
+Public Class Glu
 
         Public Overloads Shared Function intersect_RayTriangle(ByVal RP0 As Vector3d, ByVal RP1 As Vector3d, ByVal TV0 As Vector3, ByVal TV1 As Vector3, ByVal TV2 As Vector3, ByRef I As Vector3) As Integer
             Dim _RP0 As Vector3 = New Vector3(CType(RP0.X, Single), CType(RP0.Y, Single), CType(RP0.Z, Single))
@@ -335,5 +334,4 @@ Namespace Imgui
             'glScalef(viewport[2] / deltax, viewport[3] / deltay, 1.0);
             GL.Scale((viewport(2) / deltax), (viewport(3) / deltay), 1)
         End Sub
-    End Class
-End Namespace
+End Class
