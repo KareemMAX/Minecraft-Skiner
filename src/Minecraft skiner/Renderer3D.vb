@@ -288,7 +288,8 @@ Public Class Renderer3D
         GL.Enable(EnableCap.DepthTest) 'Enable correct Z Drawings
         GL.Enable(EnableCap.Texture2D) 'Enable textures
         GL.DepthFunc(DepthFunction.Less) 'Enable correct Z Drawings
-        GL.Disable(EnableCap.Blend) 'Disable transparent
+        'GL.Disable(EnableCap.Blend) 'Disable transparent
+        GL.Disable(EnableCap.AlphaTest) 'Disable transparent
 
         'Load the textures
         Dim texID As Integer = GL.GenTexture()
