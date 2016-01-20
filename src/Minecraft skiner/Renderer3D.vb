@@ -783,8 +783,10 @@ Public Class Renderer3D
 
         GL.End()
 
-        GL.Enable(EnableCap.Blend) 'Enable transparent
-        GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha)
+        GL.Enable(EnableCap.AlphaTest) 'Enable transparent
+        GL.AlphaFunc(AlphaFunction.Greater, 0.4)
+        'GL.Enable(EnableCap.Blend) 'Enable transparent
+        'GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.DstAlpha)
 
         GL.Begin(BeginMode.Quads)
 
