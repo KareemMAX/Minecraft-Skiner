@@ -1,4 +1,5 @@
-﻿Imports System
+﻿Imports System.Resources
+Imports System
 Imports System.Reflection
 Imports System.Runtime.InteropServices
 
@@ -10,15 +11,15 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("Minecraft skiner")>
 <Assembly: AssemblyDescription("Tool to make a great minecraft skins")>
-<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyCompany("KareemMAX")>
 <Assembly: AssemblyProduct("Minecraft skiner")>
 <Assembly: AssemblyCopyright("Copyright ©  2016 Kareem morsy")>
-<Assembly: AssemblyTrademark("")> 
+<Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("e9375989-c91c-45fa-a457-185666db9f34")> 
+<Assembly: Guid("e9375989-c91c-45fa-a457-185666db9f34")>
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -31,5 +32,6 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.0.0.0")> 
-<Assembly: AssemblyFileVersion("1.0.0.0")> 
+<Assembly: AssemblyVersion("1.0.0.0")>
+<Assembly: AssemblyFileVersion("1.0.0.0")>
+<Assembly: NeutralResourcesLanguage("en")>
