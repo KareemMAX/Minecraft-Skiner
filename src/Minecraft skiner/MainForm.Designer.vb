@@ -166,7 +166,7 @@ Partial Class MainForm
         Me.Renderer3D.Model = Minecraft_skiner.Renderer3D.Models.Steve
         Me.Renderer3D.Name = "Renderer3D"
         Me.Renderer3D.RotationX = 0
-        Me.Renderer3D.RotationY = 90
+        Me.Renderer3D.RotationY = 0
         Me.Renderer3D.Show2ndBody = True
         Me.Renderer3D.Show2ndHead = True
         Me.Renderer3D.Show2ndLeftArm = True

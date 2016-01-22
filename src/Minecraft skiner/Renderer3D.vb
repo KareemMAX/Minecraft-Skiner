@@ -211,7 +211,7 @@ Public Class Renderer3D
     ''' Y rotation
     ''' </summary>
     ''' <returns>Y rotation</returns>
-    Property RotationY As Integer = 90
+    Property RotationY As Integer
 
     Dim _Zoom As Double = 1
     Property Zoom As Double
@@ -277,7 +277,7 @@ Public Class Renderer3D
 
         'Basic Setup for viewing
         Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
-        Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(36, LookY, LookX, 0, LookY, LookX, 1, 1, 0) 'Setup camera
+        Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(LookX, LookY, 36, LookX, LookY, 0, 0, 1, 1) 'Setup camera
         GL.MatrixMode(MatrixMode.Projection) 'Load Perspective
         GL.LoadIdentity()
         GL.LoadMatrix(perspective)
@@ -306,7 +306,7 @@ Public Class Renderer3D
         Const TexVal As Double = 1 / 64
 
         'Rotating
-        GL.Rotate(RotationX, 0, 0, 1)
+        GL.Rotate(RotationX, -1, 0, 0)
         GL.Rotate(RotationY, 0, 1, 0)
 
         GL.BindTexture(TextureTarget.ProxyTexture2D, texID)
