@@ -27,4 +27,13 @@ Public Class UserNameDialog
             Me.Close()
         End If
     End Sub
+
+    Private Sub txtUsername_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtUsername.KeyPress
+        If Not (e.KeyChar = vbBack OrElse System.Text.RegularExpressions.Regex.IsMatch(e.KeyChar.ToString(),
+                                                                                       "[a-z]|[A-z]|[0-9]|_")) Then
+            'Stop the character from being entered into the control since it Is illegal.
+            Beep()
+            e.Handled = True
+        End If
+    End Sub
 End Class

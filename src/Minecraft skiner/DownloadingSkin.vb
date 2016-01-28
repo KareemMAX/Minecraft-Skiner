@@ -17,6 +17,8 @@ Public Class DownloadingSkin
         Me.Close()
     End Sub
 
+    Private failed As Boolean
+
     Private Sub BackgroundWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker.DoWork
         file = "" 'Update the File value
         Try
@@ -27,6 +29,7 @@ Public Class DownloadingSkin
         Catch
             MsgBox("Can't get the skin", MsgBoxStyle.Critical, "Error")
             file = tmpfile
+            failed = True
             Exit Sub
         End Try
         If MainForm.Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
@@ -72,6 +75,12 @@ Public Class DownloadingSkin
     End Sub
 
     Private Sub BackgroundWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker.RunWorkerCompleted
+        If failed Then
+            failed = False
+            Me.DialogResult = DialogResult.Cancel
+            Me.Close()
+            Exit Sub
+        End If
         MainForm.Skin = skin
         MainForm.Text = txt
         MainForm.File = file
