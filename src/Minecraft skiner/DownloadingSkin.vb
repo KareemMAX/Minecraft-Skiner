@@ -21,7 +21,14 @@ Public Class DownloadingSkin
 
     Private Sub BackgroundWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker.DoWork
         file = "" 'Update the File value
+        Dim wc As New WebClient
         Try
+            If wc.DownloadString("https://minecraft.net/haspaid.jsp?user=" + UserInput) = "false" Then
+                MsgBox("Username not exist", MsgBoxStyle.Critical, "Error")
+                file = tmpfile
+                failed = True
+                Exit Sub
+            End If
             Dim request As Net.WebRequest = Net.WebRequest.Create("https://mcapi.ca/skin/file/" + UserInput)
             Dim response As System.Net.WebResponse = request.GetResponse()
             Dim responseStream As IO.Stream = response.GetResponseStream()
@@ -37,7 +44,6 @@ Public Class DownloadingSkin
         End If
         Dim RealName As String = UserInput
         Try
-            Dim wc As New WebClient
             '--------------Get the UUID-----------------
             Dim UUIDJson As MojangUUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of MojangUUID)(
                 wc.DownloadString("https://api.mojang.com/users/profiles/minecraft/" + UserInput))
@@ -47,7 +53,7 @@ Public Class DownloadingSkin
             Dim NameJson As Name = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Name)(tmpstr)
             Dim decoded As PropertiesDecoded = Newtonsoft.Json.JsonConvert.DeserializeObject(Of PropertiesDecoded)(
                 System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(NameJson.Properties(0).Value)))
-            If decoded.Textures.Skin.MetaDate.model = "slim" Then
+            If decoded.Textures.Skin.MetaDate.Model = "slim" Then
                 isalex = True
             End If
         Catch
