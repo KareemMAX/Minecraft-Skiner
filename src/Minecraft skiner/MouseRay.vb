@@ -7,15 +7,36 @@ Public Class MouseRay
     Property ViewMatrix As Matrix4
     Property projectionMatrix As Matrix4
 
+    Property CamPos As Vector3
+
     Property Size As Size
 
-    Sub New(ByRef View As Matrix4, ByRef Projection As Matrix4, TheSize As Size)
+    Property Pos As Point
+
+    ReadOnly Property MouseHit As Vector3
+        Get
+            Update(Pos.X, Pos.Y)
+            Do
+                Dim point As Vector3
+                Dim dis As Single
+                point = getPointOnRay(CurrentRay, dis)
+                If point.Z > 2 Then
+                    dis += 0.1
+                Else
+                    Return point
+                End If
+            Loop
+        End Get
+    End Property
+
+    Sub New(ByRef View As Matrix4, ByRef Projection As Matrix4, TheSize As Size, Camera As Vector3)
         projectionMatrix = Projection
         ViewMatrix = View
         Size = TheSize
+        CamPos = Camera
     End Sub
 
-    Public Sub Update(X As Integer, Y As Integer)
+    Private Sub Update(X As Integer, Y As Integer)
         CurrentRay = calculateMouseRay(X, Y)
     End Sub
 
@@ -43,7 +64,15 @@ Public Class MouseRay
 
     Private Function getNormalisedDeviceCoordinates(x As Integer, y As Integer) As Vector2
         Dim x2 As Single = (2.0F * x) / Size.Width - 1.0F
-        Dim y2 As Single = (2.0F * y) / Size.Height - 1.0F
+        Dim y2 As Single = -((2.0F * y) / Size.Height - 1.0F)
         Return New Vector2(x2, y2)
     End Function
+
+    Private Function getPointOnRay(ray As Vector3, distance As Single) As Vector3
+        Dim start As New Vector3(camPos.x, camPos.y, camPos.z)
+        Dim scaledRay As New Vector3(ray.X * distance, ray.Y * distance, ray.Z * distance)
+        Return Vector3.Add(start, scaledRay)
+    End Function
+
+
 End Class

@@ -268,6 +268,9 @@ Public Class Renderer3D
     ''' <returns>Is stopped or not</returns>
     Property InDesignMode As Boolean = True
 
+    Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
+    Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(LookX, LookY, 36, LookX, LookY, 0, 0, 1, 1) 'Setup camera
+
     Private Sub GlControl_Paint(sender As Object, e As PaintEventArgs) Handles GlControl.Paint
         If InDesignMode Then Exit Sub
         GL.ClearColor(BackColor)
@@ -276,8 +279,8 @@ Public Class Renderer3D
         GL.Clear(ClearBufferMask.DepthBufferBit)
 
         'Basic Setup for viewing
-        Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
-        Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(LookX, LookY, 36, LookX, LookY, 0, 0, 1, 1) 'Setup camera
+        perspective = TK.Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
+        lookat = TK.Matrix4.LookAt(LookX, LookY, 36, LookX, LookY, 0, 0, 1, 1) 'Setup camera
         GL.MatrixMode(MatrixMode.Projection) 'Load Perspective
         GL.LoadIdentity()
         GL.LoadMatrix(perspective)
@@ -1273,6 +1276,14 @@ Public Class Renderer3D
     Private MouseLoc As Point
 
     Private Sub GlControl_MouseDown(sender As Object, e As MouseEventArgs) Handles GlControl.MouseDown
+        Dim promatrix As TK.Matrix4
+        Dim viewmatrix As TK.Matrix4
+        GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
+        GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
+        Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, New OpenTK.Vector3(LookX, LookY, 36))
+        m.Pos = e.Location
+        MsgBox("X:" & m.MouseHit.X & " Y:" & m.MouseHit.Y & " Z:" & m.MouseHit.Z)
+        Exit Sub
         If Not IsMouseDown AndAlso e.Button = MouseButtons.Left Then
             OldLoc = Cursor.Position
             If Not IsMouseHidden Then
