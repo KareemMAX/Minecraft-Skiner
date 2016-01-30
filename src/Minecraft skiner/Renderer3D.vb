@@ -2,6 +2,7 @@
 Imports GLGarphics = OpenTK.Graphics
 Imports OpenTK.Graphics.OpenGL
 Imports System.Drawing.Imaging
+Imports System.ComponentModel
 
 Public Class Renderer3D
     Private _Skin As Bitmap
@@ -9,7 +10,7 @@ Public Class Renderer3D
     ''' The visible skin on the renderer
     ''' </summary>
     ''' <returns>The visible skin</returns>
-    Property Skin As Bitmap
+    <Description("The current skin"), Category("Appearance")> Property Skin As Bitmap
         Set(value As Bitmap)
             If Not value.Height = 64 And value.Width = 64 Then 'Check the skin
                 Throw New ExSkinRes
@@ -26,7 +27,7 @@ Public Class Renderer3D
     ''' Show the head or not
     ''' </summary>
     ''' <returns>Show the head or not</returns>
-    Property ShowHead As Boolean
+    <Description("Shows the head layer or not"), Category("Appearance")> Property ShowHead As Boolean
         Set(value As Boolean)
             Refresh()
             _showhead = value
@@ -40,7 +41,7 @@ Public Class Renderer3D
     ''' Show the second head layer or not
     ''' </summary>
     ''' <returns>Show the second head layer or not</returns>
-    Property Show2ndHead As Boolean
+    <Description("Shows the second head layer or not"), Category("Appearance")> Property Show2ndHead As Boolean
         Set(value As Boolean)
             Refresh()
             _show2ndhead = value
@@ -54,7 +55,7 @@ Public Class Renderer3D
     ''' Show the body or not
     ''' </summary>
     ''' <returns>Show the body or not</returns>
-    Property ShowBody As Boolean
+    <Description("Shows the body layer or not"), Category("Appearance")> Property ShowBody As Boolean
         Set(value As Boolean)
             Refresh()
             _showbody = value
@@ -68,7 +69,7 @@ Public Class Renderer3D
     ''' Show the second body layer or not
     ''' </summary>
     ''' <returns>Show the second body layer or not</returns>
-    Property Show2ndBody As Boolean
+    <Description("Shows the second body layer or not"), Category("Appearance")> Property Show2ndBody As Boolean
         Set(value As Boolean)
             Refresh()
             _show2ndbody = value
@@ -82,7 +83,7 @@ Public Class Renderer3D
     ''' Show the right arm or not
     ''' </summary>
     ''' <returns>Show the right arm or not</returns>
-    Property ShowRightArm As Boolean
+    <Description("Shows the right arm layer or not"), Category("Appearance")> Property ShowRightArm As Boolean
         Set(value As Boolean)
             Refresh()
             _showra = value
@@ -96,7 +97,7 @@ Public Class Renderer3D
     ''' Show the second right arm layer or not
     ''' </summary>
     ''' <returns>Show the second right arm layer or not</returns>
-    Property Show2ndRightArm As Boolean
+    <Description("Shows the second right arm layer or not"), Category("Appearance")> Property Show2ndRightArm As Boolean
         Set(value As Boolean)
             Refresh()
             _show2ndra = value
@@ -110,7 +111,7 @@ Public Class Renderer3D
     ''' Show the left arm or not
     ''' </summary>
     ''' <returns>Show the leftht arm or not</returns>
-    Property ShowLeftArm As Boolean
+    <Description("Shows the left arm layer or not"), Category("Appearance")> Property ShowLeftArm As Boolean
         Set(value As Boolean)
             Refresh()
             _showla = value
@@ -124,7 +125,7 @@ Public Class Renderer3D
     ''' Show the second left arm layer or not
     ''' </summary>
     ''' <returns>Show the second left arm layer or not</returns>
-    Property Show2ndLeftArm As Boolean
+    <Description("Shows the second left arm layer or not"), Category("Appearance")> Property Show2ndLeftArm As Boolean
         Set(value As Boolean)
             Refresh()
             _show2ndla = value
@@ -138,7 +139,7 @@ Public Class Renderer3D
     ''' Show the right leg or not
     ''' </summary>
     ''' <returns>Show the right leg or not</returns>
-    Property ShowRightLeg As Boolean
+    <Description("Shows the right leg layer or not"), Category("Appearance")> Property ShowRightLeg As Boolean
         Set(value As Boolean)
             Refresh()
             _showrl = value
@@ -152,7 +153,7 @@ Public Class Renderer3D
     ''' Show the second right leg layer or not
     ''' </summary>
     ''' <returns>Show the second right leg layer or not</returns>
-    Property Show2ndRightLeg As Boolean
+    <Description("Shows the second right leg layer or not"), Category("Appearance")> Property Show2ndRightLeg As Boolean
         Set(value As Boolean)
             Refresh()
             _show2ndrl = value
@@ -166,7 +167,7 @@ Public Class Renderer3D
     ''' Show the left leg or not
     ''' </summary>
     ''' <returns>Show the leftht leg or not</returns>
-    Property ShowLeftLeg As Boolean
+    <Description("Shows the left leg layer or not"), Category("Appearance")> Property ShowLeftLeg As Boolean
         Set(value As Boolean)
             Refresh()
             _showll = value
@@ -180,7 +181,7 @@ Public Class Renderer3D
     ''' Show the second left leg layer or not
     ''' </summary>
     ''' <returns>Show the second left leg layer or not</returns>
-    Property Show2ndLeftLeg As Boolean
+    <Description("Shows the second left leg layer or not"), Category("Appearance")> Property Show2ndLeftLeg As Boolean
         Set(value As Boolean)
             Refresh()
             _show2ndll = value
@@ -199,22 +200,22 @@ Public Class Renderer3D
     ''' The rendered model
     ''' </summary>
     ''' <returns>The rendered model</returns>
-    Property Model As Models
+    <Description("The current player model"), Category("Appearance")> Property Model As Models
 
     ''' <summary>
     ''' X rotation
     ''' </summary>
     ''' <returns>X rotattion</returns>
-    Property RotationX As Integer
+    <Description("The X rotation of the model"), Category("Appearance")> Property RotationX As Integer
 
     ''' <summary>
     ''' Y rotation
     ''' </summary>
     ''' <returns>Y rotation</returns>
-    Property RotationY As Integer
+    <Description("The Y rotation of the model"), Category("Appearance")> Property RotationY As Integer
 
     Dim _Zoom As Double = 1
-    Property Zoom As Double
+    <Description("The zoom value"), Category("Appearance")> Property Zoom As Double
         Set(value As Double)
             If value < 1 Then
                 value = 1
@@ -230,7 +231,7 @@ Public Class Renderer3D
     End Property
 
     Dim _LookX As Double = 0
-    Property LookX As Double
+    <Description("The X axis offset from the orignal point (for zoom)"), Category("Appearance")> Property LookX As Double
         Set(value As Double)
             If value < -8 Then
                 value = -8
@@ -247,7 +248,7 @@ Public Class Renderer3D
 
 
     Dim _LookY As Double = 0
-    Property LookY As Double
+    <Description("The Y axis offset from the orignal point (for zoom)"), Category("Appearance")> Property LookY As Double
         Set(value As Double)
             If value < -16 Then
                 value = -16
@@ -266,6 +267,7 @@ Public Class Renderer3D
     ''' Stop the paint faction
     ''' </summary>
     ''' <returns>Is stopped or not</returns>
+    <Description("Render it or not (only used when design because when it became false in design mode it crashs VS and can be removed in the release)"), Category("Behavior")>
     Property InDesignMode As Boolean = True
 
     Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
