@@ -1,4 +1,5 @@
 ﻿Imports TK = OpenTK
+Imports OpenTK
 Imports GLGarphics = OpenTK.Graphics
 Imports OpenTK.Graphics.OpenGL
 Imports System.Drawing.Imaging
@@ -1282,7 +1283,7 @@ Public Class Renderer3D
         Dim viewmatrix As TK.Matrix4
         GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
         GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
-        Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, New OpenTK.Vector3(LookX, LookY, 36))
+        Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix))
         m.Pos = e.Location
         MsgBox("X:" & m.MouseHit.X & " Y:" & m.MouseHit.Y & " Z:" & m.MouseHit.Z)
         Exit Sub
@@ -1335,4 +1336,8 @@ Public Class Renderer3D
         Zoom += e.Delta * 0.005
         Refresh()
     End Sub
+
+    Private Function GetCameraPos(modelview As TK.Matrix4) As TK.Vector3
+        Return Matrix4.Invert(modelview).ExtractTranslation()
+    End Function
 End Class

@@ -16,16 +16,8 @@ Public Class MouseRay
     ReadOnly Property MouseHit As Vector3
         Get
             Update(Pos.X, Pos.Y)
-            Do
-                Dim point As Vector3
-                Dim dis As Single
-                point = getPointOnRay(CurrentRay, dis)
-                If point.Z > 2 Then
-                    dis += 0.1
-                Else
-                    Return point
-                End If
-            Loop
+            Dim d As Single = (2 - CamPos.Z) / CurrentRay.Z
+            Return getPointOnRay(CurrentRay, d)
         End Get
     End Property
 
@@ -71,8 +63,6 @@ Public Class MouseRay
     Private Function getPointOnRay(ray As Vector3, distance As Single) As Vector3
         Dim start As New Vector3(camPos.x, camPos.y, camPos.z)
         Dim scaledRay As New Vector3(ray.X * distance, ray.Y * distance, ray.Z * distance)
-        Return Vector3.Add(start, scaledRay)
+        Return start + scaledRay
     End Function
-
-
 End Class
