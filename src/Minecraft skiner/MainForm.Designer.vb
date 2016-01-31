@@ -37,6 +37,10 @@ Partial Class MainForm
         Me.Alexrdb = New System.Windows.Forms.RadioButton()
         Me.Steverdb = New System.Windows.Forms.RadioButton()
         Me.MainSkin = New System.Windows.Forms.PictureBox()
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BugTrackerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WebsiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Renderer3D = New Minecraft_skiner.Renderer3D()
         Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
         Me.MenuStrip.SuspendLayout()
@@ -46,7 +50,7 @@ Partial Class MainForm
         '
         'MenuStrip
         '
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(767, 24)
@@ -153,6 +157,31 @@ Partial Class MainForm
         Me.MainSkin.TabIndex = 6
         Me.MainSkin.TabStop = False
         '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.WebsiteToolStripMenuItem, Me.BugTrackerToolStripMenuItem})
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "&Help"
+        '
+        'BugTrackerToolStripMenuItem
+        '
+        Me.BugTrackerToolStripMenuItem.Name = "BugTrackerToolStripMenuItem"
+        Me.BugTrackerToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.BugTrackerToolStripMenuItem.Text = "&Bug tracker"
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Text = "&About"
+        '
+        'WebsiteToolStripMenuItem
+        '
+        Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.WebsiteToolStripMenuItem.Text = "&Website"
+        '
         'Renderer3D
         '
         Me.Renderer3D.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -245,4 +274,8 @@ Partial Class MainForm
     Friend WithEvents OpenFromplayerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LayerSelector1 As LayerSelector
     Friend WithEvents Renderer3D As Renderer3D
+    Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents WebsiteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BugTrackerToolStripMenuItem As ToolStripMenuItem
 End Class

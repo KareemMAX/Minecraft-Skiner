@@ -1,4 +1,6 @@
-﻿Public Class MainForm
+﻿Imports Octokit
+
+Public Class MainForm
     Friend Skin As Bitmap = My.Resources.steve
     Friend File As String
 
@@ -117,5 +119,21 @@
             Renderer3D.Model = Renderer3D.Models.Alex
         End If
         Renderer3D.Refresh()
+    End Sub
+
+    Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
+        MsgBox("Minecraft Skiner" & vbCrLf &
+               "Great tool to create Minecraft skins" & vbTab & "V" & My.Application.Info.Version.ToString,
+               MsgBoxStyle.Information, "About")
+    End Sub
+
+    Private Sub WebsiteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WebsiteToolStripMenuItem.Click
+        Process.Start("https://github.com/KareemMAX/Minecraft-Skiner")
+    End Sub
+
+    Private Sub BugTrackerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BugTrackerToolStripMenuItem.Click
+        'Dim Dialog As New BugTracker
+        'Dialog.ShowDialog()
+        Process.Start("https://github.com/KareemMAX/Minecraft-Skiner/issues")
     End Sub
 End Class

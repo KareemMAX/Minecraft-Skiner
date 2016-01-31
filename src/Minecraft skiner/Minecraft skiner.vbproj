@@ -71,10 +71,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Minecraft skiner\Resources\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Octokit, Version=0.17.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Octokit.0.17.0\lib\net45\Octokit.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="OpenTK, Version=1.1.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Minecraft skiner\Resources\OpenTK.dll</HintPath>
@@ -109,6 +105,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="BugTracker.Designer.vb">
+      <DependentUpon>BugTracker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BugTracker.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DownloadingSkin.Designer.vb">
       <DependentUpon>DownloadingSkin.vb</DependentUpon>
     </Compile>
@@ -169,6 +171,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="BugTracker.resx">
+      <DependentUpon>BugTracker.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DownloadingSkin.resx">
       <DependentUpon>DownloadingSkin.vb</DependentUpon>
     </EmbeddedResource>
@@ -205,7 +210,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <None Include="Resources\steve.png" />
   </ItemGroup>
   <ItemGroup>
