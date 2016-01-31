@@ -20,8 +20,6 @@
                 Return Reflection.Assembly.Load(My.Resources.OpenTK)
             ElseIf desiredAssembly.Name = "OpenTK.GLControl" Then
                 Return Reflection.Assembly.Load(My.Resources.OpenTK_GLControl)
-            ElseIf desiredAssembly.Name = "Octokit" Then
-                Return Reflection.Assembly.Load(My.Resources.Octokit)
             Else
                 Return Nothing
             End If

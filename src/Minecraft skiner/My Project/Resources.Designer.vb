@@ -73,16 +73,6 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Byte[].
         '''</summary>
-        Friend ReadOnly Property Octokit() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Octokit", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized resource of type System.Byte[].
-        '''</summary>
         Friend ReadOnly Property OpenTK() As Byte()
             Get
                 Dim obj As Object = ResourceManager.GetObject("OpenTK", resourceCulture)
