@@ -16,8 +16,35 @@ Public Class MouseRay
     ReadOnly Property MouseHit As Vector3
         Get
             Update(Pos.X, Pos.Y)
-            Dim d As Single = (2 - CamPos.Z) / CurrentRay.Z
-            Return getPointOnRay(CurrentRay, d)
+            Dim HeadIndex(1) As Single
+            Dim BodyIndex(1) As Single
+            HeadIndex(0) = (4 - CamPos.Z) / CurrentRay.Z
+            BodyIndex(0) = (2 - CamPos.Z) / CurrentRay.Z
+            HeadIndex(1) = (-4 - CamPos.Z) / CurrentRay.Z
+            BodyIndex(1) = (-2 - CamPos.Z) / CurrentRay.Z
+
+            Dim HeadSmallest As Single
+            Dim BodySmallest As Single
+            If HeadIndex(0) > HeadIndex(1) Then
+                HeadSmallest = HeadIndex(1)
+            ElseIf HeadIndex(0) < HeadIndex(1) Then
+                HeadSmallest = HeadIndex(0)
+            End If
+            If BodyIndex(0) > BodyIndex(1) Then
+                BodySmallest = BodyIndex(1)
+            ElseIf BodyIndex(0) < BodyIndex(1) Then
+                BodySmallest = BodyIndex(0)
+            End If
+
+            Dim HeadPoint As Vector3 = getPointOnRay(CurrentRay, HeadSmallest)
+            Dim BodyPoint As Vector3 = getPointOnRay(CurrentRay, BodySmallest)
+
+            If HeadPoint.X < 4 AndAlso HeadPoint.X > -4 AndAlso HeadPoint.Y < 16 AndAlso HeadPoint.Y > 8 Then
+                Return HeadPoint
+            ElseIf (BodyPoint.X < 8 AndAlso BodyPoint.X > -8 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4) OrElse
+                (BodyPoint.X < 4 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < -4 AndAlso BodyPoint.Y > -16) Then
+                Return BodyPoint
+            End If
         End Get
     End Property
 
