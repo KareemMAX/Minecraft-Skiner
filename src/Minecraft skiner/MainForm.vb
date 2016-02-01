@@ -98,8 +98,18 @@ Public Class MainForm
         Skin = New Bitmap(64, 64)
         Dim g As Graphics = Graphics.FromImage(Skin)
         g.DrawImage(tmpSkin, New Rectangle(0, 0, 64, 32), New Rectangle(0, 0, 64, 32), GraphicsUnit.Pixel)
-        g.DrawImage(tmpSkin, New Rectangle(16, 48, 16, 16), New Rectangle(0, 16, 16, 16), GraphicsUnit.Pixel) 'Adding the left leg
-        g.DrawImage(tmpSkin, New Rectangle(32, 48, 16, 16), New Rectangle(40, 16, 16, 16), GraphicsUnit.Pixel) 'Adding the left arm
+        '--------------Draw the leg---------------
+        g.DrawImage(tmpSkin, New Rectangle(20, 52, 8, 12), New Rectangle(8, 20, -8, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(16, 52, 4, 12), New Rectangle(12, 20, -4, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(28, 52, 4, 12), New Rectangle(16, 20, -4, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(20, 48, 4, 4), New Rectangle(8, 16, -4, 4), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(24, 48, 4, 4), New Rectangle(12, 16, -4, 4), GraphicsUnit.Pixel)
+        '--------------Draw the arm---------------
+        g.DrawImage(tmpSkin, New Rectangle(36, 52, 8, 12), New Rectangle(48, 20, -8, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(32, 52, 4, 12), New Rectangle(52, 20, -4, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(44, 52, 4, 12), New Rectangle(56, 20, -4, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(36, 48, 4, 4), New Rectangle(48, 16, -4, 4), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(40, 48, 4, 4), New Rectangle(52, 16, -4, 4), GraphicsUnit.Pixel)
     End Sub
 
     Private Sub Steverdb_CheckedChanged(sender As Object, e As EventArgs) Handles Steverdb.CheckedChanged
