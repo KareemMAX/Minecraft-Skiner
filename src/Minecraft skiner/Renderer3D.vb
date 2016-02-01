@@ -1279,15 +1279,19 @@ Public Class Renderer3D
     Private MouseLoc As Point
 
     Private Sub GlControl_MouseDown(sender As Object, e As MouseEventArgs) Handles GlControl.MouseDown
-        Dim promatrix As TK.Matrix4
-        Dim viewmatrix As TK.Matrix4
-        GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
-        GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
-        Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix))
-        m.Pos = e.Location
-        MsgBox("X:" & m.MouseHit.X & " Y:" & m.MouseHit.Y & " Z:" & m.MouseHit.Z)
-        Exit Sub
+
         If Not IsMouseDown AndAlso e.Button = MouseButtons.Left Then
+            Dim promatrix As TK.Matrix4
+            Dim viewmatrix As TK.Matrix4
+            GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
+            GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
+            Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix))
+            m.Pos = e.Location
+            Dim MouseHit As Vector3 = m.MouseHit
+            If MouseHit <> Nothing Then
+                MsgBox("X:" & MouseHit.X & " Y:" & MouseHit.Y & " Z:" & MouseHit.Z)
+                Exit Sub
+            End If
             OldLoc = Cursor.Position
             If Not IsMouseHidden Then
                 Cursor.Hide()

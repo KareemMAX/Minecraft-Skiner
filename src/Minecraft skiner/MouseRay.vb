@@ -36,14 +36,92 @@ Public Class MouseRay
                 BodySmallest = BodyIndex(0)
             End If
 
+            Dim HeadXIndex(1) As Single
+            Dim BodyXIndex(1) As Single
+            Dim LegXIndex(1) As Single
+            HeadXIndex(0) = (4 - CamPos.X) / CurrentRay.X
+            BodyXIndex(0) = (8 - CamPos.X) / CurrentRay.X
+            HeadXIndex(1) = (-4 - CamPos.X) / CurrentRay.X
+            BodyXIndex(1) = (-8 - CamPos.X) / CurrentRay.X
+            LegXIndex(0) = (4 - CamPos.X) / CurrentRay.X
+            LegXIndex(1) = (-4 - CamPos.X) / CurrentRay.X
+
+            Dim HeadXSmallest As Single
+            Dim BodyXSmallest As Single
+            Dim LegXSmallest As Single
+            If HeadXIndex(0) > HeadXIndex(1) Then
+                HeadXSmallest = HeadXIndex(1)
+            ElseIf HeadXIndex(0) < HeadXIndex(1) Then
+                HeadXSmallest = HeadXIndex(0)
+            End If
+            If BodyXIndex(0) > BodyXIndex(1) Then
+                BodyXSmallest = BodyXIndex(1)
+            ElseIf BodyXIndex(0) < BodyXIndex(1) Then
+                BodyXSmallest = BodyXIndex(0)
+            End If
+            If LegXIndex(0) > LegXIndex(1) Then
+                LegXSmallest = LegXIndex(1)
+            ElseIf BodyXIndex(0) < LegXIndex(1) Then
+                LegXSmallest = LegXIndex(0)
+            End If
+
+            Dim HeadYIndex(1) As Single
+            Dim BodyYIndex(1) As Single
+            Dim LegYIndex(1) As Single
+            HeadYIndex(0) = (16 - CamPos.Y) / CurrentRay.Y
+            BodyYIndex(0) = (8 - CamPos.Y) / CurrentRay.Y
+            HeadYIndex(1) = (8 - CamPos.Y) / CurrentRay.Y
+            BodyYIndex(1) = (-4 - CamPos.Y) / CurrentRay.Y
+            LegYIndex(0) = (-4 - CamPos.Y) / CurrentRay.Y
+            LegYIndex(1) = (-16 - CamPos.Y) / CurrentRay.Y
+
+            Dim HeadYSmallest As Single
+            Dim BodyYSmallest As Single
+            Dim LegYSmallest As Single
+            If HeadYIndex(0) > HeadYIndex(1) Then
+                HeadYSmallest = HeadYIndex(1)
+            ElseIf HeadYIndex(0) < HeadYIndex(1) Then
+                HeadYSmallest = HeadYIndex(0)
+            End If
+            If BodyYIndex(0) > BodyYIndex(1) Then
+                BodyYSmallest = BodyYIndex(1)
+            ElseIf BodyYIndex(0) < BodyYIndex(1) Then
+                BodyYSmallest = BodyYIndex(0)
+            End If
+            If LegYIndex(0) > LegYIndex(1) Then
+                LegYSmallest = LegYIndex(1)
+            ElseIf BodyYIndex(0) < LegYIndex(1) Then
+                LegYSmallest = LegYIndex(0)
+            End If
+
             Dim HeadPoint As Vector3 = getPointOnRay(CurrentRay, HeadSmallest)
             Dim BodyPoint As Vector3 = getPointOnRay(CurrentRay, BodySmallest)
+
+            Dim HeadXPoint As Vector3 = getPointOnRay(CurrentRay, HeadXSmallest)
+            Dim BodyXPoint As Vector3 = getPointOnRay(CurrentRay, BodyXSmallest)
+            Dim LegXPoint As Vector3 = getPointOnRay(CurrentRay, LegXSmallest)
+
+            Dim HeadYPoint As Vector3 = getPointOnRay(CurrentRay, HeadYSmallest)
+            Dim BodyYPoint As Vector3 = getPointOnRay(CurrentRay, BodyYSmallest)
+            Dim LegYPoint As Vector3 = getPointOnRay(CurrentRay, LegYSmallest)
 
             If HeadPoint.X < 4 AndAlso HeadPoint.X > -4 AndAlso HeadPoint.Y < 16 AndAlso HeadPoint.Y > 8 Then
                 Return HeadPoint
             ElseIf (BodyPoint.X < 8 AndAlso BodyPoint.X > -8 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4) OrElse
                 (BodyPoint.X < 4 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < -4 AndAlso BodyPoint.Y > -16) Then
                 Return BodyPoint
+            ElseIf HeadxPoint.z < 4 AndAlso HeadxPoint.z > -4 AndAlso HeadxPoint.Y < 16 AndAlso HeadxPoint.Y > 8 Then
+                Return HeadXPoint
+            ElseIf BodyxPoint.z < 2 AndAlso BodyxPoint.z > -2 AndAlso BodyxPoint.Y < 8 AndAlso BodyxPoint.Y > -4 Then
+                Return BodyXPoint
+            ElseIf LegXPoint.Z < 2 AndAlso LegXPoint.Z > -2 AndAlso LegXPoint.Y < -4 AndAlso LegXPoint.Y > -16 Then
+                Return LegXPoint
+            ElseIf HeadYPoint.z < 4 AndAlso HeadYPoint.z > -4 AndAlso HeadYPoint.X < 4 AndAlso HeadYPoint.x > -4 Then
+                Return HeadYPoint
+            ElseIf BodyYPoint.z < 2 AndAlso BodyYPoint.z > -2 AndAlso BodyYPoint.x < 8 AndAlso BodyYPoint.x > -8 Then
+                Return BodyYPoint
+            ElseIf LegYPoint.Z < 2 AndAlso LegYPoint.Z > -2 AndAlso LegYPoint.x < 4 AndAlso LegYPoint.x > -4 Then
+                Return LegYPoint
             End If
         End Get
     End Property

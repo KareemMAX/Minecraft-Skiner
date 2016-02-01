@@ -1,5 +1,4 @@
-﻿Imports Octokit
-
+﻿
 Public Class MainForm
     Friend Skin As Bitmap = My.Resources.steve
     Friend File As String
