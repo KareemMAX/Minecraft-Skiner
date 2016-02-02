@@ -1,6 +1,4 @@
-﻿Imports TK = OpenTK
-Imports OpenTK
-Imports GLGarphics = OpenTK.Graphics
+﻿Imports OpenTK
 Imports OpenTK.Graphics.OpenGL
 Imports System.Drawing.Imaging
 Imports System.ComponentModel
@@ -271,8 +269,8 @@ Public Class Renderer3D
     <Description("Render it or not (only used when design because when it became false in design mode it crashs VS and can be removed in the release)"), Category("Behavior")>
     Property InDesignMode As Boolean = True
 
-    Dim perspective As TK.Matrix4 = TK.Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
-    Dim lookat As TK.Matrix4 = TK.Matrix4.LookAt(LookX, LookY, 36, LookX, LookY, 0, 0, 1, 1) 'Setup camera
+    Dim perspective As Matrix4 = Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
+    Dim lookat As Matrix4 = Matrix4.LookAt(LookX, LookY, 36, LookX, LookY, 0, 0, 1, 1) 'Setup camera
 
     Private Sub GlControl_Paint(sender As Object, e As PaintEventArgs) Handles GlControl.Paint
         If InDesignMode Then Exit Sub
@@ -282,8 +280,8 @@ Public Class Renderer3D
         GL.Clear(ClearBufferMask.DepthBufferBit)
 
         'Basic Setup for viewing
-        perspective = TK.Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
-        lookat = TK.Matrix4.LookAt(LookX, LookY, 36, LookX, LookY, 0, 0, 1, 1) 'Setup camera
+        perspective = Matrix4.CreatePerspectiveFieldOfView(Zoom ^ -1, Width / Height, 1, 100) 'Setup Perspective
+        lookat = Matrix4.LookAt(LookX, LookY, 36, LookX, LookY, 0, 0, 1, 1) 'Setup camera
         GL.MatrixMode(MatrixMode.Projection) 'Load Perspective
         GL.LoadIdentity()
         GL.LoadMatrix(perspective)
@@ -303,7 +301,7 @@ Public Class Renderer3D
         Dim data As BitmapData = Skin.LockBits(New System.Drawing.Rectangle(0, 0, 64, 64),
    ImageLockMode.ReadOnly, Imaging.PixelFormat.Format32bppPArgb)
         GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, 64, 64, 0,
-    GLGarphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0)
+    Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0)
         Skin.UnlockBits(data)
         GL.GenerateMipmap(GenerateMipmapTarget.Texture2D)
         GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, TextureMinFilter.Nearest)
@@ -1279,17 +1277,41 @@ Public Class Renderer3D
     Private MouseLoc As Point
 
     Private Sub GlControl_MouseDown(sender As Object, e As MouseEventArgs) Handles GlControl.MouseDown
-
         If Not IsMouseDown AndAlso e.Button = MouseButtons.Left Then
-            Dim promatrix As TK.Matrix4
-            Dim viewmatrix As TK.Matrix4
+            Dim promatrix As Matrix4
+            Dim viewmatrix As Matrix4
             GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
             GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
             Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix))
             m.Pos = e.Location
             Dim MouseHit As Vector3 = m.MouseHit
             If MouseHit <> Nothing Then
-                MsgBox("X:" & MouseHit.X & " Y:" & MouseHit.Y & " Z:" & MouseHit.Z)
+                If MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.Z = 4 Then
+                    'ZHead
+                    Skin.SetPixel(Int(MouseHit.X + 4 + 8), Int(-MouseHit.Y + 16 + 8), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.Z = -4 Then
+                    'ZHead
+                    Skin.SetPixel(Int(-MouseHit.X + 4 + 24), Int(-MouseHit.Y + 16 + 8), Color.Black)
+                    Refresh()
+                ElseIf (MouseHit.X < 8 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4) OrElse
+                (MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16) Then
+                    'ZBody
+                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 Then
+                    'XHead
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 Then
+                    'XBody
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 Then
+                    'XLeg
+                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 Then
+                    'YHead
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 8 AndAlso MouseHit.X > -8 Then
+                    'YBody
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 Then
+                    'YLeg
+                End If
+                MainForm.Skin = Skin
+                MainForm.UpdateImage()
                 Exit Sub
             End If
             OldLoc = Cursor.Position
@@ -1341,7 +1363,7 @@ Public Class Renderer3D
         Refresh()
     End Sub
 
-    Private Function GetCameraPos(modelview As TK.Matrix4) As TK.Vector3
+    Private Function GetCameraPos(modelview As Matrix4) As Vector3
         Return Matrix4.Invert(modelview).ExtractTranslation()
     End Function
 End Class
