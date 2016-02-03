@@ -110,17 +110,17 @@ Public Class MouseRay
             ElseIf (BodyPoint.X < 8 AndAlso BodyPoint.X > -8 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4) OrElse
                 (BodyPoint.X < 4 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < -4 AndAlso BodyPoint.Y > -16) Then
                 Return BodyPoint
-            ElseIf HeadxPoint.z < 4 AndAlso HeadxPoint.z > -4 AndAlso HeadxPoint.Y < 16 AndAlso HeadxPoint.Y > 8 Then
+            ElseIf HeadXPoint.Z < 4 AndAlso HeadXPoint.Z > -4 AndAlso HeadXPoint.Y < 16 AndAlso HeadXPoint.Y > 8 Then
                 Return HeadXPoint
-            ElseIf BodyxPoint.z < 2 AndAlso BodyxPoint.z > -2 AndAlso BodyxPoint.Y < 8 AndAlso BodyxPoint.Y > -4 Then
+            ElseIf BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
                 Return BodyXPoint
             ElseIf LegXPoint.Z < 2 AndAlso LegXPoint.Z > -2 AndAlso LegXPoint.Y < -4 AndAlso LegXPoint.Y > -16 Then
                 Return LegXPoint
-            ElseIf HeadYPoint.z < 4 AndAlso HeadYPoint.z > -4 AndAlso HeadYPoint.X < 4 AndAlso HeadYPoint.x > -4 Then
+            ElseIf HeadYPoint.Z < 4 AndAlso HeadYPoint.Z > -4 AndAlso HeadYPoint.X < 4 AndAlso HeadYPoint.X > -4 Then
                 Return HeadYPoint
-            ElseIf BodyYPoint.z < 2 AndAlso BodyYPoint.z > -2 AndAlso BodyYPoint.x < 8 AndAlso BodyYPoint.x > -8 Then
+            ElseIf BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < 8 AndAlso BodyYPoint.X > -8 Then
                 Return BodyYPoint
-            ElseIf LegYPoint.Z < 2 AndAlso LegYPoint.Z > -2 AndAlso LegYPoint.x < 4 AndAlso LegYPoint.x > -4 Then
+            ElseIf LegYPoint.Z < 2 AndAlso LegYPoint.Z > -2 AndAlso LegYPoint.X < 4 AndAlso LegYPoint.X > -4 Then
                 Return LegYPoint
             End If
         End Get

@@ -1285,7 +1285,7 @@ Public Class Renderer3D
             Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix))
             m.Pos = e.Location
             Dim MouseHit As Vector3 = m.MouseHit
-            If MouseHit <> Nothing Then
+            If MouseHit <> New Vector3(0, 0, 0) Then
                 If MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.Z = 4 Then
                     'ZHead
                     Skin.SetPixel(Int(MouseHit.X + 4 + 8), Int(-MouseHit.Y + 16 + 8), Color.Black)
@@ -1294,21 +1294,108 @@ Public Class Renderer3D
                     'ZHead
                     Skin.SetPixel(Int(-MouseHit.X + 4 + 24), Int(-MouseHit.Y + 16 + 8), Color.Black)
                     Refresh()
-                ElseIf (MouseHit.X < 8 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4) OrElse
-                (MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16) Then
+                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = 2 Then
                     'ZBody
-                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 Then
+                    Skin.SetPixel(Int(MouseHit.X + 4 + 20), Int(-MouseHit.Y + 8 + 20), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = -2 Then
+                    'ZBody
+                    Skin.SetPixel(Int(-MouseHit.X + 4 + 32), Int(-MouseHit.Y + 8 + 20), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = 2 Then
+                    'ZArms
+                    Skin.SetPixel(Int(MouseHit.X + 4 + 48), Int(-MouseHit.Y + 8 + 20), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = -2 Then
+                    'ZArms
+                    Skin.SetPixel(Int(MouseHit.X + 4 + 56), Int(-MouseHit.Y + 8 + 20), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = 2 Then
+                    'ZArms
+                    Skin.SetPixel(Int(MouseHit.X + 4 + 28), Int(-MouseHit.Y + 8 + 52), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = -2 Then
+                    'ZArms
+                    Skin.SetPixel(Int(MouseHit.X + 4 + 36), Int(-MouseHit.Y + 8 + 52), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = 2 Then
+                    'ZLegs
+                    Skin.SetPixel(Int(MouseHit.X + 4 + 4), Int(-MouseHit.Y + 16), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = -2 Then
+                    'ZLegs
+                    Skin.SetPixel(Int(-MouseHit.X + 4 + 8), Int(-MouseHit.Y + 16), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = 2 Then
+                    'ZLegs
+                    Skin.SetPixel(Int(MouseHit.X + 4 + 16), Int(-MouseHit.Y + 48), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = -2 Then
+                    'ZLegs
+                    Skin.SetPixel(Int(-MouseHit.X + 4 + 28), Int(-MouseHit.Y + 48), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.X = 4 Then
                     'XHead
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 Then
+                    Skin.SetPixel(Int(-MouseHit.Z + 20), Int(-MouseHit.Y + 24), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.X = -4 Then
+                    'XHead
+                    Skin.SetPixel(Int(MouseHit.Z + 4), Int(-MouseHit.Y + 24), Color.Black)
+                    Refresh()
+                    'ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 Then
                     'XBody
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 Then
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = 8 Then
+                    'XArms
+                    Skin.SetPixel(Int(MouseHit.Z + 42), Int(-MouseHit.Y + 60), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = -8 Then
+                    'XArms
+                    Skin.SetPixel(Int(-MouseHit.Z + 42), Int(-MouseHit.Y + 28), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.x = 4 Then
                     'XLeg
-                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 Then
+                    Skin.SetPixel(Int(-MouseHit.Z + 26), Int(-MouseHit.Y + 48), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.x = -4 Then
+                    'XLeg
+                    Skin.SetPixel(Int(MouseHit.Z + 2), Int(-MouseHit.Y + 16), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = 16 Then
                     'YHead
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 8 AndAlso MouseHit.X > -8 Then
+                    Skin.SetPixel(Int(MouseHit.X + 12), Int(MouseHit.Z + 4), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = 8 Then
+                    'YHead
+                    Skin.SetPixel(Int(MouseHit.X + 20), Int(MouseHit.Z + 4), Color.Black)
+                    Refresh()
+                    'ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 8 AndAlso MouseHit.X > -8 Then
                     'YBody
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 Then
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y = 8 Then
+                    'XArms
+                    Skin.SetPixel(Int(MouseHit.X + 32), Int(MouseHit.Z + 50), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y = -4 Then
+                    'XArms
+                    Skin.SetPixel(Int(MouseHit.X + 36), Int(MouseHit.Z + 50), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y = 8 Then
+                    'XArms
+                    Skin.SetPixel(Int(MouseHit.X + 52), Int(MouseHit.Z + 18), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y = -4 Then
+                    'XArms
+                    Skin.SetPixel(Int(MouseHit.X + 56), Int(MouseHit.Z + 18), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y = -16 Then
                     'YLeg
+                    'XArms
+                    Skin.SetPixel(Int(MouseHit.X + 24), Int(MouseHit.Z + 50), Color.Black)
+                    Refresh()
+                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = -16 Then
+                    'YLeg
+                    'XArms
+                    Skin.SetPixel(Int(MouseHit.X + 12), Int(MouseHit.Z + 18), Color.Black)
+                    Refresh()
                 End If
                 MainForm.Skin = Skin
                 MainForm.UpdateImage()
@@ -1350,7 +1437,7 @@ Public Class Renderer3D
             Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
             MouseLoc = Cursor.Position
         ElseIf IsRightMouseDown Then
-            LookX += (Cursor.Position.X - MouseLoc.X) * 0.5
+            LookX += -(Cursor.Position.X - MouseLoc.X) * 0.5
             LookY += (Cursor.Position.Y - MouseLoc.Y) * 0.5
             Me.Refresh()
             Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
