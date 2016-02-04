@@ -105,24 +105,62 @@ Public Class MouseRay
             Dim BodyYPoint As Vector3 = getPointOnRay(CurrentRay, BodyYSmallest)
             Dim LegYPoint As Vector3 = getPointOnRay(CurrentRay, LegYSmallest)
 
+            Dim IsZ, IsX, IsY As Boolean
+
+            Dim PointsDis As New List(Of Single)
+
             If HeadPoint.X < 4 AndAlso HeadPoint.X > -4 AndAlso HeadPoint.Y < 16 AndAlso HeadPoint.Y > 8 Then
-                Return HeadPoint
-            ElseIf (BodyPoint.X < 8 AndAlso BodyPoint.X > -8 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4) OrElse
-                (BodyPoint.X < 4 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < -4 AndAlso BodyPoint.Y > -16) Then
-                Return BodyPoint
-            ElseIf HeadXPoint.Z < 4 AndAlso HeadXPoint.Z > -4 AndAlso HeadXPoint.Y < 16 AndAlso HeadXPoint.Y > 8 Then
-                Return HeadXPoint
-            ElseIf BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
-                Return BodyXPoint
-            ElseIf LegXPoint.Z < 2 AndAlso LegXPoint.Z > -2 AndAlso LegXPoint.Y < -4 AndAlso LegXPoint.Y > -16 Then
-                Return LegXPoint
-            ElseIf HeadYPoint.Z < 4 AndAlso HeadYPoint.Z > -4 AndAlso HeadYPoint.X < 4 AndAlso HeadYPoint.X > -4 Then
-                Return HeadYPoint
-            ElseIf BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < 8 AndAlso BodyYPoint.X > -8 Then
-                Return BodyYPoint
-            ElseIf LegYPoint.Z < 2 AndAlso LegYPoint.Z > -2 AndAlso LegYPoint.X < 4 AndAlso LegYPoint.X > -4 Then
-                Return LegYPoint
+                PointsDis.Add(HeadSmallest)
+                IsZ = True
             End If
+            If (BodyPoint.X < 8 AndAlso BodyPoint.X > -8 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4) OrElse
+                (BodyPoint.X < 4 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < -4 AndAlso BodyPoint.Y > -16) Then
+                PointsDis.Add(BodySmallest)
+                IsZ = True
+            End If
+            If HeadXPoint.Z < 4 AndAlso HeadXPoint.Z > -4 AndAlso HeadXPoint.Y < 16 AndAlso HeadXPoint.Y > 8 Then
+                PointsDis.Add(HeadXSmallest)
+                IsX = True
+            End If
+            If BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
+                PointsDis.Add(BodyXSmallest)
+                IsX = True
+            End If
+            If LegXPoint.Z < 2 AndAlso LegXPoint.Z > -2 AndAlso LegXPoint.Y < -4 AndAlso LegXPoint.Y > -16 Then
+                PointsDis.Add(LegXSmallest)
+                IsX = True
+            End If
+            If HeadYPoint.Z < 4 AndAlso HeadYPoint.Z > -4 AndAlso HeadYPoint.X < 4 AndAlso HeadYPoint.X > -4 Then
+                PointsDis.Add(HeadYSmallest)
+                IsY = True
+            End If
+            If BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < 8 AndAlso BodyYPoint.X > -8 Then
+                PointsDis.Add(BodyYSmallest)
+                IsY = True
+            End If
+            If LegYPoint.Z < 2 AndAlso LegYPoint.Z > -2 AndAlso LegYPoint.X < 4 AndAlso LegYPoint.X > -4 Then
+                PointsDis.Add(LegYSmallest)
+                IsY = True
+            End If
+
+            If PointsDis.Count = 0 Then Return Nothing
+
+            Dim Smallest As Single = 1000
+
+            For Each value As Single In PointsDis
+                If value < Smallest Then Smallest = value
+            Next
+
+            Dim Result As Vector3 = getPointOnRay(CurrentRay, Smallest)
+            If IsX Then
+                Result.X = CInt(Result.X)
+            ElseIf IsY Then
+                Result.Y = CInt(Result.Y)
+            ElseIf IsZ Then
+                Result.Z = CInt(Result.Z)
+            End If
+
+            Return Result
         End Get
     End Property
 
