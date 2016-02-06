@@ -41,6 +41,7 @@ Partial Class MainForm
         Me.Alexrdb = New System.Windows.Forms.RadioButton()
         Me.Steverdb = New System.Windows.Forms.RadioButton()
         Me.MainSkin = New System.Windows.Forms.PictureBox()
+        Me.ColorPicker = New Minecraft_skiner.ColorPicker()
         Me.Renderer3D = New Minecraft_skiner.Renderer3D()
         Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
         Me.MenuStrip.SuspendLayout()
@@ -53,7 +54,7 @@ Partial Class MainForm
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(767, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(893, 24)
         Me.MenuStrip.TabIndex = 1
         Me.MenuStrip.Text = "MenuStrip1"
         '
@@ -182,12 +183,23 @@ Partial Class MainForm
         Me.MainSkin.TabIndex = 6
         Me.MainSkin.TabStop = False
         '
+        'ColorPicker
+        '
+        Me.ColorPicker.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ColorPicker.Color = System.Drawing.Color.IndianRed
+        Me.ColorPicker.InDesignMode = True
+        Me.ColorPicker.Location = New System.Drawing.Point(625, 27)
+        Me.ColorPicker.Name = "ColorPicker"
+        Me.ColorPicker.Size = New System.Drawing.Size(256, 518)
+        Me.ColorPicker.TabIndex = 9
+        '
         'Renderer3D
         '
         Me.Renderer3D.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Renderer3D.BackColor = System.Drawing.Color.White
+        Me.Renderer3D.ColorPicker = Me.ColorPicker
         Me.Renderer3D.InDesignMode = True
         Me.Renderer3D.Location = New System.Drawing.Point(173, 27)
         Me.Renderer3D.LookX = 0R
@@ -208,7 +220,7 @@ Partial Class MainForm
         Me.Renderer3D.ShowLeftLeg = True
         Me.Renderer3D.ShowRightArm = True
         Me.Renderer3D.ShowRightLeg = True
-        Me.Renderer3D.Size = New System.Drawing.Size(416, 314)
+        Me.Renderer3D.Size = New System.Drawing.Size(446, 518)
         Me.Renderer3D.Skin = Global.Minecraft_skiner.My.Resources.Resources.steve
         Me.Renderer3D.TabIndex = 8
         Me.Renderer3D.Zoom = 1.0R
@@ -237,7 +249,8 @@ Partial Class MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(767, 353)
+        Me.ClientSize = New System.Drawing.Size(893, 557)
+        Me.Controls.Add(Me.ColorPicker)
         Me.Controls.Add(Me.Renderer3D)
         Me.Controls.Add(Me.LayerSelector1)
         Me.Controls.Add(Me.MainSkin)
@@ -278,4 +291,5 @@ Partial Class MainForm
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WebsiteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BugTrackerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ColorPicker As ColorPicker
 End Class

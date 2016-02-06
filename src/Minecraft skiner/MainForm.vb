@@ -23,6 +23,7 @@ Public Class MainForm
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Renderer3D.InDesignMode = False
+        ColorPicker.InDesignMode = False
         UpdateImage() 'Load preview
     End Sub
 
