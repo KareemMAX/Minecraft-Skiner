@@ -186,11 +186,11 @@ Partial Class MainForm
         'ColorPicker
         '
         Me.ColorPicker.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ColorPicker.Color = System.Drawing.Color.IndianRed
+        Me.ColorPicker.Color = System.Drawing.Color.Red
         Me.ColorPicker.InDesignMode = True
         Me.ColorPicker.Location = New System.Drawing.Point(625, 27)
         Me.ColorPicker.Name = "ColorPicker"
-        Me.ColorPicker.Size = New System.Drawing.Size(256, 518)
+        Me.ColorPicker.Size = New System.Drawing.Size(257, 521)
         Me.ColorPicker.TabIndex = 9
         '
         'Renderer3D

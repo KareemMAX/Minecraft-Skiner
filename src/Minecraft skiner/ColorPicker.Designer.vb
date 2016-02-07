@@ -29,6 +29,8 @@ Partial Class ColorPicker
         Me.Value = New OpenTK.GLControl()
         Me.CurrentColor = New OpenTK.GLControl()
         Me.MouseDown = New System.Windows.Forms.Timer(Me.components)
+        Me.RGBHex = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'HSV
@@ -91,18 +93,38 @@ Partial Class ColorPicker
         Me.MouseDown.Enabled = True
         Me.MouseDown.Interval = 1
         '
+        'RGBHex
+        '
+        Me.RGBHex.Location = New System.Drawing.Point(100, 491)
+        Me.RGBHex.MaxLength = 6
+        Me.RGBHex.Name = "RGBHex"
+        Me.RGBHex.Size = New System.Drawing.Size(52, 20)
+        Me.RGBHex.TabIndex = 5
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(88, 494)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(15, 13)
+        Me.Label1.TabIndex = 6
+        Me.Label1.Text = "#"
+        '
         'ColorPicker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.RGBHex)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.CurrentColor)
         Me.Controls.Add(Me.Value)
         Me.Controls.Add(Me.Saturation)
         Me.Controls.Add(Me.Hue)
         Me.Controls.Add(Me.HSV)
         Me.Name = "ColorPicker"
-        Me.Size = New System.Drawing.Size(257, 494)
+        Me.Size = New System.Drawing.Size(257, 521)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -112,4 +134,6 @@ Partial Class ColorPicker
     Friend WithEvents Value As OpenTK.GLControl
     Friend WithEvents CurrentColor As OpenTK.GLControl
     Friend WithEvents MouseDown As Timer
+    Friend WithEvents RGBHex As TextBox
+    Friend WithEvents Label1 As Label
 End Class

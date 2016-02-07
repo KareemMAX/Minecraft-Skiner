@@ -5,6 +5,7 @@ Public Class ColorPicker
     <Description("Render it or not (only used when design because when it became false in design mode it crashs VS and can be removed in the release)"), Category("Behavior")>
     Property InDesignMode As Boolean = True
 
+    Dim FromColor As Boolean
     Dim TheColor As Color = Color.Red
     <Description("The current color"), Category("Appearance")>
     Property Color As Color
@@ -12,6 +13,8 @@ Public Class ColorPicker
             If value.A <> 0 AndAlso value.A <> 255 Then
                 value = Color.FromArgb(255, value.R, value.G, value.B)
             End If
+            FromColor = True
+            RGBHex.Text = RGB(value.R, value.G, value.B).ToString("X6")
 
             TheColor = value
         End Set
@@ -336,6 +339,11 @@ Public Class ColorPicker
 
     Private Sub HSV_MouseUp(sender As Object, e As MouseEventArgs) Handles HSV.MouseUp
         HSVDown = False
+    End Sub
+
+    Private Sub RGBHex_Leave(sender As Object, e As EventArgs) Handles RGBHex.Leave
+        Color = ColorTranslator.FromHtml("#" & RGBHex.Text)
+        Refresh()
     End Sub
 End Class
 
