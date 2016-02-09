@@ -298,7 +298,7 @@ Public Class ColorPicker
             If Point.X < 0 OrElse Point.X > Value.Width OrElse Point.Y < 0 OrElse Point.Y > Value.Height Then
                 Exit Sub
             End If
-            Color = HSVtoRGB(Color.GetHue, Color.GetSaturation * 100, (100 / Value.Height) * Math.Abs(Point.Y - Value.Height))
+            Color = HSVtoRGB(Color.GetHue, RGBtoHSV(Color).Saturation, (100 / Value.Height) * Math.Abs(Point.Y - Value.Height))
             Refresh()
         ElseIf SaturationDown Then
             Dim Point As Point = Saturation.PointToClient(New Point(Cursor.Position))
