@@ -278,6 +278,12 @@
     <None Include="Resources\OpenTK.GLControl.dll" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\steveleftlegnone.png" />
+    <None Include="Resources\steveleftarmnone.png" />
+    <None Include="Resources\steverightlegnone.png" />
+    <None Include="Resources\steverightarmnone.png" />
+    <None Include="Resources\stevebodynone.png" />
+    <None Include="Resources\steveheadnone.png" />
     <None Include="bin\Debug\Octokit.dll" />
     <Content Include="finalico.ico" />
   </ItemGroup>

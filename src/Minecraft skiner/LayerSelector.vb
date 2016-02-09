@@ -72,6 +72,13 @@
         g = currentContext.Allocate(Me.CreateGraphics,
    Me.DisplayRectangle)
         g.Graphics.Clear(BackColor)
+        g.Graphics.DrawImage(My.Resources.steveheadnone, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+        g.Graphics.DrawImage(My.Resources.stevebodynone, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+        g.Graphics.DrawImage(My.Resources.steverightarmnone, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+        g.Graphics.DrawImage(My.Resources.steveleftarmnone, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+        g.Graphics.DrawImage(My.Resources.steverightlegnone, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+        g.Graphics.DrawImage(My.Resources.steveleftlegnone, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
+
         If ShowBody Then
             g.Graphics.DrawImage(My.Resources.steve1, New Rectangle(0, 0, Width, Height), New Rectangle(0, 0, 198, 198), GraphicsUnit.Pixel)
         End If
