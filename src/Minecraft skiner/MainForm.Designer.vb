@@ -68,37 +68,44 @@ Partial Class MainForm
         'NewToolStripMenuItem
         '
         Me.NewToolStripMenuItem.Name = "NewToolStripMenuItem"
-        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.NewToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
+        Me.NewToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.NewToolStripMenuItem.Text = "&New"
         '
         'OpenToolStripMenuItem
         '
         Me.OpenToolStripMenuItem.Name = "OpenToolStripMenuItem"
-        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.OpenToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.OpenToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.OpenToolStripMenuItem.Text = "&Open"
         '
         'OpenFromplayerToolStripMenuItem
         '
         Me.OpenFromplayerToolStripMenuItem.Name = "OpenFromplayerToolStripMenuItem"
-        Me.OpenFromplayerToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.OpenFromplayerToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
+        Me.OpenFromplayerToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.OpenFromplayerToolStripMenuItem.Text = "Open from &player"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.SaveToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.SaveToolStripMenuItem.Text = "&Save"
         '
         'SaveAsToolStripMenuItem
         '
         Me.SaveAsToolStripMenuItem.Name = "SaveAsToolStripMenuItem"
-        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.SaveAsToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
+        Me.SaveAsToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.SaveAsToolStripMenuItem.Text = "Save &As"
         '
         'SaveAs17SkinToolStripMenuItem
         '
         Me.SaveAs17SkinToolStripMenuItem.Name = "SaveAs17SkinToolStripMenuItem"
-        Me.SaveAs17SkinToolStripMenuItem.Size = New System.Drawing.Size(167, 22)
+        Me.SaveAs17SkinToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.SaveAs17SkinToolStripMenuItem.Text = "Save As 1.&7 skin"
         '
         'HelpToolStripMenuItem
