@@ -142,8 +142,7 @@ Public Class MainForm
     End Sub
 
     Private Sub BugTrackerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BugTrackerToolStripMenuItem.Click
-        'Dim Dialog As New BugTracker
-        'Dialog.ShowDialog()
-        Process.Start("https://github.com/KareemMAX/Minecraft-Skiner/issues")
+        Dim Dialog As New BugTracker
+        Dialog.ShowDialog()
     End Sub
 End Class

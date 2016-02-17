@@ -28,11 +28,15 @@ Public Class BugTracker
             End If
 
             Dim wc As New WebClient()
-            If Not wc.DownloadString("URL.php?title=" & txtTitle.Text & "&body=" & Issue) = "Done" Then
+            Dim nc As New Specialized.NameValueCollection()
+
+            nc.Add("title", txtTitle.Text)
+            nc.Add("body", Issue)
+
+            If Not System.Text.Encoding.ASCII.GetChars(wc.UploadValues("http://minecraftskiner.esy.es/bugtracker.php", nc)) = "Done" Then
+                MsgBox(s)
                 Throw New Exception
             End If
-            'Need a server support CURL to run
-            'Please donate if you can
             MsgBox("Thanks for sending this bug." & vbCrLf &
                "We will fix it as soon as we can.", MsgBoxStyle.Information, "Thanks")
         Catch

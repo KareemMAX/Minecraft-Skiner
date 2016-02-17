@@ -106,9 +106,12 @@ Partial Class BugTracker
         '
         'txtDes
         '
+        Me.txtDes.AcceptsReturn = True
+        Me.txtDes.AcceptsTab = True
         Me.txtDes.Location = New System.Drawing.Point(13, 172)
         Me.txtDes.Multiline = True
         Me.txtDes.Name = "txtDes"
+        Me.txtDes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtDes.Size = New System.Drawing.Size(412, 185)
         Me.txtDes.TabIndex = 2
         '
