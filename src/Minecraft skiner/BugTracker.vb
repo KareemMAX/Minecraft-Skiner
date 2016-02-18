@@ -34,7 +34,6 @@ Public Class BugTracker
             nc.Add("body", Issue)
 
             If Not System.Text.Encoding.ASCII.GetChars(wc.UploadValues("http://minecraftskiner.esy.es/bugtracker.php", nc)) = "Done" Then
-                MsgBox(s)
                 Throw New Exception
             End If
             MsgBox("Thanks for sending this bug." & vbCrLf &
