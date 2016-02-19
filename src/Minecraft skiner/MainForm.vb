@@ -44,7 +44,14 @@ Public Class MainForm
         If File = "" Then
             SaveFileDialog.ShowDialog() 'Show the save dialog if the file wasn't saved before
         Else
-            Skin.Save(File, Imaging.ImageFormat.Png) 'If the skin was saved before save it to the last location
+            Dim BitmapStream As IO.Stream = IO.File.Open(File, IO.FileMode.Open)
+            Try
+                Skin.Save(BitmapStream, Imaging.ImageFormat.Png) 'If the skin was saved before save it to the last location
+            Catch
+                MsgBox("Something wrong with saving the file, Try save as", MsgBoxStyle.Critical, "Error")
+            Finally
+                BitmapStream.Close()
+            End Try
         End If
     End Sub
 
@@ -58,7 +65,16 @@ Public Class MainForm
         Dim tmpSkin As Bitmap = Skin
         File = OpenFileDialog.FileName 'Update the File value
         OpenFileDialog.FileName = "" 'Rest the FileName value
-        Skin = New Bitmap(File) 'Update Skin value
+        Dim BitmapStream As IO.Stream = IO.File.Open(File, IO.FileMode.Open)
+        Try
+            Skin = New Bitmap(BitmapStream) 'Update Skin value
+        Catch
+            MsgBox("Something wrong with opening the file", MsgBoxStyle.Critical, "Error")
+            File = tmpFile
+            Skin = tmpSkin
+        Finally
+            BitmapStream.Close()
+        End Try
         If Skin.Height = 32 AndAlso Skin.Width = 64 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
             ConvertSkin()
         ElseIf Skin.Height = 64 AndAlso Skin.Width = 64 Then 'If the skin was valid then exit If
@@ -74,7 +90,14 @@ Public Class MainForm
     End Sub
 
     Private Sub SaveFileDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SaveFileDialog.FileOk
-        Skin.Save(SaveFileDialog.FileName, Imaging.ImageFormat.Png) 'Save the skin
+        Dim BitmapStream As IO.Stream = IO.File.Open(SaveFileDialog.FileName, IO.FileMode.Open)
+        Try
+            Skin.Save(BitmapStream, Imaging.ImageFormat.Png) 'Save the skin
+        Catch
+            MsgBox("Something wrong with saving the file", MsgBoxStyle.Critical, "Error")
+        Finally
+            BitmapStream.Close()
+        End Try
         File = SaveFileDialog.FileName 'Update the File value
         SaveFileDialog.FileName = "Untitled" 'Rest the FileName value
         Text = "Minecraft Skiner - " + IO.Path.GetFileName(File) 'Update text value
