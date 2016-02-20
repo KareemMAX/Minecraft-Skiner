@@ -13,6 +13,8 @@ Public Class MouseRay
 
     Property Pos As Point
 
+    Property Renderer As Renderer3D
+
     ReadOnly Property MouseHit As Vector3
         Get
             Update(Pos.X, Pos.Y)
@@ -23,47 +25,18 @@ Public Class MouseRay
             HeadIndex(1) = (-4 - CamPos.Z) / CurrentRay.Z
             BodyIndex(1) = (-2 - CamPos.Z) / CurrentRay.Z
 
-            Dim HeadSmallest As Single
-            Dim BodySmallest As Single
-            If HeadIndex(0) > HeadIndex(1) Then
-                HeadSmallest = HeadIndex(1)
-            ElseIf HeadIndex(0) < HeadIndex(1) Then
-                HeadSmallest = HeadIndex(0)
-            End If
-            If BodyIndex(0) > BodyIndex(1) Then
-                BodySmallest = BodyIndex(1)
-            ElseIf BodyIndex(0) < BodyIndex(1) Then
-                BodySmallest = BodyIndex(0)
-            End If
-
             Dim HeadXIndex(1) As Single
-            Dim BodyXIndex(1) As Single
-            Dim LegXIndex(1) As Single
+            Dim BodyXIndex(3) As Single
+            Dim LegXIndex(2) As Single
             HeadXIndex(0) = (4 - CamPos.X) / CurrentRay.X
             BodyXIndex(0) = (8 - CamPos.X) / CurrentRay.X
             HeadXIndex(1) = (-4 - CamPos.X) / CurrentRay.X
             BodyXIndex(1) = (-8 - CamPos.X) / CurrentRay.X
+            BodyXIndex(2) = (-4 - CamPos.X) / CurrentRay.X
+            BodyXIndex(3) = (4 - CamPos.X) / CurrentRay.X
             LegXIndex(0) = (4 - CamPos.X) / CurrentRay.X
             LegXIndex(1) = (-4 - CamPos.X) / CurrentRay.X
-
-            Dim HeadXSmallest As Single
-            Dim BodyXSmallest As Single
-            Dim LegXSmallest As Single
-            If HeadXIndex(0) > HeadXIndex(1) Then
-                HeadXSmallest = HeadXIndex(1)
-            ElseIf HeadXIndex(0) < HeadXIndex(1) Then
-                HeadXSmallest = HeadXIndex(0)
-            End If
-            If BodyXIndex(0) > BodyXIndex(1) Then
-                BodyXSmallest = BodyXIndex(1)
-            ElseIf BodyXIndex(0) < BodyXIndex(1) Then
-                BodyXSmallest = BodyXIndex(0)
-            End If
-            If LegXIndex(0) > LegXIndex(1) Then
-                LegXSmallest = LegXIndex(1)
-            ElseIf BodyXIndex(0) < LegXIndex(1) Then
-                LegXSmallest = LegXIndex(0)
-            End If
+            LegXIndex(2) = -CamPos.X / CurrentRay.X
 
             Dim HeadYIndex(1) As Single
             Dim BodyYIndex(1) As Single
@@ -75,73 +48,107 @@ Public Class MouseRay
             LegYIndex(0) = (-4 - CamPos.Y) / CurrentRay.Y
             LegYIndex(1) = (-16 - CamPos.Y) / CurrentRay.Y
 
-            Dim HeadYSmallest As Single
-            Dim BodyYSmallest As Single
-            Dim LegYSmallest As Single
-            If HeadYIndex(0) > HeadYIndex(1) Then
-                HeadYSmallest = HeadYIndex(1)
-            ElseIf HeadYIndex(0) < HeadYIndex(1) Then
-                HeadYSmallest = HeadYIndex(0)
-            End If
-            If BodyYIndex(0) > BodyYIndex(1) Then
-                BodyYSmallest = BodyYIndex(1)
-            ElseIf BodyYIndex(0) < BodyYIndex(1) Then
-                BodyYSmallest = BodyYIndex(0)
-            End If
-            If LegYIndex(0) > LegYIndex(1) Then
-                LegYSmallest = LegYIndex(1)
-            ElseIf BodyYIndex(0) < LegYIndex(1) Then
-                LegYSmallest = LegYIndex(0)
-            End If
-
-            Dim HeadPoint As Vector3 = getPointOnRay(CurrentRay, HeadSmallest)
-            Dim BodyPoint As Vector3 = getPointOnRay(CurrentRay, BodySmallest)
-
-            Dim HeadXPoint As Vector3 = getPointOnRay(CurrentRay, HeadXSmallest)
-            Dim BodyXPoint As Vector3 = getPointOnRay(CurrentRay, BodyXSmallest)
-            Dim LegXPoint As Vector3 = getPointOnRay(CurrentRay, LegXSmallest)
-
-            Dim HeadYPoint As Vector3 = getPointOnRay(CurrentRay, HeadYSmallest)
-            Dim BodyYPoint As Vector3 = getPointOnRay(CurrentRay, BodyYSmallest)
-            Dim LegYPoint As Vector3 = getPointOnRay(CurrentRay, LegYSmallest)
-
             Dim IsZ, IsX, IsY As Boolean
 
             Dim PointsDis As New List(Of Single)
 
-            If HeadPoint.X < 4 AndAlso HeadPoint.X > -4 AndAlso HeadPoint.Y < 16 AndAlso HeadPoint.Y > 8 Then
-                PointsDis.Add(HeadSmallest)
-                IsZ = True
-            End If
-            If (BodyPoint.X < 8 AndAlso BodyPoint.X > -8 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4) OrElse
-                (BodyPoint.X < 4 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < -4 AndAlso BodyPoint.Y > -16) Then
-                PointsDis.Add(BodySmallest)
-                IsZ = True
-            End If
-            If HeadXPoint.Z < 4 AndAlso HeadXPoint.Z > -4 AndAlso HeadXPoint.Y < 16 AndAlso HeadXPoint.Y > 8 Then
-                PointsDis.Add(HeadXSmallest)
-                IsX = True
-            End If
-            If BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
-                PointsDis.Add(BodyXSmallest)
-                IsX = True
-            End If
-            If LegXPoint.Z < 2 AndAlso LegXPoint.Z > -2 AndAlso LegXPoint.Y < -4 AndAlso LegXPoint.Y > -16 Then
-                PointsDis.Add(LegXSmallest)
-                IsX = True
-            End If
-            If HeadYPoint.Z < 4 AndAlso HeadYPoint.Z > -4 AndAlso HeadYPoint.X < 4 AndAlso HeadYPoint.X > -4 Then
-                PointsDis.Add(HeadYSmallest)
-                IsY = True
-            End If
-            If BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < 8 AndAlso BodyYPoint.X > -8 Then
-                PointsDis.Add(BodyYSmallest)
-                IsY = True
-            End If
-            If LegYPoint.Z < 2 AndAlso LegYPoint.Z > -2 AndAlso LegYPoint.X < 4 AndAlso LegYPoint.X > -4 Then
-                PointsDis.Add(LegYSmallest)
-                IsY = True
-            End If
+            Dim HeadPoint, BodyPoint, HeadXPoint, BodyXPoint, LegXPoint, HeadYPoint, BodyYPoint, LegYPoint As Vector3
+
+            For I As Byte = 0 To 3
+
+                If Not I > 1 Then : HeadPoint = getPointOnRay(CurrentRay, HeadIndex(I)) : Else : HeadPoint = New Vector3(20, 20, 20) : End If
+                If Not I > 1 Then : BodyPoint = getPointOnRay(CurrentRay, BodyIndex(I)) : Else : BodyPoint = New Vector3(20, 20, 20) : End If
+
+                If Not I > 1 Then : HeadXPoint = getPointOnRay(CurrentRay, HeadXIndex(I)) : Else : HeadXPoint = New Vector3(20, 20, 20) : End If
+                BodyXPoint = getPointOnRay(CurrentRay, BodyXIndex(I))
+                If Not I > 2 Then : LegXPoint = getPointOnRay(CurrentRay, LegXIndex(I)) : Else : LegXPoint = New Vector3(20, 20, 20) : End If
+
+                If Not I > 1 Then : HeadYPoint = getPointOnRay(CurrentRay, HeadYIndex(I)) : Else : HeadYPoint = New Vector3(20, 20, 20) : End If
+                If Not I > 1 Then : BodyYPoint = getPointOnRay(CurrentRay, BodyYIndex(I)) : Else : BodyYPoint = New Vector3(20, 20, 20) : End If
+                If Not I > 1 Then : LegYPoint = getPointOnRay(CurrentRay, LegYIndex(I)) : Else : LegYPoint = New Vector3(20, 20, 20) : End If
+
+                If Renderer.ShowHead AndAlso HeadPoint.X < 4 AndAlso HeadPoint.X > -4 AndAlso HeadPoint.Y < 16 AndAlso HeadPoint.Y > 8 Then
+                    PointsDis.Add(HeadIndex(I))
+                    IsZ = True
+                End If
+                If Renderer.ShowBody AndAlso BodyPoint.X < 4 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4 Then
+                    PointsDis.Add(BodyIndex(I))
+                    IsZ = True
+                End If
+                If Renderer.ShowRightArm AndAlso BodyPoint.X < -4 AndAlso BodyPoint.X > -8 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4 Then
+                    PointsDis.Add(BodyIndex(I))
+                    IsZ = True
+                End If
+                If Renderer.ShowLeftArm AndAlso BodyPoint.X < 8 AndAlso BodyPoint.X > 4 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4 Then
+                    PointsDis.Add(BodyIndex(I))
+                    IsZ = True
+                End If
+                If Renderer.ShowRightLeg AndAlso BodyPoint.X < 0 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < -4 AndAlso BodyPoint.Y > -16 Then
+                    PointsDis.Add(BodyIndex(I))
+                    IsZ = True
+                End If
+                If Renderer.ShowLeftLeg AndAlso BodyPoint.X < 4 AndAlso BodyPoint.X > 0 AndAlso BodyPoint.Y < -4 AndAlso BodyPoint.Y > -16 Then
+                    PointsDis.Add(BodyIndex(I))
+                    IsZ = True
+                End If
+                If Renderer.ShowHead AndAlso HeadXPoint.Z < 4 AndAlso HeadXPoint.Z > -4 AndAlso HeadXPoint.Y < 16 AndAlso HeadXPoint.Y > 8 Then
+                    PointsDis.Add(HeadXIndex(I))
+                    IsX = True
+                End If
+                If Renderer.ShowRightArm AndAlso Convert.ToInt32(BodyXPoint.X) = -8 AndAlso BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
+                    PointsDis.Add(BodyXIndex(I))
+                    IsX = True
+                End If
+                If Renderer.ShowLeftArm AndAlso Convert.ToInt32(BodyXPoint.X) = 8 AndAlso BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
+                    PointsDis.Add(BodyXIndex(I))
+                    IsX = True
+                End If
+                If (Renderer.ShowRightArm Xor Renderer.ShowBody) AndAlso Convert.ToInt32(BodyXPoint.X) = -4 AndAlso BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
+                    PointsDis.Add(BodyXIndex(I))
+                    IsX = True
+                End If
+                If (Renderer.ShowLeftArm Xor Renderer.ShowBody) AndAlso Convert.ToInt32(BodyXPoint.X) = 4 AndAlso BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
+                    PointsDis.Add(BodyXIndex(I))
+                    IsX = True
+                End If
+                If Renderer.ShowRightLeg AndAlso Convert.ToInt32(LegXPoint.X) = -4 AndAlso LegXPoint.Z < 2 AndAlso LegXPoint.Z > -2 AndAlso LegXPoint.Y < -4 AndAlso LegXPoint.Y > -16 Then
+                    PointsDis.Add(LegXIndex(I))
+                    IsX = True
+                End If
+                If Renderer.ShowLeftLeg AndAlso Convert.ToInt32(LegXPoint.X) = 4 AndAlso LegXPoint.Z < 2 AndAlso LegXPoint.Z > -2 AndAlso LegXPoint.Y < -4 AndAlso LegXPoint.Y > -16 Then
+                    PointsDis.Add(LegXIndex(I))
+                    IsX = True
+                End If
+                If (Renderer.ShowRightLeg Xor Renderer.ShowLeftLeg) AndAlso Convert.ToInt32(LegXPoint.X) = 0 AndAlso LegXPoint.Z < 2 AndAlso LegXPoint.Z > -2 AndAlso LegXPoint.Y < -4 AndAlso LegXPoint.Y > -16 Then
+                    PointsDis.Add(LegXIndex(I))
+                    IsX = True
+                End If
+                If Renderer.ShowHead AndAlso HeadYPoint.Z < 4 AndAlso HeadYPoint.Z > -4 AndAlso HeadYPoint.X < 4 AndAlso HeadYPoint.X > -4 Then
+                    PointsDis.Add(HeadYIndex(I))
+                    IsY = True
+                End If
+                If Renderer.ShowBody AndAlso BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < 4 AndAlso BodyYPoint.X > -4 Then
+                    PointsDis.Add(BodyYIndex(I))
+                    IsY = True
+                End If
+                If Renderer.ShowRightArm AndAlso BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < -4 AndAlso BodyYPoint.X > -8 Then
+                    PointsDis.Add(BodyYIndex(I))
+                    IsY = True
+                End If
+                If Renderer.ShowLeftArm AndAlso BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < 8 AndAlso BodyYPoint.X > 4 Then
+                    PointsDis.Add(BodyYIndex(I))
+                    IsY = True
+                End If
+                If Renderer.ShowRightLeg AndAlso LegYPoint.Z < 2 AndAlso LegYPoint.Z > -2 AndAlso LegYPoint.X < 0 AndAlso LegYPoint.X > -4 Then
+                    PointsDis.Add(LegYIndex(I))
+                    IsY = True
+                End If
+                If Renderer.ShowLeftLeg AndAlso LegYPoint.Z < 2 AndAlso LegYPoint.Z > -2 AndAlso LegYPoint.X < 4 AndAlso LegYPoint.X > 0 Then
+                    PointsDis.Add(LegYIndex(I))
+                    IsY = True
+                End If
+
+            Next
 
             If PointsDis.Count = 0 Then Return Nothing
 
@@ -164,11 +171,12 @@ Public Class MouseRay
         End Get
     End Property
 
-    Sub New(ByRef View As Matrix4, ByRef Projection As Matrix4, TheSize As Size, Camera As Vector3)
+    Sub New(ByRef View As Matrix4, ByRef Projection As Matrix4, TheSize As Size, Camera As Vector3, TheRenderer As Renderer3D)
         projectionMatrix = Projection
         ViewMatrix = View
         Size = TheSize
         CamPos = Camera
+        Renderer = TheRenderer
     End Sub
 
     Private Sub Update(X As Integer, Y As Integer)
