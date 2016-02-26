@@ -1282,6 +1282,7 @@ Public Class Renderer3D
     Private IsMouseDown As Boolean
     Private IsRightMouseDown As Boolean
     Private IsMouseHidden As Boolean
+    Private IsMouseHit As Boolean
     Private OldLoc As Point
     Private MouseLoc As Point
 
@@ -1294,6 +1295,212 @@ Public Class Renderer3D
             GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
             Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix), Me)
             m.Pos = e.Location
+            If m.Mouse2ndHit <> New Vector3(0, 0, 0) AndAlso m.MouseHit <> New Vector3(0, 0, 0) Then
+                IsMouseHit = True
+                Exit Sub
+            End If
+            OldLoc = Cursor.Position
+            If Not IsMouseHidden Then
+                Cursor.Hide()
+                IsMouseHidden = True
+            End If
+            MouseLoc = Cursor.Position
+            IsMouseDown = True
+        ElseIf Not IsRightMouseDown AndAlso e.Button = MouseButtons.Right Then
+            OldLoc = Cursor.Position
+            If Not IsMouseHidden Then
+                Cursor.Hide()
+                IsMouseHidden = True
+            End If
+            MouseLoc = Cursor.Position
+            IsRightMouseDown = True
+        End If
+    End Sub
+
+    Private Sub GlControl_MouseUp(sender As Object, e As MouseEventArgs) Handles GlControl.MouseUp
+        If IsMouseHidden Then
+            Cursor.Show()
+            IsMouseHidden = False
+            Cursor.Position = OldLoc
+            IsMouseDown = False
+            IsRightMouseDown = False
+        End If
+        IsMouseHit = False
+    End Sub
+
+    Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
+        If IsMouseDown Then
+            RotationY += (Cursor.Position.X - MouseLoc.X) * 0.5
+            RotationX -= (Cursor.Position.Y - MouseLoc.Y) * 0.5
+            Me.Refresh()
+            Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
+            MouseLoc = Cursor.Position
+        ElseIf IsRightMouseDown Then
+            LookX += -(Cursor.Position.X - MouseLoc.X) * 0.5
+            LookY += (Cursor.Position.Y - MouseLoc.Y) * 0.5
+            Me.Refresh()
+            Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
+            MouseLoc = Cursor.Position
+        ElseIf IsMouseHit Then
+            GlControl.MakeCurrent()
+            Dim promatrix As Matrix4
+            Dim viewmatrix As Matrix4
+            GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
+            GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
+            Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix), Me)
+            m.Pos = GlControl.PointToClient(New Point(Cursor.Position))
+            Dim Mouse2ndHit As Vector3 = m.Mouse2ndHit
+            If Mouse2ndHit <> New Vector3(0, 0, 0) Then
+                If Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.Z = 4.24F Then
+                    'ZHead
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 40), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.Z = -4.24F Then
+                    'ZHead
+                    Skin.SetPixel(Int((-Mouse2ndHit.X + 4.24) / 1.06 + 56), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = 2.12F Then
+                    'ZBody
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 20), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = -2.12F Then
+                    'ZBody
+                    Skin.SetPixel(Int((-Mouse2ndHit.X + 4.24) / 1.06 + 32), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = 2.12F Then
+                    'ZArms
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = -2.12F Then
+                    'ZArms
+                    Skin.SetPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 45), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = 2.12F Then
+                    'ZArms
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 45), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = -2.12F Then
+                    'ZArms
+                    Skin.SetPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 64), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = 2.12F Then
+                    'ZLegs
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.12) / 1.06 + 4), Int((-Mouse2ndHit.Y - 16.36) / 1.06 + 48), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = -2.12F Then
+                    'ZLegs
+                    Skin.SetPixel(Int((-Mouse2ndHit.X + 4.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 16.36) / 1.06 + 48), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < 4.12 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = 2.12F Then
+                    'ZLegs
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 4), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.X < 4.12 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = -2.12F Then
+                    'ZLegs
+                    Skin.SetPixel(Int((-Mouse2ndHit.X + 0.12) / 1.06 + 16), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.X = 4.24F Then
+                    'XHead
+                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 4.24) / 1.06 + 48), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.X = -4.24F Then
+                    'XHead
+                    Skin.SetPixel(Int((Mouse2ndHit.Z + 4.24) / 1.06 + 32), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = 4.24F Then
+                    'XBody
+                    Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 28), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = -4.24F Then
+                    'XBody
+                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 16), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = 8.12F Then
+                    'XArms
+                    Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 56), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = -8.12F Then
+                    'XArms
+                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 40), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = 3.88F Then
+                    'XArms
+                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = -3.88F Then
+                    'XArms
+                    Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = 4.24F Then
+                    'XLeg
+                    Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = -4.24F Then
+                    'XLeg
+                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = 0.12F Then
+                    'XLeg
+                    Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 36), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = -0.12F Then
+                    'XLeg
+                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = 16.24F Then
+                    'YHead
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 40), Int((Mouse2ndHit.Z + 4.24) / 1.06), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = 7.76F Then
+                    'YHead
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 48), Int((Mouse2ndHit.Z + 4.24) / 1.06), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = 8.36F Then
+                    'YBody
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 20), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = -4.36F Then
+                    'YBody
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 28), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y = 8.36F Then
+                    'YArms
+                    Skin.SetPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 52), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y = -4.36F Then
+                    'YArms
+                    Skin.SetPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 56), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y = 8.36F Then
+                    'YArms
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 44), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y = -4.36F Then
+                    'YArms
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 48), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y = -3.64F Then
+                    'YLeg
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 4), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = -3.64F Then
+                    'YLeg
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 4), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y = -16.36F Then
+                    'YLeg
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 8), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), ColorPicker.Color)
+                    Refresh()
+                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = -16.36F Then
+                    'YLeg
+                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 8), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                    Refresh()
+                End If
+
+                MainForm.Skin = Skin
+                MainForm.UpdateImage()
+                Exit Sub
+            End If
             Dim MouseHit As Vector3 = m.MouseHit
             If MouseHit <> New Vector3(0, 0, 0) Then
                 If MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.Z = 4 Then
@@ -1446,49 +1653,7 @@ Public Class Renderer3D
                 End If
                 MainForm.Skin = Skin
                 MainForm.UpdateImage()
-                Exit Sub
             End If
-            OldLoc = Cursor.Position
-            If Not IsMouseHidden Then
-                Cursor.Hide()
-                IsMouseHidden = True
-            End If
-            MouseLoc = Cursor.Position
-            IsMouseDown = True
-        ElseIf Not IsRightMouseDown AndAlso e.Button = MouseButtons.Right Then
-            OldLoc = Cursor.Position
-            If Not IsMouseHidden Then
-                Cursor.Hide()
-                IsMouseHidden = True
-            End If
-            MouseLoc = Cursor.Position
-            IsRightMouseDown = True
-        End If
-    End Sub
-
-    Private Sub GlControl_MouseUp(sender As Object, e As MouseEventArgs) Handles GlControl.MouseUp
-        If IsMouseHidden Then
-            Cursor.Show()
-            IsMouseHidden = False
-            Cursor.Position = OldLoc
-            IsMouseDown = False
-            IsRightMouseDown = False
-        End If
-    End Sub
-
-    Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
-        If IsMouseDown Then
-            RotationY += (Cursor.Position.X - MouseLoc.X) * 0.5
-            RotationX -= (Cursor.Position.Y - MouseLoc.Y) * 0.5
-            Me.Refresh()
-            Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
-            MouseLoc = Cursor.Position
-        ElseIf IsRightMouseDown Then
-            LookX += -(Cursor.Position.X - MouseLoc.X) * 0.5
-            LookY += (Cursor.Position.Y - MouseLoc.Y) * 0.5
-            Me.Refresh()
-            Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
-            MouseLoc = Cursor.Position
         End If
     End Sub
 

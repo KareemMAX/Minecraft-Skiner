@@ -42,7 +42,7 @@ Partial Class Renderer3D
         'Timer
         '
         Me.Timer.Enabled = True
-        Me.Timer.Interval = 50
+        Me.Timer.Interval = 1
         '
         'Renderer3D
         '
