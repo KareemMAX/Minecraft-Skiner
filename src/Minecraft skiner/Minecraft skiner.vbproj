@@ -37,6 +37,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>Minecraft skiner.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -117,6 +118,12 @@
     <Compile Include="ColorPicker.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="CrashDialog.Designer.vb">
+      <DependentUpon>CrashDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrashDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DownloadingSkin.Designer.vb">
       <DependentUpon>DownloadingSkin.vb</DependentUpon>
     </Compile>
@@ -174,6 +181,12 @@
     <Compile Include="UserNameDialog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ViewReport.Designer.vb">
+      <DependentUpon>ViewReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ViewReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BugTracker.resx">
@@ -181,6 +194,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ColorPicker.resx">
       <DependentUpon>ColorPicker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrashDialog.resx">
+      <DependentUpon>CrashDialog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DownloadingSkin.resx">
       <DependentUpon>DownloadingSkin.vb</DependentUpon>
@@ -202,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserNameDialog.resx">
       <DependentUpon>UserNameDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewReport.resx">
+      <DependentUpon>ViewReport.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

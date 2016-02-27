@@ -25,13 +25,16 @@ Partial Class BugTracker
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
         Me.Cancel_Button = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.InfoLabel = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtTitle = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtDes = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.txtEmail = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.IsBug = New System.Windows.Forms.RadioButton()
+        Me.IsFeature = New System.Windows.Forms.RadioButton()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -43,7 +46,7 @@ Partial Class BugTracker
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(279, 368)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(279, 386)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -69,14 +72,14 @@ Partial Class BugTracker
         Me.Cancel_Button.TabIndex = 5
         Me.Cancel_Button.Text = "Cancel"
         '
-        'Label1
+        'InfoLabel
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(193, 39)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "We are so sorry about this bug." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please tell about all stuff that you see." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "More " &
+        Me.InfoLabel.AutoSize = True
+        Me.InfoLabel.Location = New System.Drawing.Point(12, 9)
+        Me.InfoLabel.Name = "InfoLabel"
+        Me.InfoLabel.Size = New System.Drawing.Size(193, 39)
+        Me.InfoLabel.TabIndex = 1
+        Me.InfoLabel.Text = "We are so sorry about this bug." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please tell about all stuff that you see." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "More " &
     "information mean quick fix."
         '
         'Label2
@@ -98,7 +101,7 @@ Partial Class BugTracker
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 156)
+        Me.Label4.Location = New System.Drawing.Point(12, 175)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(67, 13)
         Me.Label4.TabIndex = 4
@@ -108,7 +111,7 @@ Partial Class BugTracker
         '
         Me.txtDes.AcceptsReturn = True
         Me.txtDes.AcceptsTab = True
-        Me.txtDes.Location = New System.Drawing.Point(13, 172)
+        Me.txtDes.Location = New System.Drawing.Point(13, 191)
         Me.txtDes.Multiline = True
         Me.txtDes.Name = "txtDes"
         Me.txtDes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -118,7 +121,7 @@ Partial Class BugTracker
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 112)
+        Me.Label3.Location = New System.Drawing.Point(13, 131)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(181, 13)
         Me.Label3.TabIndex = 6
@@ -126,10 +129,41 @@ Partial Class BugTracker
         '
         'txtEmail
         '
-        Me.txtEmail.Location = New System.Drawing.Point(13, 128)
+        Me.txtEmail.Location = New System.Drawing.Point(13, 147)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.Size = New System.Drawing.Size(412, 20)
         Me.txtEmail.TabIndex = 1
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 111)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(38, 13)
+        Me.Label5.TabIndex = 7
+        Me.Label5.Text = "Type :"
+        '
+        'IsBug
+        '
+        Me.IsBug.AutoSize = True
+        Me.IsBug.Checked = True
+        Me.IsBug.Location = New System.Drawing.Point(56, 109)
+        Me.IsBug.Name = "IsBug"
+        Me.IsBug.Size = New System.Drawing.Size(43, 17)
+        Me.IsBug.TabIndex = 8
+        Me.IsBug.TabStop = True
+        Me.IsBug.Text = "Bug"
+        Me.IsBug.UseVisualStyleBackColor = True
+        '
+        'IsFeature
+        '
+        Me.IsFeature.AutoSize = True
+        Me.IsFeature.Location = New System.Drawing.Point(105, 109)
+        Me.IsFeature.Name = "IsFeature"
+        Me.IsFeature.Size = New System.Drawing.Size(63, 17)
+        Me.IsFeature.TabIndex = 9
+        Me.IsFeature.Text = "Feature"
+        Me.IsFeature.UseVisualStyleBackColor = True
         '
         'BugTracker
         '
@@ -137,14 +171,17 @@ Partial Class BugTracker
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
-        Me.ClientSize = New System.Drawing.Size(437, 409)
+        Me.ClientSize = New System.Drawing.Size(437, 427)
+        Me.Controls.Add(Me.IsFeature)
+        Me.Controls.Add(Me.IsBug)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.txtEmail)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtDes)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtTitle)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.InfoLabel)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -161,11 +198,14 @@ Partial Class BugTracker
     Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents Cancel_Button As System.Windows.Forms.Button
-    Friend WithEvents Label1 As Label
+    Friend WithEvents InfoLabel As Label
     Friend WithEvents Label2 As Label
     Friend WithEvents txtTitle As TextBox
     Friend WithEvents Label4 As Label
     Friend WithEvents txtDes As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents txtEmail As TextBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents IsBug As RadioButton
+    Friend WithEvents IsFeature As RadioButton
 End Class

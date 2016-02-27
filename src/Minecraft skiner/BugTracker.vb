@@ -15,15 +15,20 @@ Public Class BugTracker
         End If
 
         Try
+            Dim Description As String = ""
+            For Each value As String In txtDes.Lines
+                Description += ">" & value & vbCrLf
+            Next
+
             Dim Issue As String
             If String.IsNullOrWhiteSpace(txtEmail.Text) Then
                 Issue = "**This issue sent by the bug tracker in the app**" & vbCrLf & vbCrLf &
                 "**Description :**" & vbCrLf & vbCrLf &
-                txtDes.Text & vbCrLf & vbCrLf
+                Description & vbCrLf
             Else
                 Issue = "**This issue sent by the bug tracker in the app**" & vbCrLf & vbCrLf &
                 "**Description :**" & vbCrLf & vbCrLf &
-                txtDes.Text & vbCrLf & vbCrLf &
+                Description & vbCrLf &
                 "**Email :** " & txtEmail.Text
             End If
 
@@ -32,6 +37,11 @@ Public Class BugTracker
 
             nc.Add("title", txtTitle.Text)
             nc.Add("body", Issue)
+            If IsBug.Checked Then
+                nc.Add("type", "bug")
+            ElseIf IsFeature.Checked Then
+                nc.Add("type", "Feature")
+            End If
 
             If Not System.Text.Encoding.ASCII.GetChars(wc.UploadValues("http://minecraftskiner.esy.es/bugtracker.php", nc)) = "Done" Then
                 Throw New Exception
@@ -52,4 +62,15 @@ Public Class BugTracker
         Me.Close()
     End Sub
 
+    Private Sub IsFeature_CheckedChanged(sender As Object, e As EventArgs) Handles IsFeature.CheckedChanged
+        InfoLabel.Text = "New ideas will help us to improve our app." & vbCrLf &
+            "Please tell about all stuff that you think." & vbCrLf &
+            "More Information mean quick better features."
+    End Sub
+
+    Private Sub IsBug_CheckedChanged(sender As Object, e As EventArgs) Handles IsBug.CheckedChanged
+        InfoLabel.Text = "We are so sorry about this bug." & vbCrLf &
+            "Please tell about all stuff that you see." & vbCrLf &
+            "More Information mean quick fix."
+    End Sub
 End Class
