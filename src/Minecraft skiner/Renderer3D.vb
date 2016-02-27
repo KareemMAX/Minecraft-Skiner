@@ -1295,7 +1295,7 @@ Public Class Renderer3D
             GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
             Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix), Me)
             m.Pos = e.Location
-            If m.Mouse2ndHit <> New Vector3(0, 0, 0) AndAlso m.MouseHit <> New Vector3(0, 0, 0) Then
+            If m.Mouse2ndHit <> New Vector3(0, 0, 0) OrElse m.MouseHit <> New Vector3(0, 0, 0) Then
                 IsMouseHit = True
                 Exit Sub
             End If
