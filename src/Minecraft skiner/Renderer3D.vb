@@ -1328,7 +1328,7 @@ Public Class Renderer3D
         IsMouseHit = False
     End Sub
 
-    Private Sub Timer_Tick(sender As Object, e As EventArgs) Handles Timer.Tick
+    Private Sub Move_Tick(sender As Object, e As EventArgs) Handles Move.Tick
         If IsMouseDown Then
             RotationY += (Cursor.Position.X - MouseLoc.X) * 0.5
             RotationX -= (Cursor.Position.Y - MouseLoc.Y) * 0.5
@@ -1341,7 +1341,21 @@ Public Class Renderer3D
             Me.Refresh()
             Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
             MouseLoc = Cursor.Position
-        ElseIf IsMouseHit Then
+        End If
+    End Sub
+
+    Private Sub Renderer3D_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
+        Zoom += e.Delta * 0.005
+        Refresh()
+    End Sub
+
+    Private Function GetCameraPos(modelview As Matrix4) As Vector3
+        GlControl.MakeCurrent()
+        Return Matrix4.Invert(modelview).ExtractTranslation()
+    End Function
+
+    Private Sub Paint_Tick(sender As Object, e As EventArgs) Handles Paint.Tick
+        If IsMouseHit Then
             GlControl.MakeCurrent()
             Dim promatrix As Matrix4
             Dim viewmatrix As Matrix4
@@ -1656,14 +1670,4 @@ Public Class Renderer3D
             End If
         End If
     End Sub
-
-    Private Sub Renderer3D_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
-        Zoom += e.Delta * 0.005
-        Refresh()
-    End Sub
-
-    Private Function GetCameraPos(modelview As Matrix4) As Vector3
-        GlControl.MakeCurrent()
-        Return Matrix4.Invert(modelview).ExtractTranslation()
-    End Function
 End Class

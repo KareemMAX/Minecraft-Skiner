@@ -24,7 +24,8 @@ Partial Class Renderer3D
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GlControl = New OpenTK.GLControl()
-        Me.Timer = New System.Windows.Forms.Timer(Me.components)
+        Me.Move = New System.Windows.Forms.Timer(Me.components)
+        Me.Paint = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'GlControl
@@ -39,10 +40,15 @@ Partial Class Renderer3D
         Me.GlControl.TabIndex = 0
         Me.GlControl.VSync = True
         '
-        'Timer
+        'Move
         '
-        Me.Timer.Enabled = True
-        Me.Timer.Interval = 1
+        Me.Move.Enabled = True
+        Me.Move.Interval = 20
+        '
+        'Paint
+        '
+        Me.Paint.Enabled = True
+        Me.Paint.Interval = 1
         '
         'Renderer3D
         '
@@ -55,5 +61,6 @@ Partial Class Renderer3D
     End Sub
 
     Friend WithEvents GlControl As OpenTK.GLControl
-    Friend WithEvents Timer As Timer
+    Friend WithEvents Move As Timer
+    Friend WithEvents Paint As Timer
 End Class
