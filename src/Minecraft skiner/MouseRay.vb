@@ -46,9 +46,14 @@ Public Class MouseRay
             Dim BodyXIndex(3) As Single
             Dim LegXIndex(2) As Single
             HeadXIndex(0) = (4 - CamPos.X) / CurrentRay.X
-            BodyXIndex(0) = (8 - CamPos.X) / CurrentRay.X
+            If Renderer.Model = Renderer3D.Models.Steve Then
+                BodyXIndex(0) = (8 - CamPos.X) / CurrentRay.X
+                BodyXIndex(1) = (-8 - CamPos.X) / CurrentRay.X
+            Else
+                BodyXIndex(0) = (7 - CamPos.X) / CurrentRay.X
+                BodyXIndex(1) = (-7 - CamPos.X) / CurrentRay.X
+            End If
             HeadXIndex(1) = (-4 - CamPos.X) / CurrentRay.X
-            BodyXIndex(1) = (-8 - CamPos.X) / CurrentRay.X
             BodyXIndex(2) = (-4 - CamPos.X) / CurrentRay.X
             BodyXIndex(3) = (4 - CamPos.X) / CurrentRay.X
             LegXIndex(0) = (4 - CamPos.X) / CurrentRay.X
@@ -88,11 +93,17 @@ Public Class MouseRay
                 If Renderer.ShowBody AndAlso BodyPoint.X < 4 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4 Then
                     PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.[Is].Z))
                 End If
-                If Renderer.ShowRightArm AndAlso BodyPoint.X < -4 AndAlso BodyPoint.X > -8 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4 Then
-                    PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.[Is].Z))
+                If Renderer.ShowRightArm AndAlso BodyPoint.Y > -4 AndAlso BodyPoint.Y < 8 Then
+                    If (Renderer.Model = Renderer3D.Models.Steve AndAlso BodyPoint.X > -8 AndAlso BodyPoint.X < -4) OrElse
+                        (Renderer.Model = Renderer3D.Models.Alex AndAlso BodyPoint.X > -7 AndAlso BodyPoint.X < -4) Then
+                        PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.[Is].Z))
+                    End If
                 End If
-                If Renderer.ShowLeftArm AndAlso BodyPoint.X < 8 AndAlso BodyPoint.X > 4 AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4 Then
-                    PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.[Is].Z))
+                If Renderer.ShowLeftArm AndAlso BodyPoint.Y < 8 AndAlso BodyPoint.Y > -4 Then
+                    If (Renderer.Model = Renderer3D.Models.Steve AndAlso BodyPoint.X < 8 AndAlso BodyPoint.X > 4) OrElse
+                        (Renderer.Model = Renderer3D.Models.Alex AndAlso BodyPoint.X < 7 AndAlso BodyPoint.X > 4) Then
+                        PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.[Is].Z))
+                    End If
                 End If
                 If Renderer.ShowRightLeg AndAlso BodyPoint.X < 0 AndAlso BodyPoint.X > -4 AndAlso BodyPoint.Y < -4 AndAlso BodyPoint.Y > -16 Then
                     PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.[Is].Z))
@@ -103,10 +114,10 @@ Public Class MouseRay
                 If Renderer.ShowHead AndAlso HeadXPoint.Z < 4 AndAlso HeadXPoint.Z > -4 AndAlso HeadXPoint.Y < 16 AndAlso HeadXPoint.Y > 8 Then
                     PointsDis.Add(New ResultDistance(HeadXIndex(I), ResultDistance.[Is].X))
                 End If
-                If Renderer.ShowRightArm AndAlso Convert.ToInt32(BodyXPoint.X) = -8 AndAlso BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
+                If Renderer.ShowRightArm AndAlso (Convert.ToInt32(BodyXPoint.X) = -8 OrElse Convert.ToInt32(BodyXPoint.X) = -7) AndAlso BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
                     PointsDis.Add(New ResultDistance(BodyXIndex(I), ResultDistance.[Is].X))
                 End If
-                If Renderer.ShowLeftArm AndAlso Convert.ToInt32(BodyXPoint.X) = 8 AndAlso BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
+                If Renderer.ShowLeftArm AndAlso (Convert.ToInt32(BodyXPoint.X) = 8 OrElse Convert.ToInt32(BodyXPoint.X) = 7) AndAlso BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
                     PointsDis.Add(New ResultDistance(BodyXIndex(I), ResultDistance.[Is].X))
                 End If
                 If (Renderer.ShowRightArm Xor Renderer.ShowBody) AndAlso Convert.ToInt32(BodyXPoint.X) = -4 AndAlso BodyXPoint.Z < 2 AndAlso BodyXPoint.Z > -2 AndAlso BodyXPoint.Y < 8 AndAlso BodyXPoint.Y > -4 Then
@@ -130,11 +141,17 @@ Public Class MouseRay
                 If Renderer.ShowBody AndAlso BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < 4 AndAlso BodyYPoint.X > -4 Then
                     PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.[Is].Y))
                 End If
-                If Renderer.ShowRightArm AndAlso BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < -4 AndAlso BodyYPoint.X > -8 Then
-                    PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.[Is].Y))
+                If Renderer.ShowRightArm AndAlso BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 Then
+                    If (Renderer.Model = Renderer3D.Models.Steve AndAlso BodyYPoint.X > -8 AndAlso BodyYPoint.X < -4) OrElse
+                        (Renderer.Model = Renderer3D.Models.Alex AndAlso BodyYPoint.X > -7 AndAlso BodyYPoint.X < -4) Then
+                        PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.[Is].Y))
+                    End If
                 End If
-                If Renderer.ShowLeftArm AndAlso BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 AndAlso BodyYPoint.X < 8 AndAlso BodyYPoint.X > 4 Then
-                    PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.[Is].Y))
+                If Renderer.ShowLeftArm AndAlso BodyYPoint.Z < 2 AndAlso BodyYPoint.Z > -2 Then
+                    If (Renderer.Model = Renderer3D.Models.Steve AndAlso BodyYPoint.X < 8 AndAlso BodyYPoint.X > 4) OrElse
+                        (Renderer.Model = Renderer3D.Models.Alex AndAlso BodyYPoint.X < 7 AndAlso BodyYPoint.X > 4) Then
+                        PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.[Is].Y))
+                    End If
                 End If
                 If Renderer.ShowRightLeg AndAlso LegYPoint.Z < 2 AndAlso LegYPoint.Z > -2 AndAlso LegYPoint.X < 0 AndAlso LegYPoint.X > -4 Then
                     PointsDis.Add(New ResultDistance(LegYIndex(I), ResultDistance.[Is].Y))
@@ -183,13 +200,20 @@ Public Class MouseRay
             Dim RLegXIndex(1) As Single
             Dim LLegXIndex(1) As Single
             HeadXIndex(0) = (4.24 - CamPos.X) / CurrentRay.X
-            LArmXIndex(1) = (8.12 - CamPos.X) / CurrentRay.X
             HeadXIndex(1) = (-4.24 - CamPos.X) / CurrentRay.X
-            RArmXIndex(1) = (-8.12 - CamPos.X) / CurrentRay.X
             BodyXIndex(0) = (-4.24 - CamPos.X) / CurrentRay.X
             BodyXIndex(1) = (4.24 - CamPos.X) / CurrentRay.X
-            RArmXIndex(0) = (-3.88 - CamPos.X) / CurrentRay.X
-            LArmXIndex(0) = (3.88 - CamPos.X) / CurrentRay.X
+            If Renderer.Model = Renderer3D.Models.Steve Then
+                RArmXIndex(0) = (-3.88 - CamPos.X) / CurrentRay.X
+                RArmXIndex(1) = (-8.12 - CamPos.X) / CurrentRay.X
+                LArmXIndex(0) = (3.88 - CamPos.X) / CurrentRay.X
+                LArmXIndex(1) = (8.12 - CamPos.X) / CurrentRay.X
+            Else
+                RArmXIndex(0) = (-3.91 - CamPos.X) / CurrentRay.X
+                RArmXIndex(1) = (-7.09 - CamPos.X) / CurrentRay.X
+                LArmXIndex(0) = (3.91 - CamPos.X) / CurrentRay.X
+                LArmXIndex(1) = (7.09 - CamPos.X) / CurrentRay.X
+            End If
             LLegXIndex(0) = (4.24 - CamPos.X) / CurrentRay.X
             RLegXIndex(0) = (-4.24 - CamPos.X) / CurrentRay.X
             RLegXIndex(1) = (0.12 - CamPos.X) / CurrentRay.X
@@ -231,11 +255,17 @@ Public Class MouseRay
                 If Renderer.Show2ndBody AndAlso BodyPoint.X < 4.24 AndAlso BodyPoint.X > -4.24 AndAlso BodyPoint.Y < 8.36 AndAlso BodyPoint.Y > -4.36 Then
                     PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.Is.Z))
                 End If
-                If Renderer.Show2ndRightArm AndAlso BodyPoint.X < -3.88 AndAlso BodyPoint.X > -8.12 AndAlso BodyPoint.Y < 8.36 AndAlso BodyPoint.Y > -4.36 Then
-                    PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.Is.Z))
+                If Renderer.Show2ndRightArm AndAlso BodyPoint.Y < 8.36 AndAlso BodyPoint.Y > -4.36 Then
+                    If (Renderer.Model = Renderer3D.Models.Steve AndAlso BodyPoint.X < -3.88 AndAlso BodyPoint.X > -8.12) OrElse
+                            (Renderer.Model = Renderer3D.Models.Alex AndAlso BodyPoint.X < -3.91 AndAlso BodyPoint.X > -7.09) Then
+                        PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.Is.Z))
+                    End If
                 End If
-                If Renderer.Show2ndLeftArm AndAlso BodyPoint.X < 8.12 AndAlso BodyPoint.X > 3.88 AndAlso BodyPoint.Y < 8.36 AndAlso BodyPoint.Y > -4.36 Then
-                    PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.Is.Z))
+                If Renderer.Show2ndLeftArm AndAlso BodyPoint.Y < 8.36 AndAlso BodyPoint.Y > -4.36 Then
+                    If (Renderer.Model = Renderer3D.Models.Steve AndAlso BodyPoint.X < 8.12 AndAlso BodyPoint.X > 3.88) OrElse
+                            (Renderer.Model = Renderer3D.Models.Alex AndAlso BodyPoint.X < 7.09 AndAlso BodyPoint.X > 3.91) Then
+                        PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.Is.Z))
+                    End If
                 End If
                 If Renderer.Show2ndRightLeg AndAlso BodyPoint.X < 0.12 AndAlso BodyPoint.X > -4.12 AndAlso BodyPoint.Y < -3.64 AndAlso BodyPoint.Y > -16.36 Then
                     PointsDis.Add(New ResultDistance(BodyIndex(I), ResultDistance.Is.Z))
@@ -267,11 +297,17 @@ Public Class MouseRay
                 If Renderer.Show2ndBody AndAlso BodyYPoint.Z < 2.12 AndAlso BodyYPoint.Z > -2.12 AndAlso BodyYPoint.X < 4.24 AndAlso BodyYPoint.X > -4.24 Then
                     PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.Is.Y))
                 End If
-                If Renderer.Show2ndRightArm AndAlso BodyYPoint.Z < 2.12 AndAlso BodyYPoint.Z > -2.12 AndAlso BodyYPoint.X < -4.36 AndAlso BodyYPoint.X > -8.36 Then
-                    PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.Is.Y))
+                If Renderer.Show2ndRightArm AndAlso BodyYPoint.Z < 2.12 AndAlso BodyYPoint.Z > -2.12 Then
+                    If (Renderer.Model = Renderer3D.Models.Steve AndAlso BodyYPoint.X < -3.88 AndAlso BodyYPoint.X > -8.12) OrElse
+                        (Renderer.Model = Renderer3D.Models.Alex AndAlso BodyYPoint.X < -3.91 AndAlso BodyYPoint.X > -7.09) Then
+                        PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.Is.Y))
+                    End If
                 End If
-                If Renderer.Show2ndLeftArm AndAlso BodyYPoint.Z < 2.12 AndAlso BodyYPoint.Z > -2.12 AndAlso BodyYPoint.X < 8.36 AndAlso BodyYPoint.X > 4.36 Then
-                    PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.Is.Y))
+                If Renderer.Show2ndLeftArm AndAlso BodyYPoint.Z < 2.12 AndAlso BodyYPoint.Z > -2.12 Then
+                    If (Renderer.Model = Renderer3D.Models.Steve AndAlso BodyYPoint.X < 8.12 AndAlso BodyYPoint.X > 3.88) OrElse
+                        (Renderer.Model = Renderer3D.Models.Alex AndAlso BodyYPoint.X < 7.09 AndAlso BodyYPoint.X > 3.91) Then
+                        PointsDis.Add(New ResultDistance(BodyYIndex(I), ResultDistance.Is.Y))
+                    End If
                 End If
                 If Renderer.Show2ndRightLeg AndAlso LegYPoint.Z < 2.12 AndAlso LegYPoint.Z > -2.12 AndAlso LegYPoint.X < 0.12 AndAlso LegYPoint.X > -4.12 Then
                     PointsDis.Add(New ResultDistance(LegYIndex(I), ResultDistance.Is.Y))
@@ -293,7 +329,12 @@ Public Class MouseRay
             Dim Result As Vector3 = getPointOnRay(CurrentRay, Smallest.Distance)
 
             Dim ZIndex As Single() = {4.24, 2.12, -4.24, -2.12}
-            Dim XIndex As Single() = {4.24, 8.12, -4.24, -8.12, -4.24, 4.24, -3.88, 3.88, 4.24, -4.24, 0.12, -0.12}
+            Dim XIndex As Single()
+            If Renderer.Model = Renderer3D.Models.Steve Then
+                XIndex = {4.24, 8.12, -4.24, -8.12, -3.88, 3.88, 0.12, -0.12}
+            Else
+                XIndex = {4.24, 7.09, -4.24, -7.09, -3.91, 3.91, 0.12, -0.12}
+            End If
             Dim YIndex As Single() = {16.24, 8.36, 7.76, -4.36, -3.64, -16.36}
 
             Dim AResult As Single = 20
