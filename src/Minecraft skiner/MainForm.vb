@@ -90,7 +90,7 @@ Public Class MainForm
     End Sub
 
     Private Sub SaveFileDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SaveFileDialog.FileOk
-        Dim BitmapStream As IO.Stream = IO.File.Open(SaveFileDialog.FileName, IO.FileMode.Open)
+        Dim BitmapStream As IO.Stream = IO.File.Open(SaveFileDialog.FileName, IO.FileMode.OpenOrCreate)
         Try
             Skin.Save(BitmapStream, Imaging.ImageFormat.Png) 'Save the skin
         Catch

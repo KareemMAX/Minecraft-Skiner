@@ -29,8 +29,8 @@ Public Class DownloadingSkin
                 failed = True
                 Exit Sub
             End If
-            Dim request As Net.WebRequest = Net.WebRequest.Create("https://mcapi.ca/skin/file/" + UserInput)
-            Dim response As System.Net.WebResponse = request.GetResponse()
+            Dim request As WebRequest = WebRequest.Create("https://mcapi.ca/skin/file/" + UserInput)
+            Dim response As WebResponse = request.GetResponse()
             Dim responseStream As IO.Stream = response.GetResponseStream()
             skin = New Bitmap(responseStream) 'Update Skin value
         Catch
@@ -45,8 +45,8 @@ Public Class DownloadingSkin
         Dim RealName As String = UserInput
         Try
             '--------------Get the UUID-----------------
-            Dim UUIDJson As MojangUUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of MojangUUID)(
-                wc.DownloadString("https://api.mojang.com/users/profiles/minecraft/" + UserInput))
+            Dim UUIDJson As UUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of UUID)(
+                wc.DownloadString("https://eu.mc-api.net/v3/uuid/" + UserInput))
             RealName = UUIDJson.Name
             '--------------Get Skin type----------------
             Dim tmpstr As String = wc.DownloadString("https://mcapi.ca/name/uuid/" + UUIDJson.UUID)
@@ -66,7 +66,7 @@ Public Class DownloadingSkin
     Private Sub DownloadingSkin_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         If BackgroundWorker.IsBusy Then
             Abort()
-            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
+            DialogResult = System.Windows.Forms.DialogResult.Cancel
         End If
     End Sub
     Sub Abort()
@@ -83,8 +83,8 @@ Public Class DownloadingSkin
     Private Sub BackgroundWorker_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorker.RunWorkerCompleted
         If failed Then
             failed = False
-            Me.DialogResult = DialogResult.Cancel
-            Me.Close()
+            DialogResult = DialogResult.Cancel
+            Close()
             Exit Sub
         End If
         MainForm.Skin = skin
@@ -94,7 +94,7 @@ Public Class DownloadingSkin
         MainForm.Steverdb.Checked = Not isalex
         If MainForm.Skin.Height = 32 Then MainForm.ConvertSkin()
         MainForm.UpdateImage() 'Load the preview
-        Me.DialogResult = DialogResult.OK
-        Me.Close()
+        DialogResult = DialogResult.OK
+        Close()
     End Sub
 End Class

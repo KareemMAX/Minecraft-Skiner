@@ -208,9 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Renderer3D.resx">
       <DependentUpon>Renderer3D.vb</DependentUpon>
@@ -296,6 +296,7 @@
     <None Include="Resources\OpenTK.GLControl.dll" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Transparent.jpg" />
     <None Include="Resources\steveleftlegnone.png" />
     <None Include="Resources\steveleftarmnone.png" />
     <None Include="Resources\steverightlegnone.png" />

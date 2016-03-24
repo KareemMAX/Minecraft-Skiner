@@ -34,6 +34,7 @@ Public Class MouseRay
 
     ReadOnly Property MouseHit As Vector3
         Get
+            On Error Resume Next
             Update(Pos.X, Pos.Y)
             Dim HeadIndex(1) As Single
             Dim BodyIndex(1) As Single
@@ -318,7 +319,7 @@ Public Class MouseRay
 
             Next
 
-            If PointsDis.Count = 0 Then Return Nothing
+            If PointsDis.Count = 0 Then Return New Vector3(100, 100, 100)
 
             Dim Smallest As New ResultDistance(1000, ResultDistance.Is.Z)
 

@@ -40,13 +40,15 @@ Public Class ColorPicker
         Next
         GL.End()
 
-        GL.LineWidth(1.5)
-        GL.Begin(BeginMode.LineStrip)
-        GL.Color3(Color.White)
-        For I As Double = 0 To 2 * Math.PI Step Math.PI / 24
-            GL.Vertex2(Math.Cos(I) * 0.05 + (Math.Cos((Color.GetHue * (2 * Math.PI)) / 360) * (RGBtoHSV(Color).Saturation / 100)), Math.Sin(I) * 0.05 + (Math.Sin((Color.GetHue * (2 * Math.PI)) / 360) * (RGBtoHSV(Color).Saturation / 100)))
-        Next
-        GL.End()
+        If Not Color = Color.Transparent Then
+            GL.LineWidth(1.5)
+            GL.Begin(BeginMode.LineStrip)
+            GL.Color3(Color.White)
+            For I As Double = 0 To 2 * Math.PI Step Math.PI / 24
+                GL.Vertex2(Math.Cos(I) * 0.05 + (Math.Cos((Color.GetHue * (2 * Math.PI)) / 360) * (RGBtoHSV(Color).Saturation / 100)), Math.Sin(I) * 0.05 + (Math.Sin((Color.GetHue * (2 * Math.PI)) / 360) * (RGBtoHSV(Color).Saturation / 100)))
+            Next
+            GL.End()
+        End If
 
         HSV.SwapBuffers()
 
@@ -343,6 +345,11 @@ Public Class ColorPicker
 
     Private Sub RGBHex_Leave(sender As Object, e As EventArgs) Handles RGBHex.Leave
         Color = ColorTranslator.FromHtml("#" & RGBHex.Text)
+        Refresh()
+    End Sub
+
+    Private Sub Transparent_Click(sender As Object, e As EventArgs) Handles Transparent.Click
+        Color = Color.Transparent
         Refresh()
     End Sub
 End Class
