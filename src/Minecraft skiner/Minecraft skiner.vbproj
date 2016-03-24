@@ -140,6 +140,7 @@
     </Compile>
     <Compile Include="Json classes\Cape.vb" />
     <Compile Include="Json classes\Metadata.vb" />
+    <Compile Include="Json classes\MojangUUID.vb" />
     <Compile Include="Json classes\Name.vb" />
     <Compile Include="Json classes\properties.vb" />
     <Compile Include="Json classes\PropertiesDecoded.vb" />
