@@ -168,4 +168,10 @@ Public Class MainForm
         Dim Dialog As New BugTracker
         Dialog.ShowDialog()
     End Sub
+
+    Private Sub ChangeYourSkinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeYourSkinToolStripMenuItem.Click
+        Dim Dialog As New UploadingSkin
+        Dialog.Skin = Skin
+        Dialog.ShowDialog()
+    End Sub
 End Class

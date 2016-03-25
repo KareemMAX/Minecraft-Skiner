@@ -112,6 +112,12 @@
     <Compile Include="BugTracker.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ChangeSkinWebsite.Designer.vb">
+      <DependentUpon>ChangeSkinWebsite.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeSkinWebsite.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ColorPicker.Designer.vb">
       <DependentUpon>ColorPicker.vb</DependentUpon>
     </Compile>
@@ -131,6 +137,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ExSkinRes.vb" />
+    <Compile Include="Json classes\Imgur\Credits.vb" />
+    <Compile Include="Json classes\Imgur\ImageRespone.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -138,14 +146,14 @@
       <DependentUpon>MainForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Json classes\Cape.vb" />
-    <Compile Include="Json classes\Metadata.vb" />
-    <Compile Include="Json classes\Name.vb" />
-    <Compile Include="Json classes\properties.vb" />
-    <Compile Include="Json classes\PropertiesDecoded.vb" />
-    <Compile Include="Json classes\Skin.vb" />
-    <Compile Include="Json classes\Textures.vb" />
-    <Compile Include="Json classes\UUID.vb" />
+    <Compile Include="Json classes\Mojang\Cape.vb" />
+    <Compile Include="Json classes\Mojang\Metadata.vb" />
+    <Compile Include="Json classes\Mojang\Name.vb" />
+    <Compile Include="Json classes\Mojang\properties.vb" />
+    <Compile Include="Json classes\Mojang\PropertiesDecoded.vb" />
+    <Compile Include="Json classes\Mojang\Skin.vb" />
+    <Compile Include="Json classes\Mojang\Textures.vb" />
+    <Compile Include="Json classes\Mojang\UUID.vb" />
     <Compile Include="LayerSelector.Designer.vb">
       <DependentUpon>LayerSelector.vb</DependentUpon>
     </Compile>
@@ -174,6 +182,12 @@
     <Compile Include="Renderer3D.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="UploadingSkin.Designer.vb">
+      <DependentUpon>UploadingSkin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UploadingSkin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UserNameDialog.Designer.vb">
       <DependentUpon>UserNameDialog.vb</DependentUpon>
     </Compile>
@@ -190,6 +204,9 @@
   <ItemGroup>
     <EmbeddedResource Include="BugTracker.resx">
       <DependentUpon>BugTracker.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangeSkinWebsite.resx">
+      <DependentUpon>ChangeSkinWebsite.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ColorPicker.resx">
       <DependentUpon>ColorPicker.vb</DependentUpon>
@@ -214,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Renderer3D.resx">
       <DependentUpon>Renderer3D.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadingSkin.resx">
+      <DependentUpon>UploadingSkin.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserNameDialog.resx">
       <DependentUpon>UserNameDialog.vb</DependentUpon>
@@ -303,7 +323,6 @@
     <None Include="Resources\steverightarmnone.png" />
     <None Include="Resources\stevebodynone.png" />
     <None Include="Resources\steveheadnone.png" />
-    <None Include="bin\Debug\Octokit.dll" />
     <Content Include="finalico.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

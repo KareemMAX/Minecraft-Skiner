@@ -49,7 +49,7 @@ Public Class DownloadingSkin
                 wc.DownloadString("https://eu.mc-api.net/v3/uuid/" + UserInput))
             RealName = UUIDJson.Name
             '--------------Get Skin type----------------
-            Dim tmpstr As String = wc.DownloadString("https://mcapi.ca/name/uuid/" + UUIDJson.UUID)
+            Dim tmpstr As String = wc.DownloadString("https://sessionserver.mojang.com/session/minecraft/profile/" + UUIDJson.UUID)
             Dim NameJson As Name = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Name)(tmpstr)
             Dim decoded As PropertiesDecoded = Newtonsoft.Json.JsonConvert.DeserializeObject(Of PropertiesDecoded)(
                 System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(NameJson.Properties(0).Value)))

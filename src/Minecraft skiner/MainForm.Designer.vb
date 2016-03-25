@@ -44,6 +44,7 @@ Partial Class MainForm
         Me.ColorPicker = New Minecraft_skiner.ColorPicker()
         Me.Renderer3D = New Minecraft_skiner.Renderer3D()
         Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
+        Me.ChangeYourSkinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,7 +61,7 @@ Partial Class MainForm
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenToolStripMenuItem, Me.OpenFromplayerToolStripMenuItem, Me.SaveToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.SaveAs17SkinToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewToolStripMenuItem, Me.OpenToolStripMenuItem, Me.OpenFromplayerToolStripMenuItem, Me.SaveToolStripMenuItem, Me.SaveAsToolStripMenuItem, Me.SaveAs17SkinToolStripMenuItem, Me.ChangeYourSkinToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
@@ -252,6 +253,12 @@ Partial Class MainForm
         Me.LayerSelector1.Size = New System.Drawing.Size(120, 120)
         Me.LayerSelector1.TabIndex = 7
         '
+        'ChangeYourSkinToolStripMenuItem
+        '
+        Me.ChangeYourSkinToolStripMenuItem.Name = "ChangeYourSkinToolStripMenuItem"
+        Me.ChangeYourSkinToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
+        Me.ChangeYourSkinToolStripMenuItem.Text = "&Change your skin"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -299,4 +306,5 @@ Partial Class MainForm
     Friend WithEvents WebsiteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BugTrackerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ColorPicker As ColorPicker
+    Friend WithEvents ChangeYourSkinToolStripMenuItem As ToolStripMenuItem
 End Class
