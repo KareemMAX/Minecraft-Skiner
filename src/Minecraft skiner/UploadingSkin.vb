@@ -7,6 +7,7 @@ Public Class UploadingSkin
     Dim DelHash As String
     Dim NeedToFinish As Boolean
     Property Skin As Bitmap
+    Property IsAlex As Boolean
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
         Abort()
@@ -54,7 +55,11 @@ Public Class UploadingSkin
         If NeedToFinish Then
             Timer.Stop()
             Dim Dialog As New ChangeSkinWebsite
-            Dialog.WebBrowser.Navigate("http://minecraft.net/profile/skin/remote?url=" & URL)
+            If IsAlex Then
+                Dialog.WebBrowser.Navigate("http://minecraft.net/profile/skin/remote?url=" & URL & "&model=3pxarm")
+            Else
+                Dialog.WebBrowser.Navigate("http://minecraft.net/profile/skin/remote?url=" & URL)
+            End If
             Dialog.ShowDialog()
             Finish = True
         End If

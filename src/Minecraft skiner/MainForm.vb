@@ -172,6 +172,7 @@ Public Class MainForm
     Private Sub ChangeYourSkinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeYourSkinToolStripMenuItem.Click
         Dim Dialog As New UploadingSkin
         Dialog.Skin = Skin
+        Dialog.IsAlex = Alexrdb.Checked
         Dialog.ShowDialog()
     End Sub
 End Class
