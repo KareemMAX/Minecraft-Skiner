@@ -104,12 +104,20 @@ Public Class MainForm
     End Sub
 
     Private Sub SaveAs17SkinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAs17SkinToolStripMenuItem.Click
-        MsgBox("You will lose the 2nd layer except the 2nd head layer", MsgBoxStyle.Exclamation, "Save") 'Warning message
+        Dim Dialog As New OldSkinPreview
         Dim tmpSkin As Bitmap = Skin 'Create temporary image
-        Skin = New Bitmap(64, 32) 'Create new skin image
-        Dim g As Graphics = Graphics.FromImage(Skin) 'Create garphics variable
+        Dim newSkin As New Bitmap(64, 32) 'Create new skin image
+        Dim g As Graphics = Graphics.FromImage(newSkin) 'Create garphics variable
         g.DrawImage(tmpSkin, New Rectangle(0, 0, 64, 32), New Rectangle(0, 0, 64, 32), GraphicsUnit.Pixel) 'Crop the image
-        SaveFileDialog.ShowDialog() 'Open the save dialog
+        Skin = newSkin
+        ConvertSkin()
+        Dialog.Renderer3D.InDesignMode = False
+        Dialog.Renderer3D.Skin = Skin
+        Dialog.ShowDialog()
+        If Dialog.DialogResult = DialogResult.OK Then
+            Skin = newSkin
+            SaveFileDialog.ShowDialog() 'Open the save dialog
+        End If
         Skin = tmpSkin 'Rest the skin value to 1.8 old skin
     End Sub
 

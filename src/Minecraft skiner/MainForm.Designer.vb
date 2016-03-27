@@ -31,6 +31,7 @@ Partial Class MainForm
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveAsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveAs17SkinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeYourSkinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebsiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -44,7 +45,6 @@ Partial Class MainForm
         Me.ColorPicker = New Minecraft_skiner.ColorPicker()
         Me.Renderer3D = New Minecraft_skiner.Renderer3D()
         Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
-        Me.ChangeYourSkinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,6 +109,12 @@ Partial Class MainForm
         Me.SaveAs17SkinToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.SaveAs17SkinToolStripMenuItem.Text = "Save As 1.&7 skin"
         '
+        'ChangeYourSkinToolStripMenuItem
+        '
+        Me.ChangeYourSkinToolStripMenuItem.Name = "ChangeYourSkinToolStripMenuItem"
+        Me.ChangeYourSkinToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
+        Me.ChangeYourSkinToolStripMenuItem.Text = "&Change your skin"
+        '
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.WebsiteToolStripMenuItem, Me.BugTrackerToolStripMenuItem})
@@ -163,7 +169,7 @@ Partial Class MainForm
         Me.Alexrdb.AutoSize = True
         Me.Alexrdb.Location = New System.Drawing.Point(6, 42)
         Me.Alexrdb.Name = "Alexrdb"
-        Me.Alexrdb.Size = New System.Drawing.Size(46, 17)
+        Me.Alexrdb.Size = New System.Drawing.Size(45, 17)
         Me.Alexrdb.TabIndex = 1
         Me.Alexrdb.TabStop = True
         Me.Alexrdb.Text = "Alex"
@@ -214,6 +220,7 @@ Partial Class MainForm
         Me.Renderer3D.LookY = 0R
         Me.Renderer3D.Model = Minecraft_skiner.Renderer3D.Models.Steve
         Me.Renderer3D.Name = "Renderer3D"
+        Me.Renderer3D.Paintable = True
         Me.Renderer3D.RotationX = 0
         Me.Renderer3D.RotationY = 0
         Me.Renderer3D.Show2ndBody = True
@@ -252,12 +259,6 @@ Partial Class MainForm
         Me.LayerSelector1.ShowRightLeg = True
         Me.LayerSelector1.Size = New System.Drawing.Size(120, 120)
         Me.LayerSelector1.TabIndex = 7
-        '
-        'ChangeYourSkinToolStripMenuItem
-        '
-        Me.ChangeYourSkinToolStripMenuItem.Name = "ChangeYourSkinToolStripMenuItem"
-        Me.ChangeYourSkinToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
-        Me.ChangeYourSkinToolStripMenuItem.Text = "&Change your skin"
         '
         'MainForm
         '
