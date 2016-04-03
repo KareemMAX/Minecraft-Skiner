@@ -16,5 +16,6 @@ will be released  after completing this tasks
 - [ ] Brush sizes
 - [ ] Select modes
 - [ ] Fill
+- [ ] Undo/Redo
 
 That also would be great if you forked this rebo and help me with this features
