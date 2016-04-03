@@ -23,7 +23,7 @@ Partial Class Renderer3D
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.GlControl = New OpenTK.GLControl()
+        Me.GlControl = New OpenTK.GLControl(New OpenTK.Graphics.GraphicsMode(32, 16, 8, 24))
         Me.Move = New System.Windows.Forms.Timer(Me.components)
         Me.Paint = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
