@@ -8,7 +8,7 @@ It's now under development
 
 will be released  after completing this tasks
 
-- [ ] Color pick
+- [X] Color pick
 - [ ] Layers
 - [ ] Effects (Like photoshop)
 - [ ] 1.7 Paint mode

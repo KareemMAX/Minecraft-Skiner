@@ -1377,180 +1377,144 @@ Public Class Renderer3D
             If MouseHitDis > Mouse2ndHitDis Then
                 If Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.Z = 4.24F Then
                     'ZHead
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 40), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 40), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8))
                 ElseIf Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.Z = -4.24F Then
                     'ZHead
-                    Skin.SetPixel(Int((-Mouse2ndHit.X + 4.24) / 1.06 + 56), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.X + 4.24) / 1.06 + 56), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8))
                 ElseIf Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = 2.12F Then
                     'ZBody
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 20), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 20), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                 ElseIf Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = -2.12F Then
                     'ZBody
-                    Skin.SetPixel(Int((-Mouse2ndHit.X + 4.24) / 1.06 + 32), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.X + 4.24) / 1.06 + 32), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                 ElseIf Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = 2.12F Then
                     'ZArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                     Else
-                        Skin.SetPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 47), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 47), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                     End If
-                    Refresh()
                 ElseIf Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = -2.12F Then
                     'ZArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 45), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                        PaintPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 45), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                     Else
-                        Skin.SetPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 44), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                        PaintPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 44), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                     End If
-                    Refresh()
                 ElseIf Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = 2.12F Then
                     'ZArms
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 45), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 45), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
                 ElseIf Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = -2.12F Then
                     'ZArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 64), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
+                        PaintPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 64), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
                     Else
-                        Skin.SetPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 62), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
+                        PaintPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 62), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
                     End If
-                    Refresh()
                 ElseIf Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = 2.12F Then
                     'ZLegs
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.12) / 1.06 + 4), Int((-Mouse2ndHit.Y - 16.36) / 1.06 + 48), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 4.12) / 1.06 + 4), Int((-Mouse2ndHit.Y - 16.36) / 1.06 + 48))
                 ElseIf Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = -2.12F Then
                     'ZLegs
-                    Skin.SetPixel(Int((-Mouse2ndHit.X + 4.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 16.36) / 1.06 + 48), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.X + 4.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 16.36) / 1.06 + 48))
                 ElseIf Mouse2ndHit.X < 4.12 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = 2.12F Then
                     'ZLegs
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 4), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 4), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52))
                 ElseIf Mouse2ndHit.X < 4.12 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = -2.12F Then
                     'ZLegs
-                    Skin.SetPixel(Int((-Mouse2ndHit.X + 0.12) / 1.06 + 16), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.X + 0.12) / 1.06 + 16), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52))
                 ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.X = 4.24F Then
                     'XHead
-                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 4.24) / 1.06 + 48), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.Z + 4.24) / 1.06 + 48), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8))
                 ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.X = -4.24F Then
                     'XHead
-                    Skin.SetPixel(Int((Mouse2ndHit.Z + 4.24) / 1.06 + 32), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.Z + 4.24) / 1.06 + 32), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = 4.24F Then
                     'XBody
-                    Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 28), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 28), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = -4.24F Then
                     'XBody
-                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 16), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 16), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso (Mouse2ndHit.X = 8.12F OrElse Mouse2ndHit.X = 7.09F) Then
                     'XArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 56), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 56), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
                     Else
-                        Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 55), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 55), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
                     End If
-                    Refresh()
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso (Mouse2ndHit.X = -8.12F OrElse Mouse2ndHit.X = -7.09F) Then
                     'XArms
-                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 40), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 40), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso (Mouse2ndHit.X = 3.88F OrElse Mouse2ndHit.X = 3.91F) Then
                     'XArms
-                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso (Mouse2ndHit.X = -3.88F OrElse Mouse2ndHit.X = -3.91F) Then
                     'XArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                     Else
-                        Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 47), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 47), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
                     End If
-                    Refresh()
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = 4.24F Then
                     'XLeg
-                    Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = -4.24F Then
                     'XLeg
-                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 36), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 36))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = 0.12F Then
                     'XLeg
-                    Skin.SetPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 36), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 36))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = -0.12F Then
                     'XLeg
-                    Skin.SetPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52))
                 ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = 16.24F Then
                     'YHead
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 40), Int((Mouse2ndHit.Z + 4.24) / 1.06), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 40), Int((Mouse2ndHit.Z + 4.24) / 1.06))
                 ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = 7.76F Then
                     'YHead
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 48), Int((Mouse2ndHit.Z + 4.24) / 1.06), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 48), Int((Mouse2ndHit.Z + 4.24) / 1.06))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = 8.36F Then
                     'YBody
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 20), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 20), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = -4.36F Then
                     'YBody
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 28), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 28), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y = 8.36F Then
                     'YArms
-                    Skin.SetPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 52), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 52), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y = -4.36F Then
                     'YArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 56), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 56), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
                     Else
-                        Skin.SetPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 55), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 55), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
                     End If
-                    Refresh()
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y = 8.36F Then
                     'YArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 44), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 44), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
                     Else
-                        Skin.SetPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 43), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 43), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
                     End If
-                    Refresh()
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y = -4.36F Then
                     'YArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 48), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 48), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
                     Else
-                        Skin.SetPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 46), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
+                        PaintPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 46), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
                     End If
-                    Refresh()
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y = -3.64F Then
                     'YLeg
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 4), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 4), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = -3.64F Then
                     'YLeg
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 4), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 4), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y = -16.36F Then
                     'YLeg
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 8), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 8), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
                 ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = -16.36F Then
                     'YLeg
-                    Skin.SetPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 8), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 8), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
                 End If
 
                 MainForm.Skin = Skin
@@ -1560,187 +1524,160 @@ Public Class Renderer3D
             If MouseHit <> New Vector3(0, 0, 0) Then
                 If MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.Z = 4 Then
                     'ZHead
-                    Skin.SetPixel(Int(MouseHit.X + 4 + 8), Int(-MouseHit.Y + 16 + 8), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 4 + 8), Int(-MouseHit.Y + 16 + 8))
                 ElseIf MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.Z = -4 Then
                     'ZHead
-                    Skin.SetPixel(Int(-MouseHit.X + 4 + 24), Int(-MouseHit.Y + 16 + 8), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(-MouseHit.X + 4 + 24), Int(-MouseHit.Y + 16 + 8))
                 ElseIf MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = 2 Then
                     'ZBody
-                    Skin.SetPixel(Int(MouseHit.X + 4 + 20), Int(-MouseHit.Y + 8 + 20), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 4 + 20), Int(-MouseHit.Y + 8 + 20))
                 ElseIf MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = -2 Then
                     'ZBody
-                    Skin.SetPixel(Int(-MouseHit.X + 4 + 32), Int(-MouseHit.Y + 8 + 20), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(-MouseHit.X + 4 + 32), Int(-MouseHit.Y + 8 + 20))
                 ElseIf MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = 2 Then
                     'ZArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int(MouseHit.X + 4 + 48), Int(-MouseHit.Y + 8 + 20), ColorPicker.Color)
+                        PaintPixel(Int(MouseHit.X + 4 + 48), Int(-MouseHit.Y + 8 + 20))
                     Else
-                        Skin.SetPixel(Int(MouseHit.X + 4 + 47), Int(-MouseHit.Y + 8 + 20), ColorPicker.Color)
+                        PaintPixel(Int(MouseHit.X + 4 + 47), Int(-MouseHit.Y + 8 + 20))
                     End If
-                    Refresh()
                 ElseIf MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = -2 Then
                     'ZArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int(-MouseHit.X + 4 + 44), Int(-MouseHit.Y + 8 + 20), ColorPicker.Color)
+                        PaintPixel(Int(-MouseHit.X + 4 + 44), Int(-MouseHit.Y + 8 + 20))
                     Else
-                        Skin.SetPixel(Int(-MouseHit.X + 4 + 43), Int(-MouseHit.Y + 8 + 20), ColorPicker.Color)
+                        PaintPixel(Int(-MouseHit.X + 4 + 43), Int(-MouseHit.Y + 8 + 20))
                     End If
-                    Refresh()
                 ElseIf MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = 2 Then
                     'ZArms
-                    Skin.SetPixel(Int(MouseHit.X + 4 + 28), Int(-MouseHit.Y + 8 + 52), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 4 + 28), Int(-MouseHit.Y + 8 + 52))
                 ElseIf MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = -2 Then
                     'ZArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int(-MouseHit.X + 4 + 48), Int(-MouseHit.Y + 8 + 52), ColorPicker.Color)
+                        PaintPixel(Int(-MouseHit.X + 4 + 48), Int(-MouseHit.Y + 8 + 52))
                     Else
-                        Skin.SetPixel(Int(-MouseHit.X + 4 + 46), Int(-MouseHit.Y + 8 + 52), ColorPicker.Color)
+                        PaintPixel(Int(-MouseHit.X + 4 + 46), Int(-MouseHit.Y + 8 + 52))
                     End If
-                    Refresh()
                 ElseIf MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = 2 Then
                     'ZLegs
-                    Skin.SetPixel(Int(MouseHit.X + 4 + 4), Int(-MouseHit.Y + 16), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 4 + 4), Int(-MouseHit.Y + 16))
                 ElseIf MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = -2 Then
                     'ZLegs
-                    Skin.SetPixel(Int(-MouseHit.X + 4 + 8), Int(-MouseHit.Y + 16), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(-MouseHit.X + 4 + 8), Int(-MouseHit.Y + 16))
                 ElseIf MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = 2 Then
                     'ZLegs
-                    Skin.SetPixel(Int(MouseHit.X + 4 + 16), Int(-MouseHit.Y + 48), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 4 + 16), Int(-MouseHit.Y + 48))
                 ElseIf MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = -2 Then
                     'ZLegs
-                    Skin.SetPixel(Int(-MouseHit.X + 4 + 28), Int(-MouseHit.Y + 48), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(-MouseHit.X + 4 + 28), Int(-MouseHit.Y + 48))
                 ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.X = 4 Then
                     'XHead
-                    Skin.SetPixel(Int(-MouseHit.Z + 20), Int(-MouseHit.Y + 24), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(-MouseHit.Z + 20), Int(-MouseHit.Y + 24))
                 ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.X = -4 Then
                     'XHead
-                    Skin.SetPixel(Int(MouseHit.Z + 4), Int(-MouseHit.Y + 24), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.Z + 4), Int(-MouseHit.Y + 24))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = 4 Then
                     'XBody
                     If ShowBody AndAlso Not ShowLeftArm Then
-                        Skin.SetPixel(Int(-MouseHit.Z + 30), Int(-MouseHit.Y + 28), ColorPicker.Color)
-                        Refresh()
+                        PaintPixel(Int(-MouseHit.Z + 30), Int(-MouseHit.Y + 28))
                     Else
-                        Skin.SetPixel(Int(-MouseHit.Z + 34), Int(-MouseHit.Y + 60), ColorPicker.Color)
-                        Refresh()
+                        PaintPixel(Int(-MouseHit.Z + 34), Int(-MouseHit.Y + 60))
                     End If
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = -4 Then
                     'XBody
                     If ShowBody AndAlso Not ShowRightArm Then
-                        Skin.SetPixel(Int(MouseHit.Z + 18), Int(-MouseHit.Y + 28), ColorPicker.Color)
-                        Refresh()
+                        PaintPixel(Int(MouseHit.Z + 18), Int(-MouseHit.Y + 28))
                     Else
-                        Skin.SetPixel(Int(MouseHit.Z + 50), Int(-MouseHit.Y + 28), ColorPicker.Color)
-                        Refresh()
+                        PaintPixel(Int(MouseHit.Z + 50), Int(-MouseHit.Y + 28))
                     End If
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = 8 Then
                     'XArms
-                    Skin.SetPixel(Int(MouseHit.Z + 42), Int(-MouseHit.Y + 60), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.Z + 42), Int(-MouseHit.Y + 60))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = -8 Then
                     'XArms
-                    Skin.SetPixel(Int(-MouseHit.Z + 42), Int(-MouseHit.Y + 28), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(-MouseHit.Z + 42), Int(-MouseHit.Y + 28))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = 7 Then
                     'XArms
-                    Skin.SetPixel(Int(MouseHit.Z + 41), Int(-MouseHit.Y + 60), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.Z + 41), Int(-MouseHit.Y + 60))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = -7 Then
                     'XArms
-                    Skin.SetPixel(Int(-MouseHit.Z + 42), Int(-MouseHit.Y + 28), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(-MouseHit.Z + 42), Int(-MouseHit.Y + 28))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.X = 4 Then
                     'XLeg
-                    Skin.SetPixel(Int(-MouseHit.Z + 26), Int(-MouseHit.Y + 48), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(-MouseHit.Z + 26), Int(-MouseHit.Y + 48))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.X = -4 Then
                     'XLeg
-                    Skin.SetPixel(Int(MouseHit.Z + 2), Int(-MouseHit.Y + 16), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.Z + 2), Int(-MouseHit.Y + 16))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.X = 0 Then
                     'XLeg
                     If ShowLeftLeg Then
-                        Skin.SetPixel(Int(MouseHit.Z + 18), Int(-MouseHit.Y + 48), ColorPicker.Color)
-                        Refresh()
+                        PaintPixel(Int(MouseHit.Z + 18), Int(-MouseHit.Y + 48))
                     Else
-                        Skin.SetPixel(Int(-MouseHit.Z + 10), Int(-MouseHit.Y + 16), ColorPicker.Color)
-                        Refresh()
+                        PaintPixel(Int(-MouseHit.Z + 10), Int(-MouseHit.Y + 16))
                     End If
                 ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = 16 Then
                     'YHead
-                    Skin.SetPixel(Int(MouseHit.X + 12), Int(MouseHit.Z + 4), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 12), Int(MouseHit.Z + 4))
                 ElseIf ShowHead AndAlso MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = 8 Then
                     'YHead
-                    Skin.SetPixel(Int(MouseHit.X + 20), Int(MouseHit.Z + 4), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 20), Int(MouseHit.Z + 4))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = 8 Then
                     'YBody
-                    Skin.SetPixel(Int(MouseHit.X + 24), Int(MouseHit.Z + 18), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 24), Int(MouseHit.Z + 18))
                 ElseIf ShowBody AndAlso (Not ShowLeftLeg OrElse Not ShowRightLeg) AndAlso MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = -4 Then
                     'YBody
-                    Skin.SetPixel(Int(MouseHit.X + 32), Int(-MouseHit.Z + 18), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 32), Int(-MouseHit.Z + 18))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y = 8 Then
                     'YArms
-                    Skin.SetPixel(Int(MouseHit.X + 32), Int(MouseHit.Z + 50), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 32), Int(MouseHit.Z + 50))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y = -4 Then
                     'YArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int(MouseHit.X + 36), Int(MouseHit.Z + 50), ColorPicker.Color)
+                        PaintPixel(Int(MouseHit.X + 36), Int(MouseHit.Z + 50))
                     Else
-                        Skin.SetPixel(Int(MouseHit.X + 35), Int(MouseHit.Z + 50), ColorPicker.Color)
+                        PaintPixel(Int(MouseHit.X + 35), Int(MouseHit.Z + 50))
                     End If
-                    Refresh()
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y = 8 Then
                     'YArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int(MouseHit.X + 52), Int(MouseHit.Z + 18), ColorPicker.Color)
+                        PaintPixel(Int(MouseHit.X + 52), Int(MouseHit.Z + 18))
                     Else
-                        Skin.SetPixel(Int(MouseHit.X + 51), Int(MouseHit.Z + 18), ColorPicker.Color)
+                        PaintPixel(Int(MouseHit.X + 51), Int(MouseHit.Z + 18))
                     End If
-                    Refresh()
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y = -4 Then
                     'YArms
                     If Model = Models.Steve Then
-                        Skin.SetPixel(Int(MouseHit.X + 56), Int(MouseHit.Z + 18), ColorPicker.Color)
+                        PaintPixel(Int(MouseHit.X + 56), Int(MouseHit.Z + 18))
                     Else
-                        Skin.SetPixel(Int(MouseHit.X + 54), Int(MouseHit.Z + 18), ColorPicker.Color)
+                        PaintPixel(Int(MouseHit.X + 54), Int(MouseHit.Z + 18))
                     End If
-                    Refresh()
                 ElseIf ShowLeftLeg AndAlso Not ShowBody AndAlso MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y = -4 Then
                     'YLeg
-                    Skin.SetPixel(Int(MouseHit.X + 20), Int(MouseHit.Z + 50), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 20), Int(MouseHit.Z + 50))
                 ElseIf ShowRightLeg AndAlso Not ShowBody AndAlso MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = -4 Then
                     'YLeg
-                    Skin.SetPixel(Int(MouseHit.X + 8), Int(MouseHit.Z + 18), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 8), Int(MouseHit.Z + 18))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y = -16 Then
                     'YLeg
-                    Skin.SetPixel(Int(MouseHit.X + 24), Int(MouseHit.Z + 50), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 24), Int(MouseHit.Z + 50))
                 ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = -16 Then
                     'YLeg
-                    Skin.SetPixel(Int(MouseHit.X + 12), Int(MouseHit.Z + 18), ColorPicker.Color)
-                    Refresh()
+                    PaintPixel(Int(MouseHit.X + 12), Int(MouseHit.Z + 18))
                 End If
                 MainForm.Skin = Skin
                 MainForm.UpdateImage()
             End If
+        End If
+    End Sub
+
+    Sub PaintPixel(X As Integer, Y As Integer)
+        If ColorPicker.IsPicking Then
+            ColorPicker.Color = Skin.GetPixel(X, Y)
+            ColorPicker.IsPicking = False
+            ColorPicker.Refresh()
+        Else
+            Skin.SetPixel(X, Y, ColorPicker.Color)
+            Refresh()
         End If
     End Sub
 End Class

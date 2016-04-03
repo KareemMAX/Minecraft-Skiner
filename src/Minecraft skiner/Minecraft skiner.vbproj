@@ -325,6 +325,7 @@
     <None Include="Resources\OpenTK.GLControl.dll" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\color-picker[1].png" />
     <None Include="Resources\Transparent.jpg" />
     <None Include="Resources\steveleftlegnone.png" />
     <None Include="Resources\steveleftarmnone.png" />

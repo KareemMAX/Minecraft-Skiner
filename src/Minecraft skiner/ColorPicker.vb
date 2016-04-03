@@ -1,25 +1,43 @@
 ﻿Imports System.ComponentModel
+Imports System.Drawing.Imaging
 Imports OpenTK.Graphics.OpenGL
+Imports OpenTK
 
 Public Class ColorPicker
     <Description("Render it or not (only used when design because when it became false in design mode it crashs VS and can be removed in the release)"), Category("Behavior")>
     Property InDesignMode As Boolean = True
 
-    Dim FromColor As Boolean
     Dim TheColor As Color = Color.Red
     <Description("The current color"), Category("Appearance")>
     Property Color As Color
         Set(value As Color)
             If value.A <> 0 AndAlso value.A <> 255 Then
                 value = Color.FromArgb(255, value.R, value.G, value.B)
+            ElseIf value.A = 0 Then
+                value = Color.Transparent
             End If
-            FromColor = True
             RGBHex.Text = RGB(value.R, value.G, value.B).ToString("X6")
 
             TheColor = value
         End Set
         Get
             Return TheColor
+        End Get
+    End Property
+
+    Dim _IsPicking As Boolean
+    <Description("Is Pick color active or not"), Category("Appearance")>
+    Property IsPicking As Boolean
+        Set(value As Boolean)
+            If value Then
+                ColorPick.BorderStyle = BorderStyle.Fixed3D
+            Else
+                ColorPick.BorderStyle = BorderStyle.None
+            End If
+            _IsPicking = value
+        End Set
+        Get
+            Return _IsPicking
         End Get
     End Property
 
@@ -40,7 +58,7 @@ Public Class ColorPicker
         Next
         GL.End()
 
-        If Not Color = Color.Transparent Then
+        If Not Color = Color.Transparent AndAlso Not IsPicking Then
             GL.LineWidth(2)
             GL.Begin(BeginMode.LineStrip)
             GL.Color3(Color.White)
@@ -187,6 +205,34 @@ Public Class ColorPicker
         CurrentColor.MakeCurrent()
         GL.ClearColor(Color)
         GL.Clear(ClearBufferMask.ColorBufferBit)
+
+        If Color = Color.Transparent Then
+            GL.Enable(EnableCap.Texture2D)
+
+            Dim texID As Integer = 1
+            Dim tex As Bitmap = My.Resources.Transparent
+            GL.BindTexture(TextureTarget.Texture2D, texID)
+            Dim data As BitmapData = tex.LockBits(New Rectangle(0, 0, 80, 80), ImageLockMode.ReadOnly, Imaging.PixelFormat.Format32bppArgb)
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, 80, 80, 0, Graphics.OpenGL.PixelFormat.Bgra, PixelType.UnsignedByte, data.Scan0)
+            tex.UnlockBits(data)
+            GL.GenerateMipmap(GenerateMipmapTarget.Texture2D)
+
+            GL.BindTexture(TextureTarget.ProxyTexture2D, texID)
+
+            GL.Begin(BeginMode.Quads)
+
+            GL.TexCoord2(0, 0)
+            GL.Vertex2(-1, 1)
+            GL.TexCoord2(1, 0)
+            GL.Vertex2(1, 1)
+            GL.TexCoord2(1, 5)
+            GL.Vertex2(1, -1)
+            GL.TexCoord2(0, 5)
+            GL.Vertex2(-1, -1)
+
+            GL.End()
+        End If
+
         CurrentColor.SwapBuffers()
 
         CurrentColor.Context.MakeCurrent(Nothing)
@@ -205,12 +251,14 @@ Public Class ColorPicker
         Next
         GL.End()
 
-        GL.LineWidth(3)
-        GL.Begin(BeginMode.Lines)
-        GL.Color3(Color.White)
-        GL.Vertex2(-1, -((2.0F * (Hue.Height / 360) * Color.GetHue) / Hue.Height - 1.0F))
-        GL.Vertex2(1, -((2.0F * (Hue.Height / 360) * Color.GetHue) / Hue.Height - 1.0F))
-        GL.End()
+        If Not Color = Color.Transparent AndAlso Not IsPicking Then
+            GL.LineWidth(3)
+            GL.Begin(BeginMode.Lines)
+            GL.Color3(Color.White)
+            GL.Vertex2(-1, -((2.0F * (Hue.Height / 360) * Color.GetHue) / Hue.Height - 1.0F))
+            GL.Vertex2(1, -((2.0F * (Hue.Height / 360) * Color.GetHue) / Hue.Height - 1.0F))
+            GL.End()
+        End If
 
         Hue.SwapBuffers()
         Hue.Context.MakeCurrent(Nothing)
@@ -230,12 +278,14 @@ Public Class ColorPicker
         GL.Vertex2(-1, -1)
         GL.End()
 
-        GL.LineWidth(3)
-        GL.Begin(BeginMode.Lines)
-        GL.Color3(Color.White)
-        GL.Vertex2(-1, ((2.0F * (Saturation.Height / 100) * RGBtoHSV(Color).Saturation) / Saturation.Height - 1.0F))
-        GL.Vertex2(1, ((2.0F * (Saturation.Height / 100) * RGBtoHSV(Color).Saturation) / Saturation.Height - 1.0F))
-        GL.End()
+        If Not Color = Color.Transparent AndAlso Not IsPicking Then
+            GL.LineWidth(3)
+            GL.Begin(BeginMode.Lines)
+            GL.Color3(Color.White)
+            GL.Vertex2(-1, ((2.0F * (Saturation.Height / 100) * RGBtoHSV(Color).Saturation) / Saturation.Height - 1.0F))
+            GL.Vertex2(1, ((2.0F * (Saturation.Height / 100) * RGBtoHSV(Color).Saturation) / Saturation.Height - 1.0F))
+            GL.End()
+        End If
 
         Saturation.SwapBuffers()
         Saturation.Context.MakeCurrent(Nothing)
@@ -255,12 +305,14 @@ Public Class ColorPicker
         GL.Vertex2(-1, -1)
         GL.End()
 
-        GL.LineWidth(3)
-        GL.Begin(BeginMode.Lines)
-        GL.Color3(Color.White)
-        GL.Vertex2(-1, ((2.0F * ((Value.Height / 100) * RGBtoHSV(Color).Value)) / Value.Height - 1.0F))
-        GL.Vertex2(1, ((2.0F * ((Value.Height / 100) * RGBtoHSV(Color).Value)) / Value.Height - 1.0F))
-        GL.End()
+        If Not Color = Color.Transparent AndAlso Not IsPicking Then
+            GL.LineWidth(3)
+            GL.Begin(BeginMode.Lines)
+            GL.Color3(Color.White)
+            GL.Vertex2(-1, ((2.0F * ((Value.Height / 100) * RGBtoHSV(Color).Value)) / Value.Height - 1.0F))
+            GL.Vertex2(1, ((2.0F * ((Value.Height / 100) * RGBtoHSV(Color).Value)) / Value.Height - 1.0F))
+            GL.End()
+        End If
 
         Value.SwapBuffers()
         Value.Context.MakeCurrent(Nothing)
@@ -307,6 +359,7 @@ Public Class ColorPicker
             If Point.X < 0 OrElse Point.X > Value.Width OrElse Point.Y < 0 OrElse Point.Y > Value.Height Then
                 Exit Sub
             End If
+            IsPicking = False
             Color = HSVtoRGB(Color.GetHue, RGBtoHSV(Color).Saturation, (100 / Value.Height) * Math.Abs(Point.Y - Value.Height))
             Refresh()
         ElseIf SaturationDown Then
@@ -314,6 +367,7 @@ Public Class ColorPicker
             If Point.X < 0 OrElse Point.X > Saturation.Width OrElse Point.Y < 0 OrElse Point.Y > Saturation.Height Then
                 Exit Sub
             End If
+            IsPicking = False
             Color = HSVtoRGB(Color.GetHue, (100 / Saturation.Height) * Math.Abs(Point.Y - Saturation.Height), RGBtoHSV(Color).Value)
             Refresh()
         ElseIf HueDown Then
@@ -321,6 +375,7 @@ Public Class ColorPicker
             If Point.X < 0 OrElse Point.X > Hue.Width OrElse Point.Y < 0 OrElse Point.Y > Hue.Height Then
                 Exit Sub
             End If
+            IsPicking = False
             Color = HSVtoRGB((360 / Hue.Height) * Point.Y, RGBtoHSV(Color).Saturation, RGBtoHSV(Color).Value)
             Refresh()
         ElseIf HSVDown Then
@@ -335,6 +390,7 @@ Public Class ColorPicker
             ElseIf HSVColor.Hue < 0 Then
                 HSVColor.Hue += 360
             End If
+            IsPicking = False
             Color = HSVtoRGB(HSVColor.Hue, HSVColor.Saturation, HSVColor.Value)
             Refresh()
         End If
@@ -357,6 +413,11 @@ Public Class ColorPicker
 
     Private Sub Transparent_Click(sender As Object, e As EventArgs) Handles Transparent.Click
         Color = Color.Transparent
+        Refresh()
+    End Sub
+
+    Private Sub ColorPick_Click(sender As Object, e As EventArgs) Handles ColorPick.Click
+        IsPicking = Not IsPicking
         Refresh()
     End Sub
 End Class

@@ -32,7 +32,9 @@ Partial Class ColorPicker
         Me.RGBHex = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Transparent = New System.Windows.Forms.PictureBox()
+        Me.ColorPick = New System.Windows.Forms.PictureBox()
         CType(Me.Transparent, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ColorPick, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'HSV
@@ -108,24 +110,35 @@ Partial Class ColorPicker
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(88, 494)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(14, 13)
+        Me.Label1.Size = New System.Drawing.Size(15, 13)
         Me.Label1.TabIndex = 6
         Me.Label1.Text = "#"
         '
-        'Tranparent
+        'Transparent
         '
         Me.Transparent.Image = Global.Minecraft_skiner.My.Resources.Resources.Transparent
         Me.Transparent.Location = New System.Drawing.Point(3, 3)
-        Me.Transparent.Name = "Tranparent"
+        Me.Transparent.Name = "Transparent"
         Me.Transparent.Size = New System.Drawing.Size(35, 35)
         Me.Transparent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Transparent.TabIndex = 7
         Me.Transparent.TabStop = False
         '
+        'ColorPick
+        '
+        Me.ColorPick.Image = Global.Minecraft_skiner.My.Resources.Resources.color_picker_1_
+        Me.ColorPick.Location = New System.Drawing.Point(218, 3)
+        Me.ColorPick.Name = "ColorPick"
+        Me.ColorPick.Size = New System.Drawing.Size(35, 35)
+        Me.ColorPick.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.ColorPick.TabIndex = 8
+        Me.ColorPick.TabStop = False
+        '
         'ColorPicker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.ColorPick)
         Me.Controls.Add(Me.Transparent)
         Me.Controls.Add(Me.RGBHex)
         Me.Controls.Add(Me.Label1)
@@ -137,6 +150,7 @@ Partial Class ColorPicker
         Me.Name = "ColorPicker"
         Me.Size = New System.Drawing.Size(257, 521)
         CType(Me.Transparent, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ColorPick, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -151,4 +165,5 @@ Partial Class ColorPicker
     Friend WithEvents RGBHex As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Transparent As PictureBox
+    Friend WithEvents ColorPick As PictureBox
 End Class
