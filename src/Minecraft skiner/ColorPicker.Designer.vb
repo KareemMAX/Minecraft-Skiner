@@ -23,7 +23,7 @@ Partial Class ColorPicker
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.HSV = New OpenTK.GLControl()
+        Me.HSV = New OpenTK.GLControl(New OpenTK.Graphics.GraphicsMode(32, 16, 8, 16))
         Me.Hue = New OpenTK.GLControl()
         Me.Saturation = New OpenTK.GLControl()
         Me.Value = New OpenTK.GLControl()

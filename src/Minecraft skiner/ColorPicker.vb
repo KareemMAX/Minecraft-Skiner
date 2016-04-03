@@ -36,20 +36,27 @@ Public Class ColorPicker
         GL.Vertex2(0, 0)
         For I As Double = 0 To 2 * Math.PI Step Math.PI / 24
             GL.Color3(HSVtoRGB((I * 360) / (2 * Math.PI), 100, RGBtoHSV(Color).Value))
-            GL.Vertex2(Math.Cos(I), Math.Sin(I))
+            GL.Vertex2(Math.Cos(I) * 0.965, Math.Sin(I) * 0.965)
         Next
         GL.End()
 
         If Not Color = Color.Transparent Then
-            GL.LineWidth(1.5)
+            GL.LineWidth(2)
             GL.Begin(BeginMode.LineStrip)
             GL.Color3(Color.White)
             For I As Double = 0 To 2 * Math.PI Step Math.PI / 24
-                GL.Vertex2(Math.Cos(I) * 0.05 + (Math.Cos((Color.GetHue * (2 * Math.PI)) / 360) * (RGBtoHSV(Color).Saturation / 100)), Math.Sin(I) * 0.05 + (Math.Sin((Color.GetHue * (2 * Math.PI)) / 360) * (RGBtoHSV(Color).Saturation / 100)))
+                GL.Vertex2(Math.Cos(I) * 0.05 + (Math.Cos((Color.GetHue * (2 * Math.PI)) / 360) * (RGBtoHSV(Color).Saturation / 100)) * 0.965, Math.Sin(I) * 0.05 + (Math.Sin((Color.GetHue * (2 * Math.PI)) / 360) * (RGBtoHSV(Color).Saturation / 100)) * 0.965)
             Next
             GL.End()
         End If
 
+        GL.LineWidth(5)
+        GL.Begin(BeginMode.LineLoop)
+        GL.Color3(Color.Black)
+        For I As Double = 0 To 2 * Math.PI Step Math.PI / 128
+            GL.Vertex2(Math.Cos(I) * 0.98, Math.Sin(I) * 0.98)
+        Next
+        GL.End()
         HSV.SwapBuffers()
 
         HSV.Context.MakeCurrent(Nothing)
@@ -321,7 +328,7 @@ Public Class ColorPicker
             If Point.X < 0 OrElse Point.X > HSV.Width OrElse Point.Y < 0 OrElse Point.Y > HSV.Height Then
                 Exit Sub
             End If
-            Dim HSVColor As New HSV(-Math.Atan2((Point.Y - HSV.Height / 2), (Point.X - HSV.Width / 2)) * 180 / Math.PI, ((((Point.X - HSV.Width / 2) ^ 2) + ((Point.Y - HSV.Height / 2) ^ 2)) ^ (1 / 2)) * 100 / (0.5 * HSV.Width), RGBtoHSV(Color).Value)
+            Dim HSVColor As New HSV(-Math.Atan2((Point.Y - HSV.Height / 2), (Point.X - HSV.Width / 2)) * 180 / Math.PI, ((((Point.X - HSV.Width / 2) ^ 2) + ((Point.Y - HSV.Height / 2) ^ 2)) ^ (1 / 2)) * 100 / (0.5 * (HSV.Width * 0.965)), RGBtoHSV(Color).Value)
             If HSVColor.Saturation > 100 Then HSVColor.Saturation = 100
             If HSVColor.Hue > 360 Then
                 HSVColor.Hue -= 360
