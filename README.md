@@ -6,4 +6,15 @@ Tool to make a great minecraft skins
 
 It's now under development
 
-will be released soon
+will be released  after completing this tasks
+
+-[] Color pick
+-[] Layers
+-[] Effects (Like photoshop)
+-[] 1.7 Paint mode
+-[] Mirror effect
+-[] Brush sizes
+-[] Select modes
+-[] Fill
+
+That also would be great if you forked this rebo and help me with this features
