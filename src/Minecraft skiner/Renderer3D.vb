@@ -268,6 +268,9 @@ Public Class Renderer3D
     <Description("The current color picker"), Category("Behavior")>
     Property ColorPicker As New ColorPicker
 
+    <Description("Can paint on the skin"), Category("Behavior")>
+    Property Paintable As Boolean = True
+
     ''' <summary>
     ''' Stop the paint faction
     ''' </summary>
@@ -1289,16 +1292,18 @@ Public Class Renderer3D
 
     Private Sub GlControl_MouseDown(sender As Object, e As MouseEventArgs) Handles GlControl.MouseDown
         If Not IsMouseDown AndAlso e.Button = MouseButtons.Left Then
-            GlControl.MakeCurrent()
-            Dim promatrix As Matrix4
-            Dim viewmatrix As Matrix4
-            GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
-            GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
-            Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix), Me)
-            m.Pos = e.Location
-            If m.Mouse2ndHit <> New Vector3(100, 100, 100) OrElse m.MouseHit <> New Vector3(0, 0, 0) Then
-                IsMouseHit = True
-                Exit Sub
+            If Paintable Then
+                GlControl.MakeCurrent()
+                Dim promatrix As Matrix4
+                Dim viewmatrix As Matrix4
+                GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
+                GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
+                Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix), Me)
+                m.Pos = e.Location
+                If m.Mouse2ndHit <> New Vector3(100, 100, 100) OrElse m.MouseHit <> New Vector3(0, 0, 0) Then
+                    IsMouseHit = True
+                    Exit Sub
+                End If
             End If
             OldLoc = Cursor.Position
             If Not IsMouseHidden Then
