@@ -55,7 +55,7 @@ Partial Class MainForm
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(893, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(1036, 24)
         Me.MenuStrip.TabIndex = 1
         Me.MenuStrip.Text = "MenuStrip1"
         '
@@ -169,7 +169,7 @@ Partial Class MainForm
         Me.Alexrdb.AutoSize = True
         Me.Alexrdb.Location = New System.Drawing.Point(6, 42)
         Me.Alexrdb.Name = "Alexrdb"
-        Me.Alexrdb.Size = New System.Drawing.Size(45, 17)
+        Me.Alexrdb.Size = New System.Drawing.Size(46, 17)
         Me.Alexrdb.TabIndex = 1
         Me.Alexrdb.TabStop = True
         Me.Alexrdb.Text = "Alex"
@@ -200,11 +200,13 @@ Partial Class MainForm
         'ColorPicker
         '
         Me.ColorPicker.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ColorPicker.BrushSize = CType(1, Byte)
         Me.ColorPicker.Color = System.Drawing.Color.Red
         Me.ColorPicker.InDesignMode = True
-        Me.ColorPicker.Location = New System.Drawing.Point(625, 27)
+        Me.ColorPicker.IsPicking = False
+        Me.ColorPicker.Location = New System.Drawing.Point(768, 27)
         Me.ColorPicker.Name = "ColorPicker"
-        Me.ColorPicker.Size = New System.Drawing.Size(257, 521)
+        Me.ColorPicker.Size = New System.Drawing.Size(257, 557)
         Me.ColorPicker.TabIndex = 9
         '
         'Renderer3D
@@ -235,7 +237,7 @@ Partial Class MainForm
         Me.Renderer3D.ShowLeftLeg = True
         Me.Renderer3D.ShowRightArm = True
         Me.Renderer3D.ShowRightLeg = True
-        Me.Renderer3D.Size = New System.Drawing.Size(446, 518)
+        Me.Renderer3D.Size = New System.Drawing.Size(589, 607)
         Me.Renderer3D.Skin = Global.Minecraft_skiner.My.Resources.Resources.steve
         Me.Renderer3D.TabIndex = 8
         Me.Renderer3D.Zoom = 1.0R
@@ -264,7 +266,7 @@ Partial Class MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(893, 557)
+        Me.ClientSize = New System.Drawing.Size(1036, 646)
         Me.Controls.Add(Me.ColorPicker)
         Me.Controls.Add(Me.Renderer3D)
         Me.Controls.Add(Me.LayerSelector1)

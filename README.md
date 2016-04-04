@@ -13,7 +13,7 @@ will be released  after completing this tasks
 - [ ] Effects (Like photoshop)
 - [ ] 1.7 Paint mode
 - [ ] Mirror effect
-- [ ] Brush sizes
+- [X] Brush sizes
 - [ ] Select modes
 - [ ] Fill
 - [ ] Undo/Redo

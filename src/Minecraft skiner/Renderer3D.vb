@@ -1334,7 +1334,7 @@ Public Class Renderer3D
         IsMouseHit = False
     End Sub
 
-    Private Sub Move_Tick(sender As Object, e As EventArgs) Handles Move.Tick
+    Private Sub Move_Tick(sender As Object, e As EventArgs) Handles timMove.Tick
         If IsMouseDown Then
             RotationY += (Cursor.Position.X - MouseLoc.X) * 0.5
             RotationX -= (Cursor.Position.Y - MouseLoc.Y) * 0.5
@@ -1360,7 +1360,7 @@ Public Class Renderer3D
         Return Matrix4.Invert(modelview).ExtractTranslation()
     End Function
 
-    Private Sub Paint_Tick(sender As Object, e As EventArgs) Handles Paint.Tick
+    Private Sub Paint_Tick(sender As Object, e As EventArgs) Handles timPaint.Tick
         If IsMouseHit Then
             GlControl.MakeCurrent()
             Dim promatrix As Matrix4
@@ -1375,309 +1375,519 @@ Public Class Renderer3D
             Dim MouseHitDis As Double = Math.Sqrt(Math.Pow(CameraPos.X - MouseHit.X, 2.0F) + Math.Pow(CameraPos.Y - MouseHit.Y, 2.0F) + Math.Pow(CameraPos.Z - MouseHit.Z, 2.0F))
             Dim Mouse2ndHitDis As Double = Math.Sqrt(Math.Pow(CameraPos.X - Mouse2ndHit.X, 2.0F) + Math.Pow(CameraPos.Y - Mouse2ndHit.Y, 2.0F) + Math.Pow(CameraPos.Z - Mouse2ndHit.Z, 2.0F))
             If MouseHitDis > Mouse2ndHitDis Then
-                If Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.Z = 4.24F Then
-                    'ZHead
-                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 40), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8))
-                ElseIf Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.Z = -4.24F Then
-                    'ZHead
-                    PaintPixel(Int((-Mouse2ndHit.X + 4.24) / 1.06 + 56), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8))
-                ElseIf Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = 2.12F Then
-                    'ZBody
-                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 20), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                ElseIf Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = -2.12F Then
-                    'ZBody
-                    PaintPixel(Int((-Mouse2ndHit.X + 4.24) / 1.06 + 32), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                ElseIf Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = 2.12F Then
-                    'ZArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                    Else
-                        PaintPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 47), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                    End If
-                ElseIf Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = -2.12F Then
-                    'ZArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 45), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                    Else
-                        PaintPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 44), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                    End If
-                ElseIf Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = 2.12F Then
-                    'ZArms
-                    PaintPixel(Int((Mouse2ndHit.X + 3.88) / 1.06 + 45), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
-                ElseIf Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.Z = -2.12F Then
-                    'ZArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 64), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
-                    Else
-                        PaintPixel(Int((-Mouse2ndHit.X + 3.88) / 1.06 + 62), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
-                    End If
-                ElseIf Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = 2.12F Then
-                    'ZLegs
-                    PaintPixel(Int((Mouse2ndHit.X + 4.12) / 1.06 + 4), Int((-Mouse2ndHit.Y - 16.36) / 1.06 + 48))
-                ElseIf Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = -2.12F Then
-                    'ZLegs
-                    PaintPixel(Int((-Mouse2ndHit.X + 4.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 16.36) / 1.06 + 48))
-                ElseIf Mouse2ndHit.X < 4.12 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = 2.12F Then
-                    'ZLegs
-                    PaintPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 4), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52))
-                ElseIf Mouse2ndHit.X < 4.12 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.Z = -2.12F Then
-                    'ZLegs
-                    PaintPixel(Int((-Mouse2ndHit.X + 0.12) / 1.06 + 16), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52))
-                ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.X = 4.24F Then
-                    'XHead
-                    PaintPixel(Int((-Mouse2ndHit.Z + 4.24) / 1.06 + 48), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8))
-                ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.Y < 16.24 AndAlso Mouse2ndHit.Y > 7.76 AndAlso Mouse2ndHit.X = -4.24F Then
-                    'XHead
-                    PaintPixel(Int((Mouse2ndHit.Z + 4.24) / 1.06 + 32), Int((-Mouse2ndHit.Y + 16.24) / 1.06 + 8))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = 4.24F Then
-                    'XBody
-                    PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 28), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso Mouse2ndHit.X = -4.24F Then
-                    'XBody
-                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 16), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso (Mouse2ndHit.X = 8.12F OrElse Mouse2ndHit.X = 7.09F) Then
-                    'XArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 56), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
-                    Else
-                        PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 55), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
-                    End If
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso (Mouse2ndHit.X = -8.12F OrElse Mouse2ndHit.X = -7.09F) Then
-                    'XArms
-                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 40), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso (Mouse2ndHit.X = 3.88F OrElse Mouse2ndHit.X = 3.91F) Then
-                    'XArms
-                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 52))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < 8.36 AndAlso Mouse2ndHit.Y > -4.36 AndAlso (Mouse2ndHit.X = -3.88F OrElse Mouse2ndHit.X = -3.91F) Then
-                    'XArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                    Else
-                        PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 47), Int((-Mouse2ndHit.Y + 8.36) / 1.06 + 36))
-                    End If
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = 4.24F Then
-                    'XLeg
-                    PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = -4.24F Then
-                    'XLeg
-                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 36))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = 0.12F Then
-                    'XLeg
-                    PaintPixel(Int((Mouse2ndHit.Z + 2.12) / 1.06 + 8), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 36))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.Y < -3.64 AndAlso Mouse2ndHit.Y > -16.36 AndAlso Mouse2ndHit.X = -0.12F Then
-                    'XLeg
-                    PaintPixel(Int((-Mouse2ndHit.Z + 2.12) / 1.06), Int((-Mouse2ndHit.Y - 3.64) / 1.06 + 52))
-                ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = 16.24F Then
-                    'YHead
-                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 40), Int((Mouse2ndHit.Z + 4.24) / 1.06))
-                ElseIf Mouse2ndHit.Z < 4.24 AndAlso Mouse2ndHit.Z > -4.24 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = 7.76F Then
-                    'YHead
-                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 48), Int((Mouse2ndHit.Z + 4.24) / 1.06))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = 8.36F Then
-                    'YBody
-                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 20), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = -4.36F Then
-                    'YBody
-                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 28), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y = 8.36F Then
-                    'YArms
-                    PaintPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 52), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 8.12 AndAlso Mouse2ndHit.X > 3.88 AndAlso Mouse2ndHit.Y = -4.36F Then
-                    'YArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 56), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
-                    Else
-                        PaintPixel(Int((Mouse2ndHit.X - 3.88) / 1.06 + 55), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
-                    End If
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y = 8.36F Then
-                    'YArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 44), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
-                    Else
-                        PaintPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 43), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
-                    End If
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < -3.88 AndAlso Mouse2ndHit.X > -8.12 AndAlso Mouse2ndHit.Y = -4.36F Then
-                    'YArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 48), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
-                    Else
-                        PaintPixel(Int((Mouse2ndHit.X + 8.12) / 1.06 + 46), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
-                    End If
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y = -3.64F Then
-                    'YLeg
-                    PaintPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 4), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = -3.64F Then
-                    'YLeg
-                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 4), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 4.24 AndAlso Mouse2ndHit.X > -0.12 AndAlso Mouse2ndHit.Y = -16.36F Then
-                    'YLeg
-                    PaintPixel(Int((Mouse2ndHit.X + 0.12) / 1.06 + 8), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 48))
-                ElseIf Mouse2ndHit.Z < 2.12 AndAlso Mouse2ndHit.Z > -2.12 AndAlso Mouse2ndHit.X < 0.12 AndAlso Mouse2ndHit.X > -4.24 AndAlso Mouse2ndHit.Y = -16.36F Then
-                    'YLeg
-                    PaintPixel(Int((Mouse2ndHit.X + 4.24) / 1.06 + 8), Int((Mouse2ndHit.Z + 2.12) / 1.06 + 32))
-                End If
+                PaintPixel(Mouse2ndHit, True)
 
                 MainForm.Skin = Skin
                 MainForm.UpdateImage()
                 Exit Sub
             End If
             If MouseHit <> New Vector3(0, 0, 0) Then
-                If MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.Z = 4 Then
-                    'ZHead
-                    PaintPixel(Int(MouseHit.X + 4 + 8), Int(-MouseHit.Y + 16 + 8))
-                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.Z = -4 Then
-                    'ZHead
-                    PaintPixel(Int(-MouseHit.X + 4 + 24), Int(-MouseHit.Y + 16 + 8))
-                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = 2 Then
-                    'ZBody
-                    PaintPixel(Int(MouseHit.X + 4 + 20), Int(-MouseHit.Y + 8 + 20))
-                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = -2 Then
-                    'ZBody
-                    PaintPixel(Int(-MouseHit.X + 4 + 32), Int(-MouseHit.Y + 8 + 20))
-                ElseIf MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = 2 Then
-                    'ZArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int(MouseHit.X + 4 + 48), Int(-MouseHit.Y + 8 + 20))
-                    Else
-                        PaintPixel(Int(MouseHit.X + 4 + 47), Int(-MouseHit.Y + 8 + 20))
-                    End If
-                ElseIf MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = -2 Then
-                    'ZArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int(-MouseHit.X + 4 + 44), Int(-MouseHit.Y + 8 + 20))
-                    Else
-                        PaintPixel(Int(-MouseHit.X + 4 + 43), Int(-MouseHit.Y + 8 + 20))
-                    End If
-                ElseIf MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = 2 Then
-                    'ZArms
-                    PaintPixel(Int(MouseHit.X + 4 + 28), Int(-MouseHit.Y + 8 + 52))
-                ElseIf MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.Z = -2 Then
-                    'ZArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int(-MouseHit.X + 4 + 48), Int(-MouseHit.Y + 8 + 52))
-                    Else
-                        PaintPixel(Int(-MouseHit.X + 4 + 46), Int(-MouseHit.Y + 8 + 52))
-                    End If
-                ElseIf MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = 2 Then
-                    'ZLegs
-                    PaintPixel(Int(MouseHit.X + 4 + 4), Int(-MouseHit.Y + 16))
-                ElseIf MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = -2 Then
-                    'ZLegs
-                    PaintPixel(Int(-MouseHit.X + 4 + 8), Int(-MouseHit.Y + 16))
-                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = 2 Then
-                    'ZLegs
-                    PaintPixel(Int(MouseHit.X + 4 + 16), Int(-MouseHit.Y + 48))
-                ElseIf MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.Z = -2 Then
-                    'ZLegs
-                    PaintPixel(Int(-MouseHit.X + 4 + 28), Int(-MouseHit.Y + 48))
-                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.X = 4 Then
-                    'XHead
-                    PaintPixel(Int(-MouseHit.Z + 20), Int(-MouseHit.Y + 24))
-                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.Y < 16 AndAlso MouseHit.Y > 8 AndAlso MouseHit.X = -4 Then
-                    'XHead
-                    PaintPixel(Int(MouseHit.Z + 4), Int(-MouseHit.Y + 24))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = 4 Then
-                    'XBody
-                    If ShowBody AndAlso Not ShowLeftArm Then
-                        PaintPixel(Int(-MouseHit.Z + 30), Int(-MouseHit.Y + 28))
-                    Else
-                        PaintPixel(Int(-MouseHit.Z + 34), Int(-MouseHit.Y + 60))
-                    End If
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = -4 Then
-                    'XBody
-                    If ShowBody AndAlso Not ShowRightArm Then
-                        PaintPixel(Int(MouseHit.Z + 18), Int(-MouseHit.Y + 28))
-                    Else
-                        PaintPixel(Int(MouseHit.Z + 50), Int(-MouseHit.Y + 28))
-                    End If
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = 8 Then
-                    'XArms
-                    PaintPixel(Int(MouseHit.Z + 42), Int(-MouseHit.Y + 60))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = -8 Then
-                    'XArms
-                    PaintPixel(Int(-MouseHit.Z + 42), Int(-MouseHit.Y + 28))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = 7 Then
-                    'XArms
-                    PaintPixel(Int(MouseHit.Z + 41), Int(-MouseHit.Y + 60))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < 8 AndAlso MouseHit.Y > -4 AndAlso MouseHit.X = -7 Then
-                    'XArms
-                    PaintPixel(Int(-MouseHit.Z + 42), Int(-MouseHit.Y + 28))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.X = 4 Then
-                    'XLeg
-                    PaintPixel(Int(-MouseHit.Z + 26), Int(-MouseHit.Y + 48))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.X = -4 Then
-                    'XLeg
-                    PaintPixel(Int(MouseHit.Z + 2), Int(-MouseHit.Y + 16))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.Y < -4 AndAlso MouseHit.Y > -16 AndAlso MouseHit.X = 0 Then
-                    'XLeg
-                    If ShowLeftLeg Then
-                        PaintPixel(Int(MouseHit.Z + 18), Int(-MouseHit.Y + 48))
-                    Else
-                        PaintPixel(Int(-MouseHit.Z + 10), Int(-MouseHit.Y + 16))
-                    End If
-                ElseIf MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = 16 Then
-                    'YHead
-                    PaintPixel(Int(MouseHit.X + 12), Int(MouseHit.Z + 4))
-                ElseIf ShowHead AndAlso MouseHit.Z < 4 AndAlso MouseHit.Z > -4 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = 8 Then
-                    'YHead
-                    PaintPixel(Int(MouseHit.X + 20), Int(MouseHit.Z + 4))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = 8 Then
-                    'YBody
-                    PaintPixel(Int(MouseHit.X + 24), Int(MouseHit.Z + 18))
-                ElseIf ShowBody AndAlso (Not ShowLeftLeg OrElse Not ShowRightLeg) AndAlso MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = -4 Then
-                    'YBody
-                    PaintPixel(Int(MouseHit.X + 32), Int(-MouseHit.Z + 18))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y = 8 Then
-                    'YArms
-                    PaintPixel(Int(MouseHit.X + 32), Int(MouseHit.Z + 50))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 8 AndAlso MouseHit.X > 4 AndAlso MouseHit.Y = -4 Then
-                    'YArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int(MouseHit.X + 36), Int(MouseHit.Z + 50))
-                    Else
-                        PaintPixel(Int(MouseHit.X + 35), Int(MouseHit.Z + 50))
-                    End If
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y = 8 Then
-                    'YArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int(MouseHit.X + 52), Int(MouseHit.Z + 18))
-                    Else
-                        PaintPixel(Int(MouseHit.X + 51), Int(MouseHit.Z + 18))
-                    End If
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < -4 AndAlso MouseHit.X > -8 AndAlso MouseHit.Y = -4 Then
-                    'YArms
-                    If Model = Models.Steve Then
-                        PaintPixel(Int(MouseHit.X + 56), Int(MouseHit.Z + 18))
-                    Else
-                        PaintPixel(Int(MouseHit.X + 54), Int(MouseHit.Z + 18))
-                    End If
-                ElseIf ShowLeftLeg AndAlso Not ShowBody AndAlso MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y = -4 Then
-                    'YLeg
-                    PaintPixel(Int(MouseHit.X + 20), Int(MouseHit.Z + 50))
-                ElseIf ShowRightLeg AndAlso Not ShowBody AndAlso MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = -4 Then
-                    'YLeg
-                    PaintPixel(Int(MouseHit.X + 8), Int(MouseHit.Z + 18))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 4 AndAlso MouseHit.X > 0 AndAlso MouseHit.Y = -16 Then
-                    'YLeg
-                    PaintPixel(Int(MouseHit.X + 24), Int(MouseHit.Z + 50))
-                ElseIf MouseHit.Z < 2 AndAlso MouseHit.Z > -2 AndAlso MouseHit.X < 0 AndAlso MouseHit.X > -4 AndAlso MouseHit.Y = -16 Then
-                    'YLeg
-                    PaintPixel(Int(MouseHit.X + 12), Int(MouseHit.Z + 18))
-                End If
+                PaintPixel(MouseHit)
+
                 MainForm.Skin = Skin
                 MainForm.UpdateImage()
             End If
         End If
     End Sub
 
-    Sub PaintPixel(X As Integer, Y As Integer)
+    Sub PaintPixel(Vector As Vector3, Optional Second As Boolean = False)
+        Dim Point As Point
+        Dim XUp As Vector3
+        Dim YUp As Vector3
+        If Second Then
+            Point = Get2nd2DFrom3D(Vector, XUp, YUp)
+        Else
+            Point = Get2DFrom3D(Vector, XUp, YUp)
+        End If
         If ColorPicker.IsPicking Then
-            ColorPicker.Color = Skin.GetPixel(X, Y)
+            ColorPicker.Color = Skin.GetPixel(Point.X, Point.Y)
             ColorPicker.IsPicking = False
             ColorPicker.Refresh()
         Else
-            Skin.SetPixel(X, Y, ColorPicker.Color)
+            Skin.SetPixel(Point.X, Point.Y, ColorPicker.Color)
+            If ColorPicker.BrushSize >= 2 Then
+                Dim Points(2) As Point
+                If Second Then
+                    Points(0) = Get2nd2DFrom3D(Vector + XUp)
+                    Points(1) = Get2nd2DFrom3D(Vector + XUp - YUp)
+                    Points(2) = Get2nd2DFrom3D(Vector - YUp)
+                Else
+                    Points(0) = Get2DFrom3D(Vector + XUp)
+                    Points(1) = Get2DFrom3D(Vector + XUp - YUp)
+                    Points(2) = Get2DFrom3D(Vector - YUp)
+                End If
+                For Each Pixel As Point In Points
+                    If Pixel <> New Point(0, 0) Then
+                        Skin.SetPixel(Pixel.X, Pixel.Y, ColorPicker.Color)
+                    End If
+                Next
+            End If
+            If ColorPicker.BrushSize = 3 Then
+                Dim Points(4) As Point
+                If Second Then
+                    Points(0) = Get2nd2DFrom3D(Vector - XUp)
+                    Points(1) = Get2nd2DFrom3D(Vector - XUp - YUp)
+                    Points(2) = Get2nd2DFrom3D(Vector + YUp)
+                    Points(3) = Get2nd2DFrom3D(Vector - XUp + YUp)
+                    Points(4) = Get2nd2DFrom3D(Vector + XUp + YUp)
+                Else
+                    Points(0) = Get2DFrom3D(Vector - XUp)
+                    Points(1) = Get2DFrom3D(Vector - XUp - YUp)
+                    Points(2) = Get2DFrom3D(Vector + YUp)
+                    Points(3) = Get2DFrom3D(Vector - XUp + YUp)
+                    Points(4) = Get2DFrom3D(Vector + XUp + YUp)
+                End If
+                For Each Pixel As Point In Points
+                    If Pixel <> New Point(0, 0) Then
+                        Skin.SetPixel(Pixel.X, Pixel.Y, ColorPicker.Color)
+                    End If
+                Next
+            End If
             Refresh()
         End If
     End Sub
+
+    Function Get2DFrom3D(Vector As Vector3, ByRef XUp As Vector3, ByRef YUp As Vector3) As Point
+        Dim Result As Point
+        If Vector.X < 4 AndAlso Vector.X > -4 AndAlso Vector.Y < 16 AndAlso Vector.Y > 8 AndAlso Vector.Z = 4 Then
+            'ZHead
+            Result = New Point(Int(Vector.X + 4 + 8), Int(-Vector.Y + 16 + 8))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4 AndAlso Vector.X > -4 AndAlso Vector.Y < 16 AndAlso Vector.Y > 8 AndAlso Vector.Z = -4 Then
+            'ZHead
+            Result = New Point(Int(-Vector.X + 4 + 24), Int(-Vector.Y + 16 + 8))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4 AndAlso Vector.X > -4 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.Z = 2 Then
+            'ZBody
+            Result = New Point(Int(Vector.X + 4 + 20), Int(-Vector.Y + 8 + 20))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4 AndAlso Vector.X > -4 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.Z = -2 Then
+            'ZBody
+            Result = New Point(Int(-Vector.X + 4 + 32), Int(-Vector.Y + 8 + 20))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < -4 AndAlso Vector.X > -8 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.Z = 2 Then
+            'ZArms
+            If Model = Models.Steve Then
+                Result = New Point(Int(Vector.X + 4 + 48), Int(-Vector.Y + 8 + 20))
+            Else
+                Result = New Point(Int(Vector.X + 4 + 47), Int(-Vector.Y + 8 + 20))
+            End If
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < -4 AndAlso Vector.X > -8 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.Z = -2 Then
+            'ZArms
+            If Model = Models.Steve Then
+                Result = New Point(Int(-Vector.X + 4 + 44), Int(-Vector.Y + 8 + 20))
+            Else
+                Result = New Point(Int(-Vector.X + 4 + 43), Int(-Vector.Y + 8 + 20))
+            End If
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 8 AndAlso Vector.X > 4 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.Z = 2 Then
+            'ZArms
+            Result = New Point(Int(Vector.X + 4 + 28), Int(-Vector.Y + 8 + 52))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 8 AndAlso Vector.X > 4 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.Z = -2 Then
+            'ZArms
+            If Model = Models.Steve Then
+                Result = New Point(Int(-Vector.X + 4 + 48), Int(-Vector.Y + 8 + 52))
+            Else
+                Result = New Point(Int(-Vector.X + 4 + 46), Int(-Vector.Y + 8 + 52))
+            End If
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 0 AndAlso Vector.X > -4 AndAlso Vector.Y < -4 AndAlso Vector.Y > -16 AndAlso Vector.Z = 2 Then
+            'ZLegs
+            Result = New Point(Int(Vector.X + 4 + 4), Int(-Vector.Y + 16))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 0 AndAlso Vector.X > -4 AndAlso Vector.Y < -4 AndAlso Vector.Y > -16 AndAlso Vector.Z = -2 Then
+            'ZLegs
+            Result = New Point(Int(-Vector.X + 4 + 8), Int(-Vector.Y + 16))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4 AndAlso Vector.X > 0 AndAlso Vector.Y < -4 AndAlso Vector.Y > -16 AndAlso Vector.Z = 2 Then
+            'ZLegs
+            Result = New Point(Int(Vector.X + 4 + 16), Int(-Vector.Y + 48))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4 AndAlso Vector.X > 0 AndAlso Vector.Y < -4 AndAlso Vector.Y > -16 AndAlso Vector.Z = -2 Then
+            'ZLegs
+            Result = New Point(Int(-Vector.X + 4 + 28), Int(-Vector.Y + 48))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 4 AndAlso Vector.Z > -4 AndAlso Vector.Y < 16 AndAlso Vector.Y > 8 AndAlso Vector.X = 4 Then
+            'XHead
+            Result = New Point(Int(-Vector.Z + 20), Int(-Vector.Y + 24))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 4 AndAlso Vector.Z > -4 AndAlso Vector.Y < 16 AndAlso Vector.Y > 8 AndAlso Vector.X = -4 Then
+            'XHead
+            Result = New Point(Int(Vector.Z + 4), Int(-Vector.Y + 24))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = 4 Then
+            'XBody
+            If ShowBody AndAlso Not ShowLeftArm Then
+                Result = New Point(Int(-Vector.Z + 30), Int(-Vector.Y + 28))
+            Else
+                Result = New Point(Int(-Vector.Z + 34), Int(-Vector.Y + 60))
+            End If
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = -4 Then
+            'XBody
+            If ShowBody AndAlso Not ShowRightArm Then
+                Result = New Point(Int(Vector.Z + 18), Int(-Vector.Y + 28))
+            Else
+                Result = New Point(Int(Vector.Z + 50), Int(-Vector.Y + 28))
+            End If
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = 8 Then
+            'XArms
+            Result = New Point(Int(Vector.Z + 42), Int(-Vector.Y + 60))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = -8 Then
+            'XArms
+            Result = New Point(Int(-Vector.Z + 42), Int(-Vector.Y + 28))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = 7 Then
+            'XArms
+            Result = New Point(Int(Vector.Z + 41), Int(-Vector.Y + 60))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = -7 Then
+            'XArms
+            Result = New Point(Int(-Vector.Z + 42), Int(-Vector.Y + 28))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < -4 AndAlso Vector.Y > -16 AndAlso Vector.X = 4 Then
+            'XLeg
+            Result = New Point(Int(-Vector.Z + 26), Int(-Vector.Y + 48))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < -4 AndAlso Vector.Y > -16 AndAlso Vector.X = -4 Then
+            'XLeg
+            Result = New Point(Int(Vector.Z + 2), Int(-Vector.Y + 16))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < -4 AndAlso Vector.Y > -16 AndAlso Vector.X = 0 Then
+            'XLeg
+            If ShowLeftLeg Then
+                Result = New Point(Int(Vector.Z + 18), Int(-Vector.Y + 48))
+            Else
+                Result = New Point(Int(-Vector.Z + 10), Int(-Vector.Y + 16))
+            End If
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 4 AndAlso Vector.Z > -4 AndAlso Vector.X < 4 AndAlso Vector.X > -4 AndAlso Vector.Y = 16 Then
+            'YHead
+            Result = New Point(Int(Vector.X + 12), Int(Vector.Z + 4))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf ShowHead AndAlso Vector.Z < 4 AndAlso Vector.Z > -4 AndAlso Vector.X < 4 AndAlso Vector.X > -4 AndAlso Vector.Y = 8 Then
+            'YHead
+            Result = New Point(Int(Vector.X + 20), Int(Vector.Z + 4))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 4 AndAlso Vector.X > -4 AndAlso Vector.Y = 8 Then
+            'YBody
+            Result = New Point(Int(Vector.X + 24), Int(Vector.Z + 18))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf ShowBody AndAlso (Not ShowLeftLeg OrElse Not ShowRightLeg) AndAlso Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 4 AndAlso Vector.X > -4 AndAlso Vector.Y = -4 Then
+            'YBody
+            Result = New Point(Int(Vector.X + 32), Int(-Vector.Z + 18))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 8 AndAlso Vector.X > 4 AndAlso Vector.Y = 8 Then
+            'YArms
+            Result = New Point(Int(Vector.X + 32), Int(Vector.Z + 50))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 8 AndAlso Vector.X > 4 AndAlso Vector.Y = -4 Then
+            'YArms
+            If Model = Models.Steve Then
+                Result = New Point(Int(Vector.X + 36), Int(Vector.Z + 50))
+            Else
+                Result = New Point(Int(Vector.X + 35), Int(Vector.Z + 50))
+            End If
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < -4 AndAlso Vector.X > -8 AndAlso Vector.Y = 8 Then
+            'YArms
+            If Model = Models.Steve Then
+                Result = New Point(Int(Vector.X + 52), Int(Vector.Z + 18))
+            Else
+                Result = New Point(Int(Vector.X + 51), Int(Vector.Z + 18))
+            End If
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < -4 AndAlso Vector.X > -8 AndAlso Vector.Y = -4 Then
+            'YArms
+            If Model = Models.Steve Then
+                Result = New Point(Int(Vector.X + 56), Int(Vector.Z + 18))
+            Else
+                Result = New Point(Int(Vector.X + 54), Int(Vector.Z + 18))
+            End If
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf ShowLeftLeg AndAlso Not ShowBody AndAlso Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 4 AndAlso Vector.X > 0 AndAlso Vector.Y = -4 Then
+            'YLeg
+            Result = New Point(Int(Vector.X + 20), Int(Vector.Z + 50))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf ShowRightLeg AndAlso Not ShowBody AndAlso Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 0 AndAlso Vector.X > -4 AndAlso Vector.Y = -4 Then
+            'YLeg
+            Result = New Point(Int(Vector.X + 8), Int(Vector.Z + 18))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 4 AndAlso Vector.X > 0 AndAlso Vector.Y = -16 Then
+            'YLeg
+            Result = New Point(Int(Vector.X + 24), Int(Vector.Z + 50))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 0 AndAlso Vector.X > -4 AndAlso Vector.Y = -16 Then
+            'YLeg
+            Result = New Point(Int(Vector.X + 12), Int(Vector.Z + 18))
+            XUp.X = 1
+            YUp.Z = 1
+        End If
+
+        Return Result
+    End Function
+
+    Function Get2nd2DFrom3D(Vector As Vector3, ByRef XUp As Vector3, ByRef YUp As Vector3) As Point
+        Dim Result As Point
+        If Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.Z = 4.24F Then
+            'ZHead
+            Result = New Point(Int((Vector.X + 4.24) / 1.06 + 40), Int((-Vector.Y + 16.24) / 1.06 + 8))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.Z = -4.24F Then
+            'ZHead
+            Result = New Point(Int((-Vector.X + 4.24) / 1.06 + 56), Int((-Vector.Y + 16.24) / 1.06 + 8))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = 2.12F Then
+            'ZBody
+            Result = New Point(Int((Vector.X + 4.24) / 1.06 + 20), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = -2.12F Then
+            'ZBody
+            Result = New Point(Int((-Vector.X + 4.24) / 1.06 + 32), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = 2.12F Then
+            'ZArms
+            If Model = Models.Steve Then
+                Result = New Point(Int((Vector.X + 3.88) / 1.06 + 48), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            Else
+                Result = New Point(Int((Vector.X + 3.88) / 1.06 + 47), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            End If
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = -2.12F Then
+            'ZArms
+            If Model = Models.Steve Then
+                Result = New Point(Int((-Vector.X + 3.88) / 1.06 + 45), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            Else
+                Result = New Point(Int((-Vector.X + 3.88) / 1.06 + 44), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            End If
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = 2.12F Then
+            'ZArms
+            Result = New Point(Int((Vector.X + 3.88) / 1.06 + 45), Int((-Vector.Y + 8.36) / 1.06 + 52))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = -2.12F Then
+            'ZArms
+            If Model = Models.Steve Then
+                Result = New Point(Int((-Vector.X + 3.88) / 1.06 + 64), Int((-Vector.Y + 8.36) / 1.06 + 52))
+            Else
+                Result = New Point(Int((-Vector.X + 3.88) / 1.06 + 62), Int((-Vector.Y + 8.36) / 1.06 + 52))
+            End If
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 0.12 AndAlso Vector.X > -4.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = 2.12F Then
+            'ZLegs
+            Result = New Point(Int((Vector.X + 4.12) / 1.06 + 4), Int((-Vector.Y - 16.36) / 1.06 + 48))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 0.12 AndAlso Vector.X > -4.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = -2.12F Then
+            'ZLegs
+            Result = New Point(Int((-Vector.X + 4.12) / 1.06 + 8), Int((-Vector.Y - 16.36) / 1.06 + 48))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4.12 AndAlso Vector.X > -0.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = 2.12F Then
+            'ZLegs
+            Result = New Point(Int((Vector.X + 0.12) / 1.06 + 4), Int((-Vector.Y - 3.64) / 1.06 + 52))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.X < 4.12 AndAlso Vector.X > -0.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = -2.12F Then
+            'ZLegs
+            Result = New Point(Int((-Vector.X + 0.12) / 1.06 + 16), Int((-Vector.Y - 3.64) / 1.06 + 52))
+            XUp.X = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.X = 4.24F Then
+            'XHead
+            Result = New Point(Int((-Vector.Z + 4.24) / 1.06 + 48), Int((-Vector.Y + 16.24) / 1.06 + 8))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.X = -4.24F Then
+            'XHead
+            Result = New Point(Int((Vector.Z + 4.24) / 1.06 + 32), Int((-Vector.Y + 16.24) / 1.06 + 8))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.X = 4.24F Then
+            'XBody
+            Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 28), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.X = -4.24F Then
+            'XBody
+            Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 16), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = 8.12F OrElse Vector.X = 7.09F) Then
+            'XArms
+            If Model = Models.Steve Then
+                Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 56), Int((-Vector.Y + 8.36) / 1.06 + 52))
+            Else
+                Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 55), Int((-Vector.Y + 8.36) / 1.06 + 52))
+            End If
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = -8.12F OrElse Vector.X = -7.09F) Then
+            'XArms
+            Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 40), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = 3.88F OrElse Vector.X = 3.91F) Then
+            'XArms
+            Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 48), Int((-Vector.Y + 8.36) / 1.06 + 52))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = -3.88F OrElse Vector.X = -3.91F) Then
+            'XArms
+            If Model = Models.Steve Then
+                Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 48), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            Else
+                Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 47), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            End If
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = 4.24F Then
+            'XLeg
+            Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 8), Int((-Vector.Y - 3.64) / 1.06 + 52))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = -4.24F Then
+            'XLeg
+            Result = New Point(Int((-Vector.Z + 2.12) / 1.06), Int((-Vector.Y - 3.64) / 1.06 + 36))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = 0.12F Then
+            'XLeg
+            Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 8), Int((-Vector.Y - 3.64) / 1.06 + 36))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = -0.12F Then
+            'XLeg
+            Result = New Point(Int((-Vector.Z + 2.12) / 1.06), Int((-Vector.Y - 3.64) / 1.06 + 52))
+            XUp.Z = 1
+            YUp.Y = 1
+        ElseIf Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = 16.24F Then
+            'YHead
+            Result = New Point(Int((Vector.X + 4.24) / 1.06 + 40), Int((Vector.Z + 4.24) / 1.06))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = 7.76F Then
+            'YHead
+            Result = New Point(Int((Vector.X + 4.24) / 1.06 + 48), Int((Vector.Z + 4.24) / 1.06))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = 8.36F Then
+            'YBody
+            Result = New Point(Int((Vector.X + 4.24) / 1.06 + 20), Int((Vector.Z + 2.12) / 1.06 + 32))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = -4.36F Then
+            'YBody
+            Result = New Point(Int((Vector.X + 4.24) / 1.06 + 28), Int((Vector.Z + 2.12) / 1.06 + 32))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y = 8.36F Then
+            'YArms
+            Result = New Point(Int((Vector.X - 3.88) / 1.06 + 52), Int((Vector.Z + 2.12) / 1.06 + 48))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y = -4.36F Then
+            'YArms
+            If Model = Models.Steve Then
+                Result = New Point(Int((Vector.X - 3.88) / 1.06 + 56), Int((Vector.Z + 2.12) / 1.06 + 48))
+            Else
+                Result = New Point(Int((Vector.X - 3.88) / 1.06 + 55), Int((Vector.Z + 2.12) / 1.06 + 48))
+            End If
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y = 8.36F Then
+            'YArms
+            If Model = Models.Steve Then
+                Result = New Point(Int((Vector.X + 8.12) / 1.06 + 44), Int((Vector.Z + 2.12) / 1.06 + 32))
+            Else
+                Result = New Point(Int((Vector.X + 8.12) / 1.06 + 43), Int((Vector.Z + 2.12) / 1.06 + 32))
+            End If
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y = -4.36F Then
+            'YArms
+            If Model = Models.Steve Then
+                Result = New Point(Int((Vector.X + 8.12) / 1.06 + 48), Int((Vector.Z + 2.12) / 1.06 + 32))
+            Else
+                Result = New Point(Int((Vector.X + 8.12) / 1.06 + 46), Int((Vector.Z + 2.12) / 1.06 + 32))
+            End If
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -0.12 AndAlso Vector.Y = -3.64F Then
+            'YLeg
+            Result = New Point(Int((Vector.X + 0.12) / 1.06 + 4), Int((Vector.Z + 2.12) / 1.06 + 48))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 0.12 AndAlso Vector.X > -4.24 AndAlso Vector.Y = -3.64F Then
+            'YLeg
+            Result = New Point(Int((Vector.X + 4.24) / 1.06 + 4), Int((Vector.Z + 2.12) / 1.06 + 32))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -0.12 AndAlso Vector.Y = -16.36F Then
+            'YLeg
+            Result = New Point(Int((Vector.X + 0.12) / 1.06 + 8), Int((Vector.Z + 2.12) / 1.06 + 48))
+            XUp.X = 1
+            YUp.Z = 1
+        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 0.12 AndAlso Vector.X > -4.24 AndAlso Vector.Y = -16.36F Then
+            'YLeg
+            Result = New Point(Int((Vector.X + 4.24) / 1.06 + 8), Int((Vector.Z + 2.12) / 1.06 + 32))
+            XUp.X = 1
+            YUp.Z = 1
+        End If
+
+        Return Result
+    End Function
+
+    Function Get2DFrom3D(Vector As Vector3)
+        Return Get2DFrom3D(Vector, New Vector3, New Vector3)
+    End Function
+    Function Get2nd2DFrom3D(Vector As Vector3)
+        Return Get2nd2DFrom3D(Vector, New Vector3, New Vector3)
+    End Function
 End Class

@@ -325,6 +325,17 @@
     <None Include="Resources\OpenTK.GLControl.dll" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\CamoEffect.png" />
+    <None Include="Resources\MirrorEffect.png" />
+    <None Include="Resources\Size3.png" />
+    <None Include="Resources\Size2.png" />
+    <None Include="Resources\Size1.png" />
+    <None Include="Resources\FillBucket.png" />
+    <None Include="Resources\ColorPicker.png" />
+    <None Include="Resources\paint_bucket[1].png" />
+    <None Include="Resources\Untitled-1.png" />
+    <None Include="Resources\Untitled-2.png" />
+    <None Include="Resources\Untitled-3.png" />
     <None Include="Resources\color-picker[1].png" />
     <None Include="Resources\Transparent.jpg" />
     <None Include="Resources\steveleftlegnone.png" />

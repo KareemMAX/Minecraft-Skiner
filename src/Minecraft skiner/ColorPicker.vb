@@ -41,6 +41,35 @@ Public Class ColorPicker
         End Get
     End Property
 
+    Dim _BrushSize As Byte = 1
+    <Description("The size of the brush"), Category("Appearance")>
+    Property BrushSize As Byte
+        Set(value As Byte)
+            Select Case value
+                Case 1
+                    Size1.BorderStyle = BorderStyle.Fixed3D
+                    Size2.BorderStyle = BorderStyle.None
+                    Size3.BorderStyle = BorderStyle.None
+                Case 2
+                    Size1.BorderStyle = BorderStyle.None
+                    Size2.BorderStyle = BorderStyle.Fixed3D
+                    Size3.BorderStyle = BorderStyle.None
+                Case 3
+                    Size1.BorderStyle = BorderStyle.None
+                    Size2.BorderStyle = BorderStyle.None
+                    Size3.BorderStyle = BorderStyle.Fixed3D
+                Case Else
+                    Throw New Exception("Invalid value")
+            End Select
+            _BrushSize = value
+        End Set
+        Get
+            Return _BrushSize
+        End Get
+    End Property
+
+#Disable Warning BC40000
+
     Private Sub HSV_Paint(sender As Object, e As PaintEventArgs) Handles HSV.Paint
         If InDesignMode Then Exit Sub
         HSV.MakeCurrent()
@@ -71,7 +100,7 @@ Public Class ColorPicker
         GL.LineWidth(5)
         GL.Begin(BeginMode.LineLoop)
         GL.Color3(Color.Black)
-        For I As Double = 0 To 2 * Math.PI Step Math.PI / 128
+        For I As Double = 0 To 2 * Math.PI Step Math.PI / 32
             GL.Vertex2(Math.Cos(I) * 0.98, Math.Sin(I) * 0.98)
         Next
         GL.End()
@@ -353,7 +382,7 @@ Public Class ColorPicker
         HueDown = False
     End Sub
 
-    Private Sub MouseDown_Tick(sender As Object, e As EventArgs) Handles MouseDown.Tick
+    Private Sub MouseDown_Tick(sender As Object, e As EventArgs) Handles timMouseDown.Tick
         If ValueDown Then
             Dim Point As Point = Value.PointToClient(New Point(Cursor.Position))
             If Point.X < 0 OrElse Point.X > Value.Width OrElse Point.Y < 0 OrElse Point.Y > Value.Height Then
@@ -419,6 +448,10 @@ Public Class ColorPicker
     Private Sub ColorPick_Click(sender As Object, e As EventArgs) Handles ColorPick.Click
         IsPicking = Not IsPicking
         Refresh()
+    End Sub
+
+    Private Sub Size_Click(sender As Object, e As EventArgs) Handles Size1.Click, Size2.Click, Size3.Click
+        BrushSize = sender.Tag
     End Sub
 End Class
 
