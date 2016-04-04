@@ -19,4 +19,4 @@ will be released  after completing this tasks
 - [ ] Undo/Redo
 - [ ] Improved GUI
 
-That also would be great if you forked this rebo and help me with this features
+That also would be great if you forked this repo and help me with this features
