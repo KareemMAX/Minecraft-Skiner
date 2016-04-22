@@ -1390,6 +1390,8 @@ Public Class Renderer3D
         End If
     End Sub
 
+    Public Event SkinChanged(sender As Object, NewSkin As Bitmap)
+
     Sub PaintPixel(Vector As Vector3, Optional Second As Boolean = False)
         Dim Point As Point
         Dim XUp As Vector3
@@ -1445,6 +1447,7 @@ Public Class Renderer3D
             End If
             Refresh()
         End If
+        RaiseEvent SkinChanged(Me, Skin)
     End Sub
 
     Function Get2DFrom3D(Vector As Vector3, ByRef XUp As Vector3, ByRef YUp As Vector3) As Point

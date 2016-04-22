@@ -3,6 +3,8 @@ Public Class MainForm
     Friend Skin As Bitmap = My.Resources.steve
     Friend File As String
 
+    Friend Changed As Boolean
+
     Friend Sub UpdateImage()
         Dim Image As New Bitmap(MainSkin.Width, MainSkin.Height) 'Create the skin preview bitmao
         If Not (Skin.Width = 64 AndAlso Skin.Height = 64) Then 'Check the skin resolution
@@ -28,16 +30,30 @@ Public Class MainForm
     End Sub
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
+        If Changed Then
+            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
+                Case MsgBoxResult.No
+                    Exit Sub
+            End Select
+        End If
         OpenFileDialog.ShowDialog()
+        Changed = False
     End Sub
 
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
+        If Changed Then
+            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
+                Case MsgBoxResult.No
+                    Exit Sub
+            End Select
+        End If
         File = "" 'Reset the File value
         Skin = My.Resources.steve 'Reset the skin value
         UpdateImage() 'Load the preview
         Text = "Minecraft Skiner" 'Reset the form text
         Renderer3D.Skin = Skin
         Renderer3D.Refresh()
+        Changed = False
     End Sub
 
     Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
@@ -53,14 +69,22 @@ Public Class MainForm
                 BitmapStream.Close()
             End Try
         End If
+        Changed = False
     End Sub
 
     Private Sub SaveAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAsToolStripMenuItem.Click
         Dim Dialog As New UserNameDialog
         SaveFileDialog.ShowDialog()
+        Changed = False
     End Sub
 
     Private Sub OpenFileDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog.FileOk
+        If Changed Then
+            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
+                Case MsgBoxResult.No
+                    Exit Sub
+            End Select
+        End If
         Dim tmpFile As String = File
         Dim tmpSkin As Bitmap = Skin
         File = OpenFileDialog.FileName 'Update the File value
@@ -87,6 +111,7 @@ Public Class MainForm
         End If
         UpdateImage() 'Load the preview
         Text = "Minecraft Skiner - " + IO.Path.GetFileName(File) 'Update text value
+        Changed = False
     End Sub
 
     Private Sub SaveFileDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SaveFileDialog.FileOk
@@ -101,6 +126,7 @@ Public Class MainForm
         File = SaveFileDialog.FileName 'Update the File value
         SaveFileDialog.FileName = "Untitled" 'Rest the FileName value
         Text = "Minecraft Skiner - " + IO.Path.GetFileName(File) 'Update text value
+        Changed = False
     End Sub
 
     Private Sub SaveAs17SkinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAs17SkinToolStripMenuItem.Click
@@ -119,11 +145,19 @@ Public Class MainForm
             SaveFileDialog.ShowDialog() 'Open the save dialog
         End If
         Skin = tmpSkin 'Rest the skin value to 1.8 old skin
+        Changed = False
     End Sub
 
     Private Sub OpenFromplayerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenFromplayerToolStripMenuItem.Click
+        If Changed Then
+            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
+                Case MsgBoxResult.No
+                    Exit Sub
+            End Select
+        End If
         Dim Dialog As New UserNameDialog
         Dialog.ShowDialog()
+        Changed = False
     End Sub
     Sub ConvertSkin()
         Dim tmpSkin As Bitmap = Skin
@@ -182,5 +216,18 @@ Public Class MainForm
         Dialog.Skin = Skin
         Dialog.IsAlex = Alexrdb.Checked
         Dialog.ShowDialog()
+    End Sub
+
+    Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        If Changed Then
+            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
+                Case MsgBoxResult.No
+                    e.Cancel = True
+            End Select
+        End If
+    End Sub
+
+    Private Sub Renderer3D_SkinChanged(sender As Object, NewSkin As Bitmap) Handles Renderer3D.SkinChanged
+        Changed = True
     End Sub
 End Class
