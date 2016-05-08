@@ -118,6 +118,12 @@
     <Compile Include="ChangeSkinWebsite.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CloseBox.Designer.vb">
+      <DependentUpon>CloseBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CloseBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ColorPicker.Designer.vb">
       <DependentUpon>ColorPicker.vb</DependentUpon>
     </Compile>
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChangeSkinWebsite.resx">
       <DependentUpon>ChangeSkinWebsite.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CloseBox.resx">
+      <DependentUpon>CloseBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ColorPicker.resx">
       <DependentUpon>ColorPicker.vb</DependentUpon>

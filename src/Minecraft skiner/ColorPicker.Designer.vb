@@ -157,7 +157,6 @@ Partial Class ColorPicker
         Me.Fill.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Fill.TabIndex = 12
         Me.Fill.TabStop = False
-        Me.Fill.Visible = False
         '
         'Size3
         '

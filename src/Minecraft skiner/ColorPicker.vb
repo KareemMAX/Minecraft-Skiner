@@ -34,10 +34,28 @@ Public Class ColorPicker
             Else
                 ColorPick.BorderStyle = BorderStyle.None
             End If
+            If IsFilling AndAlso value Then IsFilling = False
             _IsPicking = value
         End Set
         Get
             Return _IsPicking
+        End Get
+    End Property
+
+    Dim _IsFilling As Boolean
+    <Description("Is Pick color active or not"), Category("Appearance")>
+    Property IsFilling As Boolean
+        Set(value As Boolean)
+            If value Then
+                Fill.BorderStyle = BorderStyle.Fixed3D
+            Else
+                Fill.BorderStyle = BorderStyle.None
+            End If
+            If IsPicking Then IsPicking = False
+            _IsFilling = value
+        End Set
+        Get
+            Return _IsFilling
         End Get
     End Property
 
@@ -447,11 +465,14 @@ Public Class ColorPicker
 
     Private Sub ColorPick_Click(sender As Object, e As EventArgs) Handles ColorPick.Click
         IsPicking = Not IsPicking
-        Refresh()
     End Sub
 
     Private Sub Size_Click(sender As Object, e As EventArgs) Handles Size1.Click, Size2.Click, Size3.Click
         BrushSize = sender.Tag
+    End Sub
+
+    Private Sub Fill_Click(sender As Object, e As EventArgs) Handles Fill.Click
+        IsFilling = Not IsFilling
     End Sub
 End Class
 

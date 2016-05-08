@@ -378,13 +378,13 @@ Public Class Renderer3D
             GL.Vertex3(-4, 8, -2)
             'Face 6
             GL.TexCoord2(TexVal * 28, TexVal * 16)
-            GL.Vertex3(-4, -4, 2)
-            GL.TexCoord2(TexVal * 36, TexVal * 16)
-            GL.Vertex3(4, -4, 2)
-            GL.TexCoord2(TexVal * 36, TexVal * 20)
-            GL.Vertex3(4, -4, -2)
-            GL.TexCoord2(TexVal * 28, TexVal * 20)
             GL.Vertex3(-4, -4, -2)
+            GL.TexCoord2(TexVal * 36, TexVal * 16)
+            GL.Vertex3(4, -4, -2)
+            GL.TexCoord2(TexVal * 36, TexVal * 20)
+            GL.Vertex3(4, -4, 2)
+            GL.TexCoord2(TexVal * 28, TexVal * 20)
+            GL.Vertex3(-4, -4, 2)
         End If
 
         If ShowHead Then
@@ -469,22 +469,22 @@ Public Class Renderer3D
                 GL.Vertex3(4, -4, -2)
                 'Face 3
                 GL.TexCoord2(TexVal * 32, TexVal * 52)
-                GL.Vertex3(4, 8, 2)
-                GL.TexCoord2(TexVal * 36, TexVal * 52)
                 GL.Vertex3(4, 8, -2)
+                GL.TexCoord2(TexVal * 36, TexVal * 52)
+                GL.Vertex3(4, 8, 2)
                 GL.TexCoord2(TexVal * 36, TexVal * 64)
-                GL.Vertex3(4, -4, -2)
-                GL.TexCoord2(TexVal * 32, TexVal * 64)
                 GL.Vertex3(4, -4, 2)
+                GL.TexCoord2(TexVal * 32, TexVal * 64)
+                GL.Vertex3(4, -4, -2)
                 'Face 4
                 GL.TexCoord2(TexVal * 44, TexVal * 52)
-                GL.Vertex3(8, 8, 2)
-                GL.TexCoord2(TexVal * 40, TexVal * 52)
                 GL.Vertex3(8, 8, -2)
+                GL.TexCoord2(TexVal * 40, TexVal * 52)
+                GL.Vertex3(8, 8, 2)
                 GL.TexCoord2(TexVal * 40, TexVal * 64)
-                GL.Vertex3(8, -4, -2)
-                GL.TexCoord2(TexVal * 44, TexVal * 64)
                 GL.Vertex3(8, -4, 2)
+                GL.TexCoord2(TexVal * 44, TexVal * 64)
+                GL.Vertex3(8, -4, -2)
                 'Face 5
                 GL.TexCoord2(TexVal * 36, TexVal * 52)
                 GL.Vertex3(4, 8, 2)
@@ -527,22 +527,22 @@ Public Class Renderer3D
                 GL.Vertex3(-8, -4, -2)
                 'Face 3
                 GL.TexCoord2(TexVal * 40, TexVal * 20)
-                GL.Vertex3(-8, 8, 2)
-                GL.TexCoord2(TexVal * 44, TexVal * 20)
                 GL.Vertex3(-8, 8, -2)
+                GL.TexCoord2(TexVal * 44, TexVal * 20)
+                GL.Vertex3(-8, 8, 2)
                 GL.TexCoord2(TexVal * 44, TexVal * 32)
-                GL.Vertex3(-8, -4, -2)
-                GL.TexCoord2(TexVal * 40, TexVal * 32)
                 GL.Vertex3(-8, -4, 2)
+                GL.TexCoord2(TexVal * 40, TexVal * 32)
+                GL.Vertex3(-8, -4, -2)
                 'Face 4
                 GL.TexCoord2(TexVal * 52, TexVal * 20)
-                GL.Vertex3(-4, 8, 2)
-                GL.TexCoord2(TexVal * 48, TexVal * 20)
                 GL.Vertex3(-4, 8, -2)
+                GL.TexCoord2(TexVal * 48, TexVal * 20)
+                GL.Vertex3(-4, 8, 2)
                 GL.TexCoord2(TexVal * 48, TexVal * 32)
-                GL.Vertex3(-4, -4, -2)
-                GL.TexCoord2(TexVal * 52, TexVal * 32)
                 GL.Vertex3(-4, -4, 2)
+                GL.TexCoord2(TexVal * 52, TexVal * 32)
+                GL.Vertex3(-4, -4, -2)
                 'Face 5
                 GL.TexCoord2(TexVal * 44, TexVal * 20)
                 GL.Vertex3(-8, 8, 2)
@@ -587,22 +587,22 @@ Public Class Renderer3D
                 GL.Vertex3(4, -4, -2)
                 'Face 3
                 GL.TexCoord2(TexVal * 32, TexVal * 52)
-                GL.Vertex3(4, 8, 2)
-                GL.TexCoord2(TexVal * 36, TexVal * 52)
                 GL.Vertex3(4, 8, -2)
+                GL.TexCoord2(TexVal * 36, TexVal * 52)
+                GL.Vertex3(4, 8, 2)
                 GL.TexCoord2(TexVal * 36, TexVal * 64)
-                GL.Vertex3(4, -4, -2)
-                GL.TexCoord2(TexVal * 32, TexVal * 64)
                 GL.Vertex3(4, -4, 2)
+                GL.TexCoord2(TexVal * 32, TexVal * 64)
+                GL.Vertex3(4, -4, -2)
                 'Face 4
                 GL.TexCoord2(TexVal * 43, TexVal * 52)
-                GL.Vertex3(7, 8, 2)
-                GL.TexCoord2(TexVal * 39, TexVal * 52)
                 GL.Vertex3(7, 8, -2)
+                GL.TexCoord2(TexVal * 39, TexVal * 52)
+                GL.Vertex3(7, 8, 2)
                 GL.TexCoord2(TexVal * 39, TexVal * 64)
-                GL.Vertex3(7, -4, -2)
-                GL.TexCoord2(TexVal * 43, TexVal * 64)
                 GL.Vertex3(7, -4, 2)
+                GL.TexCoord2(TexVal * 43, TexVal * 64)
+                GL.Vertex3(7, -4, -2)
                 'Face 5
                 GL.TexCoord2(TexVal * 36, TexVal * 52)
                 GL.Vertex3(4, 8, 2)
@@ -645,22 +645,22 @@ Public Class Renderer3D
                 GL.Vertex3(-7, -4, -2)
                 'Face 3
                 GL.TexCoord2(TexVal * 40, TexVal * 20)
-                GL.Vertex3(-7, 8, 2)
-                GL.TexCoord2(TexVal * 44, TexVal * 20)
                 GL.Vertex3(-7, 8, -2)
+                GL.TexCoord2(TexVal * 44, TexVal * 20)
+                GL.Vertex3(-7, 8, 2)
                 GL.TexCoord2(TexVal * 44, TexVal * 32)
-                GL.Vertex3(-7, -4, -2)
-                GL.TexCoord2(TexVal * 40, TexVal * 32)
                 GL.Vertex3(-7, -4, 2)
+                GL.TexCoord2(TexVal * 40, TexVal * 32)
+                GL.Vertex3(-7, -4, -2)
                 'Face 4
                 GL.TexCoord2(TexVal * 51, TexVal * 20)
-                GL.Vertex3(-4, 8, 2)
-                GL.TexCoord2(TexVal * 47, TexVal * 20)
                 GL.Vertex3(-4, 8, -2)
+                GL.TexCoord2(TexVal * 47, TexVal * 20)
+                GL.Vertex3(-4, 8, 2)
                 GL.TexCoord2(TexVal * 47, TexVal * 32)
-                GL.Vertex3(-4, -4, -2)
-                GL.TexCoord2(TexVal * 51, TexVal * 32)
                 GL.Vertex3(-4, -4, 2)
+                GL.TexCoord2(TexVal * 51, TexVal * 32)
+                GL.Vertex3(-4, -4, -2)
                 'Face 5
                 GL.TexCoord2(TexVal * 44, TexVal * 20)
                 GL.Vertex3(-7, 8, 2)
@@ -829,22 +829,22 @@ Public Class Renderer3D
             GL.Vertex3(-4.24, -4.36, -2.12)
             'Face 3
             GL.TexCoord2(TexVal * 16, TexVal * 36)
-            GL.Vertex3(-4.24, 8.36, 2.12)
-            GL.TexCoord2(TexVal * 20, TexVal * 36)
             GL.Vertex3(-4.24, 8.36, -2.12)
+            GL.TexCoord2(TexVal * 20, TexVal * 36)
+            GL.Vertex3(-4.24, 8.36, 2.12)
             GL.TexCoord2(TexVal * 20, TexVal * 48)
-            GL.Vertex3(-4.24, -4.36, -2.12)
-            GL.TexCoord2(TexVal * 16, TexVal * 48)
             GL.Vertex3(-4.24, -4.36, 2.12)
+            GL.TexCoord2(TexVal * 16, TexVal * 48)
+            GL.Vertex3(-4.24, -4.36, -2.12)
             'Face 4
             GL.TexCoord2(TexVal * 32, TexVal * 36)
-            GL.Vertex3(4.24, 8.36, 2.12)
-            GL.TexCoord2(TexVal * 28, TexVal * 36)
             GL.Vertex3(4.24, 8.36, -2.12)
+            GL.TexCoord2(TexVal * 28, TexVal * 36)
+            GL.Vertex3(4.24, 8.36, 2.12)
             GL.TexCoord2(TexVal * 28, TexVal * 48)
-            GL.Vertex3(4.24, -4.36, -2.12)
-            GL.TexCoord2(TexVal * 32, TexVal * 48)
             GL.Vertex3(4.24, -4.36, 2.12)
+            GL.TexCoord2(TexVal * 32, TexVal * 48)
+            GL.Vertex3(4.24, -4.36, -2.12)
             'Face 5
             GL.TexCoord2(TexVal * 20, TexVal * 36)
             GL.Vertex3(-4.24, 8.36, 2.12)
@@ -947,22 +947,22 @@ Public Class Renderer3D
                 GL.Vertex3(3.88, -4.36, -2.12)
                 'Face 3
                 GL.TexCoord2(TexVal * 48, TexVal * 52)
-                GL.Vertex3(3.88, 8.36, 2.12)
-                GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.88, 8.36, -2.12)
+                GL.TexCoord2(TexVal * 52, TexVal * 52)
+                GL.Vertex3(3.88, 8.36, 2.12)
                 GL.TexCoord2(TexVal * 52, TexVal * 64)
-                GL.Vertex3(3.88, -4.36, -2.12)
-                GL.TexCoord2(TexVal * 48, TexVal * 64)
                 GL.Vertex3(3.88, -4.36, 2.12)
+                GL.TexCoord2(TexVal * 48, TexVal * 64)
+                GL.Vertex3(3.88, -4.36, -2.12)
                 'Face 4
                 GL.TexCoord2(TexVal * 60, TexVal * 52)
-                GL.Vertex3(8.12, 8.36, 2.12)
-                GL.TexCoord2(TexVal * 56, TexVal * 52)
                 GL.Vertex3(8.12, 8.36, -2.12)
+                GL.TexCoord2(TexVal * 56, TexVal * 52)
+                GL.Vertex3(8.12, 8.36, 2.12)
                 GL.TexCoord2(TexVal * 56, TexVal * 64)
-                GL.Vertex3(8.12, -4.36, -2.12)
-                GL.TexCoord2(TexVal * 60, TexVal * 64)
                 GL.Vertex3(8.12, -4.36, 2.12)
+                GL.TexCoord2(TexVal * 60, TexVal * 64)
+                GL.Vertex3(8.12, -4.36, -2.12)
                 'Face 5
                 GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.88, 8.36, 2.12)
@@ -1005,22 +1005,22 @@ Public Class Renderer3D
                 GL.Vertex3(-8.12, -4.36, -2.12)
                 'Face 3
                 GL.TexCoord2(TexVal * 40, TexVal * 36)
-                GL.Vertex3(-8.12, 8.36, 2.12)
-                GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-8.12, 8.36, -2.12)
+                GL.TexCoord2(TexVal * 44, TexVal * 36)
+                GL.Vertex3(-8.12, 8.36, 2.12)
                 GL.TexCoord2(TexVal * 44, TexVal * 48)
-                GL.Vertex3(-8.12, -4.36, -2.12)
-                GL.TexCoord2(TexVal * 40, TexVal * 48)
                 GL.Vertex3(-8.12, -4.36, 2.12)
+                GL.TexCoord2(TexVal * 40, TexVal * 48)
+                GL.Vertex3(-8.12, -4.36, -2.12)
                 'Face 4
                 GL.TexCoord2(TexVal * 52, TexVal * 36)
-                GL.Vertex3(-3.88, 8.36, 2.12)
-                GL.TexCoord2(TexVal * 48, TexVal * 36)
                 GL.Vertex3(-3.88, 8.36, -2.12)
+                GL.TexCoord2(TexVal * 48, TexVal * 36)
+                GL.Vertex3(-3.88, 8.36, 2.12)
                 GL.TexCoord2(TexVal * 48, TexVal * 48)
-                GL.Vertex3(-3.88, -4.36, -2.12)
-                GL.TexCoord2(TexVal * 52, TexVal * 48)
                 GL.Vertex3(-3.88, -4.36, 2.12)
+                GL.TexCoord2(TexVal * 52, TexVal * 48)
+                GL.Vertex3(-3.88, -4.36, -2.12)
                 'Face 5
                 GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-8.12, 8.36, 2.12)
@@ -1065,22 +1065,22 @@ Public Class Renderer3D
                 GL.Vertex3(3.91, -4.36, -2.12)
                 'Face 3
                 GL.TexCoord2(TexVal * 48, TexVal * 52)
-                GL.Vertex3(3.91, 8.36, 2.12)
-                GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.91, 8.36, -2.12)
+                GL.TexCoord2(TexVal * 52, TexVal * 52)
+                GL.Vertex3(3.91, 8.36, 2.12)
                 GL.TexCoord2(TexVal * 52, TexVal * 64)
-                GL.Vertex3(3.91, -4.36, -2.12)
-                GL.TexCoord2(TexVal * 48, TexVal * 64)
                 GL.Vertex3(3.91, -4.36, 2.12)
+                GL.TexCoord2(TexVal * 48, TexVal * 64)
+                GL.Vertex3(3.91, -4.36, -2.12)
                 'Face 4
                 GL.TexCoord2(TexVal * 59, TexVal * 52)
-                GL.Vertex3(7.09, 8.36, 2.12)
-                GL.TexCoord2(TexVal * 55, TexVal * 52)
                 GL.Vertex3(7.09, 8.36, -2.12)
+                GL.TexCoord2(TexVal * 55, TexVal * 52)
+                GL.Vertex3(7.09, 8.36, 2.12)
                 GL.TexCoord2(TexVal * 55, TexVal * 64)
-                GL.Vertex3(7.09, -4.36, -2.12)
-                GL.TexCoord2(TexVal * 59, TexVal * 64)
                 GL.Vertex3(7.09, -4.36, 2.12)
+                GL.TexCoord2(TexVal * 59, TexVal * 64)
+                GL.Vertex3(7.09, -4.36, -2.12)
                 'Face 5
                 GL.TexCoord2(TexVal * 52, TexVal * 52)
                 GL.Vertex3(3.91, 8.36, 2.12)
@@ -1123,22 +1123,22 @@ Public Class Renderer3D
                 GL.Vertex3(-7.09, -4.36, -2.12)
                 'Face 3
                 GL.TexCoord2(TexVal * 40, TexVal * 36)
-                GL.Vertex3(-7.09, 8.36, 2.12)
-                GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-7.09, 8.36, -2.12)
+                GL.TexCoord2(TexVal * 44, TexVal * 36)
+                GL.Vertex3(-7.09, 8.36, 2.12)
                 GL.TexCoord2(TexVal * 44, TexVal * 48)
-                GL.Vertex3(-7.09, -4.36, -2.12)
-                GL.TexCoord2(TexVal * 40, TexVal * 48)
                 GL.Vertex3(-7.09, -4.36, 2.12)
+                GL.TexCoord2(TexVal * 40, TexVal * 48)
+                GL.Vertex3(-7.09, -4.36, -2.12)
                 'Face 4
                 GL.TexCoord2(TexVal * 51, TexVal * 36)
-                GL.Vertex3(-3.91, 8.36, 2.12)
-                GL.TexCoord2(TexVal * 47, TexVal * 36)
                 GL.Vertex3(-3.91, 8.36, -2.12)
+                GL.TexCoord2(TexVal * 47, TexVal * 36)
+                GL.Vertex3(-3.91, 8.36, 2.12)
                 GL.TexCoord2(TexVal * 47, TexVal * 48)
-                GL.Vertex3(-3.91, -4.36, -2.12)
-                GL.TexCoord2(TexVal * 51, TexVal * 48)
                 GL.Vertex3(-3.91, -4.36, 2.12)
+                GL.TexCoord2(TexVal * 51, TexVal * 48)
+                GL.Vertex3(-3.91, -4.36, -2.12)
                 'Face 5
                 GL.TexCoord2(TexVal * 44, TexVal * 36)
                 GL.Vertex3(-7.09, 8.36, 2.12)
@@ -1183,22 +1183,22 @@ Public Class Renderer3D
             GL.Vertex3(-4.12, -16.36, -2.12)
             'Face 3
             GL.TexCoord2(TexVal * 0, TexVal * 36)
-            GL.Vertex3(-4.12, -3.64, 2.12)
-            GL.TexCoord2(TexVal * 4, TexVal * 36)
             GL.Vertex3(-4.12, -3.64, -2.12)
+            GL.TexCoord2(TexVal * 4, TexVal * 36)
+            GL.Vertex3(-4.12, -3.64, 2.12)
             GL.TexCoord2(TexVal * 4, TexVal * 48)
-            GL.Vertex3(-4.12, -16.36, -2.12)
-            GL.TexCoord2(TexVal * 0, TexVal * 48)
             GL.Vertex3(-4.12, -16.36, 2.12)
+            GL.TexCoord2(TexVal * 0, TexVal * 48)
+            GL.Vertex3(-4.12, -16.36, -2.12)
             'Face 4
             GL.TexCoord2(TexVal * 12, TexVal * 36)
-            GL.Vertex3(0.12, -3.64, 2.12)
-            GL.TexCoord2(TexVal * 8, TexVal * 36)
             GL.Vertex3(0.12, -3.64, -2.12)
+            GL.TexCoord2(TexVal * 8, TexVal * 36)
+            GL.Vertex3(0.12, -3.64, 2.12)
             GL.TexCoord2(TexVal * 8, TexVal * 48)
-            GL.Vertex3(0.12, -16.36, -2.12)
-            GL.TexCoord2(TexVal * 12, TexVal * 48)
             GL.Vertex3(0.12, -16.36, 2.12)
+            GL.TexCoord2(TexVal * 12, TexVal * 48)
+            GL.Vertex3(0.12, -16.36, -2.12)
             'Face 5
             GL.TexCoord2(TexVal * 4, TexVal * 36)
             GL.Vertex3(-4.12, -3.64, 2.12)
@@ -1241,22 +1241,22 @@ Public Class Renderer3D
             GL.Vertex3(-0.12, -16.36, -2.12)
             'Face 3
             GL.TexCoord2(TexVal * 0, TexVal * 52)
-            GL.Vertex3(-0.12, -3.64, 2.12)
-            GL.TexCoord2(TexVal * 4, TexVal * 52)
             GL.Vertex3(-0.12, -3.64, -2.12)
+            GL.TexCoord2(TexVal * 4, TexVal * 52)
+            GL.Vertex3(-0.12, -3.64, 2.12)
             GL.TexCoord2(TexVal * 4, TexVal * 64)
-            GL.Vertex3(-0.12, -16.36, -2.12)
-            GL.TexCoord2(TexVal * 0, TexVal * 64)
             GL.Vertex3(-0.12, -16.36, 2.12)
+            GL.TexCoord2(TexVal * 0, TexVal * 64)
+            GL.Vertex3(-0.12, -16.36, -2.12)
             'Face 4
             GL.TexCoord2(TexVal * 12, TexVal * 52)
-            GL.Vertex3(4.12, -3.64, 2.12)
-            GL.TexCoord2(TexVal * 8, TexVal * 52)
             GL.Vertex3(4.12, -3.64, -2.12)
+            GL.TexCoord2(TexVal * 8, TexVal * 52)
+            GL.Vertex3(4.12, -3.64, 2.12)
             GL.TexCoord2(TexVal * 8, TexVal * 64)
-            GL.Vertex3(4.12, -16.36, -2.12)
-            GL.TexCoord2(TexVal * 12, TexVal * 64)
             GL.Vertex3(4.12, -16.36, 2.12)
+            GL.TexCoord2(TexVal * 12, TexVal * 64)
+            GL.Vertex3(4.12, -16.36, -2.12)
             'Face 5
             GL.TexCoord2(TexVal * 4, TexVal * 52)
             GL.Vertex3(-0.12, -3.64, 2.12)
@@ -1290,6 +1290,8 @@ Public Class Renderer3D
     Private OldLoc As Point
     Private MouseLoc As Point
 
+    Public Event BeginChanged(sender As Object, LastSkin As Bitmap)
+
     Private Sub GlControl_MouseDown(sender As Object, e As MouseEventArgs) Handles GlControl.MouseDown
         If Not IsMouseDown AndAlso e.Button = MouseButtons.Left Then
             If Paintable Then
@@ -1301,6 +1303,8 @@ Public Class Renderer3D
                 Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix), Me)
                 m.Pos = e.Location
                 If m.Mouse2ndHit <> New Vector3(100, 100, 100) OrElse m.MouseHit <> New Vector3(0, 0, 0) Then
+                    Dim tmp As Bitmap = Skin.Clone()
+                    RaiseEvent BeginChanged(Me, tmp)
                     IsMouseHit = True
                     Exit Sub
                 End If
@@ -1404,7 +1408,8 @@ Public Class Renderer3D
         If ColorPicker.IsPicking Then
             ColorPicker.Color = Skin.GetPixel(Point.X, Point.Y)
             ColorPicker.IsPicking = False
-            ColorPicker.Refresh()
+        ElseIf ColorPicker.IsFilling Then
+            FloodFill(Point.X, Point.Y, ColorPicker.Color)
         Else
             Skin.SetPixel(Point.X, Point.Y, ColorPicker.Color)
             If ColorPicker.BrushSize >= 2 Then
@@ -1539,7 +1544,7 @@ Public Class Renderer3D
             If ShowBody AndAlso Not ShowLeftArm Then
                 Result = New Point(Int(-Vector.Z + 30), Int(-Vector.Y + 28))
             Else
-                Result = New Point(Int(-Vector.Z + 34), Int(-Vector.Y + 60))
+                Result = New Point(Int(Vector.Z + 34), Int(-Vector.Y + 60))
             End If
             XUp.Z = 1
             YUp.Y = 1
@@ -1548,28 +1553,28 @@ Public Class Renderer3D
             If ShowBody AndAlso Not ShowRightArm Then
                 Result = New Point(Int(Vector.Z + 18), Int(-Vector.Y + 28))
             Else
-                Result = New Point(Int(Vector.Z + 50), Int(-Vector.Y + 28))
+                Result = New Point(Int(-Vector.Z + 50), Int(-Vector.Y + 28))
             End If
             XUp.Z = 1
             YUp.Y = 1
         ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = 8 Then
             'XArms
-            Result = New Point(Int(Vector.Z + 42), Int(-Vector.Y + 60))
+            Result = New Point(Int(-Vector.Z + 42), Int(-Vector.Y + 60))
             XUp.Z = 1
             YUp.Y = 1
         ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = -8 Then
             'XArms
-            Result = New Point(Int(-Vector.Z + 42), Int(-Vector.Y + 28))
+            Result = New Point(Int(Vector.Z + 42), Int(-Vector.Y + 28))
             XUp.Z = 1
             YUp.Y = 1
         ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = 7 Then
             'XArms
-            Result = New Point(Int(Vector.Z + 41), Int(-Vector.Y + 60))
+            Result = New Point(Int(-Vector.Z + 41), Int(-Vector.Y + 60))
             XUp.Z = 1
             YUp.Y = 1
         ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < 8 AndAlso Vector.Y > -4 AndAlso Vector.X = -7 Then
             'XArms
-            Result = New Point(Int(-Vector.Z + 42), Int(-Vector.Y + 28))
+            Result = New Point(Int(Vector.Z + 42), Int(-Vector.Y + 28))
             XUp.Z = 1
             YUp.Y = 1
         ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.Y < -4 AndAlso Vector.Y > -16 AndAlso Vector.X = 4 Then
@@ -1608,7 +1613,7 @@ Public Class Renderer3D
             YUp.Z = 1
         ElseIf ShowBody AndAlso (Not ShowLeftLeg OrElse Not ShowRightLeg) AndAlso Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 4 AndAlso Vector.X > -4 AndAlso Vector.Y = -4 Then
             'YBody
-            Result = New Point(Int(Vector.X + 32), Int(-Vector.Z + 18))
+            Result = New Point(Int(Vector.X + 32), Int(Vector.Z + 18))
             XUp.X = 1
             YUp.Z = 1
         ElseIf Vector.Z < 2 AndAlso Vector.Z > -2 AndAlso Vector.X < 8 AndAlso Vector.X > 4 AndAlso Vector.Y = 8 Then
@@ -1670,27 +1675,27 @@ Public Class Renderer3D
 
     Function Get2nd2DFrom3D(Vector As Vector3, ByRef XUp As Vector3, ByRef YUp As Vector3) As Point
         Dim Result As Point
-        If Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.Z = 4.24F Then
+        If Show2ndHead AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.Z = 4.24F Then
             'ZHead
             Result = New Point(Int((Vector.X + 4.24) / 1.06 + 40), Int((-Vector.Y + 16.24) / 1.06 + 8))
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.Z = -4.24F Then
+        ElseIf Show2ndHead AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.Z = -4.24F Then
             'ZHead
             Result = New Point(Int((-Vector.X + 4.24) / 1.06 + 56), Int((-Vector.Y + 16.24) / 1.06 + 8))
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = 2.12F Then
+        ElseIf Show2ndBody AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = 2.12F Then
             'ZBody
             Result = New Point(Int((Vector.X + 4.24) / 1.06 + 20), Int((-Vector.Y + 8.36) / 1.06 + 36))
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = -2.12F Then
+        ElseIf Show2ndBody AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = -2.12F Then
             'ZBody
             Result = New Point(Int((-Vector.X + 4.24) / 1.06 + 32), Int((-Vector.Y + 8.36) / 1.06 + 36))
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = 2.12F Then
+        ElseIf Show2ndRightArm AndAlso Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = 2.12F Then
             'ZArms
             If Model = Models.Steve Then
                 Result = New Point(Int((Vector.X + 3.88) / 1.06 + 48), Int((-Vector.Y + 8.36) / 1.06 + 36))
@@ -1699,7 +1704,7 @@ Public Class Renderer3D
             End If
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = -2.12F Then
+        ElseIf Show2ndRightArm AndAlso Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = -2.12F Then
             'ZArms
             If Model = Models.Steve Then
                 Result = New Point(Int((-Vector.X + 3.88) / 1.06 + 45), Int((-Vector.Y + 8.36) / 1.06 + 36))
@@ -1708,12 +1713,12 @@ Public Class Renderer3D
             End If
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = 2.12F Then
+        ElseIf Show2ndLeftArm AndAlso Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = 2.12F Then
             'ZArms
             Result = New Point(Int((Vector.X + 3.88) / 1.06 + 45), Int((-Vector.Y + 8.36) / 1.06 + 52))
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = -2.12F Then
+        ElseIf Show2ndLeftArm AndAlso Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.Z = -2.12F Then
             'ZArms
             If Model = Models.Steve Then
                 Result = New Point(Int((-Vector.X + 3.88) / 1.06 + 64), Int((-Vector.Y + 8.36) / 1.06 + 52))
@@ -1722,120 +1727,120 @@ Public Class Renderer3D
             End If
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < 0.12 AndAlso Vector.X > -4.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = 2.12F Then
+        ElseIf Show2ndRightLeg AndAlso Vector.X < 0.12 AndAlso Vector.X > -4.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = 2.12F Then
             'ZLegs
             Result = New Point(Int((Vector.X + 4.12) / 1.06 + 4), Int((-Vector.Y - 16.36) / 1.06 + 48))
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < 0.12 AndAlso Vector.X > -4.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = -2.12F Then
+        ElseIf Show2ndRightLeg AndAlso Vector.X < 0.12 AndAlso Vector.X > -4.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = -2.12F Then
             'ZLegs
             Result = New Point(Int((-Vector.X + 4.12) / 1.06 + 8), Int((-Vector.Y - 16.36) / 1.06 + 48))
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < 4.12 AndAlso Vector.X > -0.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = 2.12F Then
+        ElseIf Show2ndLeftLeg AndAlso Vector.X < 4.12 AndAlso Vector.X > -0.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = 2.12F Then
             'ZLegs
             Result = New Point(Int((Vector.X + 0.12) / 1.06 + 4), Int((-Vector.Y - 3.64) / 1.06 + 52))
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.X < 4.12 AndAlso Vector.X > -0.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = -2.12F Then
+        ElseIf Show2ndLeftLeg AndAlso Vector.X < 4.12 AndAlso Vector.X > -0.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.Z = -2.12F Then
             'ZLegs
             Result = New Point(Int((-Vector.X + 0.12) / 1.06 + 16), Int((-Vector.Y - 3.64) / 1.06 + 52))
             XUp.X = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.X = 4.24F Then
+        ElseIf Show2ndHead AndAlso Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.X = 4.24F Then
             'XHead
             Result = New Point(Int((-Vector.Z + 4.24) / 1.06 + 48), Int((-Vector.Y + 16.24) / 1.06 + 8))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.X = -4.24F Then
+        ElseIf Show2ndHead AndAlso Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.Y < 16.24 AndAlso Vector.Y > 7.76 AndAlso Vector.X = -4.24F Then
             'XHead
             Result = New Point(Int((Vector.Z + 4.24) / 1.06 + 32), Int((-Vector.Y + 16.24) / 1.06 + 8))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.X = 4.24F Then
+        ElseIf Show2ndBody AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.X = 4.24F Then
             'XBody
-            Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 28), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 28), Int((-Vector.Y + 8.36) / 1.06 + 36))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.X = -4.24F Then
+        ElseIf Show2ndBody AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso Vector.X = -4.24F Then
             'XBody
-            Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 16), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 16), Int((-Vector.Y + 8.36) / 1.06 + 36))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = 8.12F OrElse Vector.X = 7.09F) Then
+        ElseIf Show2ndLeftArm AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = 8.12F OrElse Vector.X = 7.09F) Then
             'XArms
             If Model = Models.Steve Then
-                Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 56), Int((-Vector.Y + 8.36) / 1.06 + 52))
+                Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 56), Int((-Vector.Y + 8.36) / 1.06 + 52))
             Else
-                Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 55), Int((-Vector.Y + 8.36) / 1.06 + 52))
+                Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 55), Int((-Vector.Y + 8.36) / 1.06 + 52))
             End If
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = -8.12F OrElse Vector.X = -7.09F) Then
+        ElseIf Show2ndRightArm AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = -8.12F OrElse Vector.X = -7.09F) Then
             'XArms
-            Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 40), Int((-Vector.Y + 8.36) / 1.06 + 36))
+            Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 40), Int((-Vector.Y + 8.36) / 1.06 + 36))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = 3.88F OrElse Vector.X = 3.91F) Then
+        ElseIf Show2ndLeftArm AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = 3.88F OrElse Vector.X = 3.91F) Then
             'XArms
-            Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 48), Int((-Vector.Y + 8.36) / 1.06 + 52))
+            Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 48), Int((-Vector.Y + 8.36) / 1.06 + 52))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = -3.88F OrElse Vector.X = -3.91F) Then
+        ElseIf Show2ndRightArm AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < 8.36 AndAlso Vector.Y > -4.36 AndAlso (Vector.X = -3.88F OrElse Vector.X = -3.91F) Then
             'XArms
             If Model = Models.Steve Then
-                Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 48), Int((-Vector.Y + 8.36) / 1.06 + 36))
+                Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 48), Int((-Vector.Y + 8.36) / 1.06 + 36))
             Else
-                Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 47), Int((-Vector.Y + 8.36) / 1.06 + 36))
+                Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 47), Int((-Vector.Y + 8.36) / 1.06 + 36))
             End If
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = 4.24F Then
+        ElseIf Show2ndLeftLeg AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = 4.24F Then
             'XLeg
-            Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 8), Int((-Vector.Y - 3.64) / 1.06 + 52))
+            Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 8), Int((-Vector.Y - 3.64) / 1.06 + 52))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = -4.24F Then
+        ElseIf Show2ndRightLeg AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = -4.24F Then
             'XLeg
-            Result = New Point(Int((-Vector.Z + 2.12) / 1.06), Int((-Vector.Y - 3.64) / 1.06 + 36))
+            Result = New Point(Int((Vector.Z + 2.12) / 1.06), Int((-Vector.Y - 3.64) / 1.06 + 36))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = 0.12F Then
+        ElseIf Show2ndRightLeg AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = 0.12F Then
             'XLeg
-            Result = New Point(Int((Vector.Z + 2.12) / 1.06 + 8), Int((-Vector.Y - 3.64) / 1.06 + 36))
+            Result = New Point(Int((-Vector.Z + 2.12) / 1.06 + 8), Int((-Vector.Y - 3.64) / 1.06 + 36))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = -0.12F Then
+        ElseIf Show2ndLeftLeg AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.Y < -3.64 AndAlso Vector.Y > -16.36 AndAlso Vector.X = -0.12F Then
             'XLeg
-            Result = New Point(Int((-Vector.Z + 2.12) / 1.06), Int((-Vector.Y - 3.64) / 1.06 + 52))
+            Result = New Point(Int((Vector.Z + 2.12) / 1.06), Int((-Vector.Y - 3.64) / 1.06 + 52))
             XUp.Z = 1
             YUp.Y = 1
-        ElseIf Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = 16.24F Then
+        ElseIf Show2ndHead AndAlso Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = 16.24F Then
             'YHead
             Result = New Point(Int((Vector.X + 4.24) / 1.06 + 40), Int((Vector.Z + 4.24) / 1.06))
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = 7.76F Then
+        ElseIf Show2ndHead AndAlso Vector.Z < 4.24 AndAlso Vector.Z > -4.24 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = 7.76F Then
             'YHead
             Result = New Point(Int((Vector.X + 4.24) / 1.06 + 48), Int((Vector.Z + 4.24) / 1.06))
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = 8.36F Then
+        ElseIf Show2ndBody AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = 8.36F Then
             'YBody
             Result = New Point(Int((Vector.X + 4.24) / 1.06 + 20), Int((Vector.Z + 2.12) / 1.06 + 32))
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = -4.36F Then
+        ElseIf Show2ndBody AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -4.24 AndAlso Vector.Y = -4.36F Then
             'YBody
             Result = New Point(Int((Vector.X + 4.24) / 1.06 + 28), Int((Vector.Z + 2.12) / 1.06 + 32))
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y = 8.36F Then
+        ElseIf Show2ndLeftArm AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y = 8.36F Then
             'YArms
             Result = New Point(Int((Vector.X - 3.88) / 1.06 + 52), Int((Vector.Z + 2.12) / 1.06 + 48))
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y = -4.36F Then
+        ElseIf Show2ndLeftArm AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 8.12 AndAlso Vector.X > 3.88 AndAlso Vector.Y = -4.36F Then
             'YArms
             If Model = Models.Steve Then
                 Result = New Point(Int((Vector.X - 3.88) / 1.06 + 56), Int((Vector.Z + 2.12) / 1.06 + 48))
@@ -1844,7 +1849,7 @@ Public Class Renderer3D
             End If
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y = 8.36F Then
+        ElseIf Show2ndRightArm AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y = 8.36F Then
             'YArms
             If Model = Models.Steve Then
                 Result = New Point(Int((Vector.X + 8.12) / 1.06 + 44), Int((Vector.Z + 2.12) / 1.06 + 32))
@@ -1853,7 +1858,7 @@ Public Class Renderer3D
             End If
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y = -4.36F Then
+        ElseIf Show2ndRightArm AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < -3.88 AndAlso Vector.X > -8.12 AndAlso Vector.Y = -4.36F Then
             'YArms
             If Model = Models.Steve Then
                 Result = New Point(Int((Vector.X + 8.12) / 1.06 + 48), Int((Vector.Z + 2.12) / 1.06 + 32))
@@ -1862,22 +1867,22 @@ Public Class Renderer3D
             End If
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -0.12 AndAlso Vector.Y = -3.64F Then
+        ElseIf Show2ndLeftLeg AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -0.12 AndAlso Vector.Y = -3.64F Then
             'YLeg
             Result = New Point(Int((Vector.X + 0.12) / 1.06 + 4), Int((Vector.Z + 2.12) / 1.06 + 48))
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 0.12 AndAlso Vector.X > -4.24 AndAlso Vector.Y = -3.64F Then
+        ElseIf Show2ndRightLeg AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 0.12 AndAlso Vector.X > -4.24 AndAlso Vector.Y = -3.64F Then
             'YLeg
             Result = New Point(Int((Vector.X + 4.24) / 1.06 + 4), Int((Vector.Z + 2.12) / 1.06 + 32))
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -0.12 AndAlso Vector.Y = -16.36F Then
+        ElseIf Show2ndLeftLeg AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 4.24 AndAlso Vector.X > -0.12 AndAlso Vector.Y = -16.36F Then
             'YLeg
             Result = New Point(Int((Vector.X + 0.12) / 1.06 + 8), Int((Vector.Z + 2.12) / 1.06 + 48))
             XUp.X = 1
             YUp.Z = 1
-        ElseIf Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 0.12 AndAlso Vector.X > -4.24 AndAlso Vector.Y = -16.36F Then
+        ElseIf Show2ndRightLeg AndAlso Vector.Z < 2.12 AndAlso Vector.Z > -2.12 AndAlso Vector.X < 0.12 AndAlso Vector.X > -4.24 AndAlso Vector.Y = -16.36F Then
             'YLeg
             Result = New Point(Int((Vector.X + 4.24) / 1.06 + 8), Int((Vector.Z + 2.12) / 1.06 + 32))
             XUp.X = 1
@@ -1893,4 +1898,537 @@ Public Class Renderer3D
     Function Get2nd2DFrom3D(Vector As Vector3)
         Return Get2nd2DFrom3D(Vector, New Vector3, New Vector3)
     End Function
+
+    Enum SkinPlace
+        Head
+        Body
+        RArm
+        LArm
+        RLeg
+        LLeg
+        Head2
+        Body2
+        RArm2
+        LArm2
+        RLeg2
+        LLeg2
+    End Enum
+
+    Sub FloodFill(x As Integer, y As Integer, new_color As Color)
+        ' Get the old and new colors.
+        Dim old_color As Color = Skin.GetPixel(x, y)
+
+        If old_color.ToArgb <> new_color.ToArgb Then
+            Dim CurrentPlace As SkinPlace
+
+            'Get the current section of the skin
+            If x < 32 AndAlso y < 16 Then
+                CurrentPlace = SkinPlace.Head
+            ElseIf x > 31 AndAlso y < 16 Then
+                CurrentPlace = SkinPlace.Head2
+            ElseIf x < 40 AndAlso x > 15 AndAlso y < 32 AndAlso y > 15 Then
+                CurrentPlace = SkinPlace.Body
+            ElseIf x < 40 AndAlso x > 15 AndAlso y < 48 AndAlso y > 31 Then
+                CurrentPlace = SkinPlace.Body2
+            ElseIf x < 56 AndAlso x > 39 AndAlso y < 32 AndAlso y > 15 Then
+                CurrentPlace = SkinPlace.RArm
+            ElseIf x < 56 AndAlso x > 39 AndAlso y < 48 AndAlso y > 31 Then
+                CurrentPlace = SkinPlace.RArm2
+            ElseIf x < 48 AndAlso x > 31 AndAlso y > 47 Then
+                CurrentPlace = SkinPlace.LArm
+            ElseIf x > 47 AndAlso y > 47 Then
+                CurrentPlace = SkinPlace.LArm2
+            ElseIf x < 16 AndAlso y < 32 AndAlso y > 15 Then
+                CurrentPlace = SkinPlace.RLeg
+            ElseIf x < 16 AndAlso y < 48 AndAlso y > 31 Then
+                CurrentPlace = SkinPlace.RLeg2
+            ElseIf x < 32 AndAlso x > 15 AndAlso y > 47 Then
+                CurrentPlace = SkinPlace.LLeg
+            ElseIf x < 16 AndAlso y > 47 Then
+                CurrentPlace = SkinPlace.LLeg2
+            End If
+
+            Dim SkinSection As New Bitmap(16, 16)
+            Select Case CurrentPlace
+                Case SkinPlace.Head
+                    SkinSection = Skin.Clone(New Rectangle(0, 0, 32, 16), Skin.PixelFormat)
+                Case SkinPlace.Head2
+                    SkinSection = Skin.Clone(New Rectangle(32, 0, 32, 16), Skin.PixelFormat)
+                    x -= 32
+                Case SkinPlace.Body
+                    SkinSection = Skin.Clone(New Rectangle(16, 16, 24, 16), Skin.PixelFormat)
+                    x -= 16 : y -= 16
+                Case SkinPlace.Body2
+                    SkinSection = Skin.Clone(New Rectangle(16, 32, 24, 16), Skin.PixelFormat)
+                    x -= 16 : y -= 32
+                Case SkinPlace.RArm
+                    If Model = Models.Steve Then
+                        SkinSection = Skin.Clone(New Rectangle(40, 16, 16, 16), Skin.PixelFormat)
+                    Else
+                        SkinSection = Skin.Clone(New Rectangle(40, 16, 14, 16), Skin.PixelFormat)
+                    End If
+                    x -= 40 : y -= 16
+                Case SkinPlace.RArm2
+                    If Model = Models.Steve Then
+                        SkinSection = Skin.Clone(New Rectangle(40, 32, 16, 16), Skin.PixelFormat)
+                    Else
+                        SkinSection = Skin.Clone(New Rectangle(40, 32, 14, 16), Skin.PixelFormat)
+                    End If
+                    x -= 40 : y -= 32
+                Case SkinPlace.LArm
+                    If Model = Models.Steve Then
+                        SkinSection = Skin.Clone(New Rectangle(32, 48, 16, 16), Skin.PixelFormat)
+                    Else
+                        SkinSection = Skin.Clone(New Rectangle(32, 48, 14, 16), Skin.PixelFormat)
+                    End If
+                    x -= 32 : y -= 48
+                Case SkinPlace.LArm2
+                    If Model = Models.Steve Then
+                        SkinSection = Skin.Clone(New Rectangle(48, 48, 16, 16), Skin.PixelFormat)
+                    Else
+                        SkinSection = Skin.Clone(New Rectangle(48, 48, 14, 16), Skin.PixelFormat)
+                    End If
+                    x -= 48 : y -= 48
+                Case SkinPlace.RLeg
+                    SkinSection = Skin.Clone(New Rectangle(0, 16, 16, 16), Skin.PixelFormat)
+                    y -= 16
+                Case SkinPlace.RLeg2
+                    SkinSection = Skin.Clone(New Rectangle(0, 32, 16, 16), Skin.PixelFormat)
+                    y -= 32
+                Case SkinPlace.LLeg
+                    SkinSection = Skin.Clone(New Rectangle(16, 48, 16, 16), Skin.PixelFormat)
+                    x -= 16 : y -= 48
+                Case SkinPlace.LLeg2
+                    SkinSection = Skin.Clone(New Rectangle(0, 48, 16, 16), Skin.PixelFormat)
+                    y -= 48
+            End Select
+
+            Dim tmpSS As Bitmap = SkinSection
+            Dim tmpG As Drawing.Graphics
+            Select Case CurrentPlace
+                Case SkinPlace.Head, SkinPlace.Head2
+
+                    tmpSS = New Bitmap(32, 24)
+                    tmpG = Drawing.Graphics.FromImage(tmpSS)
+                    tmpG.DrawImage(SkinSection, 0, 0)
+                    tmpG.FillRectangle(New SolidBrush(Color.Transparent), 16, 0, 8, 8)
+                    tmpG.DrawImage(SkinSection, New Rectangle(8, 16, 8, 8), New Rectangle(16, 8, 8, -8), GraphicsUnit.Pixel)
+                    If x < 24 AndAlso x >= 16 AndAlso y < 8 Then
+                        x -= 8 : y = Math.Abs(y - 7) + 16
+                    End If
+
+                Case SkinPlace.Body, SkinPlace.Body2
+
+                    tmpSS = New Bitmap(24, 20)
+                    tmpG = Drawing.Graphics.FromImage(tmpSS)
+                    tmpG.DrawImage(SkinSection, 0, 0)
+                    tmpG.FillRectangle(New SolidBrush(Color.Transparent), 12, 0, 8, 4)
+                    tmpG.DrawImage(SkinSection, New Rectangle(4, 16, 8, 4), New Rectangle(12, 4, 8, -4), GraphicsUnit.Pixel)
+                    If x < 20 AndAlso x >= 12 AndAlso y < 4 Then
+                        x -= 8 : y = Math.Abs(y - 3) + 16
+                    End If
+
+                Case SkinPlace.LArm, SkinPlace.LArm2, SkinPlace.RArm, SkinPlace.RArm2, SkinPlace.LLeg, SkinPlace.LLeg2, SkinPlace.RLeg, SkinPlace.RLeg2
+
+                    If Model = Models.Alex AndAlso (CurrentPlace = SkinPlace.LArm OrElse CurrentPlace = SkinPlace.LArm2 OrElse CurrentPlace = SkinPlace.RArm OrElse CurrentPlace = SkinPlace.RArm2) Then
+                        tmpSS = New Bitmap(14, 20)
+                        tmpG = Drawing.Graphics.FromImage(tmpSS)
+                        tmpG.DrawImage(SkinSection, 0, 0)
+                        tmpG.FillRectangle(New SolidBrush(Color.Transparent), 7, 0, 3, 4)
+                        tmpG.DrawImage(SkinSection, New Rectangle(4, 16, 3, 4), New Rectangle(7, 4, 3, -4), GraphicsUnit.Pixel)
+                        If x < 10 AndAlso x >= 7 AndAlso y < 4 Then
+                            x -= 3 : y = Math.Abs(y - 3) + 16
+                        End If
+                    Else
+                        tmpSS = New Bitmap(16, 20)
+                        tmpG = Drawing.Graphics.FromImage(tmpSS)
+                        tmpG.DrawImage(SkinSection, 0, 0)
+                        tmpG.FillRectangle(New SolidBrush(Color.Transparent), 8, 0, 4, 4)
+                        tmpG.DrawImage(SkinSection, New Rectangle(4, 16, 4, 4), New Rectangle(8, 4, 4, -4), GraphicsUnit.Pixel)
+                        If x < 12 AndAlso x >= 8 AndAlso y < 4 Then
+                            x -= 4 : y = Math.Abs(y - 3) + 16
+                        End If
+                    End If
+
+            End Select
+
+            SkinSection = tmpSS
+
+            ' Start with the original point in the stack.
+            Dim pts As New Stack
+            pts.Push(New Point(x, y))
+            SkinSection.SetPixel(x, y, new_color)
+
+            ' While the stack is not empty, process a point.
+            Do While pts.Count > 0
+                Dim pt As Point = pts.Pop()
+                CheckPoint(SkinSection, CurrentPlace, pts, pt.X - 1, pt.Y, old_color, new_color)
+                CheckPoint(SkinSection, CurrentPlace, pts, pt.X, pt.Y - 1, old_color, new_color)
+                CheckPoint(SkinSection, CurrentPlace, pts, pt.X + 1, pt.Y, old_color, new_color)
+                CheckPoint(SkinSection, CurrentPlace, pts, pt.X, pt.Y + 1, old_color, new_color)
+            Loop
+
+            Select Case CurrentPlace
+                Case SkinPlace.Head, SkinPlace.Head2
+
+                    tmpSS = New Bitmap(32, 16)
+                    tmpG = Drawing.Graphics.FromImage(tmpSS)
+                    tmpG.DrawImage(SkinSection, 0, 0)
+                    tmpG.DrawImage(SkinSection, New Rectangle(16, 8, 8, -8), New Rectangle(8, 16, 8, 8), GraphicsUnit.Pixel)
+
+                Case SkinPlace.Body, SkinPlace.Body2
+
+                    tmpSS = New Bitmap(24, 16)
+                    tmpG = Drawing.Graphics.FromImage(tmpSS)
+                    tmpG.DrawImage(SkinSection, 0, 0)
+                    tmpG.DrawImage(SkinSection, New Rectangle(12, 4, 8, -4), New Rectangle(4, 16, 8, 4), GraphicsUnit.Pixel)
+
+                Case SkinPlace.LArm, SkinPlace.LArm2, SkinPlace.RArm, SkinPlace.RArm2, SkinPlace.LLeg, SkinPlace.LLeg2, SkinPlace.RLeg, SkinPlace.RLeg2
+
+                    If Model = Models.Alex AndAlso (CurrentPlace = SkinPlace.LArm OrElse CurrentPlace = SkinPlace.LArm2 OrElse CurrentPlace = SkinPlace.RArm OrElse CurrentPlace = SkinPlace.RArm2) Then
+                        tmpSS = New Bitmap(14, 16)
+                        tmpG = Drawing.Graphics.FromImage(tmpSS)
+                        tmpG.DrawImage(SkinSection, 0, 0)
+                        tmpG.DrawImage(SkinSection, New Rectangle(7, 4, 3, -4), New Rectangle(4, 16, 3, 4), GraphicsUnit.Pixel)
+                    Else
+                        tmpSS = New Bitmap(16, 16)
+                        tmpG = Drawing.Graphics.FromImage(tmpSS)
+                        tmpG.DrawImage(SkinSection, 0, 0)
+                        tmpG.DrawImage(SkinSection, New Rectangle(8, 4, 4, -4), New Rectangle(4, 16, 4, 4), GraphicsUnit.Pixel)
+                    End If
+
+            End Select
+
+            tmpG = Drawing.Graphics.FromImage(Skin)
+            Select Case CurrentPlace
+                Case SkinPlace.Head
+                    TransparentFill(Skin, New Rectangle(0, 0, 32, 16))
+                    tmpG.DrawImage(tmpSS, 0, 0, 32, 16)
+                Case SkinPlace.Head2
+                    TransparentFill(Skin, New Rectangle(32, 0, 32, 16))
+                    tmpG.DrawImage(tmpSS, 32, 0, 32, 16)
+                Case SkinPlace.Body
+                    TransparentFill(Skin, New Rectangle(16, 16, 24, 16))
+                    tmpG.DrawImage(tmpSS, 16, 16, 24, 16)
+                Case SkinPlace.Body2
+                    TransparentFill(Skin, New Rectangle(16, 32, 24, 16))
+                    tmpG.DrawImage(tmpSS, 16, 32, 24, 16)
+                Case SkinPlace.RArm
+                    If Model = Models.Steve Then
+                        TransparentFill(Skin, New Rectangle(40, 16, 16, 16))
+                        tmpG.DrawImage(tmpSS, 40, 16, 16, 16)
+                    Else
+                        TransparentFill(Skin, New Rectangle(40, 16, 14, 16))
+                        tmpG.DrawImage(tmpSS, 40, 16, 14, 16)
+                    End If
+                Case SkinPlace.RArm2
+                    If Model = Models.Steve Then
+                        TransparentFill(Skin, New Rectangle(40, 32, 16, 16))
+                        tmpG.DrawImage(tmpSS, 40, 32, 16, 16)
+                    Else
+                        TransparentFill(Skin, New Rectangle(40, 32, 14, 16))
+                        tmpG.DrawImage(tmpSS, 40, 32, 14, 16)
+                    End If
+                Case SkinPlace.LArm
+                    If Model = Models.Steve Then
+                        TransparentFill(Skin, New Rectangle(32, 48, 16, 16))
+                        tmpG.DrawImage(tmpSS, 32, 48, 16, 16)
+                    Else
+                        TransparentFill(Skin, New Rectangle(32, 48, 14, 16))
+                        tmpG.DrawImage(tmpSS, 32, 48, 14, 16)
+                    End If
+                Case SkinPlace.LArm2
+                    If Model = Models.Steve Then
+                        TransparentFill(Skin, New Rectangle(48, 48, 16, 16))
+                        tmpG.DrawImage(tmpSS, 48, 48, 16, 16)
+                    Else
+                        TransparentFill(Skin, New Rectangle(48, 48, 14, 16))
+                        tmpG.DrawImage(tmpSS, 48, 48, 14, 16)
+                    End If
+                Case SkinPlace.RLeg
+                    TransparentFill(Skin, New Rectangle(0, 16, 16, 16))
+                    tmpG.DrawImage(tmpSS, 0, 16, 16, 16)
+                Case SkinPlace.RLeg2
+                    TransparentFill(Skin, New Rectangle(0, 32, 16, 16))
+                    tmpG.DrawImage(tmpSS, 0, 32, 16, 16)
+                Case SkinPlace.LLeg
+                    TransparentFill(Skin, New Rectangle(16, 48, 16, 16))
+                    tmpG.DrawImage(tmpSS, 16, 48, 16, 16)
+                Case SkinPlace.LLeg2
+                    TransparentFill(Skin, New Rectangle(0, 48, 16, 16))
+                    tmpG.DrawImage(tmpSS, 0, 48, 16, 16)
+            End Select
+        End If
+    End Sub
+
+    ' See if this point should be added to the stack.
+    Sub CheckPoint(ByRef SkinSection As Bitmap, SkinPlace As SkinPlace, pts As Stack, x As Integer, y As Integer, old_color As Color, new_color As Color)
+        ' Correct the point
+        Select Case SkinPlace
+            Case SkinPlace.Head, SkinPlace.Head2
+                If x = -1 Then x = 31
+                If x = 32 Then x = 0
+
+                If y = -1 Then
+                    x = Math.Abs(x - 16) + 23
+                    y = 8
+                ElseIf y = 24 Then
+                    x = Math.Abs(x - 16) + 23
+                    y = 15
+                End If
+
+                If y = 7 Then
+
+                    If x > 23 Then
+                        x = Math.Abs(x - 32) + 7
+                        y = 0
+                    ElseIf x > 15 AndAlso x < 24 Then
+                        y = Math.Abs(x - 23)
+                        x = 15
+                    ElseIf x < 8 Then
+                        y = x
+                        x = 8
+                    End If
+
+                ElseIf y = 16 Then
+
+                    If x > 23 Then
+                        x = Math.Abs(x - 32) + 7
+                        y = 23
+                    ElseIf x > 15 AndAlso x < 24 Then
+                        y = x
+                        x = 15
+                    ElseIf x < 8 Then
+                        y = Math.Abs(x - 7) + 16
+                        x = 8
+                    End If
+
+                End If
+
+                If x = 16 Then
+
+                    If y < 8 Then
+                        x = Math.Abs(y - 7) + 16
+                        y = 8
+                    ElseIf y > 15 Then
+                        x = y
+                        y = 15
+                    End If
+
+                ElseIf x = 7 Then
+
+                    If y < 8 Then
+                        x = y
+                        y = 8
+                    ElseIf y > 15 Then
+                        x = Math.Abs(y - 23)
+                        y = 15
+                    End If
+
+                End If
+
+            Case SkinPlace.Body, SkinPlace.Body2
+                If x = -1 Then x = 23
+                If x = 24 Then x = 0
+
+                If y = -1 Then
+                    x = Math.Abs(x - 12) + 15
+                    y = 4
+                ElseIf y = 20 Then
+                    x = Math.Abs(x - 12) + 15
+                    y = 15
+                End If
+
+                If y = 3 Then
+
+                    If x > 15 Then
+                        x = Math.Abs(x - 24) + 3
+                        y = 0
+                    ElseIf x > 11 AndAlso x < 16 Then
+                        y = Math.Abs(x - 15)
+                        x = 11
+                    ElseIf x < 4 Then
+                        y = x
+                        x = 4
+                    End If
+
+                ElseIf y = 16 Then
+
+                    If x > 15 Then
+                        x = Math.Abs(x - 24) + 3
+                        y = 19
+                    ElseIf x > 11 AndAlso x < 16 Then
+                        y = x + 4
+                        x = 11
+                    ElseIf x < 4 Then
+                        y = Math.Abs(x - 3) + 16
+                        x = 4
+                    End If
+
+                End If
+
+                If x = 12 Then
+
+                    If y < 4 Then
+                        x = Math.Abs(y - 3) + 12
+                        y = 4
+                    ElseIf y > 15 Then
+                        x = y - 4
+                        y = 15
+                    End If
+
+                ElseIf x = 3 Then
+
+                    If y < 4 Then
+                        x = y
+                        y = 4
+                    ElseIf y > 15 Then
+                        x = Math.Abs(y - 19)
+                        y = 15
+                    End If
+
+                End If
+
+            Case SkinPlace.LArm, SkinPlace.LArm2, SkinPlace.RArm, SkinPlace.RArm2, SkinPlace.LLeg, SkinPlace.LLeg2, SkinPlace.RLeg, SkinPlace.RLeg2
+
+                If Model = Models.Alex AndAlso (SkinPlace = SkinPlace.LArm OrElse SkinPlace = SkinPlace.LArm2 OrElse SkinPlace = SkinPlace.RArm OrElse SkinPlace = SkinPlace.RArm2) Then
+                    If x = -1 Then x = 13
+                    If x = 14 Then x = 0
+
+                    If y = -1 Then
+                        x = Math.Abs(x - 6) + 11
+                        y = 4
+                    ElseIf y = 20 Then
+                        x = Math.Abs(x - 6) + 11
+                        y = 15
+                    End If
+
+                    If y = 3 Then
+
+                        If x > 10 Then
+                            x = Math.Abs(x - 14) + 3
+                            y = 0
+                        ElseIf x > 6 AndAlso x < 11 Then
+                            y = Math.Abs(x - 10)
+                            x = 6
+                        ElseIf x < 4 Then
+                            y = x
+                            x = 4
+                        End If
+
+                    ElseIf y = 16 Then
+
+                        If x > 10 Then
+                            x = Math.Abs(x - 13) + 4
+                            y = 19
+                        ElseIf x > 6 AndAlso x < 11 Then
+                            y = x + 9
+                            x = 6
+                        ElseIf x < 4 Then
+                            y = Math.Abs(x - 3) + 16
+                            x = 4
+                        End If
+
+                    End If
+
+                    If x = 7 Then
+
+                        If y < 4 Then
+                            x = Math.Abs(y - 3) + 7
+                            y = 4
+                        ElseIf y > 15 Then
+                            x = y - 9
+                            y = 15
+                        End If
+
+                    ElseIf x = 3 Then
+
+                        If y < 4 Then
+                            x = y
+                            y = 4
+                        ElseIf y > 15 Then
+                            x = Math.Abs(y - 19)
+                            y = 15
+                        End If
+
+                    End If
+                Else
+                    If x = -1 Then x = 15
+                    If x = 16 Then x = 0
+
+                    If y = -1 Then
+                        x = Math.Abs(x - 7) + 12
+                        y = 4
+                    ElseIf y = 20 Then
+                        x = Math.Abs(x - 7) + 12
+                        y = 15
+                    End If
+
+                    If y = 3 Then
+
+                        If x > 11 Then
+                            x = Math.Abs(x - 16) + 3
+                            y = 0
+                        ElseIf x > 7 AndAlso x < 12 Then
+                            y = Math.Abs(x - 11)
+                            x = 7
+                        ElseIf x < 4 Then
+                            y = x
+                            x = 4
+                        End If
+
+                    ElseIf y = 16 Then
+
+                        If x > 10 Then
+                            x = Math.Abs(x - 16) + 3
+                            y = 19
+                        ElseIf x > 7 AndAlso x < 12 Then
+                            y = x + 8
+                            x = 7
+                        ElseIf x < 4 Then
+                            y = Math.Abs(x - 3) + 16
+                            x = 4
+                        End If
+
+                    End If
+
+                    If x = 8 Then
+
+                        If y < 4 Then
+                            x = Math.Abs(y - 3) + 8
+                            y = 4
+                        ElseIf y > 15 Then
+                            x = y - 8
+                            y = 15
+                        End If
+
+                    ElseIf x = 3 Then
+
+                        If y < 4 Then
+                            x = y
+                            y = 4
+                        ElseIf y > 15 Then
+                            x = Math.Abs(y - 19)
+                            y = 15
+                        End If
+
+                    End If
+                End If
+
+        End Select
+
+        Dim clr As Color = SkinSection.GetPixel(x, y)
+        If clr.Equals(old_color) Then
+            pts.Push(New Point(x, y))
+            SkinSection.SetPixel(x, y, new_color)
+        End If
+    End Sub
+
+    Sub TransparentFill(B As Bitmap, R As Rectangle)
+        For X = R.Left To R.Right - 1
+            For Y = R.Top To R.Bottom - 1
+                B.SetPixel(X, Y, Color.Transparent)
+            Next
+        Next
+    End Sub
 End Class

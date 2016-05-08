@@ -15,8 +15,8 @@ will be released  after completing this tasks
 - [ ] Mirror effect
 - [X] Brush sizes
 - [ ] Select modes
-- [ ] Fill
-- [ ] Undo/Redo
+- [X] Fill
+- [X] Undo/Redo
 - [ ] Improved GUI
 
 That also would be great if you forked this repo and help me with this features

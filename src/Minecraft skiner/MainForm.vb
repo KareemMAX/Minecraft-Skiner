@@ -5,10 +5,13 @@ Public Class MainForm
 
     Friend Changed As Boolean
 
+    Dim UndoStack As New Stack(Of Bitmap)
+    Dim RedoStack As New Stack(Of Bitmap)
+
     Friend Sub UpdateImage()
         Dim Image As New Bitmap(MainSkin.Width, MainSkin.Height) 'Create the skin preview bitmao
         If Not (Skin.Width = 64 AndAlso Skin.Height = 64) Then 'Check the skin resolution
-            MsgBox("Not valid skin", MsgBoxStyle.Critical, "Error")
+            MsgBox("Skin isn't valid.", MsgBoxStyle.Critical, "Error")
             Exit Sub
         End If
         '****************Writing pixels to the preview****************
@@ -31,8 +34,12 @@ Public Class MainForm
 
     Private Sub OpenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenToolStripMenuItem.Click
         If Changed Then
-            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
-                Case MsgBoxResult.No
+            Dim dlg As New CloseBox
+            dlg.ShowDialog()
+            Select Case dlg.CloseResult
+                Case CloseBox.CloseBoxResult.Save
+                    SaveToolStripMenuItem_Click(dlg, New EventArgs)
+                Case CloseBox.CloseBoxResult.Cancel
                     Exit Sub
             End Select
         End If
@@ -42,8 +49,12 @@ Public Class MainForm
 
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
         If Changed Then
-            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
-                Case MsgBoxResult.No
+            Dim dlg As New CloseBox
+            dlg.ShowDialog()
+            Select Case dlg.CloseResult
+                Case CloseBox.CloseBoxResult.Save
+                    SaveToolStripMenuItem_Click(dlg, New EventArgs)
+                Case CloseBox.CloseBoxResult.Cancel
                     Exit Sub
             End Select
         End If
@@ -64,7 +75,7 @@ Public Class MainForm
             Try
                 Skin.Save(BitmapStream, Imaging.ImageFormat.Png) 'If the skin was saved before save it to the last location
             Catch
-                MsgBox("Something wrong with saving the file, Try save as", MsgBoxStyle.Critical, "Error")
+                MsgBox("Something wrong with saving the file, Try save as.", MsgBoxStyle.Critical, "Error!")
             Finally
                 BitmapStream.Close()
             End Try
@@ -80,8 +91,12 @@ Public Class MainForm
 
     Private Sub OpenFileDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog.FileOk
         If Changed Then
-            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
-                Case MsgBoxResult.No
+            Dim dlg As New CloseBox
+            dlg.ShowDialog()
+            Select Case dlg.CloseResult
+                Case CloseBox.CloseBoxResult.Save
+                    SaveToolStripMenuItem_Click(dlg, New EventArgs)
+                Case CloseBox.CloseBoxResult.Cancel
                     Exit Sub
             End Select
         End If
@@ -93,7 +108,7 @@ Public Class MainForm
         Try
             Skin = New Bitmap(BitmapStream) 'Update Skin value
         Catch
-            MsgBox("Something wrong with opening the file", MsgBoxStyle.Critical, "Error")
+            MsgBox("Something wrong with opening the file.", MsgBoxStyle.Critical, "Error!")
             File = tmpFile
             Skin = tmpSkin
         Finally
@@ -103,7 +118,7 @@ Public Class MainForm
             ConvertSkin()
         ElseIf Skin.Height = 64 AndAlso Skin.Width = 64 Then 'If the skin was valid then exit If
         Else
-            MsgBox("Not valid skin", MsgBoxStyle.Critical, "Error")
+            MsgBox("Skin isn't valid.", MsgBoxStyle.Critical, "Error!")
             Skin = tmpSkin
             File = tmpFile
             e.Cancel = True 'Prevent the dialog from close
@@ -119,12 +134,12 @@ Public Class MainForm
         Try
             Skin.Save(BitmapStream, Imaging.ImageFormat.Png) 'Save the skin
         Catch
-            MsgBox("Something wrong with saving the file", MsgBoxStyle.Critical, "Error")
+            MsgBox("Something wrong with saving the file.", MsgBoxStyle.Critical, "Error!")
         Finally
             BitmapStream.Close()
         End Try
         File = SaveFileDialog.FileName 'Update the File value
-        SaveFileDialog.FileName = "Untitled" 'Rest the FileName value
+        SaveFileDialog.FileName = "Untitled" 'Reset the FileName value
         Text = "Minecraft Skiner - " + IO.Path.GetFileName(File) 'Update text value
         Changed = False
     End Sub
@@ -150,8 +165,12 @@ Public Class MainForm
 
     Private Sub OpenFromplayerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenFromplayerToolStripMenuItem.Click
         If Changed Then
-            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
-                Case MsgBoxResult.No
+            Dim dlg As New CloseBox
+            dlg.ShowDialog()
+            Select Case dlg.CloseResult
+                Case CloseBox.CloseBoxResult.Save
+                    SaveToolStripMenuItem_Click(dlg, New EventArgs)
+                Case CloseBox.CloseBoxResult.Cancel
                     Exit Sub
             End Select
         End If
@@ -220,14 +239,47 @@ Public Class MainForm
 
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         If Changed Then
-            Select Case MsgBox("Are you sure you want to close this?", MsgBoxStyle.Information Or MsgBoxStyle.YesNo, "Open")
-                Case MsgBoxResult.No
-                    e.Cancel = True
+            Dim dlg As New CloseBox
+            dlg.ShowDialog()
+            Select Case dlg.CloseResult
+                Case CloseBox.CloseBoxResult.Save
+                    SaveToolStripMenuItem_Click(dlg, New EventArgs)
+                Case CloseBox.CloseBoxResult.Cancel
+                    Exit Sub
             End Select
         End If
     End Sub
 
     Private Sub Renderer3D_SkinChanged(sender As Object, NewSkin As Bitmap) Handles Renderer3D.SkinChanged
         Changed = True
+    End Sub
+
+    Private Sub Renderer3D_BeginChanged(sender As Object, LastSkin As Bitmap) Handles Renderer3D.BeginChanged
+        RedoStack.Clear()
+        UndoStack.Push(LastSkin)
+        UndoToolStripMenuItem.Enabled = True
+        RedoToolStripMenuItem.Enabled = False
+    End Sub
+
+    Private Sub UndoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UndoToolStripMenuItem.Click
+        Changed = True
+        RedoStack.Push(Skin)
+        Skin = UndoStack.Pop()
+        UpdateImage()
+        RedoToolStripMenuItem.Enabled = True
+        If Not (UndoStack.Count > 0) Then
+            UndoToolStripMenuItem.Enabled = False
+        End If
+    End Sub
+
+    Private Sub RedoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RedoToolStripMenuItem.Click
+        Changed = True
+        UndoStack.Push(Skin)
+        Skin = RedoStack.Pop()
+        UpdateImage()
+        UndoToolStripMenuItem.Enabled = True
+        If Not (RedoStack.Count > 0) Then
+            RedoToolStripMenuItem.Enabled = False
+        End If
     End Sub
 End Class

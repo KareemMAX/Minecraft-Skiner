@@ -45,6 +45,9 @@ Partial Class MainForm
         Me.ColorPicker = New Minecraft_skiner.ColorPicker()
         Me.Renderer3D = New Minecraft_skiner.Renderer3D()
         Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UndoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,7 +55,7 @@ Partial Class MainForm
         '
         'MenuStrip
         '
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.HelpToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
         Me.MenuStrip.Size = New System.Drawing.Size(1036, 24)
@@ -203,6 +206,7 @@ Partial Class MainForm
         Me.ColorPicker.BrushSize = CType(1, Byte)
         Me.ColorPicker.Color = System.Drawing.Color.Red
         Me.ColorPicker.InDesignMode = True
+        Me.ColorPicker.IsFilling = False
         Me.ColorPicker.IsPicking = False
         Me.ColorPicker.Location = New System.Drawing.Point(768, 27)
         Me.ColorPicker.Name = "ColorPicker"
@@ -262,6 +266,27 @@ Partial Class MainForm
         Me.LayerSelector1.Size = New System.Drawing.Size(120, 120)
         Me.LayerSelector1.TabIndex = 7
         '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UndoToolStripMenuItem, Me.RedoToolStripMenuItem})
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
+        Me.EditToolStripMenuItem.Text = "&Edit"
+        '
+        'UndoToolStripMenuItem
+        '
+        Me.UndoToolStripMenuItem.Enabled = False
+        Me.UndoToolStripMenuItem.Name = "UndoToolStripMenuItem"
+        Me.UndoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.UndoToolStripMenuItem.Text = "&Undo"
+        '
+        'RedoToolStripMenuItem
+        '
+        Me.RedoToolStripMenuItem.Enabled = False
+        Me.RedoToolStripMenuItem.Name = "RedoToolStripMenuItem"
+        Me.RedoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RedoToolStripMenuItem.Text = "&Redo"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -310,4 +335,7 @@ Partial Class MainForm
     Friend WithEvents BugTrackerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ColorPicker As ColorPicker
     Friend WithEvents ChangeYourSkinToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UndoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RedoToolStripMenuItem As ToolStripMenuItem
 End Class

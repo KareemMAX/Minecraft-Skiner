@@ -277,7 +277,7 @@ Public Class MouseRay
                 If Renderer.Show2ndHead AndAlso HeadXPoint.Z < 4.24 AndAlso HeadXPoint.Z > -4.24 AndAlso HeadXPoint.Y < 16.24 AndAlso HeadXPoint.Y > 7.76 Then
                     PointsDis.Add(New ResultDistance(HeadXIndex(I), ResultDistance.Is.X))
                 End If
-                If Renderer.Show2ndBody AndAlso BodyXPoint.Z < 4.24 AndAlso BodyXPoint.Z > -4.24 AndAlso BodyXPoint.Y < 8.36 AndAlso BodyXPoint.Y > -4.36 Then
+                If Renderer.Show2ndBody AndAlso BodyXPoint.Z < 2.12 AndAlso BodyXPoint.Z > -2.12 AndAlso BodyXPoint.Y < 8.36 AndAlso BodyXPoint.Y > -4.36 Then
                     PointsDis.Add(New ResultDistance(BodyXIndex(I), ResultDistance.Is.X))
                 End If
                 If Renderer.Show2ndRightArm AndAlso RArmXPoint.Z < 2.12 AndAlso RArmXPoint.Z > -2.12 AndAlso RArmXPoint.Y < 8.36 AndAlso RArmXPoint.Y > -4.36 Then
