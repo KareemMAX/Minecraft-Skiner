@@ -32,6 +32,10 @@ Partial Class MainForm
         Me.SaveAsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveAs17SkinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeYourSkinToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UndoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebsiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -41,13 +45,11 @@ Partial Class MainForm
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Alexrdb = New System.Windows.Forms.RadioButton()
         Me.Steverdb = New System.Windows.Forms.RadioButton()
-        Me.MainSkin = New System.Windows.Forms.PictureBox()
         Me.ColorPicker = New Minecraft_skiner.ColorPicker()
+        Me.LayerSelector = New Minecraft_skiner.LayerSelector()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.Renderer3D = New Minecraft_skiner.Renderer3D()
-        Me.LayerSelector1 = New Minecraft_skiner.LayerSelector()
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UndoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MainSkin = New System.Windows.Forms.PictureBox()
         Me.MenuStrip.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         CType(Me.MainSkin, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +119,34 @@ Partial Class MainForm
         Me.ChangeYourSkinToolStripMenuItem.Name = "ChangeYourSkinToolStripMenuItem"
         Me.ChangeYourSkinToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.ChangeYourSkinToolStripMenuItem.Text = "&Change your skin"
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UndoToolStripMenuItem, Me.RedoToolStripMenuItem, Me.ToolStripSeparator1, Me.ModeToolStripMenuItem})
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
+        Me.EditToolStripMenuItem.Text = "&Edit"
+        '
+        'UndoToolStripMenuItem
+        '
+        Me.UndoToolStripMenuItem.Enabled = False
+        Me.UndoToolStripMenuItem.Name = "UndoToolStripMenuItem"
+        Me.UndoToolStripMenuItem.Size = New System.Drawing.Size(123, 22)
+        Me.UndoToolStripMenuItem.Text = "&Undo"
+        '
+        'RedoToolStripMenuItem
+        '
+        Me.RedoToolStripMenuItem.Enabled = False
+        Me.RedoToolStripMenuItem.Name = "RedoToolStripMenuItem"
+        Me.RedoToolStripMenuItem.Size = New System.Drawing.Size(123, 22)
+        Me.RedoToolStripMenuItem.Text = "&Redo"
+        '
+        'ModeToolStripMenuItem
+        '
+        Me.ModeToolStripMenuItem.CheckOnClick = True
+        Me.ModeToolStripMenuItem.Name = "ModeToolStripMenuItem"
+        Me.ModeToolStripMenuItem.Size = New System.Drawing.Size(123, 22)
+        Me.ModeToolStripMenuItem.Text = "1.7 &Mode"
         '
         'HelpToolStripMenuItem
         '
@@ -190,16 +220,6 @@ Partial Class MainForm
         Me.Steverdb.Text = "Steve"
         Me.Steverdb.UseVisualStyleBackColor = True
         '
-        'MainSkin
-        '
-        Me.MainSkin.Image = CType(resources.GetObject("MainSkin.Image"), System.Drawing.Image)
-        Me.MainSkin.Location = New System.Drawing.Point(12, 27)
-        Me.MainSkin.Name = "MainSkin"
-        Me.MainSkin.Size = New System.Drawing.Size(128, 128)
-        Me.MainSkin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.MainSkin.TabIndex = 6
-        Me.MainSkin.TabStop = False
-        '
         'ColorPicker
         '
         Me.ColorPicker.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -212,6 +232,32 @@ Partial Class MainForm
         Me.ColorPicker.Name = "ColorPicker"
         Me.ColorPicker.Size = New System.Drawing.Size(257, 557)
         Me.ColorPicker.TabIndex = 9
+        '
+        'LayerSelector
+        '
+        Me.LayerSelector._3DRenderer = Me.Renderer3D
+        Me.LayerSelector.Is1point7 = False
+        Me.LayerSelector.Location = New System.Drawing.Point(12, 237)
+        Me.LayerSelector.Name = "LayerSelector"
+        Me.LayerSelector.Show2ndBody = True
+        Me.LayerSelector.Show2ndHead = True
+        Me.LayerSelector.Show2ndLeftArm = True
+        Me.LayerSelector.Show2ndLeftLeg = True
+        Me.LayerSelector.Show2ndRightArm = True
+        Me.LayerSelector.Show2ndRightLeg = True
+        Me.LayerSelector.ShowBody = True
+        Me.LayerSelector.ShowHead = True
+        Me.LayerSelector.ShowLeftArm = True
+        Me.LayerSelector.ShowLeftLeg = True
+        Me.LayerSelector.ShowRightArm = True
+        Me.LayerSelector.ShowRightLeg = True
+        Me.LayerSelector.Size = New System.Drawing.Size(120, 120)
+        Me.LayerSelector.TabIndex = 7
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(120, 6)
         '
         'Renderer3D
         '
@@ -246,46 +292,15 @@ Partial Class MainForm
         Me.Renderer3D.TabIndex = 8
         Me.Renderer3D.Zoom = 1.0R
         '
-        'LayerSelector1
+        'MainSkin
         '
-        Me.LayerSelector1._3DRenderer = Me.Renderer3D
-        Me.LayerSelector1.Location = New System.Drawing.Point(12, 237)
-        Me.LayerSelector1.Name = "LayerSelector1"
-        Me.LayerSelector1.Show2ndBody = True
-        Me.LayerSelector1.Show2ndHead = True
-        Me.LayerSelector1.Show2ndLeftArm = True
-        Me.LayerSelector1.Show2ndLeftLeg = True
-        Me.LayerSelector1.Show2ndRightArm = True
-        Me.LayerSelector1.Show2ndRightLeg = True
-        Me.LayerSelector1.ShowBody = True
-        Me.LayerSelector1.ShowHead = True
-        Me.LayerSelector1.ShowLeftArm = True
-        Me.LayerSelector1.ShowLeftLeg = True
-        Me.LayerSelector1.ShowRightArm = True
-        Me.LayerSelector1.ShowRightLeg = True
-        Me.LayerSelector1.Size = New System.Drawing.Size(120, 120)
-        Me.LayerSelector1.TabIndex = 7
-        '
-        'EditToolStripMenuItem
-        '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UndoToolStripMenuItem, Me.RedoToolStripMenuItem})
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
-        Me.EditToolStripMenuItem.Text = "&Edit"
-        '
-        'UndoToolStripMenuItem
-        '
-        Me.UndoToolStripMenuItem.Enabled = False
-        Me.UndoToolStripMenuItem.Name = "UndoToolStripMenuItem"
-        Me.UndoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.UndoToolStripMenuItem.Text = "&Undo"
-        '
-        'RedoToolStripMenuItem
-        '
-        Me.RedoToolStripMenuItem.Enabled = False
-        Me.RedoToolStripMenuItem.Name = "RedoToolStripMenuItem"
-        Me.RedoToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.RedoToolStripMenuItem.Text = "&Redo"
+        Me.MainSkin.Image = CType(resources.GetObject("MainSkin.Image"), System.Drawing.Image)
+        Me.MainSkin.Location = New System.Drawing.Point(12, 27)
+        Me.MainSkin.Name = "MainSkin"
+        Me.MainSkin.Size = New System.Drawing.Size(128, 128)
+        Me.MainSkin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.MainSkin.TabIndex = 6
+        Me.MainSkin.TabStop = False
         '
         'MainForm
         '
@@ -294,7 +309,7 @@ Partial Class MainForm
         Me.ClientSize = New System.Drawing.Size(1036, 646)
         Me.Controls.Add(Me.ColorPicker)
         Me.Controls.Add(Me.Renderer3D)
-        Me.Controls.Add(Me.LayerSelector1)
+        Me.Controls.Add(Me.LayerSelector)
         Me.Controls.Add(Me.MainSkin)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.MenuStrip)
@@ -327,7 +342,7 @@ Partial Class MainForm
     Friend WithEvents SaveAs17SkinToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MainSkin As PictureBox
     Friend WithEvents OpenFromplayerToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents LayerSelector1 As LayerSelector
+    Friend WithEvents LayerSelector As LayerSelector
     Friend WithEvents Renderer3D As Renderer3D
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
@@ -338,4 +353,6 @@ Partial Class MainForm
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UndoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RedoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ModeToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
 End Class

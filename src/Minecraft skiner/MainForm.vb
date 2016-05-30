@@ -84,9 +84,15 @@ Public Class MainForm
     End Sub
 
     Private Sub SaveAsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAsToolStripMenuItem.Click
-        Dim Dialog As New UserNameDialog
+        Dim tmpSkin As Bitmap = Skin
+        If ModeToolStripMenuItem.Checked Then
+            Skin = Skin.Clone(New Rectangle(0, 0, 64, 32), Skin.PixelFormat)
+        End If
         SaveFileDialog.ShowDialog()
         Changed = False
+        If ModeToolStripMenuItem.Checked Then
+            Skin = tmpSkin
+        End If
     End Sub
 
     Private Sub OpenFileDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog.FileOk
@@ -130,6 +136,10 @@ Public Class MainForm
     End Sub
 
     Private Sub SaveFileDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles SaveFileDialog.FileOk
+        Dim tmpSkin As Bitmap = Skin
+        If ModeToolStripMenuItem.Checked AndAlso SaveFileDialog.Tag <> 8 Then
+            Skin = Skin.Clone(New Rectangle(0, 0, 64, 32), Skin.PixelFormat)
+        End If
         Dim BitmapStream As IO.Stream = IO.File.Open(SaveFileDialog.FileName, IO.FileMode.OpenOrCreate)
         Try
             Skin.Save(BitmapStream, Imaging.ImageFormat.Png) 'Save the skin
@@ -142,25 +152,35 @@ Public Class MainForm
         SaveFileDialog.FileName = "Untitled" 'Reset the FileName value
         Text = "Minecraft Skiner - " + IO.Path.GetFileName(File) 'Update text value
         Changed = False
+        If ModeToolStripMenuItem.Checked AndAlso SaveFileDialog.Tag <> 8 Then
+            Skin = tmpSkin
+        End If
     End Sub
 
     Private Sub SaveAs17SkinToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveAs17SkinToolStripMenuItem.Click
-        Dim Dialog As New OldSkinPreview
-        Dim tmpSkin As Bitmap = Skin 'Create temporary image
-        Dim newSkin As New Bitmap(64, 32) 'Create new skin image
-        Dim g As Graphics = Graphics.FromImage(newSkin) 'Create garphics variable
-        g.DrawImage(tmpSkin, New Rectangle(0, 0, 64, 32), New Rectangle(0, 0, 64, 32), GraphicsUnit.Pixel) 'Crop the image
-        Skin = newSkin
-        ConvertSkin()
-        Dialog.Renderer3D.InDesignMode = False
-        Dialog.Renderer3D.Skin = Skin
-        Dialog.ShowDialog()
-        If Dialog.DialogResult = DialogResult.OK Then
+        If Not ModeToolStripMenuItem.Checked Then
+            Dim Dialog As New OldSkinPreview
+            Dim tmpSkin As Bitmap = Skin 'Create temporary image
+            Dim newSkin As New Bitmap(64, 32) 'Create new skin image
+            Dim g As Graphics = Graphics.FromImage(newSkin) 'Create garphics variable
+            g.DrawImage(tmpSkin, New Rectangle(0, 0, 64, 32), New Rectangle(0, 0, 64, 32), GraphicsUnit.Pixel) 'Crop the image
             Skin = newSkin
-            SaveFileDialog.ShowDialog() 'Open the save dialog
+            ConvertSkin()
+            Dialog.Renderer3D.InDesignMode = False
+            Dialog.Renderer3D.Skin = Skin
+            Dialog.ShowDialog()
+            If Dialog.DialogResult = DialogResult.OK Then
+                Skin = newSkin
+                SaveFileDialog.ShowDialog() 'Open the save dialog
+            End If
+            Skin = tmpSkin 'Rest the skin value to 1.8 old skin
+            Changed = False
+        Else
+            SaveFileDialog.Tag = 8
+            SaveFileDialog.ShowDialog()
+            SaveFileDialog.Tag = Nothing
+            Changed = False
         End If
-        Skin = tmpSkin 'Rest the skin value to 1.8 old skin
-        Changed = False
     End Sub
 
     Private Sub OpenFromplayerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenFromplayerToolStripMenuItem.Click
@@ -195,6 +215,25 @@ Public Class MainForm
         g.DrawImage(tmpSkin, New Rectangle(44, 52, 4, 12), New Rectangle(56, 20, -4, 12), GraphicsUnit.Pixel)
         g.DrawImage(tmpSkin, New Rectangle(36, 48, 4, 4), New Rectangle(48, 16, -4, 4), GraphicsUnit.Pixel)
         g.DrawImage(tmpSkin, New Rectangle(40, 48, 4, 4), New Rectangle(52, 16, -4, 4), GraphicsUnit.Pixel)
+    End Sub
+
+    Sub RevertConvert()
+        Dim tmpSkin As Bitmap = Skin
+        Skin = New Bitmap(64, 64)
+        Dim g As Graphics = Graphics.FromImage(Skin)
+        g.DrawImage(tmpSkin, New Rectangle(0, 0, 64, 32), New Rectangle(0, 0, 64, 32), GraphicsUnit.Pixel)
+        '--------------Draw the leg---------------
+        g.DrawImage(tmpSkin, New Rectangle(8, 20, -8, 12), New Rectangle(20, 52, 8, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(12, 20, -4, 12), New Rectangle(16, 52, 4, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(16, 20, -4, 12), New Rectangle(28, 52, 4, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(8, 16, -4, 4), New Rectangle(20, 48, 4, 4), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(12, 16, -4, 4), New Rectangle(24, 48, 4, 4), GraphicsUnit.Pixel)
+        '--------------Draw the arm---------------
+        g.DrawImage(tmpSkin, New Rectangle(48, 20, -8, 12), New Rectangle(36, 52, 8, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(52, 20, -4, 12), New Rectangle(32, 52, 4, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(56, 20, -4, 12), New Rectangle(44, 52, 4, 12), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(48, 16, -4, 4), New Rectangle(36, 48, 4, 4), GraphicsUnit.Pixel)
+        g.DrawImage(tmpSkin, New Rectangle(52, 16, -4, 4), New Rectangle(40, 48, 4, 4), GraphicsUnit.Pixel)
     End Sub
 
     Private Sub Steverdb_CheckedChanged(sender As Object, e As EventArgs) Handles Steverdb.CheckedChanged
@@ -250,8 +289,14 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub Renderer3D_SkinChanged(sender As Object, NewSkin As Bitmap) Handles Renderer3D.SkinChanged
+    Private Sub Renderer3D_SkinChanged(sender As Object, IsLeft As Boolean) Handles Renderer3D.SkinChanged
         Changed = True
+        If ModeToolStripMenuItem.Checked Then
+            If IsLeft Then RevertConvert()
+            Skin = Skin.Clone(New Rectangle(0, 0, 64, 32), Skin.PixelFormat)
+            ConvertSkin()
+            UpdateImage()
+        End If
     End Sub
 
     Private Sub Renderer3D_BeginChanged(sender As Object, LastSkin As Bitmap) Handles Renderer3D.BeginChanged
@@ -282,4 +327,29 @@ Public Class MainForm
             RedoToolStripMenuItem.Enabled = False
         End If
     End Sub
+
+    Private Sub ModeToolStripMenuItem_CheckedChanged(sender As Object, e As EventArgs) Handles ModeToolStripMenuItem.CheckedChanged
+        If ModeToolStripMenuItem.Checked Then
+            LayerSelector.Is1point7 = True
+            LayerSelector.Show2ndBody = False
+            LayerSelector.Show2ndLeftArm = False
+            LayerSelector.Show2ndLeftLeg = False
+            LayerSelector.Show2ndRightArm = False
+            LayerSelector.Show2ndRightLeg = False
+            SaveAs17SkinToolStripMenuItem.Text = "Save As 1.&8 skin"
+            ConvertSkin()
+            UpdateImage()
+        Else
+            LayerSelector.Is1point7 = False
+            LayerSelector.Show2ndBody = True
+            LayerSelector.Show2ndLeftArm = True
+            LayerSelector.Show2ndLeftLeg = True
+            LayerSelector.Show2ndRightArm = True
+            LayerSelector.Show2ndRightLeg = True
+            SaveAs17SkinToolStripMenuItem.Text = "Save As 1.&7 skin"
+        End If
+        LayerSelector.Refresh()
+        LayerSelector.UpdateSelectors()
+    End Sub
+
 End Class

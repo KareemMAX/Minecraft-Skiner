@@ -1394,16 +1394,18 @@ Public Class Renderer3D
         End If
     End Sub
 
-    Public Event SkinChanged(sender As Object, NewSkin As Bitmap)
+    Public Event SkinChanged(sender As Object, IsLeft As Boolean)
 
     Sub PaintPixel(Vector As Vector3, Optional Second As Boolean = False)
         Dim Point As Point
         Dim XUp As Vector3
         Dim YUp As Vector3
+        Dim Left As Boolean
         If Second Then
             Point = Get2nd2DFrom3D(Vector, XUp, YUp)
         Else
             Point = Get2DFrom3D(Vector, XUp, YUp)
+            If Point.Y > 31 Then Left = True
         End If
         If ColorPicker.IsPicking Then
             ColorPicker.Color = Skin.GetPixel(Point.X, Point.Y)
@@ -1452,7 +1454,7 @@ Public Class Renderer3D
             End If
             Refresh()
         End If
-        RaiseEvent SkinChanged(Me, Skin)
+        RaiseEvent SkinChanged(Me, Left)
     End Sub
 
     Function Get2DFrom3D(Vector As Vector3, ByRef XUp As Vector3, ByRef YUp As Vector3) As Point

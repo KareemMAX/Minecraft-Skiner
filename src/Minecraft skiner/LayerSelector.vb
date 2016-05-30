@@ -14,56 +14,118 @@
     ''' </summary>
     ''' <returns>Show the body or not</returns>
     Property ShowBody As Boolean = True
+    Dim _Show2ndBody As Boolean = True
     ''' <summary>
     ''' Show the second body layer or not
     ''' </summary>
     ''' <returns>Show the second body layer or not</returns>
-    Property Show2ndBody As Boolean = True
+    Property Show2ndBody As Boolean
+        Set(value As Boolean)
+            If Is1point7 Then
+                _Show2ndBody = False
+            Else
+                _Show2ndBody = value
+            End If
+        End Set
+        Get
+            Return _Show2ndBody
+        End Get
+    End Property
     ''' <summary>
     ''' Show the right arm or not
     ''' </summary>
     ''' <returns>Show the right arm or not</returns>
     Property ShowRightArm As Boolean = True
+    Dim _Show2ndRightArm As Boolean = True
     ''' <summary>
     ''' Show the second right arm layer or not
     ''' </summary>
     ''' <returns>Show the second right arm layer or not</returns>
-    Property Show2ndRightArm As Boolean = True
+    Property Show2ndRightArm As Boolean
+        Set(value As Boolean)
+            If Is1point7 Then
+                _Show2ndRightArm = False
+            Else
+                _Show2ndRightArm = value
+            End If
+        End Set
+        Get
+            Return _Show2ndRightArm
+        End Get
+    End Property
     ''' <summary>
     ''' Show the left arm or not
     ''' </summary>
     ''' <returns>Show the leftht arm or not</returns>
     Property ShowLeftArm As Boolean = True
+    Dim _Show2ndLeftArm As Boolean = True
     ''' <summary>
     ''' Show the second left arm layer or not
     ''' </summary>
     ''' <returns>Show the second left arm layer or not</returns>
-    Property Show2ndLeftArm As Boolean = True
+    Property Show2ndLeftArm As Boolean
+        Set(value As Boolean)
+            If Is1point7 Then
+                _Show2ndLeftArm = False
+            Else
+                _Show2ndLeftArm = value
+            End If
+        End Set
+        Get
+            Return _Show2ndLeftArm
+        End Get
+    End Property
     ''' <summary>
     ''' Show the right leg or not
     ''' </summary>
     ''' <returns>Show the right leg or not</returns>
     Property ShowRightLeg As Boolean = True
+    Dim _Show2ndRightLeg As Boolean = True
     ''' <summary>
     ''' Show the second right leg layer or not
     ''' </summary>
     ''' <returns>Show the second right leg layer or not</returns>
-    Property Show2ndRightLeg As Boolean = True
+    Property Show2ndRightLeg As Boolean
+        Set(value As Boolean)
+            If Is1point7 Then
+                _Show2ndRightLeg = False
+            Else
+                _Show2ndRightLeg = value
+            End If
+        End Set
+        Get
+            Return _Show2ndRightLeg
+        End Get
+    End Property
     ''' <summary>
     ''' Show the left leg or not
     ''' </summary>
     ''' <returns>Show the leftht leg or not</returns>
     Property ShowLeftLeg As Boolean = True
+    Dim _Show2ndLeftLeg As Boolean = True
     ''' <summary>
     ''' Show the second left leg layer or not
     ''' </summary>
     ''' <returns>Show the second left leg layer or not</returns>
-    Property Show2ndLeftLeg As Boolean = True
+    Property Show2ndLeftLeg As Boolean
+        Set(value As Boolean)
+            If Is1point7 Then
+                _Show2ndLeftLeg = False
+            Else
+                _Show2ndLeftLeg = value
+            End If
+        End Set
+        Get
+            Return _Show2ndLeftLeg
+        End Get
+    End Property
     ''' <summary>
     ''' Lock the selector to renderer
     ''' </summary>
     ''' <returns>Locked renderer</returns>
     Property _3DRenderer As Renderer3D = New Renderer3D
+
+    Property Is1point7 As Boolean
 
     Private Sub LayerSelector_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
         Dim currentContext As BufferedGraphicsContext

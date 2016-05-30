@@ -11,7 +11,7 @@ will be released  after completing this tasks
 - [X] Color pick
 - [ ] Layers
 - [ ] Effects (Like photoshop)
-- [ ] 1.7 Paint mode
+- [X] 1.7 Paint mode
 - [ ] Mirror effect
 - [X] Brush sizes
 - [ ] Select modes
