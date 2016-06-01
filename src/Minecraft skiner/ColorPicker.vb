@@ -60,7 +60,7 @@ Public Class ColorPicker
     End Property
 
     Dim _IsMirroring As Boolean
-    <Description("Is Pick color active or not"), Category("Appearance")>
+    <Description("Is Mirroring effect active or not"), Category("Appearance")>
     Property IsMirroring As Boolean
         Set(value As Boolean)
             If value Then
