@@ -1414,16 +1414,35 @@ Public Class Renderer3D
             FloodFill(Point.X, Point.Y, ColorPicker.Color)
         Else
             Skin.SetPixel(Point.X, Point.Y, ColorPicker.Color)
+            If ColorPicker.IsMirroring Then
+                Dim MPoint As Point
+                If Second Then
+                    MPoint = Get2nd2DFrom3D(Vector * New Vector3(-1, 1, 1), XUp, YUp)
+                Else
+                    MPoint = Get2DFrom3D(Vector * New Vector3(-1, 1, 1), XUp, YUp)
+                End If
+                Skin.SetPixel(MPoint.X, MPoint.Y, ColorPicker.Color)
+            End If
             If ColorPicker.BrushSize >= 2 Then
-                Dim Points(2) As Point
+                Dim Points(5) As Point
                 If Second Then
                     Points(0) = Get2nd2DFrom3D(Vector + XUp)
                     Points(1) = Get2nd2DFrom3D(Vector + XUp - YUp)
                     Points(2) = Get2nd2DFrom3D(Vector - YUp)
+                    If ColorPicker.IsMirroring Then
+                        Points(3) = Get2nd2DFrom3D((Vector + XUp) * New Vector3(-1, 1, 1))
+                        Points(4) = Get2nd2DFrom3D((Vector + XUp - YUp) * New Vector3(-1, 1, 1))
+                        Points(5) = Get2nd2DFrom3D((Vector - YUp) * New Vector3(-1, 1, 1))
+                    End If
                 Else
                     Points(0) = Get2DFrom3D(Vector + XUp)
                     Points(1) = Get2DFrom3D(Vector + XUp - YUp)
                     Points(2) = Get2DFrom3D(Vector - YUp)
+                    If ColorPicker.IsMirroring Then
+                        Points(3) = Get2DFrom3D((Vector + XUp) * New Vector3(-1, 1, 1))
+                        Points(4) = Get2DFrom3D((Vector + XUp - YUp) * New Vector3(-1, 1, 1))
+                        Points(5) = Get2DFrom3D((Vector - YUp) * New Vector3(-1, 1, 1))
+                    End If
                 End If
                 For Each Pixel As Point In Points
                     If Pixel <> New Point(0, 0) Then
@@ -1432,19 +1451,33 @@ Public Class Renderer3D
                 Next
             End If
             If ColorPicker.BrushSize = 3 Then
-                Dim Points(4) As Point
+                Dim Points(9) As Point
                 If Second Then
                     Points(0) = Get2nd2DFrom3D(Vector - XUp)
                     Points(1) = Get2nd2DFrom3D(Vector - XUp - YUp)
                     Points(2) = Get2nd2DFrom3D(Vector + YUp)
                     Points(3) = Get2nd2DFrom3D(Vector - XUp + YUp)
                     Points(4) = Get2nd2DFrom3D(Vector + XUp + YUp)
+                    If ColorPicker.IsMirroring Then
+                        Points(5) = Get2nd2DFrom3D((Vector - XUp) * New Vector3(-1, 1, 1))
+                        Points(6) = Get2nd2DFrom3D((Vector - XUp - YUp) * New Vector3(-1, 1, 1))
+                        Points(7) = Get2nd2DFrom3D((Vector + YUp) * New Vector3(-1, 1, 1))
+                        Points(8) = Get2nd2DFrom3D((Vector - XUp + YUp) * New Vector3(-1, 1, 1))
+                        Points(9) = Get2nd2DFrom3D((Vector + XUp + YUp) * New Vector3(-1, 1, 1))
+                    End If
                 Else
                     Points(0) = Get2DFrom3D(Vector - XUp)
                     Points(1) = Get2DFrom3D(Vector - XUp - YUp)
                     Points(2) = Get2DFrom3D(Vector + YUp)
                     Points(3) = Get2DFrom3D(Vector - XUp + YUp)
                     Points(4) = Get2DFrom3D(Vector + XUp + YUp)
+                    If ColorPicker.IsMirroring Then
+                        Points(5) = Get2DFrom3D((Vector - XUp) * New Vector3(-1, 1, 1))
+                        Points(6) = Get2DFrom3D((Vector - XUp - YUp) * New Vector3(-1, 1, 1))
+                        Points(7) = Get2DFrom3D((Vector + YUp) * New Vector3(-1, 1, 1))
+                        Points(8) = Get2DFrom3D((Vector - XUp + YUp) * New Vector3(-1, 1, 1))
+                        Points(9) = Get2DFrom3D((Vector + XUp + YUp) * New Vector3(-1, 1, 1))
+                    End If
                 End If
                 For Each Pixel As Point In Points
                     If Pixel <> New Point(0, 0) Then

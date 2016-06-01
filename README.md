@@ -12,7 +12,7 @@ will be released  after completing this tasks
 - [ ] Layers
 - [ ] Effects (Like photoshop)
 - [X] 1.7 Paint mode
-- [ ] Mirror effect
+- [X] Mirror effect
 - [X] Brush sizes
 - [ ] Select modes
 - [X] Fill

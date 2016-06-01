@@ -43,7 +43,7 @@ Public Class ColorPicker
     End Property
 
     Dim _IsFilling As Boolean
-    <Description("Is Pick color active or not"), Category("Appearance")>
+    <Description("Is flood fill active or not"), Category("Appearance")>
     Property IsFilling As Boolean
         Set(value As Boolean)
             If value Then
@@ -56,6 +56,24 @@ Public Class ColorPicker
         End Set
         Get
             Return _IsFilling
+        End Get
+    End Property
+
+    Dim _IsMirroring As Boolean
+    <Description("Is Pick color active or not"), Category("Appearance")>
+    Property IsMirroring As Boolean
+        Set(value As Boolean)
+            If value Then
+                Mirror.BorderStyle = BorderStyle.Fixed3D
+            Else
+                Mirror.BorderStyle = BorderStyle.None
+            End If
+            If IsPicking Then IsPicking = False
+            If IsFilling Then IsFilling = False
+            _IsMirroring = value
+        End Set
+        Get
+            Return _IsMirroring
         End Get
     End Property
 
@@ -473,6 +491,10 @@ Public Class ColorPicker
 
     Private Sub Fill_Click(sender As Object, e As EventArgs) Handles Fill.Click
         IsFilling = Not IsFilling
+    End Sub
+
+    Private Sub Mirror_Click(sender As Object, e As EventArgs) Handles Mirror.Click
+        IsMirroring = Not IsMirroring
     End Sub
 End Class
 

@@ -39,6 +39,7 @@ Partial Class ColorPicker
         Me.Size1 = New System.Windows.Forms.PictureBox()
         Me.ColorPick = New System.Windows.Forms.PictureBox()
         Me.Transparent = New System.Windows.Forms.PictureBox()
+        Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         CType(Me.Camo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Mirror, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Fill, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,6 +136,7 @@ Partial Class ColorPicker
         Me.Camo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Camo.TabIndex = 14
         Me.Camo.TabStop = False
+        Me.ToolTip.SetToolTip(Me.Camo, "Camo effect")
         Me.Camo.Visible = False
         '
         'Mirror
@@ -146,7 +148,7 @@ Partial Class ColorPicker
         Me.Mirror.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Mirror.TabIndex = 13
         Me.Mirror.TabStop = False
-        Me.Mirror.Visible = False
+        Me.ToolTip.SetToolTip(Me.Mirror, "Mirror effect")
         '
         'Fill
         '
@@ -157,6 +159,7 @@ Partial Class ColorPicker
         Me.Fill.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Fill.TabIndex = 12
         Me.Fill.TabStop = False
+        Me.ToolTip.SetToolTip(Me.Fill, "Fill")
         '
         'Size3
         '
@@ -168,6 +171,7 @@ Partial Class ColorPicker
         Me.Size3.TabIndex = 11
         Me.Size3.TabStop = False
         Me.Size3.Tag = "3"
+        Me.ToolTip.SetToolTip(Me.Size3, "3 pixels size")
         '
         'Size2
         '
@@ -179,6 +183,7 @@ Partial Class ColorPicker
         Me.Size2.TabIndex = 10
         Me.Size2.TabStop = False
         Me.Size2.Tag = "2"
+        Me.ToolTip.SetToolTip(Me.Size2, "2 pixels size")
         '
         'Size1
         '
@@ -191,6 +196,7 @@ Partial Class ColorPicker
         Me.Size1.TabIndex = 9
         Me.Size1.TabStop = False
         Me.Size1.Tag = "1"
+        Me.ToolTip.SetToolTip(Me.Size1, "1 pixel size")
         '
         'ColorPick
         '
@@ -201,6 +207,7 @@ Partial Class ColorPicker
         Me.ColorPick.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.ColorPick.TabIndex = 8
         Me.ColorPick.TabStop = False
+        Me.ToolTip.SetToolTip(Me.ColorPick, "Pick color")
         '
         'Transparent
         '
@@ -211,6 +218,7 @@ Partial Class ColorPicker
         Me.Transparent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Transparent.TabIndex = 7
         Me.Transparent.TabStop = False
+        Me.ToolTip.SetToolTip(Me.Transparent, "Transparent")
         '
         'ColorPicker
         '
@@ -262,4 +270,5 @@ Partial Class ColorPicker
     Friend WithEvents Fill As PictureBox
     Friend WithEvents Mirror As PictureBox
     Friend WithEvents Camo As PictureBox
+    Friend WithEvents ToolTip As ToolTip
 End Class
