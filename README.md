@@ -14,7 +14,7 @@ will be released  after completing this tasks:
 - [X] 1.7 Paint mode
 - [X] Mirror effect
 - [X] Brush sizes
-- [ ] Select modes
+- [ ] ~~Select modes~~
 - [X] Fill
 - [X] Undo/Redo
 - [ ] Improved GUI
