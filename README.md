@@ -2,21 +2,23 @@
 
 ![Build](https://ci.appveyor.com/api/projects/status/github/Kareemmax/Minecraft-Skiner?svg=true)
 
-Tool to make a great minecraft skins
+Tool to make a great Minecraft skins.
 
-It's now under development
+It's now under development.
 
-will be released  after completing this tasks
+will be released  after completing this tasks:
 
 - [X] Color pick
 - [ ] Layers
-- [ ] Effects (Like photoshop)
+- [ ] Effects
 - [X] 1.7 Paint mode
 - [X] Mirror effect
 - [X] Brush sizes
-- [ ] Select modes
+- [ ] ~~Select modes~~
 - [X] Fill
 - [X] Undo/Redo
 - [ ] Improved GUI
 
-That also would be great if you forked this repo and help me with this features
+That also would be great if you forked this repo and help me with this features.
+
+Good Luck!!
