@@ -1292,60 +1292,73 @@ Public Class Renderer3D
 
     Public Event BeginChanged(sender As Object, LastSkin As Bitmap)
 
+    Dim GlobalMouseRay As MouseRay 'To use the var golbaly in the code
+    Dim GlobalCameraPos As Vector3
+
     Private Sub GlControl_MouseDown(sender As Object, e As MouseEventArgs) Handles GlControl.MouseDown
-        If Not IsMouseDown AndAlso e.Button = MouseButtons.Left Then
-            If Paintable Then
+        If Not IsMouseDown AndAlso e.Button = MouseButtons.Left Then 'Left mouse button
+            If Paintable Then 'Check if the Skin editor is paintable
                 GlControl.MakeCurrent()
                 Dim promatrix As Matrix4
                 Dim viewmatrix As Matrix4
                 GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
                 GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
+                'Get the current mouse ray
                 Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, GetCameraPos(viewmatrix), Me)
                 m.Pos = e.Location
-                If m.Mouse2ndHit <> New Vector3(100, 100, 100) OrElse m.MouseHit <> New Vector3(0, 0, 0) Then
+                If m.Mouse2ndHit <> New Vector3(100, 100, 100) OrElse m.MouseHit <> New Vector3(0, 0, 0) Then 'Check if the mouse hit the model or no
                     Dim tmp As Bitmap = Skin.Clone()
-                    RaiseEvent BeginChanged(Me, tmp)
+                    RaiseEvent BeginChanged(Me, tmp) 'Fire the event
                     IsMouseHit = True
+
+                    Dim CameraPos As Vector3 = GetCameraPos(viewmatrix)
+                    GlobalMouseRay = m
+                    GlobalCameraPos = CameraPos
+
+                    PaintThread = New Threading.Thread(AddressOf PaintCommander)
+                    PaintThread.Start()
+
                     Exit Sub
                 End If
             End If
-            OldLoc = Cursor.Position
-            If Not IsMouseHidden Then
+            'If the ray didn't hit the model then rotate the model
+            OldLoc = Cursor.Position 'Store the old mouse position to reset it when the action is over
+            If Not IsMouseHidden Then 'Hide the mouse
                 Cursor.Hide()
                 IsMouseHidden = True
             End If
-            MouseLoc = Cursor.Position
+            MouseLoc = Cursor.Position 'Store the current mouse position to use it for the rotate action
             IsMouseDown = True
-        ElseIf Not IsRightMouseDown AndAlso e.Button = MouseButtons.Right Then
-            OldLoc = Cursor.Position
-            If Not IsMouseHidden Then
+        ElseIf Not IsRightMouseDown AndAlso e.Button = MouseButtons.Right Then 'Right mouse button
+            OldLoc = Cursor.Position 'Store the old mouse position to reset it when the action is over 
+            If Not IsMouseHidden Then 'Hide the mouse
                 Cursor.Hide()
                 IsMouseHidden = True
             End If
-            MouseLoc = Cursor.Position
+            MouseLoc = Cursor.Position 'Store the current mouse position to use it for the move action
             IsRightMouseDown = True
         End If
     End Sub
 
     Private Sub GlControl_MouseUp(sender As Object, e As MouseEventArgs) Handles GlControl.MouseUp
         If IsMouseHidden Then
-            Cursor.Show()
+            Cursor.Show() 'Show the mouse
             IsMouseHidden = False
-            Cursor.Position = OldLoc
-            IsMouseDown = False
+            Cursor.Position = OldLoc 'Rest the mouse position
+            IsMouseDown = False 'Clear the booleans
             IsRightMouseDown = False
         End If
         IsMouseHit = False
     End Sub
 
     Private Sub Move_Tick(sender As Object, e As EventArgs) Handles timMove.Tick
-        If IsMouseDown Then
+        If IsMouseDown Then 'Rotate the model
             RotationY += (Cursor.Position.X - MouseLoc.X) * 0.5
             RotationX -= (Cursor.Position.Y - MouseLoc.Y) * 0.5
             Me.Refresh()
             Cursor.Position = New Point(My.Computer.Screen.Bounds.Width / 2, My.Computer.Screen.Bounds.Height / 2)
             MouseLoc = Cursor.Position
-        ElseIf IsRightMouseDown Then
+        ElseIf IsRightMouseDown Then 'Move the model
             LookX += -(Cursor.Position.X - MouseLoc.X) * 0.5
             LookY += (Cursor.Position.Y - MouseLoc.Y) * 0.5
             Me.Refresh()
@@ -1354,7 +1367,7 @@ Public Class Renderer3D
         End If
     End Sub
 
-    Private Sub Renderer3D_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
+    Private Sub Renderer3D_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel 'Zoom
         Zoom += e.Delta * 0.005
         Refresh()
     End Sub
@@ -1363,40 +1376,43 @@ Public Class Renderer3D
         GlControl.MakeCurrent()
         Return Matrix4.Invert(modelview).ExtractTranslation()
     End Function
+    Dim PaintThread As New Threading.Thread(AddressOf PaintCommander)
 
-    Private Sub Paint_Tick(sender As Object, e As EventArgs) Handles timPaint.Tick
-        If IsMouseHit Then
-            GlControl.MakeCurrent()
-            Dim promatrix As Matrix4
-            Dim viewmatrix As Matrix4
-            GL.GetFloat(GetPName.ModelviewMatrix, viewmatrix)
-            GL.GetFloat(GetPName.ProjectionMatrix, promatrix)
-            Dim CameraPos As Vector3 = GetCameraPos(viewmatrix)
-            Dim m As New MouseRay(viewmatrix, promatrix, GlControl.Size, CameraPos, Me)
-            m.Pos = GlControl.PointToClient(New Point(Cursor.Position))
-            Dim Mouse2ndHit As Vector3 = m.Mouse2ndHit
-            Dim MouseHit As Vector3 = m.MouseHit
-            Dim MouseHitDis As Double = Math.Sqrt(Math.Pow(CameraPos.X - MouseHit.X, 2.0F) + Math.Pow(CameraPos.Y - MouseHit.Y, 2.0F) + Math.Pow(CameraPos.Z - MouseHit.Z, 2.0F))
-            Dim Mouse2ndHitDis As Double = Math.Sqrt(Math.Pow(CameraPos.X - Mouse2ndHit.X, 2.0F) + Math.Pow(CameraPos.Y - Mouse2ndHit.Y, 2.0F) + Math.Pow(CameraPos.Z - Mouse2ndHit.Z, 2.0F))
+    Sub PaintCommander()
+        Do
+            GlControl.Invoke(Sub()
+                                 GlobalMouseRay.Pos = GlControl.PointToClient(New Point(Cursor.Position))
+                             End Sub)
+            Dim Mouse2ndHit As Vector3 = GlobalMouseRay.Mouse2ndHit
+            Dim MouseHit As Vector3 = GlobalMouseRay.MouseHit
+            Dim MouseHitDis As Double = Math.Sqrt(Math.Pow(GlobalCameraPos.X - MouseHit.X, 2.0F) + Math.Pow(GlobalCameraPos.Y - MouseHit.Y, 2.0F) + Math.Pow(GlobalCameraPos.Z - MouseHit.Z, 2.0F))
+            Dim Mouse2ndHitDis As Double = Math.Sqrt(Math.Pow(GlobalCameraPos.X - Mouse2ndHit.X, 2.0F) + Math.Pow(GlobalCameraPos.Y - Mouse2ndHit.Y, 2.0F) + Math.Pow(GlobalCameraPos.Z - Mouse2ndHit.Z, 2.0F))
             If MouseHitDis > Mouse2ndHitDis Then
                 PaintPixel(Mouse2ndHit, True)
 
-                MainForm.Skin = Skin
-                MainForm.UpdateImage()
-                Exit Sub
+                GoTo ExitPaint
             End If
             If MouseHit <> New Vector3(0, 0, 0) Then
                 PaintPixel(MouseHit)
 
-                MainForm.Skin = Skin
-                MainForm.UpdateImage()
             End If
+
+ExitPaint:
+            If IsMouseHit = False Then PaintThread.Abort()
+        Loop
+    End Sub
+
+    Private Sub Paint_Tick(sender As Object, e As EventArgs) Handles timPaint.Tick
+        If IsMouseHit Then
+            MainForm.Skin = Skin.Clone
+            MainForm.UpdateImage()
         End If
     End Sub
 
     Public Event SkinChanged(sender As Object, IsLeft As Boolean)
 
     Sub PaintPixel(Vector As Vector3, Optional Second As Boolean = False)
+        Dim tmpSkin As Bitmap = Skin.Clone
         Dim Point As Point
         Dim XUp As Vector3
         Dim YUp As Vector3
@@ -1408,12 +1424,12 @@ Public Class Renderer3D
             If Point.Y > 31 Then Left = True
         End If
         If ColorPicker.IsPicking Then
-            ColorPicker.Color = Skin.GetPixel(Point.X, Point.Y)
+            ColorPicker.Color = tmpSkin.GetPixel(Point.X, Point.Y)
             ColorPicker.IsPicking = False
         ElseIf ColorPicker.IsFilling Then
             FloodFill(Point.X, Point.Y, ColorPicker.Color)
         Else
-            Skin.SetPixel(Point.X, Point.Y, ColorPicker.Color)
+            tmpSkin.SetPixel(Point.X, Point.Y, ColorPicker.Color)
             If ColorPicker.IsMirroring Then
                 Dim MPoint As Point
                 If Second Then
@@ -1421,7 +1437,7 @@ Public Class Renderer3D
                 Else
                     MPoint = Get2DFrom3D(Vector * New Vector3(-1, 1, 1), XUp, YUp)
                 End If
-                Skin.SetPixel(MPoint.X, MPoint.Y, ColorPicker.Color)
+                tmpSkin.SetPixel(MPoint.X, MPoint.Y, ColorPicker.Color)
             End If
             If ColorPicker.BrushSize >= 2 Then
                 Dim Points(5) As Point
@@ -1446,7 +1462,7 @@ Public Class Renderer3D
                 End If
                 For Each Pixel As Point In Points
                     If Pixel <> New Point(0, 0) Then
-                        Skin.SetPixel(Pixel.X, Pixel.Y, ColorPicker.Color)
+                        tmpSkin.SetPixel(Pixel.X, Pixel.Y, ColorPicker.Color)
                     End If
                 Next
             End If
@@ -1481,12 +1497,12 @@ Public Class Renderer3D
                 End If
                 For Each Pixel As Point In Points
                     If Pixel <> New Point(0, 0) Then
-                        Skin.SetPixel(Pixel.X, Pixel.Y, ColorPicker.Color)
+                        tmpSkin.SetPixel(Pixel.X, Pixel.Y, ColorPicker.Color)
                     End If
                 Next
             End If
-            Refresh()
         End If
+        Skin = tmpSkin.Clone
         RaiseEvent SkinChanged(Me, Left)
     End Sub
 
