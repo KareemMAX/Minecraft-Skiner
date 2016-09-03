@@ -56,9 +56,9 @@ Public Class UploadingSkin
             Timer.Stop()
             Dim Dialog As New ChangeSkinWebsite
             If IsAlex Then
-                Dialog.WebBrowser.Navigate("http://minecraft.net/profile/skin/remote?url=" & URL & "&model=3pxarm")
+                Dialog.browser.Load("http://minecraft.net/profile/skin/remote?url=" & URL & "&player-model=slim")
             Else
-                Dialog.WebBrowser.Navigate("http://minecraft.net/profile/skin/remote?url=" & URL)
+                Dialog.browser.Load("http://minecraft.net/profile/skin/remote?url=" & URL)
             End If
             Dialog.ShowDialog()
             Finish = True

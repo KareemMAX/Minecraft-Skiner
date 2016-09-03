@@ -14,7 +14,7 @@ Namespace My
             AddHandler AppDomain.CurrentDomain.AssemblyResolve, AddressOf ResolveAssemblies
         End Sub
 
-        Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs) Handles Me.UnhandledException
+        Private Sub MyApplication_UnhandledException(sender As Object, e As UnhandledExceptionEventArgs)
             Thread.CurrentThread.CurrentUICulture = CultureInfo.InvariantCulture
             Dim Dialog As New CrashDialog
             Dialog.Info = e

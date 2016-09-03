@@ -22,14 +22,12 @@ Public Class DownloadingSkin
     Private Sub BackgroundWorker_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker.DoWork
         file = "" 'Update the File value
         Dim wc As New WebClient
+        Dim UUIDJson As UUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of UUID)(
+                wc.DownloadString("https://api.mojang.com/users/profiles/minecraft/" + UserInput))
+        Dim RealName As String = UserInput
         Try
-            If wc.DownloadString("https://minecraft.net/haspaid.jsp?user=" + UserInput) = "false" Then
-                MsgBox("Username not exist", MsgBoxStyle.Critical, "Error")
-                file = tmpfile
-                failed = True
-                Exit Sub
-            End If
-            Dim request As WebRequest = WebRequest.Create("https://mcapi.ca/skin/file/" + UserInput)
+            RealName = UUIDJson.Name
+            Dim request As WebRequest = WebRequest.Create("http://skins.minecraft.net/MinecraftSkins/" + RealName + ".png")
             Dim response As WebResponse = request.GetResponse()
             Dim responseStream As IO.Stream = response.GetResponseStream()
             skin = New Bitmap(responseStream) 'Update Skin value
@@ -42,12 +40,8 @@ Public Class DownloadingSkin
         If MainForm.Skin.Height = 32 Then 'If the skin was 1.7 skin then convert it to 1.8 skin
             MainForm.ConvertSkin()
         End If
-        Dim RealName As String = UserInput
+
         Try
-            '--------------Get the UUID-----------------
-            Dim UUIDJson As UUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of UUID)(
-                wc.DownloadString("https://eu.mc-api.net/v3/uuid/" + UserInput))
-            RealName = UUIDJson.Name
             '--------------Get Skin type----------------
             Dim tmpstr As String = wc.DownloadString("https://sessionserver.mojang.com/session/minecraft/profile/" + UUIDJson.UUID)
             Dim NameJson As Name = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Name)(tmpstr)

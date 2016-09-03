@@ -35,11 +35,11 @@ Partial Class MainForm
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UndoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RedoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.ModeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.WebsiteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BugTrackerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog = New System.Windows.Forms.OpenFileDialog()
         Me.SaveFileDialog = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -47,7 +47,6 @@ Partial Class MainForm
         Me.Steverdb = New System.Windows.Forms.RadioButton()
         Me.ColorPicker = New Minecraft_skiner.ColorPicker()
         Me.LayerSelector = New Minecraft_skiner.LayerSelector()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.Renderer3D = New Minecraft_skiner.Renderer3D()
         Me.MainSkin = New System.Windows.Forms.PictureBox()
         Me.MenuStrip.SuspendLayout()
@@ -141,6 +140,11 @@ Partial Class MainForm
         Me.RedoToolStripMenuItem.Size = New System.Drawing.Size(123, 22)
         Me.RedoToolStripMenuItem.Text = "&Redo"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(120, 6)
+        '
         'ModeToolStripMenuItem
         '
         Me.ModeToolStripMenuItem.CheckOnClick = True
@@ -150,7 +154,7 @@ Partial Class MainForm
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.WebsiteToolStripMenuItem, Me.BugTrackerToolStripMenuItem})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AboutToolStripMenuItem, Me.WebsiteToolStripMenuItem})
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
         Me.HelpToolStripMenuItem.Text = "&Help"
@@ -158,20 +162,14 @@ Partial Class MainForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.WebsiteToolStripMenuItem.Text = "&Website"
-        '
-        'BugTrackerToolStripMenuItem
-        '
-        Me.BugTrackerToolStripMenuItem.Name = "BugTrackerToolStripMenuItem"
-        Me.BugTrackerToolStripMenuItem.Size = New System.Drawing.Size(134, 22)
-        Me.BugTrackerToolStripMenuItem.Text = "&Bug tracker"
         '
         'OpenFileDialog
         '
@@ -227,6 +225,7 @@ Partial Class MainForm
         Me.ColorPicker.Color = System.Drawing.Color.Red
         Me.ColorPicker.InDesignMode = True
         Me.ColorPicker.IsFilling = False
+        Me.ColorPicker.IsMirroring = False
         Me.ColorPicker.IsPicking = False
         Me.ColorPicker.Location = New System.Drawing.Point(768, 27)
         Me.ColorPicker.Name = "ColorPicker"
@@ -253,11 +252,6 @@ Partial Class MainForm
         Me.LayerSelector.ShowRightLeg = True
         Me.LayerSelector.Size = New System.Drawing.Size(120, 120)
         Me.LayerSelector.TabIndex = 7
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(120, 6)
         '
         'Renderer3D
         '
@@ -347,7 +341,6 @@ Partial Class MainForm
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WebsiteToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents BugTrackerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ColorPicker As ColorPicker
     Friend WithEvents ChangeYourSkinToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
