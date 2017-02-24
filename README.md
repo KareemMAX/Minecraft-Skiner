@@ -1,6 +1,6 @@
 ![Banner](http://s22.postimg.org/u464888ox/Banner.png)
 
-![Build](https://ci.appveyor.com/api/projects/status/github/Kareemmax/Minecraft-Skiner?svg=true)
+![Build](https://ci.appveyor.com/api/projects/status/ow4uccul91f4i6r0?svg=true)
 
 Tool to make a great Minecraft skins.
 
