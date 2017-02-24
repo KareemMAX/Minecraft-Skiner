@@ -284,7 +284,7 @@ Public Class MainForm
                 Case CloseBox.CloseBoxResult.Save
                     SaveToolStripMenuItem_Click(dlg, New EventArgs)
                 Case CloseBox.CloseBoxResult.Cancel
-                    Exit Sub
+                    e.Cancel = True
             End Select
         End If
     End Sub

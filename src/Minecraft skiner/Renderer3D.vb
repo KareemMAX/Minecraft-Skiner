@@ -1448,13 +1448,14 @@ Public Class Renderer3D
             Point = Get2DFrom3D(Vector, XUp, YUp)
             If Point.Y > 31 Then Left = True
         End If
+        Dim Points As New List(Of Point)
         If ColorPicker.IsPicking Then
             ColorPicker.Color = tmpSkin.GetPixel(Point.X, Point.Y)
             ColorPicker.IsPicking = False
         ElseIf ColorPicker.IsFilling Then
             FloodFill(Point.X, Point.Y, ColorPicker.Color)
         Else
-            tmpSkin.SetPixel(Point.X, Point.Y, ColorPicker.Color)
+            Points.Add(Point)
             If ColorPicker.IsMirroring Then
                 Dim MPoint As Point
                 If Second Then
@@ -1462,72 +1463,80 @@ Public Class Renderer3D
                 Else
                     MPoint = Get2DFrom3D(Vector * New Vector3(-1, 1, 1), XUp, YUp)
                 End If
-                tmpSkin.SetPixel(MPoint.X, MPoint.Y, ColorPicker.Color)
+                Points.Add(MPoint)
             End If
             If ColorPicker.BrushSize >= 2 Then
-                Dim Points(5) As Point
                 If Second Then
-                    Points(0) = Get2nd2DFrom3D(Vector + XUp)
-                    Points(1) = Get2nd2DFrom3D(Vector + XUp - YUp)
-                    Points(2) = Get2nd2DFrom3D(Vector - YUp)
+                    Points.Add(Get2nd2DFrom3D(Vector + XUp))
+                    Points.Add(Get2nd2DFrom3D(Vector + XUp - YUp))
+                    Points.Add(Get2nd2DFrom3D(Vector - YUp))
                     If ColorPicker.IsMirroring Then
-                        Points(3) = Get2nd2DFrom3D((Vector + XUp) * New Vector3(-1, 1, 1))
-                        Points(4) = Get2nd2DFrom3D((Vector + XUp - YUp) * New Vector3(-1, 1, 1))
-                        Points(5) = Get2nd2DFrom3D((Vector - YUp) * New Vector3(-1, 1, 1))
+                        Points.Add(Get2nd2DFrom3D((Vector + XUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2nd2DFrom3D((Vector + XUp - YUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2nd2DFrom3D((Vector - YUp) * New Vector3(-1, 1, 1)))
                     End If
                 Else
-                    Points(0) = Get2DFrom3D(Vector + XUp)
-                    Points(1) = Get2DFrom3D(Vector + XUp - YUp)
-                    Points(2) = Get2DFrom3D(Vector - YUp)
+                    Points.Add(Get2DFrom3D(Vector + XUp))
+                    Points.Add(Get2DFrom3D(Vector + XUp - YUp))
+                    Points.Add(Get2DFrom3D(Vector - YUp))
                     If ColorPicker.IsMirroring Then
-                        Points(3) = Get2DFrom3D((Vector + XUp) * New Vector3(-1, 1, 1))
-                        Points(4) = Get2DFrom3D((Vector + XUp - YUp) * New Vector3(-1, 1, 1))
-                        Points(5) = Get2DFrom3D((Vector - YUp) * New Vector3(-1, 1, 1))
+                        Points.Add(Get2DFrom3D((Vector + XUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2DFrom3D((Vector + XUp - YUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2DFrom3D((Vector - YUp) * New Vector3(-1, 1, 1)))
                     End If
                 End If
-                For Each Pixel As Point In Points
-                    If Pixel <> New Point(0, 0) Then
-                        tmpSkin.SetPixel(Pixel.X, Pixel.Y, ColorPicker.Color)
-                    End If
-                Next
             End If
             If ColorPicker.BrushSize = 3 Then
-                Dim Points(9) As Point
                 If Second Then
-                    Points(0) = Get2nd2DFrom3D(Vector - XUp)
-                    Points(1) = Get2nd2DFrom3D(Vector - XUp - YUp)
-                    Points(2) = Get2nd2DFrom3D(Vector + YUp)
-                    Points(3) = Get2nd2DFrom3D(Vector - XUp + YUp)
-                    Points(4) = Get2nd2DFrom3D(Vector + XUp + YUp)
+                    Points.Add(Get2nd2DFrom3D(Vector - XUp))
+                    Points.Add(Get2nd2DFrom3D(Vector - XUp - YUp))
+                    Points.Add(Get2nd2DFrom3D(Vector + YUp))
+                    Points.Add(Get2nd2DFrom3D(Vector - XUp + YUp))
+                    Points.Add(Get2nd2DFrom3D(Vector + XUp + YUp))
                     If ColorPicker.IsMirroring Then
-                        Points(5) = Get2nd2DFrom3D((Vector - XUp) * New Vector3(-1, 1, 1))
-                        Points(6) = Get2nd2DFrom3D((Vector - XUp - YUp) * New Vector3(-1, 1, 1))
-                        Points(7) = Get2nd2DFrom3D((Vector + YUp) * New Vector3(-1, 1, 1))
-                        Points(8) = Get2nd2DFrom3D((Vector - XUp + YUp) * New Vector3(-1, 1, 1))
-                        Points(9) = Get2nd2DFrom3D((Vector + XUp + YUp) * New Vector3(-1, 1, 1))
+                        Points.Add(Get2nd2DFrom3D((Vector - XUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2nd2DFrom3D((Vector - XUp - YUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2nd2DFrom3D((Vector + YUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2nd2DFrom3D((Vector - XUp + YUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2nd2DFrom3D((Vector + XUp + YUp) * New Vector3(-1, 1, 1)))
                     End If
                 Else
-                    Points(0) = Get2DFrom3D(Vector - XUp)
-                    Points(1) = Get2DFrom3D(Vector - XUp - YUp)
-                    Points(2) = Get2DFrom3D(Vector + YUp)
-                    Points(3) = Get2DFrom3D(Vector - XUp + YUp)
-                    Points(4) = Get2DFrom3D(Vector + XUp + YUp)
+                    Points.Add(Get2DFrom3D(Vector - XUp))
+                    Points.Add(Get2DFrom3D(Vector - XUp - YUp))
+                    Points.Add(Get2DFrom3D(Vector + YUp))
+                    Points.Add(Get2DFrom3D(Vector - XUp + YUp))
+                    Points.Add(Get2DFrom3D(Vector + XUp + YUp))
                     If ColorPicker.IsMirroring Then
-                        Points(5) = Get2DFrom3D((Vector - XUp) * New Vector3(-1, 1, 1))
-                        Points(6) = Get2DFrom3D((Vector - XUp - YUp) * New Vector3(-1, 1, 1))
-                        Points(7) = Get2DFrom3D((Vector + YUp) * New Vector3(-1, 1, 1))
-                        Points(8) = Get2DFrom3D((Vector - XUp + YUp) * New Vector3(-1, 1, 1))
-                        Points(9) = Get2DFrom3D((Vector + XUp + YUp) * New Vector3(-1, 1, 1))
+                        Points.Add(Get2DFrom3D((Vector - XUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2DFrom3D((Vector - XUp - YUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2DFrom3D((Vector + YUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2DFrom3D((Vector - XUp + YUp) * New Vector3(-1, 1, 1)))
+                        Points.Add(Get2DFrom3D((Vector + XUp + YUp) * New Vector3(-1, 1, 1)))
                     End If
                 End If
-                For Each Pixel As Point In Points
-                    If Pixel <> New Point(0, 0) Then
-                        tmpSkin.SetPixel(Pixel.X, Pixel.Y, ColorPicker.Color)
-                    End If
-                Next
             End If
+
+            For Each Pixel As Point In Points
+                If Pixel <> New Point(0, 0) Then
+                    Dim Color As Color = ColorPicker.Color
+
+                    If ColorPicker.IsCamoing Then
+                        Static rNumber As Random = New Random()
+                        Dim B As Integer = Common.RGBtoHSV(Color).Value
+
+                        B += rNumber.Next(-25, 25)
+                        If B > 100 Then
+                            B -= Common.RGBtoHSV(Color).Value + 25 - 100
+                        End If
+
+                        Color = Common.HSVtoRGB(Common.RGBtoHSV(Color).Hue, Common.RGBtoHSV(Color).Saturation, B)
+                    End If
+
+                    tmpSkin.SetPixel(Pixel.X, Pixel.Y, Color)
+                End If
+            Next
+            Skin = tmpSkin.Clone
         End If
-        Skin = tmpSkin.Clone
         RaiseEvent SkinChanged(Me, Left)
     End Sub
 
@@ -2496,7 +2505,21 @@ Public Class Renderer3D
         Dim clr As Color = SkinSection.GetPixel(x, y)
         If clr.Equals(old_color) Then
             pts.Push(New Point(x, y))
-            SkinSection.SetPixel(x, y, new_color)
+
+            Dim Color As Color = new_color
+
+            If ColorPicker.IsCamoing Then
+                Static rNumber As Random = New Random()
+                Dim B As Integer = Common.RGBtoHSV(Color).Value
+
+                B += rNumber.Next(-25, 25)
+                If B > 100 Then
+                    B -= Common.RGBtoHSV(Color).Value + 25 - 100
+                End If
+
+                Color = Common.HSVtoRGB(Common.RGBtoHSV(Color).Hue, Common.RGBtoHSV(Color).Saturation, B)
+            End If
+            SkinSection.SetPixel(x, y, Color)
         End If
     End Sub
 

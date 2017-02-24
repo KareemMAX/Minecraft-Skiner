@@ -137,7 +137,6 @@ Partial Class ColorPicker
         Me.Camo.TabIndex = 14
         Me.Camo.TabStop = False
         Me.ToolTip.SetToolTip(Me.Camo, "Camo effect")
-        Me.Camo.Visible = False
         '
         'Mirror
         '
