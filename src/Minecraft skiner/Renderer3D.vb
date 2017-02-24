@@ -1377,33 +1377,58 @@ Public Class Renderer3D
         Return Matrix4.Invert(modelview).ExtractTranslation()
     End Function
     Dim PaintThread As New Threading.Thread(AddressOf PaintCommander)
+    Dim MousePoints As New List(Of Point)
+    Dim tmpMousePoints As New List(Of Point)
+    Dim PaintThreadSwitcher As Boolean
+    Dim EndThreadFlag As Boolean 'To make sure that the thread is done
 
     Sub PaintCommander()
         Do
-            GlControl.Invoke(Sub()
-                                 GlobalMouseRay.Pos = GlControl.PointToClient(New Point(Cursor.Position))
-                             End Sub)
-            Dim Mouse2ndHit As Vector3 = GlobalMouseRay.Mouse2ndHit
-            Dim MouseHit As Vector3 = GlobalMouseRay.MouseHit
-            Dim MouseHitDis As Double = Math.Sqrt(Math.Pow(GlobalCameraPos.X - MouseHit.X, 2.0F) + Math.Pow(GlobalCameraPos.Y - MouseHit.Y, 2.0F) + Math.Pow(GlobalCameraPos.Z - MouseHit.Z, 2.0F))
-            Dim Mouse2ndHitDis As Double = Math.Sqrt(Math.Pow(GlobalCameraPos.X - Mouse2ndHit.X, 2.0F) + Math.Pow(GlobalCameraPos.Y - Mouse2ndHit.Y, 2.0F) + Math.Pow(GlobalCameraPos.Z - Mouse2ndHit.Z, 2.0F))
-            If MouseHitDis > Mouse2ndHitDis Then
-                PaintPixel(Mouse2ndHit, True)
-
-                GoTo ExitPaint
+            If PaintThreadSwitcher Then
+                If tmpMousePoints.Count = 0 Then
+                    tmpMousePoints.Add(Cursor.Position)
+                ElseIf Not tmpMousePoints.Last = Cursor.Position Then
+                    tmpMousePoints.Add(Cursor.Position)
+                End If
+            Else
+                MousePoints.AddRange(tmpMousePoints)
+                tmpMousePoints.Clear()
+                If MousePoints.Count = 0 Then
+                    MousePoints.Add(Cursor.Position)
+                ElseIf Not MousePoints.Last = Cursor.Position Then
+                    MousePoints.Add(Cursor.Position)
+                End If
             End If
-            If MouseHit <> New Vector3(0, 0, 0) Then
-                PaintPixel(MouseHit)
+            EndThreadFlag = False
 
-            End If
-
-ExitPaint:
             If IsMouseHit = False Then PaintThread.Abort()
         Loop
     End Sub
 
     Private Sub Paint_Tick(sender As Object, e As EventArgs) Handles timPaint.Tick
         If IsMouseHit Then
+            PaintThreadSwitcher = True
+            EndThreadFlag = True
+            While EndThreadFlag
+                'Do nothing untill 'EndThreadFlag = False' then move on
+            End While
+            For Each P As Point In MousePoints
+                GlControl.Invoke(Sub()
+                                     GlobalMouseRay.Pos = GlControl.PointToClient(P)
+                                 End Sub)
+                Dim Mouse2ndHit As Vector3 = GlobalMouseRay.Mouse2ndHit
+                Dim MouseHit As Vector3 = GlobalMouseRay.MouseHit
+                Dim MouseHitDis As Double = Math.Sqrt(Math.Pow(GlobalCameraPos.X - MouseHit.X, 2.0F) + Math.Pow(GlobalCameraPos.Y - MouseHit.Y, 2.0F) + Math.Pow(GlobalCameraPos.Z - MouseHit.Z, 2.0F))
+                Dim Mouse2ndHitDis As Double = Math.Sqrt(Math.Pow(GlobalCameraPos.X - Mouse2ndHit.X, 2.0F) + Math.Pow(GlobalCameraPos.Y - Mouse2ndHit.Y, 2.0F) + Math.Pow(GlobalCameraPos.Z - Mouse2ndHit.Z, 2.0F))
+                If MouseHitDis > Mouse2ndHitDis Then
+                    PaintPixel(Mouse2ndHit, True)
+
+                ElseIf MouseHit <> New Vector3(0, 0, 0) Then
+                    PaintPixel(MouseHit)
+                End If
+            Next
+            MousePoints.Clear()
+            PaintThreadSwitcher = False
             MainForm.Skin = Skin.Clone
             MainForm.UpdateImage()
         End If
