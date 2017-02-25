@@ -133,68 +133,68 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="BugTracker.Designer.vb">
+    <Compile Include="Forms\BugReport\BugTracker.Designer.vb">
       <DependentUpon>BugTracker.vb</DependentUpon>
     </Compile>
-    <Compile Include="BugTracker.vb">
+    <Compile Include="Forms\BugReport\BugTracker.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChangeSkinWebsite.Designer.vb">
+    <Compile Include="Forms\UploadDownload\ChangeSkinWebsite.Designer.vb">
       <DependentUpon>ChangeSkinWebsite.vb</DependentUpon>
     </Compile>
-    <Compile Include="ChangeSkinWebsite.vb">
+    <Compile Include="Forms\UploadDownload\ChangeSkinWebsite.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CloseBox.Designer.vb">
+    <Compile Include="Forms\CloseBox.Designer.vb">
       <DependentUpon>CloseBox.vb</DependentUpon>
     </Compile>
-    <Compile Include="CloseBox.vb">
+    <Compile Include="Forms\CloseBox.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ColorPicker.Designer.vb">
+    <Compile Include="UserControls\ColorPicker.Designer.vb">
       <DependentUpon>ColorPicker.vb</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker.vb">
+    <Compile Include="UserControls\ColorPicker.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Common.vb" />
-    <Compile Include="CrashDialog.Designer.vb">
+    <Compile Include="Classes\Common.vb" />
+    <Compile Include="Forms\BugReport\CrashDialog.Designer.vb">
       <DependentUpon>CrashDialog.vb</DependentUpon>
     </Compile>
-    <Compile Include="CrashDialog.vb">
+    <Compile Include="Forms\BugReport\CrashDialog.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DownloadingSkin.Designer.vb">
+    <Compile Include="Forms\UploadDownload\DownloadingSkin.Designer.vb">
       <DependentUpon>DownloadingSkin.vb</DependentUpon>
     </Compile>
-    <Compile Include="DownloadingSkin.vb">
+    <Compile Include="Forms\UploadDownload\DownloadingSkin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExSkinRes.vb" />
-    <Compile Include="Json classes\Imgur\Credits.vb" />
-    <Compile Include="Json classes\Imgur\ImageRespone.vb" />
-    <Compile Include="MainForm.vb">
+    <Compile Include="Classes\ExSkinRes.vb" />
+    <Compile Include="Classes\Json classes\Imgur\Credits.vb" />
+    <Compile Include="Classes\Json classes\Imgur\ImageRespone.vb" />
+    <Compile Include="Forms\MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.vb">
+    <Compile Include="Forms\MainForm.Designer.vb">
       <DependentUpon>MainForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Json classes\Mojang\Cape.vb" />
-    <Compile Include="Json classes\Mojang\Metadata.vb" />
-    <Compile Include="Json classes\Mojang\Name.vb" />
-    <Compile Include="Json classes\Mojang\properties.vb" />
-    <Compile Include="Json classes\Mojang\PropertiesDecoded.vb" />
-    <Compile Include="Json classes\Mojang\Skin.vb" />
-    <Compile Include="Json classes\Mojang\Textures.vb" />
-    <Compile Include="Json classes\Mojang\UUID.vb" />
-    <Compile Include="LayerSelector.Designer.vb">
+    <Compile Include="Classes\Json classes\Mojang\Cape.vb" />
+    <Compile Include="Classes\Json classes\Mojang\Metadata.vb" />
+    <Compile Include="Classes\Json classes\Mojang\Name.vb" />
+    <Compile Include="Classes\Json classes\Mojang\properties.vb" />
+    <Compile Include="Classes\Json classes\Mojang\PropertiesDecoded.vb" />
+    <Compile Include="Classes\Json classes\Mojang\Skin.vb" />
+    <Compile Include="Classes\Json classes\Mojang\Textures.vb" />
+    <Compile Include="Classes\Json classes\Mojang\UUID.vb" />
+    <Compile Include="UserControls\LayerSelector.Designer.vb">
       <DependentUpon>LayerSelector.vb</DependentUpon>
     </Compile>
-    <Compile Include="LayerSelector.vb">
+    <Compile Include="UserControls\LayerSelector.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MouseRay.vb" />
+    <Compile Include="Classes\MouseRay.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -210,60 +210,60 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="OldSkinPreview.Designer.vb">
+    <Compile Include="Forms\OldSkinPreview.Designer.vb">
       <DependentUpon>OldSkinPreview.vb</DependentUpon>
     </Compile>
-    <Compile Include="OldSkinPreview.vb">
+    <Compile Include="Forms\OldSkinPreview.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Renderer3D.Designer.vb">
+    <Compile Include="UserControls\Renderer3D.Designer.vb">
       <DependentUpon>Renderer3D.vb</DependentUpon>
     </Compile>
-    <Compile Include="Renderer3D.vb">
+    <Compile Include="UserControls\Renderer3D.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UploadingSkin.Designer.vb">
+    <Compile Include="Forms\UploadDownload\UploadingSkin.Designer.vb">
       <DependentUpon>UploadingSkin.vb</DependentUpon>
     </Compile>
-    <Compile Include="UploadingSkin.vb">
+    <Compile Include="Forms\UploadDownload\UploadingSkin.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserNameDialog.Designer.vb">
+    <Compile Include="Forms\UploadDownload\UserNameDialog.Designer.vb">
       <DependentUpon>UserNameDialog.vb</DependentUpon>
     </Compile>
-    <Compile Include="UserNameDialog.vb">
+    <Compile Include="Forms\UploadDownload\UserNameDialog.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ViewReport.Designer.vb">
+    <Compile Include="Forms\BugReport\ViewReport.Designer.vb">
       <DependentUpon>ViewReport.vb</DependentUpon>
     </Compile>
-    <Compile Include="ViewReport.vb">
+    <Compile Include="Forms\BugReport\ViewReport.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="BugTracker.resx">
+    <EmbeddedResource Include="Forms\BugReport\BugTracker.resx">
       <DependentUpon>BugTracker.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChangeSkinWebsite.resx">
+    <EmbeddedResource Include="Forms\UploadDownload\ChangeSkinWebsite.resx">
       <DependentUpon>ChangeSkinWebsite.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CloseBox.resx">
+    <EmbeddedResource Include="Forms\CloseBox.resx">
       <DependentUpon>CloseBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ColorPicker.resx">
+    <EmbeddedResource Include="UserControls\ColorPicker.resx">
       <DependentUpon>ColorPicker.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrashDialog.resx">
+    <EmbeddedResource Include="Forms\BugReport\CrashDialog.resx">
       <DependentUpon>CrashDialog.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DownloadingSkin.resx">
+    <EmbeddedResource Include="Forms\UploadDownload\DownloadingSkin.resx">
       <DependentUpon>DownloadingSkin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LayerSelector.resx">
+    <EmbeddedResource Include="UserControls\LayerSelector.resx">
       <DependentUpon>LayerSelector.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -272,19 +272,19 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="OldSkinPreview.resx">
+    <EmbeddedResource Include="Forms\OldSkinPreview.resx">
       <DependentUpon>OldSkinPreview.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Renderer3D.resx">
+    <EmbeddedResource Include="UserControls\Renderer3D.resx">
       <DependentUpon>Renderer3D.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UploadingSkin.resx">
+    <EmbeddedResource Include="Forms\UploadDownload\UploadingSkin.resx">
       <DependentUpon>UploadingSkin.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserNameDialog.resx">
+    <EmbeddedResource Include="Forms\UploadDownload\UserNameDialog.resx">
       <DependentUpon>UserNameDialog.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewReport.resx">
+    <EmbeddedResource Include="Forms\BugReport\ViewReport.resx">
       <DependentUpon>ViewReport.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
@@ -379,6 +379,7 @@
     <None Include="Resources\steveheadnone.png" />
     <Content Include="finalico.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\cef.redist.x64.3.2883.1552\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2883.1552\build\cef.redist.x64.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
