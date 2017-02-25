@@ -1402,7 +1402,11 @@ Public Class Renderer3D
             End If
             EndThreadFlag = False
 
-            If IsMouseHit = False Then PaintThread.Abort()
+            If IsMouseHit = False Then
+                tmpMousePoints.Clear()
+                MousePoints.Clear()
+                PaintThread.Abort()
+            End If
         Loop
     End Sub
 
