@@ -96,23 +96,17 @@ Public Class MainForm
     End Sub
 
     Private Sub OpenFileDialog_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog.FileOk
-        If Changed Then
-            Dim dlg As New CloseBox
-            dlg.ShowDialog()
-            Select Case dlg.CloseResult
-                Case CloseBox.CloseBoxResult.Save
-                    SaveToolStripMenuItem_Click(dlg, New EventArgs)
-                Case CloseBox.CloseBoxResult.Cancel
-                    Exit Sub
-            End Select
-        End If
         Dim tmpFile As String = File
         Dim tmpSkin As Bitmap = Skin
+        Skin.Dispose()
         File = OpenFileDialog.FileName 'Update the File value
         OpenFileDialog.FileName = "" 'Rest the FileName value
         Dim BitmapStream As IO.Stream = IO.File.Open(File, IO.FileMode.Open)
+        Dim Buffer(BitmapStream.Length) As Byte
+        BitmapStream.Read(Buffer, 0, BitmapStream.Length)
+        Dim BitmapMemoryStream As New IO.MemoryStream(Buffer)
         Try
-            Skin = New Bitmap(BitmapStream) 'Update Skin value
+            Skin = New Bitmap(BitmapMemoryStream) 'Update Skin value
         Catch
             MsgBox("Something wrong with opening the file.", MsgBoxStyle.Critical, "Error!")
             File = tmpFile

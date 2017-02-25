@@ -1349,6 +1349,7 @@ Public Class Renderer3D
             IsRightMouseDown = False
         End If
         IsMouseHit = False
+        ColorPicker.IsPicking = False
     End Sub
 
     Private Sub Move_Tick(sender As Object, e As EventArgs) Handles timMove.Tick
@@ -1451,7 +1452,7 @@ Public Class Renderer3D
         Dim Points As New List(Of Point)
         If ColorPicker.IsPicking Then
             ColorPicker.Color = tmpSkin.GetPixel(Point.X, Point.Y)
-            ColorPicker.IsPicking = False
+            ColorPicker.Refresh()
         ElseIf ColorPicker.IsFilling Then
             FloodFill(Point.X, Point.Y, ColorPicker.Color)
         Else
@@ -1537,6 +1538,7 @@ Public Class Renderer3D
             Next
             Skin = tmpSkin.Clone
         End If
+        tmpSkin.Dispose()
         RaiseEvent SkinChanged(Me, Left)
     End Sub
 
@@ -2243,6 +2245,8 @@ Public Class Renderer3D
                     TransparentFill(Skin, New Rectangle(0, 48, 16, 16))
                     tmpG.DrawImage(tmpSS, 0, 48, 16, 16)
             End Select
+            tmpG.Dispose()
+            tmpSS.Dispose()
         End If
     End Sub
 
