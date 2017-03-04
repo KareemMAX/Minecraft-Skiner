@@ -29,12 +29,18 @@ Public Class UserNameDialog
     End Sub
 
     Private Sub txtUsername_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtUsername.KeyPress
-        If Not (e.KeyChar = vbBack OrElse System.Text.RegularExpressions.Regex.IsMatch(e.KeyChar.ToString(),
-                                                                                       "[0-z]|_") OrElse Char.IsControl(e.KeyChar)) Then
+        If Not (e.KeyChar = vbBack OrElse e.KeyChar.ToString() Like "[0-9A-Za-z_]" OrElse Char.IsControl(e.KeyChar)) Then
             'Stop the character from being entered into the control since it Is illegal.
             Beep()
             e.Handled = True
         End If
     End Sub
 
+    Private Sub txtUsername_TextChanged(sender As Object, e As EventArgs) Handles txtUsername.TextChanged
+        If txtUsername.Text Like "*[!0-9A-Za-z_]*" Then
+            'Stop the character from being entered into the control since it Is illegal.
+            Beep()
+            txtUsername.Text = ""
+        End If
+    End Sub
 End Class
