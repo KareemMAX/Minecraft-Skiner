@@ -86,6 +86,7 @@ Partial Class MainForm
         '
         'OpenFromplayerToolStripMenuItem
         '
+        Me.OpenFromplayerToolStripMenuItem.Enabled = False
         Me.OpenFromplayerToolStripMenuItem.Name = "OpenFromplayerToolStripMenuItem"
         Me.OpenFromplayerToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
@@ -115,6 +116,7 @@ Partial Class MainForm
         '
         'ChangeYourSkinToolStripMenuItem
         '
+        Me.ChangeYourSkinToolStripMenuItem.Enabled = False
         Me.ChangeYourSkinToolStripMenuItem.Name = "ChangeYourSkinToolStripMenuItem"
         Me.ChangeYourSkinToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.ChangeYourSkinToolStripMenuItem.Text = "&Change your skin"
@@ -224,6 +226,7 @@ Partial Class MainForm
         Me.ColorPicker.BrushSize = CType(1, Byte)
         Me.ColorPicker.Color = System.Drawing.Color.Red
         Me.ColorPicker.InDesignMode = True
+        Me.ColorPicker.IsCamoing = False
         Me.ColorPicker.IsFilling = False
         Me.ColorPicker.IsMirroring = False
         Me.ColorPicker.IsPicking = False

@@ -25,9 +25,16 @@ Public Class DownloadingSkin
         Dim UUIDJson As UUID = Newtonsoft.Json.JsonConvert.DeserializeObject(Of UUID)(
                 wc.DownloadString("https://api.mojang.com/users/profiles/minecraft/" + UserInput))
         Dim RealName As String = UserInput
+        Dim tmpstr As String
+        Dim NameJson As Name
+        Dim decoded As PropertiesDecoded
         Try
+            tmpstr = wc.DownloadString("https://sessionserver.mojang.com/session/minecraft/profile/" + UUIDJson.UUID)
+            NameJson = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Name)(tmpstr)
+            decoded = Newtonsoft.Json.JsonConvert.DeserializeObject(Of PropertiesDecoded)(
+                System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(NameJson.Properties(0).Value)))
             RealName = UUIDJson.Name
-            Dim request As WebRequest = WebRequest.Create("http://skins.minecraft.net/MinecraftSkins/" + RealName + ".png")
+            Dim request As WebRequest = WebRequest.Create(decoded.Textures.Skin.URL)
             Dim response As WebResponse = request.GetResponse()
             Dim responseStream As IO.Stream = response.GetResponseStream()
             skin = New Bitmap(responseStream) 'Update Skin value
@@ -43,10 +50,6 @@ Public Class DownloadingSkin
 
         Try
             '--------------Get Skin type----------------
-            Dim tmpstr As String = wc.DownloadString("https://sessionserver.mojang.com/session/minecraft/profile/" + UUIDJson.UUID)
-            Dim NameJson As Name = Newtonsoft.Json.JsonConvert.DeserializeObject(Of Name)(tmpstr)
-            Dim decoded As PropertiesDecoded = Newtonsoft.Json.JsonConvert.DeserializeObject(Of PropertiesDecoded)(
-                System.Text.Encoding.ASCII.GetString(Convert.FromBase64String(NameJson.Properties(0).Value)))
             If decoded.Textures.Skin.MetaDate.Model = "slim" Then
                 isalex = True
             End If
