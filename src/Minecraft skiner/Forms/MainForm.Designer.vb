@@ -86,7 +86,6 @@ Partial Class MainForm
         '
         'OpenFromplayerToolStripMenuItem
         '
-        Me.OpenFromplayerToolStripMenuItem.Enabled = False
         Me.OpenFromplayerToolStripMenuItem.Name = "OpenFromplayerToolStripMenuItem"
         Me.OpenFromplayerToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
             Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
@@ -164,13 +163,13 @@ Partial Class MainForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
         Me.AboutToolStripMenuItem.Text = "&About"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(116, 22)
         Me.WebsiteToolStripMenuItem.Text = "&Website"
         '
         'OpenFileDialog
@@ -202,7 +201,7 @@ Partial Class MainForm
         Me.Alexrdb.AutoSize = True
         Me.Alexrdb.Location = New System.Drawing.Point(6, 42)
         Me.Alexrdb.Name = "Alexrdb"
-        Me.Alexrdb.Size = New System.Drawing.Size(46, 17)
+        Me.Alexrdb.Size = New System.Drawing.Size(45, 17)
         Me.Alexrdb.TabIndex = 1
         Me.Alexrdb.TabStop = True
         Me.Alexrdb.Text = "Alex"
