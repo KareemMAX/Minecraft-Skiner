@@ -56,6 +56,6 @@ The project was made in VB.net using an OpenGL wrapper called [OpenTK](https://o
 
 ## Download
 
-You can download the latest version from [here](https://github.com/KareemMAX/Minecraft-Skiner/releases).
+You can download the latest version from [here](https://github.com/KareemMAX/Minecraft-Skiner/releases/latest).
 
 For all releases check [here](https://github.com/KareemMAX/Minecraft-Skiner/releases).
