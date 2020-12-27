@@ -3,4 +3,4 @@ version: 1.0.0-beta+{build}
 platform: x86
 
 before_build:
- - nuget restore src\Minecraft-skiner.sln
+ - cmd: nuget restore src\Minecraft-skiner.sln
