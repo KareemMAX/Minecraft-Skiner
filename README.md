@@ -2,6 +2,8 @@
 
 A [Minecraft skin](https://minecraft.gamepedia.com/Skin) editor.
 
+> :warning: **Deprecation notice:** This repo is now read-only and I'll not add new features, accept PRs nor accept issues. If you would like to continue working on this repo please fork it.
+
 ![Banner](img/banner.png)
 
 ![Build](https://ci.appveyor.com/api/projects/status/ow4uccul91f4i6r0?svg=true)
